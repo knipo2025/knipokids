@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#EF9F27">
+<meta name="description" content="KNIPO Kids — Application éducative pour enfants sur l'Afrique, l'histoire, la nature et les mathématiques.">
+<title>KNIPO Kids</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#FFFDF6;color:#2C2C2A;padding:12px;max-width:680px;margin:0 auto}
+.hidden{display:none!important}
+h1{font-family:'Baloo 2',cursive;font-size:28px;color:#BA7517;text-align:center;letter-spacing:2px}
+h1 span{color:#1D9E75}
+.tagline{text-align:center;font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.lang-row{display:flex;justify-content:center;gap:6px;margin-bottom:10px}
+.lb{padding:4px 10px;border-radius:8px;border:1.5px solid #ddd;background:none;font-size:12px;font-weight:700;cursor:pointer;color:#888}
+.lb.on{background:#FAEEDA;border-color:#BA7517;color:#BA7517}
+.xp-wrap{background:#E1F5EE;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.xp-av{width:40px;height:40px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:20px}
+.xp-right{flex:1}
+.xp-name{font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;color:#3B6D11}
+.xp-bar{background:rgba(255,255,255,.5);border-radius:20px;height:7px;margin:3px 0}
+.xp-fill{background:#1D9E75;height:7px;border-radius:20px;transition:width .5s}
+.xp-pts{font-size:11px;color:#1D9E75;font-weight:700}
+.tabs{display:flex;gap:4px;background:#F1EFE8;border-radius:11px;padding:3px;margin-bottom:10px}
+.tab{flex:1;padding:7px 2px;border:none;background:none;border-radius:9px;font-family:'Baloo 2',cursive;font-weight:700;font-size:11px;cursor:pointer;color:#888}
+.tab.on{background:#fff;color:#BA7517}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.gcard{border-radius:13px;padding:14px 12px;cursor:pointer;border:none;text-align:left;width:100%;transition:transform .15s;position:relative}
+.gcard:hover{transform:translateY(-2px)}
+.gcard .ci{font-size:26px;display:block;margin-bottom:4px}
+.gcard .ct{font-family:'Baloo 2',cursive;font-size:15px;font-weight:700;color:rgba(0,0,0,.7);display:block}
+.gcard .cs{font-size:11px;color:rgba(0,0,0,.45)}
+.gc-h{background:#FAEEDA}.gc-n{background:#EAF3DE}.gc-c{background:#E1F5EE}.gc-l{background:#EEEDFE}.gc-p{background:#FAECE7}
+.lock{position:absolute;top:7px;right:7px;background:rgba(0,0,0,.12);border-radius:20px;padding:2px 7px;font-size:10px;font-weight:700;color:rgba(0,0,0,.5)}
+.unlk{position:absolute;top:7px;right:7px;background:#1D9E75;border-radius:20px;padding:2px 7px;font-size:10px;font-weight:700;color:#fff}
+.back-btn{background:none;border:none;cursor:pointer;font-size:12px;font-weight:700;color:#888;padding:4px 0 10px;display:flex;align-items:center;gap:4px}
+.qhead{border-radius:13px;padding:14px;margin-bottom:10px;text-align:center}
+.qhi-big{font-size:36px;display:block}
+.qht{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:rgba(0,0,0,.7)}
+.dots{display:flex;gap:5px;justify-content:center;margin-bottom:10px}
+.dot{width:9px;height:9px;border-radius:50%;background:#ddd}
+.dot.dn{background:#1D9E75}.dot.cr{background:#EF9F27}
+.qcard{background:#fff;border:.5px solid #ddd;border-radius:16px;padding:16px;margin-bottom:10px;text-align:center}
+.qem{font-size:48px;display:block;margin-bottom:8px}
+.qtx{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;line-height:1.3;margin-bottom:4px}
+.qhint{font-size:12px;color:#888}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.abtn{border-radius:11px;border:2px solid #ddd;background:#fff;padding:10px 6px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#2C2C2A;transition:all .15s;line-height:1.3}
+.abtn:hover:not(:disabled){border-color:#EF9F27;background:#FAEEDA}
+.abtn.ok{background:#E1F5EE;border-color:#1D9E75;color:#3B6D11}
+.abtn.no{background:#FAECE7;border-color:#D85A30;color:#712B13}
+.fb{border-radius:11px;padding:12px 14px;margin-bottom:10px;display:none;gap:10px;align-items:flex-start}
+.fb.show{display:flex}
+.fb.ok{background:#E1F5EE}.fb.no{background:#FAECE7}
+.fb-ic{font-size:22px;flex-shrink:0}
+.fb-body strong{display:block;font-size:14px;margin-bottom:2px}
+.fb-body{font-size:13px;font-weight:600;line-height:1.4}
+.nxtbtn{width:100%;padding:12px;border-radius:11px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;cursor:pointer;display:none}
+.nxtbtn.show{display:block}
+.parea{background:#fff;border:.5px solid #ddd;border-radius:15px;padding:14px;margin-bottom:10px}
+.sentence{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:12px;font-family:'Baloo 2',cursive;font-size:15px;font-weight:700}
+.dzone{border:2px dashed #ddd;border-radius:7px;padding:5px 12px;min-width:80px;text-align:center;color:#888;cursor:pointer}
+.dzone.filled{border-style:solid;border-color:#1D9E75;background:#E1F5EE;color:#3B6D11;font-family:'Baloo 2',cursive;font-weight:700}
+.wbank{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.wbtn{background:#FAEEDA;border:1.5px solid #EF9F27;border-radius:7px;padding:5px 11px;font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;color:#BA7517;cursor:pointer}
+.wbtn.sel{outline:2.5px solid #534AB7;background:#EEEDFE;border-color:#534AB7;color:#534AB7}
+.ckbtn{padding:8px 18px;border-radius:11px;border:none;background:#1D9E75;color:#fff;font-family:'Baloo 2',cursive;font-size:14px;font-weight:700;cursor:pointer}
+.ckbtn:disabled{opacity:.4}
+.iabox{background:#fff;border:.5px solid #ddd;border-radius:15px;padding:14px;margin-bottom:10px}
+.ia-lbl{font-size:11px;font-weight:700;color:#534AB7;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.ia-desc{font-size:12px;color:#888;margin-bottom:10px;line-height:1.5}
+.topics{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.tbtn{padding:5px 10px;border-radius:18px;border:1.5px solid #534AB7;background:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;color:#534AB7;cursor:pointer}
+.tbtn.on{background:#EEEDFE}
+.ia-row{display:flex;gap:7px;margin-bottom:6px}
+.ia-inp{flex:1;padding:8px 11px;border-radius:9px;border:1.5px solid #ddd;font-family:'Nunito',sans-serif;font-size:13px;background:#F1EFE8;color:#2C2C2A}
+.ia-gbtn{padding:8px 13px;border-radius:9px;border:none;background:#534AB7;color:#fff;font-family:'Baloo 2',cursive;font-weight:700;font-size:13px;cursor:pointer}
+.ia-result{border-radius:11px;padding:12px;margin-top:8px;display:none}
+.ia-result.show{display:block}
+.ia-result.pur{background:#EEEDFE}
+.ia-result.grn{background:#EAF3DE}
+.ia-agrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.ia-abtn{padding:7px;border-radius:9px;border:2px solid #AFA9EC;background:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;color:#2C2C2A}
+.ia-abtn:hover:not(:disabled){background:#EEEDFE}
+.ia-abtn.ok{background:#E1F5EE;border-color:#1D9E75;color:#3B6D11}
+.ia-abtn.no{background:#FAECE7;border-color:#D85A30;color:#712B13}
+.qcount{font-size:11px;color:#534AB7;font-weight:700;text-align:right;margin-bottom:6px}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{background:#fff;border-radius:18px;padding:24px;width:90%;max-width:340px;text-align:center}
+.modal-ic{font-size:44px;display:block;margin-bottom:8px}
+.modal-ti{font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;margin-bottom:5px}
+.modal-de{font-size:13px;color:#888;margin-bottom:8px;line-height:1.4}
+.modal-pr{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:#BA7517;margin-bottom:12px}
+.code-row{display:flex;gap:7px;margin-bottom:8px}
+.code-in{flex:1;padding:9px;border-radius:9px;border:1.5px solid #ddd;font-family:'Nunito',sans-serif;font-size:15px;text-align:center;letter-spacing:3px;font-weight:700;background:#F1EFE8;text-transform:uppercase}
+.code-ok{padding:9px 14px;border-radius:9px;border:none;background:#1D9E75;color:#fff;font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;cursor:pointer}
+.modal-err{font-size:12px;color:#D85A30;font-weight:700;margin-bottom:8px;display:none}
+.modal-err.show{display:block}
+.modal-btns{display:flex;gap:8px;justify-content:center}
+.mbtn-s{padding:8px 16px;border-radius:10px;border:1.5px solid #ddd;background:none;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;color:#888;cursor:pointer}
+.mbtn-p{padding:8px 16px;border-radius:10px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;cursor:pointer}
+.success{text-align:center;padding:24px 12px}
+.s-tr{font-size:64px;display:block;margin-bottom:10px}
+.s-ti{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:#BA7517;margin-bottom:5px}
+.s-sb{font-size:13px;color:#888;margin-bottom:16px}
+.s-stats{display:flex;justify-content:center;gap:12px;margin-bottom:16px}
+.s-stat{background:#E1F5EE;border-radius:11px;padding:10px 16px;text-align:center}
+.s-stat-n{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:#1D9E75}
+.s-stat-l{font-size:11px;color:#888;font-weight:700}
+.s-btns{display:flex;justify-content:center;gap:10px}
+.sbtn-s{padding:10px 18px;border-radius:11px;border:2px solid #1D9E75;background:none;font-family:'Baloo 2',cursive;font-size:14px;font-weight:700;color:#1D9E75;cursor:pointer}
+.sbtn-p{padding:10px 18px;border-radius:11px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-size:14px;font-weight:700;cursor:pointer}
+.install-bar{background:linear-gradient(135deg,#FAEEDA,#FAC775);border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:10px}
+.install-txt{font-size:12px;font-weight:700;color:#633806;line-height:1.4}
+.install-btn{padding:7px 14px;border-radius:9px;border:none;background:#BA7517;color:#fff;font-family:'Baloo 2',cursive;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap}
+.footer{text-align:center;font-size:11px;color:#bbb;padding:16px 0 8px;font-weight:700}
+.footer a{color:#1D9E75;text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- PWA INSTALL BAR -->
+<div class="install-bar hidden" id="install-bar">
+  <div class="install-txt" id="install-txt">📲 Installe l'app sur ton écran d'accueil !</div>
+  <button class="install-btn" id="install-btn" onclick="installApp()">Installer</button>
+</div>
+
+<!-- MODAL PREMIUM -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <span class="modal-ic">🔒</span>
+    <div class="modal-ti" id="m-ti">Section Premium</div>
+    <div class="modal-de" id="m-de">Entre ton code d'accès pour déverrouiller.</div>
+    <div class="modal-pr" id="m-pr">4,99€ <span style="font-size:13px;color:#888;font-weight:400" id="m-prs">/ accès à vie</span></div>
+    <div class="code-row">
+      <input class="code-in" id="code-in" placeholder="CODE" maxlength="8" oninput="this.value=this.value.toUpperCase()">
+      <button class="code-ok" onclick="submitCode()">OK</button>
+    </div>
+    <div class="modal-err" id="m-err">Code incorrect ❌</div>
+    <div class="modal-btns">
+      <button class="mbtn-s" onclick="closeModal()" id="m-cancel">Annuler</button>
+      <button class="mbtn-p" id="m-buy" onclick="closeModal()">Bientôt disponible →</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="page-home">
+  <div style="padding:10px 0 4px">
+    <h1>KNIPO <span>KIDS</span></h1>
+    <div class="tagline" id="tag">Apprendre avec ses racines</div>
+  </div>
+  <div class="lang-row">
+    <button class="lb on" onclick="setLang('fr',this)">🇫🇷 FR</button>
+    <button class="lb" onclick="setLang('en',this)">🇬🇧 EN</button>
+    <button class="lb" onclick="setLang('it',this)">🇮🇹 IT</button>
+  </div>
+  <div class="xp-wrap">
+    <div class="xp-av">🦁</div>
+    <div class="xp-right">
+      <div class="xp-name" id="xp-name">Petit Lion · Niveau 1</div>
+      <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+      <div class="xp-pts" id="xp-pts">0 / 1000 XP</div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="showTab('t-learn',this)" id="tb-learn">📚 Apprendre</button>
+    <button class="tab" onclick="showTab('t-puzzle',this)" id="tb-puzzle">🧩 Puzzles</button>
+    <button class="tab" onclick="showTab('t-ia',this)" id="tb-ia">✨ Prof IA</button>
+    <button class="tab" onclick="showTab('t-prem',this)" id="tb-prem">👑 Premium</button>
+  </div>
+  <div id="t-learn">
+    <div class="grid">
+      <button class="gcard gc-h" onclick="startQuiz('histoire')"><span class="ci">🏛️</span><span class="ct" id="ct-h">Histoire</span><span class="cs" id="cs-h">Empires africains</span></button>
+      <button class="gcard gc-n" onclick="startQuiz('nature')"><span class="ci">🌍</span><span class="ct" id="ct-n">Nature</span><span class="cs" id="cs-n">Faune & flore</span></button>
+      <button class="gcard gc-c" onclick="startQuiz('maths')"><span class="ci">🔢</span><span class="ct" id="ct-c">Chiffres</span><span class="cs" id="cs-c">Maths fun</span></button>
+      <button class="gcard gc-l" onclick="startQuiz('proverbes')"><span class="ci">💬</span><span class="ct" id="ct-l">Proverbes</span><span class="cs" id="cs-l">Sagesse africaine</span></button>
+    </div>
+  </div>
+  <div id="t-puzzle" class="hidden">
+    <div class="grid">
+      <button class="gcard gc-p" onclick="startPuzzle(0)"><span class="ci">🔤</span><span class="ct" id="pt0">Empire du Mali</span><span class="cs" id="ps0">Complète la phrase</span></button>
+      <button class="gcard gc-c" onclick="startPuzzle(1)"><span class="ci">🌊</span><span class="ct" id="pt1">Fleuves</span><span class="cs" id="ps1">Glisse le mot</span></button>
+      <button class="gcard gc-h" onclick="startPuzzle(2)"><span class="ci">📚</span><span class="ct" id="pt2">Tombouctou</span><span class="cs" id="ps2">Le savoir</span></button>
+      <button class="gcard gc-n" onclick="startPuzzle(3)"><span class="ci">🦁</span><span class="ct" id="pt3">Animaux</span><span class="cs" id="ps3">Qui suis-je ?</span></button>
+      <button class="gcard gc-l" onclick="startPuzzle(4)"><span class="ci">👑</span><span class="ct" id="pt4">Rois & Reines</span><span class="cs" id="ps4">Figure historique</span></button>
+      <button class="gcard gc-h" onclick="startPuzzle(5)"><span class="ci">🌍</span><span class="ct" id="pt5">Géographie</span><span class="cs" id="ps5">Pays & capitales</span></button>
+    </div>
+  </div>
+  <div id="t-ia" class="hidden">
+    <div class="iabox">
+      <div class="ia-lbl" id="ia-lbl1">✨ Questions générées</div>
+      <div class="ia-desc" id="ia-desc1">Choisis un thème — des dizaines de questions uniques !</div>
+      <div class="topics" id="topics-row"></div>
+      <div id="ia-count" class="qcount"></div>
+      <button class="ia-gbtn" style="width:100%;padding:10px;border-radius:10px;margin-bottom:6px" onclick="genQ()" id="gen-btn">✨ Générer une question</button>
+      <div class="ia-result pur" id="ia-qres"></div>
+    </div>
+    <div class="iabox">
+      <div class="ia-lbl" id="ia-lbl2">🤖 Pose ta question</div>
+      <div class="ia-desc" id="ia-desc2">Tu veux comprendre quelque chose ? Demande !</div>
+      <div class="ia-row">
+        <input class="ia-inp" id="ia-qin" placeholder="Ex: Qui était Mansa Musa ?" onkeydown="if(event.key==='Enter')repond()">
+        <button class="ia-gbtn" onclick="repond()" id="ask-btn">Demander</button>
+      </div>
+      <div class="ia-result grn" id="ia-ares"></div>
+    </div>
+  </div>
+  <div id="t-prem" class="hidden">
+    <div style="background:linear-gradient(135deg,#FAEEDA,#FAC775);border-radius:14px;padding:14px;text-align:center;margin-bottom:10px">
+      <div style="font-size:32px;margin-bottom:6px">👑</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:19px;font-weight:800;color:#BA7517" id="prem-ti">KNIPO KIDS Premium</div>
+      <div style="font-size:12px;color:#633806;margin-top:4px" id="prem-de">Bientôt disponible — contenu exclusif en préparation !</div>
+    </div>
+    <div class="grid">
+      <button class="gcard gc-h" onclick="tryUnlock('empires',0)"><span class="ci">👑</span><span class="ct" id="pc0">Empires secrets</span><span class="cs" id="pcs0">10 leçons avancées</span><span class="lock" id="lk0">🔒 Bientôt</span></button>
+      <button class="gcard gc-n" onclick="tryUnlock('mythes',1)"><span class="ci">🌟</span><span class="ct" id="pc1">Mythes africains</span><span class="cs" id="pcs1">Contes & légendes</span><span class="lock" id="lk1">🔒 Bientôt</span></button>
+      <button class="gcard gc-c" onclick="tryUnlock('maths2',2)"><span class="ci">🧮</span><span class="ct" id="pc2">Maths avancées</span><span class="cs" id="pcs2">Multiplication & +</span><span class="lock" id="lk2">🔒 Bientôt</span></button>
+      <button class="gcard gc-l" onclick="tryUnlock('langues',3)"><span class="ci">🗣️</span><span class="ct" id="pc3">Langues africaines</span><span class="cs" id="pcs3">Swahili, Wolof...</span><span class="lock" id="lk3">🔒 Bientôt</span></button>
+      <button class="gcard gc-p" onclick="tryUnlock('heros',4)"><span class="ci">🦸</span><span class="ct" id="pc4">Héros africains</span><span class="cs" id="pcs4">Figures inspirantes</span><span class="lock" id="lk4">🔒 Bientôt</span></button>
+      <button class="gcard" style="background:linear-gradient(135deg,#EEEDFE,#E1F5EE)" onclick="tryUnlock('ia2',5)"><span class="ci">🤖</span><span class="ct" id="pc5">IA Illimitée</span><span class="cs" id="pcs5">Questions infinies</span><span class="lock" id="lk5">🔒 Bientôt</span></button>
+    </div>
+    <div style="background:#F1EFE8;border-radius:10px;padding:10px;text-align:center;font-size:12px;color:#888;font-weight:700" id="prem-cta">🚀 Le Premium arrive bientôt. Reviens vite !</div>
+  </div>
+  <div class="footer">KNIPO Kids &copy; 2025 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
+</div>
+
+<!-- QUIZ PAGE -->
+<div id="page-quiz" class="hidden">
+  <button class="back-btn" onclick="goHome()" id="bk-q">← Accueil</button>
+  <div class="qhead" id="qhead"><span class="qhi-big" id="qhi">🏛️</span><div class="qht" id="qht">Histoire</div></div>
+  <div class="dots" id="dots"></div>
+  <div class="qcard"><span class="qem" id="qem"></span><div class="qtx" id="qtx"></div><div class="qhint" id="qhint"></div></div>
+  <div class="agrid" id="agrid"></div>
+  <div class="fb" id="fb"><span class="fb-ic" id="fb-ic"></span><div class="fb-body"><strong id="fb-ti"></strong><span id="fb-ms"></span></div></div>
+  <button class="nxtbtn" id="nxtbtn" onclick="nextQ()">Continuer →</button>
+</div>
+
+<!-- PUZZLE PAGE -->
+<div id="page-puzzle" class="hidden">
+  <button class="back-btn" onclick="goHome()" id="bk-p">← Accueil</button>
+  <div class="qhead" style="background:#FAECE7"><span class="qhi-big">🧩</span><div class="qht" id="puz-ti">Puzzle</div></div>
+  <div id="puz-body"></div>
+  <div class="fb" id="pfb"><span class="fb-ic" id="pfb-ic"></span><div class="fb-body"><strong id="pfb-ti"></strong><span id="pfb-ms"></span></div></div>
+  <button class="nxtbtn" id="pnxtbtn" onclick="nextPuzzle()">Continuer →</button>
+</div>
+
+<!-- SUCCESS PAGE -->
+<div id="page-success" class="hidden">
+  <div class="success">
+    <span class="s-tr">🏆</span>
+    <div class="s-ti" id="win-ti">Félicitations !</div>
+    <div class="s-sb" id="win-sb">Tu as terminé la session !</div>
+    <div class="s-stats">
+      <div class="s-stat"><div class="s-stat-n" id="fin-sc">4/4</div><div class="s-stat-l" id="fin-sl">Bonnes réponses</div></div>
+      <div class="s-stat" style="background:#FAEEDA"><div class="s-stat-n" style="color:#BA7517" id="fin-xp">+40 XP</div><div class="s-stat-l" id="fin-xl">XP gagnés</div></div>
+    </div>
+    <div class="s-btns">
+      <button class="sbtn-s" onclick="goHome()" id="win-hm">Accueil</button>
+      <button class="sbtn-p" onclick="replayMode()" id="win-rp">Rejouer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// TRADUCTIONS
+// ============================================================
+const T={
+  fr:{level:'Niveau',tagline:'Apprendre avec ses racines',tabs:['📚 Apprendre','🧩 Puzzles','✨ Prof IA','👑 Premium'],cards:{h:'Histoire',hs:'Empires africains',n:'Nature',ns:'Faune & flore',c:'Chiffres',cs:'Maths fun',l:'Proverbes',ls:'Sagesse africaine'},puz:{p0:'Empire du Mali',p0s:'Complète la phrase',p1:"Fleuves d'Afrique",p1s:'Glisse le mot',p2:'Tombouctou',p2s:'Le savoir',p3:'Animaux',p3s:'Qui suis-je ?',p4:'Rois & Reines',p4s:'Figure historique',p5:'Géographie',p5s:'Pays & capitales'},prem:{ti:'KNIPO KIDS Premium',de:'Bientôt disponible — contenu exclusif en préparation !',cta:'🚀 Le Premium arrive bientôt. Reviens vite !',pc:['Empires secrets','Mythes africains','Maths avancées','Langues africaines','Héros africains','IA Illimitée'],pcs:['10 leçons avancées','Contes & légendes','Multiplication & +','Swahili, Wolof...','Figures inspirantes','Questions infinies'],lk:'🔒 Bientôt'},modal:{ti:'Section Premium',de:'Le Premium arrive bientôt ! Reviens nous voir.',pr:'4,99€',prs:'/ accès à vie',cancel:'Fermer',buy:'Bientôt disponible →',err:'Code incorrect ❌'},ia:{l1:'✨ Questions générées',d1:'Choisis un thème — des dizaines de questions uniques !',l2:'🤖 Pose ta question',d2:'Tu veux comprendre quelque chose ? Demande !',gen:'✨ Générer une question',ask:'Demander',ph:"Ex: Qui était Mansa Musa ?",topics:['🏛️ Histoire','🌿 Nature','🔢 Maths','💬 Proverbes','🦍 Animaux','🌍 Géo','🎲 Surprise'],keys:['histoire','nature','maths','proverbes','animaux','geo','mix'],rem:'questions restantes'},quiz:{hint:'💡',ok:'Excellent !',no:'Pas tout à fait !',next:'Continuer →'},puzl:{inst:'👇 Clique un mot puis clique le trou',bank:'Mots :',chk:'Vérifier ✓',ok:'Parfait !',no:'Presque !',is:'Bonne réponse : '},win:{ti:'Félicitations !',sb:'Tu as terminé la session !',sl:'Bonnes réponses',xl:'XP gagnés',hm:'Accueil',rp:'Rejouer'},back:'← Accueil',install:'📲 Installe l\'app sur ton écran !',installBtn:'Installer'},
+  en:{level:'Level',tagline:'Learning with your roots',tabs:['📚 Learn','🧩 Puzzles','✨ AI Teacher','👑 Premium'],cards:{h:'History',hs:'African empires',n:'Nature',ns:'Wildlife & plants',c:'Numbers',cs:'Fun maths',l:'Proverbs',ls:'African wisdom'},puz:{p0:'Mali Empire',p0s:'Complete the sentence',p1:'African rivers',p1s:'Drop the word',p2:'Timbuktu',p2s:'Knowledge',p3:'Animals',p3s:'Who am I?',p4:'Kings & Queens',p4s:'Historical figure',p5:'Geography',p5s:'Countries & capitals'},prem:{ti:'KNIPO KIDS Premium',de:'Coming soon — exclusive content in preparation!',cta:'🚀 Premium coming soon. Check back!',pc:['Secret Empires','African Myths','Advanced Maths','African Languages','African Heroes','Unlimited AI'],pcs:['10 advanced lessons','Tales & legends','Multiplication & more','Swahili, Wolof...','Inspiring figures','Infinite questions'],lk:'🔒 Soon'},modal:{ti:'Premium Section',de:'Premium coming soon! Check back.',pr:'€4.99',prs:'/ lifetime access',cancel:'Close',buy:'Coming soon →',err:'Incorrect code ❌'},ia:{l1:'✨ Generated questions',d1:'Pick a theme — dozens of unique questions!',l2:'🤖 Ask your question',d2:'Want to understand something? Ask!',gen:'✨ Generate a question',ask:'Ask',ph:'E.g. Who was Mansa Musa?',topics:['🏛️ History','🌿 Nature','🔢 Maths','💬 Proverbs','🦍 Animals','🌍 Geo','🎲 Surprise'],keys:['histoire','nature','maths','proverbes','animaux','geo','mix'],rem:'questions left'},quiz:{hint:'💡',ok:'Excellent!',no:'Not quite!',next:'Continue →'},puzl:{inst:'👇 Click a word then click the gap',bank:'Words:',chk:'Check ✓',ok:'Perfect!',no:'Almost!',is:'Correct answer: '},win:{ti:'Congratulations!',sb:'You finished the session!',sl:'Correct answers',xl:'XP earned',hm:'Home',rp:'Play again'},back:'← Home',install:'📲 Install the app on your screen!',installBtn:'Install'},
+  it:{level:'Livello',tagline:'Imparare con le proprie radici',tabs:['📚 Imparare','🧩 Puzzle','✨ Prof IA','👑 Premium'],cards:{h:'Storia',hs:'Imperi africani',n:'Natura',ns:'Fauna & flora',c:'Numeri',cs:'Matematica fun',l:'Proverbi',ls:'Saggezza africana'},puz:{p0:"Impero del Mali",p0s:'Completa la frase',p1:'Fiumi africani',p1s:'Trascina la parola',p2:'Timbuctù',p2s:'Il sapere',p3:'Animali',p3s:'Chi sono io?',p4:'Re & Regine',p4s:'Figura storica',p5:'Geografia',p5s:'Paesi & capitali'},prem:{ti:'KNIPO KIDS Premium',de:'In arrivo — contenuti esclusivi in preparazione!',cta:'🚀 Il Premium arriva presto. Torna a trovarci!',pc:['Imperi segreti','Miti africani','Matematica avanzata','Lingue africane','Eroi africani','IA Illimitata'],pcs:['10 lezioni avanzate','Racconti & leggende','Moltiplicazioni & +','Swahili, Wolof...','Figure ispiranti','Domande infinite'],lk:'🔒 Presto'},modal:{ti:'Sezione Premium',de:'Il Premium arriva presto! Torna a trovarci.',pr:'€4,99',prs:'/ accesso a vita',cancel:'Chiudi',buy:'Prossimamente →',err:'Codice errato ❌'},ia:{l1:'✨ Domande generate',d1:'Scegli un tema — decine di domande uniche!',l2:'🤖 Fai la tua domanda',d2:'Vuoi capire qualcosa? Chiedi!',gen:'✨ Genera una domanda',ask:'Chiedere',ph:'Es: Chi era Mansa Musa?',topics:['🏛️ Storia','🌿 Natura','🔢 Mate','💬 Proverbi','🦍 Animali','🌍 Geo','🎲 Sorpresa'],keys:['histoire','nature','maths','proverbes','animaux','geo','mix'],rem:'domande rimanenti'},quiz:{hint:'💡',ok:'Eccellente!',no:'Non proprio!',next:'Continua →'},puzl:{inst:'👇 Clicca una parola poi clicca il buco',bank:'Parole:',chk:'Verifica ✓',ok:'Perfetto!',no:'Quasi!',is:'Risposta corretta: '},win:{ti:'Congratulazioni!',sb:'Hai finito la sessione!',sl:'Risposte corrette',xl:'XP guadagnati',hm:'Inizio',rp:'Rigioca'},back:'← Inizio',install:'📲 Installa l\'app sul tuo schermo!',installBtn:'Installa'}
+};
+
+// ============================================================
+// BASE DE QUESTIONS (53 questions)
+// ============================================================
+const QDB={
+  histoire:[
+    {e:'🕌',q:{fr:"Quelle ville était le grand centre du savoir de l'Empire du Mali ?",en:"Which city was the center of knowledge of the Mali Empire?",it:"Quale città era il centro del sapere dell'Impero del Mali?"},h:{fr:"Elle est au Mali aujourd'hui",en:"It's in Mali today",it:"Si trova in Mali oggi"},a:{fr:['Tombouctou','Le Caire','Dakar','Lagos'],en:['Timbuktu','Cairo','Dakar','Lagos'],it:['Timbuctù','Il Cairo','Dakar','Lagos']},c:0,x:{fr:"Tombouctou abritait 700 000 manuscrits et des milliers d'étudiants !",en:"Timbuktu housed 700,000 manuscripts and thousands of students!",it:"Timbuctù ospitava 700.000 manoscritti e migliaia di studenti!"}},
+    {e:'👑',q:{fr:"Quelle reine africaine résista courageusement aux Portugais ?",en:"Which African queen bravely resisted the Portuguese?",it:"Quale regina africana resistette con coraggio ai Portoghesi?"},h:{fr:"Son nom commence par N",en:"Her name starts with N",it:"Il suo nome inizia con N"},a:{fr:['Cléopâtre','Reine Nzinga','Fatima','Yaa Asantewaa'],en:['Cleopatra','Queen Nzinga','Fatima','Yaa Asantewaa'],it:['Cleopatra','Regina Nzinga','Fatima','Yaa Asantewaa']},c:1,x:{fr:"Reine Nzinga négocia d'égal à égal avec les colonisateurs du Royaume du Kongo !",en:"Queen Nzinga negotiated as an equal with the colonizers of the Kongo Kingdom!",it:"La Regina Nzinga negoziò alla pari con i colonizzatori del Regno del Kongo!"}},
+    {e:'💰',q:{fr:"Pour quelle richesse Mansa Musa était-il célèbre dans le monde ?",en:"For what wealth was Mansa Musa famous worldwide?",it:"Per quale ricchezza era famoso Mansa Musa nel mondo?"},h:{fr:"Métal précieux et brillant",en:"Precious shiny metal",it:"Metallo prezioso e brillante"},a:{fr:['Cuivre','Diamants','Or','Argent'],en:['Copper','Diamonds','Gold','Silver'],it:['Rame','Diamanti','Oro','Argento']},c:2,x:{fr:"Mansa Musa était si riche que son voyage fit chuter le prix de l'or dans le monde entier !",en:"Mansa Musa was so rich his journey crashed gold prices worldwide!",it:"Mansa Musa era così ricco che il suo viaggio fece crollare il prezzo dell'oro nel mondo!"}},
+    {e:'🦁',q:{fr:"Thomas Sankara était président révolutionnaire de quel pays ?",en:"Thomas Sankara was the revolutionary president of which country?",it:"Thomas Sankara era il presidente rivoluzionario di quale paese?"},h:{fr:"Ex-Haute-Volta",en:"Former Upper Volta",it:"Ex Alto Volta"},a:{fr:['Mali','Sénégal','Burkina Faso','Ghana'],en:['Mali','Senegal','Burkina Faso','Ghana'],it:['Mali','Senegal','Burkina Faso','Ghana']},c:2,x:{fr:"Thomas Sankara dirigea le Burkina Faso de 1983 à 1987 avec vision et courage !",en:"Thomas Sankara led Burkina Faso from 1983 to 1987 with vision and courage!",it:"Thomas Sankara guidò il Burkina Faso dal 1983 al 1987 con visione e coraggio!"}},
+    {e:'📜',q:{fr:"Quel scientifique a prouvé que les Égyptiens anciens étaient africains ?",en:"Which scientist proved that ancient Egyptians were African?",it:"Quale scienziato ha dimostrato che gli antichi Egizi erano africani?"},h:{fr:"Son prénom est Cheikh",en:"His first name is Cheikh",it:"Il suo nome è Cheikh"},a:{fr:['Nelson Mandela','Cheikh Anta Diop','Kwame Nkrumah','Patrice Lumumba'],en:['Nelson Mandela','Cheikh Anta Diop','Kwame Nkrumah','Patrice Lumumba'],it:['Nelson Mandela','Cheikh Anta Diop','Kwame Nkrumah','Patrice Lumumba']},c:1,x:{fr:"Cheikh Anta Diop a prouvé que l'Égypte ancienne était une civilisation africaine noire !",en:"Cheikh Anta Diop proved that ancient Egypt was a Black African civilization!",it:"Cheikh Anta Diop ha dimostrato che l'antico Egitto era una civiltà africana nera!"}},
+    {e:'🗺️',q:{fr:"La Conférence de Berlin (1884) a permis aux Européens de faire quoi ?",en:"The Berlin Conference (1884) allowed Europeans to do what?",it:"La Conferenza di Berlino (1884) permise agli Europei di fare cosa?"},h:{fr:"Sans demander aux Africains...",en:"Without asking Africans...",it:"Senza chiedere agli africani..."},a:{fr:['Commercer librement','Partager l\'Afrique entre eux','Aider les peuples','Créer l\'ONU'],en:['Trade freely','Divide Africa among themselves','Help people','Create the UN'],it:['Commerciare liberamente','Dividersi l\'Africa','Aiutare i popoli','Creare l\'ONU']},c:1,x:{fr:"En 1884, les pays européens se sont partagé l'Afrique comme un gâteau, sans demander aux Africains !",en:"In 1884, European countries divided Africa like a cake, without asking Africans!",it:"Nel 1884, i paesi europei si sono divisi l'Africa come una torta, senza chiedere agli africani!"}},
+    {e:'⭐',q:{fr:"Qui était Patrice Lumumba ?",en:"Who was Patrice Lumumba?",it:"Chi era Patrice Lumumba?"},h:{fr:"Premier chef du Congo indépendant",en:"First leader of independent Congo",it:"Primo leader del Congo indipendente"},a:{fr:['Roi du Mali','1er PM du Congo','Général camerounais','Président du Sénégal'],en:['King of Mali','1st PM of Congo','Cameroonian general','President of Senegal'],it:['Re del Mali','1° PM del Congo','Generale camerunense','Presidente del Senegal']},c:1,x:{fr:"Patrice Lumumba fut le premier Premier ministre du Congo indépendant en 1960 !",en:"Patrice Lumumba was the first Prime Minister of independent Congo in 1960!",it:"Patrice Lumumba fu il primo Primo Ministro del Congo indipendente nel 1960!"}},
+    {e:'🌍',q:{fr:"Quel pays africain n'a jamais été colonisé ?",en:"Which African country was never colonized?",it:"Quale paese africano non è mai stato colonizzato?"},h:{fr:"Corne de l'Afrique",en:"Horn of Africa",it:"Corno d'Africa"},a:{fr:['Nigeria','Éthiopie','Kenya','Côte d\'Ivoire'],en:['Nigeria','Ethiopia','Kenya','Ivory Coast'],it:['Nigeria','Etiopia','Kenya','Costa d\'Avorio']},c:1,x:{fr:"L'Éthiopie a vaincu l'Italie à Adwa en 1896 et n'a jamais été colonisée !",en:"Ethiopia defeated Italy at Adwa in 1896 and was never colonized!",it:"L'Etiopia sconfisse l'Italia ad Adwa nel 1896 e non fu mai colonizzata!"}},
+    {e:'🎖️',q:{fr:"Nelson Mandela a été emprisonné pendant combien d'années ?",en:"How many years was Nelson Mandela imprisoned?",it:"Quanti anni è stato imprigionato Nelson Mandela?"},h:{fr:"Très longtemps...",en:"A very long time...",it:"Molto a lungo..."},a:{fr:['10 ans','18 ans','27 ans','35 ans'],en:['10 years','18 years','27 years','35 years'],it:['10 anni','18 anni','27 anni','35 anni']},c:2,x:{fr:"Nelson Mandela a passé 27 ans en prison avant de devenir président d'Afrique du Sud !",en:"Nelson Mandela spent 27 years in prison before becoming President of South Africa!",it:"Nelson Mandela ha trascorso 27 anni in prigione prima di diventare Presidente del Sudafrica!"}},
+    {e:'🏰',q:{fr:"L'Empire du Ghana était riche grâce au commerce de quoi ?",en:"The Ghana Empire was rich thanks to the trade of what?",it:"L'Impero del Ghana era ricco grazie al commercio di cosa?"},h:{fr:"Métal précieux et condiment blanc",en:"Precious metal and white condiment",it:"Metallo prezioso e condimento bianco"},a:{fr:['Épices et soie','Or et sel','Coton et fer','Ivoire et cuivre'],en:['Spices and silk','Gold and salt','Cotton and iron','Ivory and copper'],it:['Spezie e seta','Oro e sale','Cotone e ferro','Avorio e rame']},c:1,x:{fr:"L'Empire du Ghana contrôlait le commerce de l'or et du sel entre le Nord et le Sud de l'Afrique !",en:"The Ghana Empire controlled gold and salt trade between North and South Africa!",it:"L'Impero del Ghana controllava il commercio di oro e sale tra il Nord e il Sud Africa!"}}
+  ],
+  nature:[
+    {e:'🦁',q:{fr:"Quel animal est le roi de la savane africaine ?",en:"Which animal is king of the African savanna?",it:"Quale animale è il re della savana africana?"},h:{fr:"Il a une belle crinière",en:"It has a beautiful mane",it:"Ha una bella criniera"},a:{fr:['Léopard','Éléphant','Lion','Zèbre'],en:['Leopard','Elephant','Lion','Zebra'],it:['Leopardo','Elefante','Leone','Zebra']},c:2,x:{fr:"Le lion vit en groupe ! Les femelles chassent ensemble — très organisées !",en:"Lions live in groups! Females hunt together — very organized!",it:"I leoni vivono in gruppo! Le femmine cacciano insieme — molto organizzate!"}},
+    {e:'🌊',q:{fr:"Quel est le plus long fleuve d'Afrique et du monde ?",en:"What is the longest river in Africa and the world?",it:"Qual è il fiume più lungo dell'Africa e del mondo?"},h:{fr:"Il traverse l'Égypte",en:"It flows through Egypt",it:"Attraversa l'Egitto"},a:{fr:['Congo','Niger','Zambèze','Nil'],en:['Congo','Niger','Zambezi','Nile'],it:['Congo','Niger','Zambesi','Nilo']},c:3,x:{fr:"Le Nil fait 6 650 km ! Il a nourri la civilisation égyptienne pendant des millénaires.",en:"The Nile is 6,650 km! It nourished Egyptian civilization for millennia.",it:"Il Nilo è lungo 6.650 km! Ha nutrito la civiltà egizia per millenni."}},
+    {e:'🐘',q:{fr:"Combien de tonnes peut peser un éléphant adulte ?",en:"How many tons can an adult elephant weigh?",it:"Quante tonnellate può pesare un elefante adulto?"},h:{fr:"Entre 5 et 7",en:"Between 5 and 7",it:"Tra 5 e 7"},a:{fr:['2 tonnes','4 tonnes','6 tonnes','10 tonnes'],en:['2 tons','4 tons','6 tons','10 tons'],it:['2 tonn.','4 tonn.','6 tonn.','10 tonn.']},c:2,x:{fr:"Un éléphant peut peser 6 tonnes — autant que 4 grosses voitures !",en:"An elephant can weigh 6 tons — as much as 4 large cars!",it:"Un elefante può pesare 6 tonnellate — come 4 automobili!"}},
+    {e:'🦒',q:{fr:"Combien de mètres peut mesurer le cou d'une girafe ?",en:"How many meters can a giraffe's neck measure?",it:"Quanti metri può misurare il collo di una giraffa?"},h:{fr:"Pense à la hauteur d'une porte",en:"Think of a door's height",it:"Pensa all'altezza di una porta"},a:{fr:['0,5 m','1 m','2 m','3 m'],en:['0.5 m','1 m','2 m','3 m'],it:['0,5 m','1 m','2 m','3 m']},c:2,x:{fr:"Le cou d'une girafe peut mesurer 2 mètres ! Ça lui permet d'atteindre les feuilles très hautes.",en:"A giraffe's neck can reach 2 meters! This lets it reach very high leaves.",it:"Il collo di una giraffa può misurare 2 metri! Le permette di raggiungere foglie molto alte."}},
+    {e:'🌿',q:{fr:"Quelle forêt est le '2e poumon vert de la planète' ?",en:"Which forest is the '2nd green lung of the planet'?",it:"Quale foresta è il '2° polmone verde del pianeta'?"},h:{fr:"En Afrique centrale",en:"In Central Africa",it:"In Africa centrale"},a:{fr:['Amazonie','Forêt du Congo','Forêt canadienne','Forêt de Bornéo'],en:['Amazon','Congo forest','Canadian forest','Borneo forest'],it:['Amazzonia','Foresta del Congo','Foresta canadese','Foresta del Borneo']},c:1,x:{fr:"La forêt du Congo absorbe des millions de tonnes de CO2 et abrite des milliers d'espèces !",en:"The Congo forest absorbs millions of tons of CO2 and hosts thousands of species!",it:"La foresta del Congo assorbe milioni di tonnellate di CO2 e ospita migliaia di specie!"}},
+    {e:'🦓',q:{fr:"Le zèbre est-il noir avec des rayures blanches ou l'inverse ?",en:"Is the zebra black with white stripes or the opposite?",it:"La zebra è nera con strisce bianche o il contrario?"},h:{fr:"Les scientifiques ont tranché !",en:"Scientists have decided!",it:"Gli scienziati hanno deciso!"},a:{fr:['Blanc avec noir','Noir avec blanc','Mi-mi','Gris en fait'],en:['White with black','Black with white','Half and half','Grey really'],it:['Bianca con nero','Nera con bianco','A metà','Grigia in realtà']},c:1,x:{fr:"Le zèbre est noir avec des rayures blanches ! Sa peau sous le pelage est noire.",en:"The zebra is black with white stripes! Its skin under the coat is black.",it:"La zebra è nera con strisce bianche! La sua pelle sotto il pelo è nera."}},
+    {e:'🦍',q:{fr:"Quel pourcentage d'ADN humain le gorille partage-t-il avec nous ?",en:"What percentage of human DNA does the gorilla share with us?",it:"Quale percentuale del DNA umano condivide il gorilla?"},h:{fr:"Très proche de 100%",en:"Very close to 100%",it:"Molto vicino al 100%"},a:{fr:['75%','85%','98%','100%'],en:['75%','85%','98%','100%'],it:['75%','85%','98%','100%']},c:2,x:{fr:"Le gorille partage 98% de son ADN avec l'humain ! Notre cousin très proche.",en:"The gorilla shares 98% of its DNA with humans! Our very close cousin.",it:"Il gorilla condivide il 98% del suo DNA con noi! Il nostro cugino molto vicino."}},
+    {e:'🌋',q:{fr:"Quel est le plus haut sommet d'Afrique ?",en:"What is the highest peak in Africa?",it:"Qual è la vetta più alta dell'Africa?"},h:{fr:"En Tanzanie",en:"In Tanzania",it:"In Tanzania"},a:{fr:['Mont Kenya','Kilimandjaro','Mont Atlas','Ras Dashen'],en:['Mount Kenya','Kilimanjaro','Atlas','Ras Dashen'],it:['Monte Kenya','Kilimangiaro','Atlante','Ras Dashen']},c:1,x:{fr:"Le Kilimandjaro culmine à 5 895 m et est toujours enneigé malgré la chaleur africaine !",en:"Kilimanjaro peaks at 5,895 m and is always snow-capped despite Africa's heat!",it:"Il Kilimangiaro raggiunge 5.895 m ed è sempre innevato nonostante il caldo africano!"}},
+    {e:'🐆',q:{fr:"Quel est le félin le plus rapide du monde ?",en:"Which is the fastest feline in the world?",it:"Qual è il felino più veloce del mondo?"},h:{fr:"Il a des taches noires",en:"It has black spots",it:"Ha macchie nere"},a:{fr:['Léopard','Lion','Guépard','Jaguar'],en:['Leopard','Lion','Cheetah','Jaguar'],it:['Leopardo','Leone','Ghepardo','Giaguaro']},c:2,x:{fr:"Le guépard peut courir jusqu'à 120 km/h ! C'est l'animal terrestre le plus rapide du monde.",en:"The cheetah can run up to 120 km/h! The fastest land animal in the world.",it:"Il ghepardo può correre fino a 120 km/h! L'animale terrestre più veloce del mondo."}},
+    {e:'🦩',q:{fr:"Pourquoi le flamant rose est-il rose ?",en:"Why is the flamingo pink?",it:"Perché il fenicottero è rosa?"},h:{fr:"À cause de ce qu'il mange",en:"Because of what it eats",it:"A causa di ciò che mangia"},a:{fr:['C\'est naturel','À cause du soleil','À cause des algues','À cause de l\'eau'],en:['It\'s natural','Because of the sun','Because of algae','Because of water'],it:['È naturale','A causa del sole','A causa delle alghe','A causa dell\'acqua']},c:2,x:{fr:"Les algues et crevettes que mange le flamant sont riches en carotène qui le rend rose !",en:"The algae and shrimp flamingos eat are rich in carotene that makes them pink!",it:"Le alghe e i gamberi che mangia il fenicottero sono ricchi di carotene che lo rende rosa!"}}
+  ],
+  maths:[
+    {e:'🐘',q:{fr:"5 éléphants mangent. 2 s'en vont. Combien reste-t-il ?",en:"5 elephants eat. 2 leave. How many are left?",it:"5 elefanti mangiano. 2 se ne vanno. Quanti rimangono?"},h:{fr:"5 moins 2",en:"5 minus 2",it:"5 meno 2"},a:{fr:['2','3','4','5'],en:['2','3','4','5'],it:['2','3','4','5']},c:1,x:{fr:"5 - 2 = 3 éléphants ! La soustraction c'est enlever une quantité.",en:"5 - 2 = 3 elephants! Subtraction means taking away a quantity.",it:"5 - 2 = 3 elefanti! La sottrazione significa togliere una quantità."}},
+    {e:'🌴',q:{fr:"4 mangues + 3 mangues = ?",en:"4 mangoes + 3 mangoes = ?",it:"4 manghi + 3 manghi = ?"},h:{fr:"Additionne !",en:"Add them!",it:"Somma!"},a:{fr:['5','6','7','8'],en:['5','6','7','8'],it:['5','6','7','8']},c:2,x:{fr:"4 + 3 = 7 mangues ! L'addition c'est réunir des quantités.",en:"4 + 3 = 7 mangoes! Addition means putting amounts together.",it:"4 + 3 = 7 manghi! L'addizione significa mettere insieme le quantità."}},
+    {e:'🦒',q:{fr:"2 × 5 = ?",en:"2 × 5 = ?",it:"2 × 5 = ?"},h:{fr:"Deux fois cinq",en:"Two times five",it:"Due per cinque"},a:{fr:['8','9','10','12'],en:['8','9','10','12'],it:['8','9','10','12']},c:2,x:{fr:"2 × 5 = 10 ! La multiplication c'est une addition répétée : 5 + 5 = 10.",en:"2 × 5 = 10! Multiplication is repeated addition: 5 + 5 = 10.",it:"2 × 5 = 10! La moltiplicazione è un'addizione ripetuta: 5 + 5 = 10."}},
+    {e:'🍉',q:{fr:"Tu as 10 pastèques, tu en manges 4. Combien en reste-t-il ?",en:"You have 10 watermelons, you eat 4. How many left?",it:"Hai 10 angurie, ne mangi 4. Quante ne rimangono?"},h:{fr:"10 enlève 4",en:"10 minus 4",it:"10 meno 4"},a:{fr:['4','5','6','7'],en:['4','5','6','7'],it:['4','5','6','7']},c:2,x:{fr:"10 - 4 = 6 pastèques !",en:"10 - 4 = 6 watermelons!",it:"10 - 4 = 6 angurie!"}},
+    {e:'🦁',q:{fr:"3 lionnes + 2 lions = combien de lions au total ?",en:"3 lionesses + 2 lions = how many lions total?",it:"3 leonesse + 2 leoni = quanti leoni in totale?"},h:{fr:"3 plus 2",en:"3 plus 2",it:"3 più 2"},a:{fr:['3','4','5','6'],en:['3','4','5','6'],it:['3','4','5','6']},c:2,x:{fr:"3 + 2 = 5 lions ! Le groupe de lions s'appelle une fierté.",en:"3 + 2 = 5 lions! A group of lions is called a pride.",it:"3 + 2 = 5 leoni! Un gruppo di leoni si chiama branco."}},
+    {e:'🌴',q:{fr:"Un baobab a 8 branches. 3 tombent. Combien reste-t-il ?",en:"A baobab has 8 branches. 3 fall. How many left?",it:"Un baobab ha 8 rami. 3 cadono. Quanti ne rimangono?"},h:{fr:"8 enlève 3",en:"8 minus 3",it:"8 meno 3"},a:{fr:['3','4','5','6'],en:['3','4','5','6'],it:['3','4','5','6']},c:2,x:{fr:"8 - 3 = 5 branches ! Le baobab est appelé 'arbre de vie' en Afrique.",en:"8 - 3 = 5 branches! The baobab is called 'tree of life' in Africa.",it:"8 - 3 = 5 rami! Il baobab è chiamato 'albero della vita' in Africa."}},
+    {e:'🐆',q:{fr:"Un guépard fait 3 bonds de 8 mètres. Combien au total ?",en:"A cheetah makes 3 leaps of 8 meters. Total?",it:"Un ghepardo fa 3 balzi da 8 metri. Totale?"},h:{fr:"3 fois 8",en:"3 times 8",it:"3 per 8"},a:{fr:['18 m','20 m','24 m','30 m'],en:['18 m','20 m','24 m','30 m'],it:['18 m','20 m','24 m','30 m']},c:2,x:{fr:"3 × 8 = 24 mètres ! Le guépard est l'animal le plus rapide du monde.",en:"3 × 8 = 24 meters! The cheetah is the fastest animal in the world.",it:"3 × 8 = 24 metri! Il ghepardo è l'animale più veloce del mondo."}},
+    {e:'🔢',q:{fr:"Quel est le double de 6 ?",en:"What is double 6?",it:"Qual è il doppio di 6?"},h:{fr:"6 + 6",en:"6 + 6",it:"6 + 6"},a:{fr:['10','11','12','13'],en:['10','11','12','13'],it:['10','11','12','13']},c:2,x:{fr:"6 × 2 = 12 ! Doubler c'est multiplier par 2.",en:"6 × 2 = 12! Doubling means multiplying by 2.",it:"6 × 2 = 12! Il doppio significa moltiplicare per 2."}},
+    {e:'🌍',q:{fr:"L'Afrique a 54 pays. L'Europe en a 44. Combien de pays de plus pour l'Afrique ?",en:"Africa has 54 countries, Europe has 44. How many more for Africa?",it:"L'Africa ha 54 paesi, l'Europa 44. Quanti in più per l'Africa?"},h:{fr:"54 enlève 44",en:"54 minus 44",it:"54 meno 44"},a:{fr:['8','10','12','14'],en:['8','10','12','14'],it:['8','10','12','14']},c:1,x:{fr:"54 - 44 = 10 pays de plus ! L'Afrique est le continent avec le plus de pays.",en:"54 - 44 = 10 more countries! Africa has the most countries.",it:"54 - 44 = 10 paesi in più! L'Africa ha il maggior numero di paesi."}},
+    {e:'🏔️',q:{fr:"3 × 3 = ?",en:"3 × 3 = ?",it:"3 × 3 = ?"},h:{fr:"Trois fois trois",en:"Three times three",it:"Tre per tre"},a:{fr:['6','7','8','9'],en:['6','7','8','9'],it:['6','7','8','9']},c:3,x:{fr:"3 × 3 = 9 ! C'est aussi 3 + 3 + 3 = 9.",en:"3 × 3 = 9! That's also 3 + 3 + 3 = 9.",it:"3 × 3 = 9! È anche 3 + 3 + 3 = 9."}}
+  ],
+  proverbes:[
+    {e:'💬',q:{fr:"'Seul on va plus vite, ensemble on va...' — proverbe africain",en:"'Alone we go faster, together we go...' — African proverb",it:"'Da soli si va più veloci, insieme si va...' — proverbio africano"},h:{fr:"Distance",en:"Distance",it:"Distanza"},a:{fr:['...moins loin','...plus loin','...nulle part','...trop vite'],en:['...less far','...further','...nowhere','...too fast'],it:['...meno lontano','...più lontano','...da nessuna parte','...troppo veloce']},c:1,x:{fr:"Ce proverbe enseigne la valeur de la solidarité !",en:"This proverb teaches the value of solidarity!",it:"Questo proverbio insegna il valore della solidarietà!"}},
+    {e:'🌳',q:{fr:"'Un seul arbre ne fait pas une...' — proverbe africain",en:"'A single tree does not make a...' — African proverb",it:"'Un solo albero non fa una...' — proverbio africano"},h:{fr:"Plusieurs arbres ensemble",en:"Many trees together",it:"Molti alberi insieme"},a:{fr:['Ville','Rivière','Forêt','Montagne'],en:['City','River','Forest','Mountain'],it:['Città','Fiume','Foresta','Montagna']},c:2,x:{fr:"La force vient de l'union ! Ensemble on est plus forts.",en:"Strength comes from unity! Together we are stronger.",it:"La forza viene dall'unione! Insieme siamo più forti."}},
+    {e:'🦅',q:{fr:"'L'oiseau ne vole pas parce qu'il a des ailes, il vole parce qu'il...'",en:"'The bird flies not because it has wings, but because it...'",it:"'L'uccello non vola perché ha le ali, vola perché...'"},h:{fr:"Mot de volonté",en:"Word of will",it:"Parola di volontà"},a:{fr:['...a faim','...le veut','...est léger','...a peur'],en:['...is hungry','...wants to','...is light','...is afraid'],it:['...ha fame','...lo vuole','...è leggero','...ha paura']},c:1,x:{fr:"Ce proverbe parle de volonté — c'est pas ce qu'on possède qui compte, mais ce qu'on décide de faire !",en:"This proverb is about willpower — it's not what we have that counts, but what we decide to do!",it:"Questo proverbio parla di forza di volontà — non è ciò che abbiamo che conta, ma ciò che decidiamo di fare!"}},
+    {e:'🤝',q:{fr:"'Ubuntu' signifie 'Je suis parce que...'",en:"'Ubuntu' means 'I am because...'",it:"'Ubuntu' significa 'Sono perché...'"},h:{fr:"Pense à la communauté",en:"Think about community",it:"Pensa alla comunità"},a:{fr:['...je travaille','...nous sommes','...je mange','...je pense'],en:['...I work','...we are','...I eat','...I think'],it:['...lavoro','...noi siamo','...mangio','...penso']},c:1,x:{fr:"Ubuntu = 'Je suis parce que nous sommes'. C'est la philosophie de la solidarité africaine !",en:"Ubuntu = 'I am because we are'. The philosophy of African solidarity!",it:"Ubuntu = 'Sono perché noi siamo'. La filosofia della solidarietà africana!"}},
+    {e:'🐢',q:{fr:"'Quand les éléphants se battent, c'est l'herbe qui...' — proverbe africain",en:"'When elephants fight, it is the grass that...' — African proverb",it:"'Quando gli elefanti lottano, è l'erba che...' — proverbio africano"},h:{fr:"Elle est en dessous",en:"It's underneath",it:"È sotto di loro"},a:{fr:['...grandit','...souffre','...disparaît','...danse'],en:['...grows','...suffers','...disappears','...dances'],it:['...cresce','...soffre','...scompare','...danza']},c:1,x:{fr:"Ce proverbe dit que quand les puissants se battent, ce sont les gens ordinaires qui paient le prix !",en:"This proverb says when the powerful fight, ordinary people pay the price!",it:"Questo proverbio dice che quando i potenti lottano, sono le persone comuni a pagarne il prezzo!"}},
+    {e:'🌱',q:{fr:"'Le meilleur moment pour planter un arbre était il y a 20 ans. Le 2e meilleur moment c'est...'",en:"'The best time to plant a tree was 20 years ago. The 2nd best time is...'",it:"'Il momento migliore per piantare un albero era 20 anni fa. Il 2° momento migliore è...'"},h:{fr:"Pense à maintenant",en:"Think about now",it:"Pensa adesso"},a:{fr:['...demain','...maintenant','...dans 10 ans','...jamais'],en:['...tomorrow','...now','...in 10 years','...never'],it:['...domani','...adesso','...tra 10 anni','...mai']},c:1,x:{fr:"Ce proverbe nous dit d'agir maintenant ! Ne reporte pas à demain ce que tu peux faire aujourd'hui.",en:"This proverb tells us to act now! Don't postpone what you can do today.",it:"Questo proverbio ci dice di agire ora! Non rimandare a domani ciò che puoi fare oggi."}},
+    {e:'💧',q:{fr:"'L'eau qui dort est plus dangereuse que...' — proverbe africain",en:"'Still water is more dangerous than...' — African proverb",it:"'L'acqua ferma è più pericolosa di...' — proverbio africano"},h:{fr:"Eau qui bouge",en:"Moving water",it:"Acqua in movimento"},a:{fr:['...la pluie','...la neige','...l\'eau courante','...la mer'],en:['...rain','...snow','...running water','...the sea'],it:['...la pioggia','...la neve','...l\'acqua corrente','...il mare']},c:2,x:{fr:"Ce proverbe nous dit de nous méfier de ce qui semble calme — les apparences sont trompeuses !",en:"This proverb warns us to beware of what seems calm — appearances can be deceiving!",it:"Questo proverbio ci avverte di diffidare di ciò che sembra calmo — le apparenze ingannano!"}},
+    {e:'🔥',q:{fr:"'Un feu qui ne brûle pas peut-il...' — proverbe africain",en:"'A fire that doesn't burn can it...' — African proverb",it:"'Un fuoco che non brucia può...' — proverbio africano"},h:{fr:"Son rôle principal",en:"Its main purpose",it:"Il suo scopo principale"},a:{fr:['...éclairer?','...chauffer?','...cuire?','...exister?'],en:['...give light?','...give warmth?','...cook?','...exist?'],it:['...illuminare?','...riscaldare?','...cucinare?','...esistere?']},c:3,x:{fr:"Ce proverbe parle d'authenticité : pour exister vraiment, il faut agir selon sa vraie nature !",en:"This proverb is about authenticity: to truly exist, act according to your true nature!",it:"Questo proverbio parla di autenticità: per esistere davvero, bisogna agire secondo la propria vera natura!"}}
+  ],
+  animaux:[
+    {e:'🦓',q:{fr:"Le zèbre est noir avec des rayures...",en:"The zebra is black with... stripes",it:"La zebra è nera con strisce..."},h:{fr:"Couleur opposée au noir",en:"Opposite color to black",it:"Colore opposto al nero"},a:{fr:['Rouges','Blanches','Grises','Dorées'],en:['Red','White','Grey','Golden'],it:['Rosse','Bianche','Grigie','Dorate']},c:1,x:{fr:"Le zèbre est noir avec des rayures blanches ! Sa peau sous le pelage est noire.",en:"The zebra is black with white stripes! Its skin under the coat is black.",it:"La zebra è nera con strisce bianche! La sua pelle sotto il pelo è nera."}},
+    {e:'🦍',q:{fr:"Quel grand singe vit en Afrique centrale ?",en:"Which great ape lives in Central Africa?",it:"Quale grande scimmia vive nell'Africa centrale?"},h:{fr:"98% de nos gènes",en:"98% of our genes",it:"98% dei nostri geni"},a:{fr:['Orang-outan','Gorille','Babouin','Mandrill'],en:['Orangutan','Gorilla','Baboon','Mandrill'],it:['Orango','Gorilla','Babbuino','Mandrill']},c:1,x:{fr:"Le gorille partage 98% de son ADN avec l'humain — notre cousin !",en:"The gorilla shares 98% of its DNA with humans — our cousin!",it:"Il gorilla condivide il 98% del suo DNA con noi — il nostro cugino!"}},
+    {e:'🐊',q:{fr:"Combien d'années peut vivre un crocodile du Nil ?",en:"How many years can a Nile crocodile live?",it:"Quanti anni può vivere un coccodrillo del Nilo?"},h:{fr:"Très très longtemps",en:"Very very long",it:"Molto molto a lungo"},a:{fr:['20 ans','40 ans','70 ans','100 ans'],en:['20 years','40 years','70 years','100 years'],it:['20 anni','40 anni','70 anni','100 anni']},c:2,x:{fr:"Le crocodile du Nil peut vivre 70 ans et existe depuis l'époque des dinosaures !",en:"The Nile crocodile can live 70 years and has existed since the dinosaur age!",it:"Il coccodrillo del Nilo può vivere 70 anni ed esiste dall'epoca dei dinosauri!"}},
+    {e:'🦩',q:{fr:"Pourquoi le flamant rose est-il rose ?",en:"Why is the flamingo pink?",it:"Perché il fenicottero è rosa?"},h:{fr:"À cause de sa nourriture",en:"Because of its food",it:"A causa del suo cibo"},a:{fr:['C\'est naturel','À cause du soleil','Les algues et crevettes','L\'eau salée'],en:['It\'s natural','Because of sun','Algae and shrimp','Salt water'],it:['È naturale','A causa del sole','Alghe e gamberi','Acqua salata']},c:2,x:{fr:"Les algues et crevettes riches en carotène colorent le flamant rose !",en:"Carotene-rich algae and shrimp color the flamingo pink!",it:"Alghe e gamberi ricchi di carotene colorano il fenicottero di rosa!"}},
+    {e:'🐆',q:{fr:"À quelle vitesse maximum court le guépard ?",en:"What is the cheetah's maximum speed?",it:"Qual è la velocità massima del ghepardo?"},h:{fr:"Plus de 100 km/h",en:"Over 100 km/h",it:"Oltre 100 km/h"},a:{fr:['80 km/h','100 km/h','120 km/h','150 km/h'],en:['80 km/h','100 km/h','120 km/h','150 km/h'],it:['80 km/h','100 km/h','120 km/h','150 km/h']},c:2,x:{fr:"Le guépard peut courir à 120 km/h — c'est l'animal terrestre le plus rapide !",en:"The cheetah can run at 120 km/h — the fastest land animal!",it:"Il ghepardo può correre a 120 km/h — l'animale terrestre più veloce!"}},
+    {e:'🦏',q:{fr:"Le rhinocéros est menacé à cause du braconnage de quoi ?",en:"The rhinoceros is threatened by poaching of what?",it:"Il rinoceronte è minacciato dal bracconaggio di cosa?"},h:{fr:"Ce qui pousse sur sa tête",en:"What grows on its head",it:"Ciò che cresce sulla sua testa"},a:{fr:['Ses pattes','Sa corne','Sa peau','Son sang'],en:['Its legs','Its horn','Its skin','Its blood'],it:['Le sue zampe','Il suo corno','La sua pelle','Il suo sangue']},c:1,x:{fr:"Le rhinocéros est braconné pour sa corne. Il faut le protéger !",en:"Rhinos are poached for their horn. We must protect them!",it:"I rinoceronti vengono bracconati per il loro corno. Dobbiamo proteggerli!"}},
+    {e:'🌍',q:{fr:"L'Afrique abrite environ combien d'espèces de mammifères ?",en:"Africa is home to about how many mammal species?",it:"L'Africa ospita circa quante specie di mammiferi?"},h:{fr:"Plus de 1 000 !",en:"More than 1,000!",it:"Più di 1.000!"},a:{fr:['500','1 100','2 000','5 000'],en:['500','1,100','2,000','5,000'],it:['500','1.100','2.000','5.000']},c:1,x:{fr:"L'Afrique abrite plus de 1 100 espèces de mammifères ! Le continent le plus riche en biodiversité.",en:"Africa hosts over 1,100 mammal species! The richest continent in biodiversity.",it:"L'Africa ospita oltre 1.100 specie di mammiferi! Il continente più ricco di biodiversità."}},
+    {e:'🐋',q:{fr:"Quelle est la plus grande baleine du monde ?",en:"What is the largest whale in the world?",it:"Qual è la balena più grande del mondo?"},h:{fr:"Sa couleur est dans son nom",en:"Its color is in its name",it:"Il suo colore è nel suo nome"},a:{fr:['Baleine à bosse','Baleine bleue','Orque','Cachalot'],en:['Humpback whale','Blue whale','Orca','Sperm whale'],it:['Megattera','Balena blu','Orca','Capodoglio']},c:1,x:{fr:"La baleine bleue est le plus grand animal ayant jamais existé — jusqu'à 30 m et 170 tonnes !",en:"The blue whale is the largest animal ever — up to 30 m and 170 tons!",it:"La balena blu è il più grande animale mai esistito — fino a 30 m e 170 tonnellate!"}}
+  ],
+  geo:[
+    {e:'🗺️',q:{fr:"Quel est le plus grand pays d'Afrique ?",en:"What is the largest country in Africa?",it:"Qual è il paese più grande dell'Africa?"},h:{fr:"Au nord du continent",en:"In the north",it:"Nel nord"},a:{fr:['Nigeria','Algérie','Soudan','Congo'],en:['Nigeria','Algeria','Sudan','Congo'],it:['Nigeria','Algeria','Sudan','Congo']},c:1,x:{fr:"L'Algérie couvre 2,38 millions de km² — plus grande que toute l'Europe de l'Ouest !",en:"Algeria covers 2.38 million km² — larger than all of Western Europe!",it:"L'Algeria copre 2,38 milioni di km² — più grande di tutta l'Europa occidentale!"}},
+    {e:'🌍',q:{fr:"Combien de pays y a-t-il en Afrique ?",en:"How many countries are there in Africa?",it:"Quanti paesi ci sono in Africa?"},h:{fr:"Plus de 50 !",en:"More than 50!",it:"Più di 50!"},a:{fr:['42','54','67','38'],en:['42','54','67','38'],it:['42','54','67','38']},c:1,x:{fr:"54 pays ! L'Afrique a le plus grand nombre de pays de tous les continents.",en:"54 countries! Africa has the most countries of all continents.",it:"54 paesi! L'Africa ha il maggior numero di paesi di tutti i continenti."}},
+    {e:'🏜️',q:{fr:"Quel est le plus grand désert chaud du monde ?",en:"What is the world's largest hot desert?",it:"Qual è il deserto caldo più grande del mondo?"},h:{fr:"Il couvre tout le nord de l'Afrique",en:"It covers all of North Africa",it:"Copre tutto il Nord Africa"},a:{fr:['Kalahari','Sahara','Namib','Karroo'],en:['Kalahari','Sahara','Namib','Karroo'],it:['Kalahari','Sahara','Namib','Karroo']},c:1,x:{fr:"Le Sahara couvre 9 millions de km² — presque autant que les États-Unis !",en:"The Sahara covers 9 million km² — almost as large as the USA!",it:"Il Sahara copre 9 milioni di km² — quasi come gli Stati Uniti!"}},
+    {e:'🏔️',q:{fr:"Dans quel pays se trouve le Kilimandjaro ?",en:"In which country is Kilimanjaro?",it:"In quale paese si trova il Kilimangiaro?"},h:{fr:"Afrique de l'Est",en:"East Africa",it:"Africa orientale"},a:{fr:['Kenya','Éthiopie','Tanzanie','Rwanda'],en:['Kenya','Ethiopia','Tanzania','Rwanda'],it:['Kenya','Etiopia','Tanzania','Ruanda']},c:2,x:{fr:"Le Kilimandjaro est en Tanzanie ! Il culmine à 5 895 m.",en:"Kilimanjaro is in Tanzania! It peaks at 5,895 m.",it:"Il Kilimangiaro si trova in Tanzania! Raggiunge i 5.895 m."}},
+    {e:'🌊',q:{fr:"Quel océan borde l'Afrique à l'ouest ?",en:"Which ocean borders Africa to the west?",it:"Quale oceano borda l'Africa a ovest?"},h:{fr:"L'Amérique est de l'autre côté",en:"America is on the other side",it:"L'America è dall'altro lato"},a:{fr:['Océan Indien','Méditerranée','Océan Atlantique','Mer Rouge'],en:['Indian Ocean','Mediterranean','Atlantic Ocean','Red Sea'],it:['Oceano Indiano','Mediterraneo','Oceano Atlantico','Mar Rosso']},c:2,x:{fr:"L'océan Atlantique borde l'Afrique à l'ouest ! L'Amérique est de l'autre côté.",en:"The Atlantic Ocean borders Africa to the west! America is on the other side.",it:"L'Oceano Atlantico borda l'Africa a ovest! L'America è dall'altro lato."}},
+    {e:'🌍',q:{fr:"Quelle est la capitale du Nigeria ?",en:"What is the capital of Nigeria?",it:"Qual è la capitale della Nigeria?"},h:{fr:"Ce n'est pas Lagos !",en:"It's not Lagos!",it:"Non è Lagos!"},a:{fr:['Lagos','Ibadan','Abuja','Kano'],en:['Lagos','Ibadan','Abuja','Kano'],it:['Lagos','Ibadan','Abuja','Kano']},c:2,x:{fr:"Abuja est la capitale du Nigeria depuis 1991 ! Lagos est la plus grande ville mais pas la capitale.",en:"Abuja has been Nigeria's capital since 1991! Lagos is largest but not the capital.",it:"Abuja è la capitale della Nigeria dal 1991! Lagos è la più grande ma non la capitale."}},
+    {e:'🏝️',q:{fr:"Quel est le plus grand pays insulaire d'Afrique ?",en:"What is the largest island country in Africa?",it:"Qual è il più grande paese insulare dell'Africa?"},h:{fr:"Grande île dans l'océan Indien",en:"Large island in Indian Ocean",it:"Grande isola nell'Oceano Indiano"},a:{fr:['Île Maurice','Les Comores','Madagascar','Seychelles'],en:['Mauritius','Comoros','Madagascar','Seychelles'],it:['Mauritius','Comore','Madagascar','Seychelles']},c:2,x:{fr:"Madagascar est la plus grande île d'Afrique — connue pour ses lémuriens uniques !",en:"Madagascar is Africa's largest island — known for its unique lemurs!",it:"Il Madagascar è la più grande isola dell'Africa — nota per i suoi lemuri unici!"}}
+  ]
+};
+
+// ============================================================
+// PUZZLES
+// ============================================================
+const PUZZ={
+  fr:[
+    {ti:"L'Empire du Mali",s:["L'Empire du","___","était dirigé par Mansa Musa"],ans:"Mali",b:["Mali","Kongo","Ghana","Songhaï"],x:"L'Empire du Mali au 14e siècle était l'un des plus riches du monde !"},
+    {ti:"Fleuves d'Afrique",s:["Le","___","est le plus long fleuve du monde"],ans:"Nil",b:["Niger","Nil","Congo","Zambèze"],x:"Le Nil, long de 6 650 km, est le plus long fleuve du monde !"},
+    {ti:"Tombouctou",s:["Tombouctou était une grande ville de","___","et d'apprentissage"],ans:"savoir",b:["guerre","savoir","commerce","sport"],x:"Des milliers d'étudiants venaient à Tombouctou pour apprendre !"},
+    {ti:"Animaux",s:["Le","___","est le plus grand animal terrestre d'Afrique"],ans:"éléphant",b:["lion","éléphant","zèbre","guépard"],x:"L'éléphant peut peser jusqu'à 6 tonnes !"},
+    {ti:"Rois & Reines",s:["La Reine","___","résista aux Portugais du Kongo"],ans:"Nzinga",b:["Nzinga","Cléopâtre","Fatima","Amina"],x:"La Reine Nzinga est une héroïne africaine du 17e siècle !"},
+    {ti:"Géographie",s:["Le plus haut sommet d'Afrique est le","___"],ans:"Kilimandjaro",b:["Kilimandjaro","Mont Kenya","Atlas","Ras Dashen"],x:"Le Kilimandjaro culmine à 5 895 m en Tanzanie !"}
+  ],
+  en:[
+    {ti:"Mali Empire",s:["The Empire of","___","was ruled by Mansa Musa"],ans:"Mali",b:["Mali","Kongo","Ghana","Songhai"],x:"The Mali Empire in the 14th century was one of the richest in the world!"},
+    {ti:"African Rivers",s:["The","___","is the longest river in the world"],ans:"Nile",b:["Niger","Nile","Congo","Zambezi"],x:"The Nile at 6,650 km is the longest river in the world!"},
+    {ti:"Timbuktu",s:["Timbuktu was a great city of","___","and learning"],ans:"knowledge",b:["war","knowledge","trade","sport"],x:"Thousands of students came to Timbuktu to learn!"},
+    {ti:"Animals",s:["The","___","is the largest land animal in Africa"],ans:"elephant",b:["lion","elephant","zebra","cheetah"],x:"An elephant can weigh up to 6 tons!"},
+    {ti:"Kings & Queens",s:["Queen","___","resisted the Portuguese in Kongo"],ans:"Nzinga",b:["Nzinga","Cleopatra","Fatima","Amina"],x:"Queen Nzinga is an African heroine from the 17th century!"},
+    {ti:"Geography",s:["The highest peak in Africa is","___"],ans:"Kilimanjaro",b:["Kilimanjaro","Mount Kenya","Atlas","Ras Dashen"],x:"Kilimanjaro peaks at 5,895 m in Tanzania!"}
+  ],
+  it:[
+    {ti:"Impero del Mali",s:["L'Impero del","___","era guidato da Mansa Musa"],ans:"Mali",b:["Mali","Kongo","Ghana","Songhai"],x:"L'Impero del Mali nel 14° secolo era uno dei più ricchi del mondo!"},
+    {ti:"Fiumi africani",s:["Il","___","è il fiume più lungo del mondo"],ans:"Nilo",b:["Niger","Nilo","Congo","Zambesi"],x:"Il Nilo, lungo 6.650 km, è il fiume più lungo del mondo!"},
+    {ti:"Timbuctù",s:["Timbuctù era una grande città del","___","e dell'apprendimento"],ans:"sapere",b:["guerra","sapere","commercio","sport"],x:"Migliaia di studenti venivano a Timbuctù per imparare!"},
+    {ti:"Animali",s:["Il","___","è il più grande animale terrestre d'Africa"],ans:"elefante",b:["leone","elefante","zebra","ghepardo"],x:"Un elefante può pesare fino a 6 tonnellate!"},
+    {ti:"Re & Regine",s:["La Regina","___","resistette ai Portoghesi nel Kongo"],ans:"Nzinga",b:["Nzinga","Cleopatra","Fatima","Amina"],x:"La Regina Nzinga è un'eroina africana del 17° secolo!"},
+    {ti:"Geografia",s:["La vetta più alta dell'Africa è il","___"],ans:"Kilimangiaro",b:["Kilimangiaro","Monte Kenya","Atlante","Ras Dashen"],x:"Il Kilimangiaro raggiunge i 5.895 m in Tanzania!"}
+  ]
+};
+
+// ============================================================
+// STATE & HELPERS
+// ============================================================
+const CODES={'KNIPO24':true,'PREMIUM':true};
+const UNLOCKED=new Set();
+let lang='fr',xpTotal=0,xpSess=0;
+let curSubj='histoire',curQ=0,score=0,answered=false;
+let curMode='quiz',puzIdx=0,selW=null;
+let selTopicKey='histoire';
+let iaUsed={},quizUsed={};
+let deferredPrompt=null;
+
+function $(id){return document.getElementById(id);}
+function L(){return T[lang];}
+function showPage(id){['page-home','page-quiz','page-puzzle','page-success'].forEach(p=>$(p).classList.add('hidden'));$(id).classList.remove('hidden');}
+function goHome(){showPage('page-home');}
+
+function updateXP(){
+  const lvl=Math.floor(xpTotal/1000)+1;
+  const pct=Math.min(100,Math.round((xpTotal%1000)/10));
+  $('xp-fill').style.width=pct+'%';
+  $('xp-pts').textContent=xpTotal+' / '+(lvl*1000)+' XP';
+  $('xp-name').textContent='Petit Lion · '+L().level+' '+lvl;
+  localStorage.setItem('knipo_xp',xpTotal);
+}
+
+// ============================================================
+// PWA INSTALL
+// ============================================================
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();deferredPrompt=e;
+  $('install-bar').classList.remove('hidden');
+  $('install-txt').textContent=L().install;
+  $('install-btn').textContent=L().installBtn;
+});
+function installApp(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(()=>{deferredPrompt=null;$('install-bar').classList.add('hidden');});
+}
+
+// ============================================================
+// LANG
+// ============================================================
+function setLang(l,btn){
+  lang=l;localStorage.setItem('knipo_lang',l);
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  applyLang();
+}
+
+function applyLang(){
+  const l=L();
+  $('tag').textContent=l.tagline;
+  $('tb-learn').textContent=l.tabs[0];$('tb-puzzle').textContent=l.tabs[1];$('tb-ia').textContent=l.tabs[2];$('tb-prem').textContent=l.tabs[3];
+  $('ct-h').textContent=l.cards.h;$('cs-h').textContent=l.cards.hs;$('ct-n').textContent=l.cards.n;$('cs-n').textContent=l.cards.ns;
+  $('ct-c').textContent=l.cards.c;$('cs-c').textContent=l.cards.cs;$('ct-l').textContent=l.cards.l;$('cs-l').textContent=l.cards.ls;
+  $('pt0').textContent=l.puz.p0;$('ps0').textContent=l.puz.p0s;$('pt1').textContent=l.puz.p1;$('ps1').textContent=l.puz.p1s;
+  $('pt2').textContent=l.puz.p2;$('ps2').textContent=l.puz.p2s;$('pt3').textContent=l.puz.p3;$('ps3').textContent=l.puz.p3s;
+  $('pt4').textContent=l.puz.p4;$('ps4').textContent=l.puz.p4s;$('pt5').textContent=l.puz.p5;$('ps5').textContent=l.puz.p5s;
+  $('prem-ti').textContent=l.prem.ti;$('prem-de').textContent=l.prem.de;$('prem-cta').textContent=l.prem.cta;
+  l.prem.pc.forEach((t,i)=>{$('pc'+i).textContent=t;$('pcs'+i).textContent=l.prem.pcs[i];$('lk'+i).textContent=l.prem.lk;});
+  $('ia-lbl1').textContent=l.ia.l1;$('ia-desc1').textContent=l.ia.d1;
+  $('ia-lbl2').textContent=l.ia.l2;$('ia-desc2').textContent=l.ia.d2;
+  $('gen-btn').textContent=l.ia.gen;$('ask-btn').textContent=l.ia.ask;$('ia-qin').placeholder=l.ia.ph;
+  $('bk-q').textContent=l.back;$('bk-p').textContent=l.back;
+  $('win-ti').textContent=l.win.ti;$('win-sb').textContent=l.win.sb;$('fin-sl').textContent=l.win.sl;$('fin-xl').textContent=l.win.xl;$('win-hm').textContent=l.win.hm;$('win-rp').textContent=l.win.rp;
+  const row=$('topics-row');row.innerHTML='';
+  l.ia.topics.forEach((t,i)=>{const b=document.createElement('button');b.className='tbtn'+(i===0?' on':'');b.textContent=t;const key=l.ia.keys[i];b.onclick=function(){selTopic(b,key);};row.appendChild(b);});
+  updateXP();updateCount();
+}
+
+function showTab(id,btn){
+  ['t-learn','t-puzzle','t-ia','t-prem'].forEach(t=>$(t).classList.add('hidden'));
+  $(id).classList.remove('hidden');
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+}
+
+// ============================================================
+// QUIZ
+// ============================================================
+function getPool(key){
+  const pools={histoire:QDB.histoire,nature:QDB.nature,maths:QDB.maths,proverbes:QDB.proverbes,animaux:QDB.animaux,geo:QDB.geo,mix:[...QDB.histoire,...QDB.nature,...QDB.maths,...QDB.proverbes,...QDB.animaux,...QDB.geo]};
+  return pools[key]||pools.mix;
+}
+
+function getRandIdx(key,pool){
+  if(!quizUsed[key])quizUsed[key]=new Set();
+  if(quizUsed[key].size>=pool.length)quizUsed[key]=new Set();
+  let idx;do{idx=Math.floor(Math.random()*pool.length);}while(quizUsed[key].has(idx));
+  quizUsed[key].add(idx);return idx;
+}
+
+function startQuiz(subj){
+  curMode='quiz';curSubj=subj;curQ=0;score=0;xpSess=0;answered=false;
+  const ic={histoire:'🏛️',nature:'🌿',maths:'🔢',proverbes:'💬',geo:'🗺️',animaux:'🦍'};
+  const bg={histoire:'#FAEEDA',nature:'#EAF3DE',maths:'#E1F5EE',proverbes:'#EEEDFE',geo:'#EAF3DE',animaux:'#FAECE7'};
+  const names={histoire:L().cards.h,nature:L().cards.n,maths:L().cards.c,proverbes:L().cards.l,geo:'Géo',animaux:'Animaux'};
+  $('qhead').style.background=bg[subj]||'#FAEEDA';
+  $('qhi').textContent=ic[subj]||'📚';
+  $('qht').textContent=names[subj]||subj;
+  renderQ();showPage('page-quiz');
+}
+
+function renderQ(){
+  const pool=QDB[curSubj]||QDB.histoire;
+  const idx=getRandIdx(curSubj,pool);
+  const q=pool[idx];
+  answered=false;
+  const dots=$('dots');dots.innerHTML='';
+  const total=Math.min(pool.length,8);
+  for(let i=0;i<total;i++){const d=document.createElement('div');d.className='dot'+(i<curQ?' dn':i===curQ?' cr':'');dots.appendChild(d);}
+  $('qem').textContent=q.e;
+  $('qtx').textContent=q.q[lang]||q.q.fr;
+  $('qhint').textContent=L().quiz.hint+' '+(q.h[lang]||q.h.fr);
+  const answers=q.a[lang]||q.a.fr;
+  const grid=$('agrid');grid.innerHTML='';
+  answers.forEach((a,i)=>{const b=document.createElement('button');b.className='abtn';b.textContent=a;b.onclick=function(){pick(i,q.c,q.x[lang]||q.x.fr);};grid.appendChild(b);});
+  $('fb').className='fb';$('nxtbtn').className='nxtbtn';$('nxtbtn').textContent=L().quiz.next;
+}
+
+function pick(ch,cor,exp){
+  if(answered)return;answered=true;
+  const btns=$('agrid').querySelectorAll('.abtn');
+  btns.forEach((b,i)=>{b.disabled=true;if(i===cor)b.classList.add('ok');if(i===ch&&ch!==cor)b.classList.add('no');});
+  const ok=ch===cor;
+  if(ok){score++;xpSess+=10;xpTotal+=10;updateXP();}
+  $('fb').className='fb show '+(ok?'ok':'no');
+  $('fb-ic').textContent=ok?'🌟':'💪';
+  $('fb-ti').textContent=ok?L().quiz.ok:L().quiz.no;
+  $('fb-ms').textContent=exp;
+  $('nxtbtn').className='nxtbtn show';
+}
+
+function nextQ(){
+  curQ++;
+  const pool=QDB[curSubj]||QDB.histoire;
+  if(curQ>=Math.min(pool.length,8)){
+    $('fin-sc').textContent=score+'/'+Math.min(pool.length,8);
+    $('fin-xp').textContent='+'+xpSess+' XP';
+    showPage('page-success');
+  }else renderQ();
+}
+
+function replayMode(){if(curMode==='quiz')startQuiz(curSubj);else startPuzzle(puzIdx);}
+
+// ============================================================
+// PUZZLE
+// ============================================================
+function startPuzzle(idx){curMode='puzzle';puzIdx=idx;selW=null;const p=(PUZZ[lang]||PUZZ.fr)[idx];$('puz-ti').textContent=p.ti;renderPuzzle();showPage('page-puzzle');}
+
+function renderPuzzle(){
+  const pArr=PUZZ[lang]||PUZZ.fr;const p=pArr[puzIdx];
+  answered=false;selW=null;
+  $('pfb').className='fb';$('pnxtbtn').className='nxtbtn';$('pnxtbtn').textContent=L().quiz.next;
+  const body=$('puz-body');body.innerHTML='';
+  const area=document.createElement('div');area.className='parea';
+  const inst=document.createElement('div');inst.style.cssText='font-size:12px;color:#888;margin-bottom:10px;font-weight:700';inst.textContent=L().puzl.inst;area.appendChild(inst);
+  const sent=document.createElement('div');sent.className='sentence';
+  p.s.forEach(part=>{
+    if(part==='___'){const dz=document.createElement('div');dz.className='dzone';dz.id='dz';dz.textContent='?';dz.onclick=function(){placeW(dz);};sent.appendChild(dz);}
+    else{const sp=document.createElement('span');sp.textContent=part;sent.appendChild(sp);}
+  });
+  area.appendChild(sent);
+  const bl=document.createElement('div');bl.style.cssText='font-size:11px;color:#888;font-weight:700;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px';bl.textContent=L().puzl.bank;area.appendChild(bl);
+  const wb=document.createElement('div');wb.className='wbank';
+  p.b.forEach(w=>{const el=document.createElement('div');el.className='wbtn';el.textContent=w;el.onclick=function(){pickW(el,w);};wb.appendChild(el);});
+  area.appendChild(wb);
+  const ck=document.createElement('button');ck.className='ckbtn';ck.id='ck';ck.disabled=true;ck.textContent=L().puzl.chk;ck.onclick=function(){checkPuzz(p);};area.appendChild(ck);
+  body.appendChild(area);
+}
+
+function pickW(el,w){document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));if(selW===w){selW=null;return;}selW=w;el.classList.add('sel');}
+function placeW(dz){if(!selW)return;dz.textContent=selW;dz.className='dzone filled';dz.dataset.v=selW;document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));selW=null;const ck=$('ck');if(ck)ck.disabled=false;}
+
+function checkPuzz(p){
+  const dz=$('dz');if(!dz||!dz.dataset.v)return;
+  const ok=dz.dataset.v===p.ans;
+  $('pfb').className='fb show '+(ok?'ok':'no');
+  $('pfb-ic').textContent=ok?'🌟':'💪';
+  $('pfb-ti').textContent=ok?L().puzl.ok:L().puzl.no;
+  $('pfb-ms').textContent=ok?p.x:L().puzl.is+p.ans+'. '+p.x;
+  if(ok){xpSess+=15;xpTotal+=15;updateXP();}
+  $('pnxtbtn').className='nxtbtn show';const ck=$('ck');if(ck)ck.disabled=true;
+}
+
+function nextPuzzle(){const pArr=PUZZ[lang]||PUZZ.fr;puzIdx=(puzIdx+1)%pArr.length;$('puz-ti').textContent=pArr[puzIdx].ti;renderPuzzle();}
+
+// ============================================================
+// IA
+// ============================================================
+function updateCount(){
+  const pool=getPool(selTopicKey);
+  const el=$('ia-count');
+  if(el){const n=pool.length;const labels={fr:`${n} questions disponibles`,en:`${n} questions available`,it:`${n} domande disponibili`};el.textContent=labels[lang];}
+}
+
+function selTopic(btn,key){document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');selTopicKey=key;updateCount();}
+
+function genQ(){
+  const pool=getPool(selTopicKey);
+  if(!iaUsed[selTopicKey])iaUsed[selTopicKey]=new Set();
+  if(iaUsed[selTopicKey].size>=pool.length)iaUsed[selTopicKey]=new Set();
+  let idx;do{idx=Math.floor(Math.random()*pool.length);}while(iaUsed[selTopicKey].has(idx));
+  iaUsed[selTopicKey].add(idx);
+  const q=pool[idx];
+  const answers=q.a[lang]||q.a.fr;
+  const shuffled=answers.map((a,i)=>({a,orig:i})).sort(()=>Math.random()-.5);
+  const newC=shuffled.findIndex(o=>o.orig===q.c);
+  const res=$('ia-qres');res.className='ia-result pur show';
+  const exp=q.x[lang]||q.x.fr;
+  const hint=L().quiz.hint+' '+(q.h[lang]||q.h.fr);
+  const remaining=pool.length-iaUsed[selTopicKey].size;
+  const remLbl={fr:`${remaining} ${L().ia.rem}`,en:`${remaining} ${L().ia.rem}`,it:`${remaining} ${L().ia.rem}`};
+  let html=`<div style="font-size:36px;text-align:center;margin-bottom:6px">${q.e}</div>`;
+  html+=`<div style="font-family:'Baloo 2',cursive;font-size:15px;font-weight:700;color:#534AB7;margin-bottom:7px;line-height:1.3">${q.q[lang]||q.q.fr}</div>`;
+  html+=`<div style="font-size:11px;color:#888;margin-bottom:8px">${hint}</div>`;
+  html+=`<div class="ia-agrid" id="ia-ag">`;
+  shuffled.forEach((o,i)=>{html+=`<button class="ia-abtn" id="iab${i}" onclick="pickIAQ(${i},${newC},'${exp.replace(/'/g,"\\'")}',${shuffled.length})">${o.a}</button>`;});
+  html+=`</div><div id="ia-fb2" style="display:none;font-size:12px;border-radius:8px;padding:8px;margin-top:8px;line-height:1.5"></div>`;
+  html+=`<div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">`;
+  html+=`<button onclick="genQ()" style="padding:4px 11px;border-radius:18px;border:1.5px solid #534AB7;background:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;color:#534AB7;cursor:pointer">🔄 ${L().ia.gen}</button>`;
+  html+=`<span style="font-size:11px;color:#888;font-weight:700">${remLbl[lang]||remLbl.fr}</span></div>`;
+  res.innerHTML=html;
+}
+
+function pickIAQ(ch,cor,exp,total){
+  for(let i=0;i<total;i++){const b=$('iab'+i);if(!b)continue;b.disabled=true;if(i===cor)b.classList.add('ok');if(i===ch&&ch!==cor)b.classList.add('no');}
+  const ok=ch===cor;if(ok){xpTotal+=10;updateXP();}
+  const fb=$('ia-fb2');if(fb){fb.style.display='block';fb.style.background=ok?'#E1F5EE':'#FAECE7';fb.style.color=ok?'#3B6D11':'#712B13';fb.innerHTML=(ok?'🌟 <strong>'+L().quiz.ok+'</strong> ':'💪 <strong>'+L().quiz.no+'</strong> ')+exp;}
+}
+
+const REPONS={
+  fr:{mansa:"Mansa Musa était l'empereur de l'Empire du Mali au 14e siècle. 🌍 Il était l'un des hommes les plus riches qui aient jamais existé — tellement riche en or que son voyage à La Mecque fit chuter les prix dans tout le monde arabe !\n\nIl a aussi bâti des mosquées et des universités magnifiques. Tombouctou brillait sous son règne. 📚\n\nQu'est-ce qui te surprend le plus chez lui ?",nil:"Le Nil est le plus long fleuve du monde avec 6 650 km ! 🌊 Il traverse dix pays africains et a nourri la civilisation égyptienne pendant des millénaires.\n\nSans le Nil, les grandes pyramides n'auraient peut-être pas existé. 🌿\n\nSavais-tu qu'on débat encore de l'endroit exact où le Nil prend sa source ?",sankara:"Thomas Sankara était le président révolutionnaire du Burkina Faso de 1983 à 1987. ✊\n\nIl a planté des millions d'arbres, vacciné des millions d'enfants et refusé de s'endetter auprès des pays riches. Il disait : 'On ne peut pas faire de révolution avec des chaussures cirées.'\n\nSi tu étais président, quelle serait ta première décision ?",nzinga:"La Reine Nzinga était une guerrière et diplomate du Royaume de Ndongo (Angola actuel) au 17e siècle. 👑\n\nQuand les Portugais sont arrivés pour coloniser, elle a refusé de se soumettre ! Elle a négocié d'égal à égal avec eux pendant des décennies.\n\nElle est considérée comme une héroïne nationale en Angola aujourd'hui. Qu'est-ce qui t'impressionne le plus chez elle ?",default:"Super question ! 🌍 L'Afrique est un continent immense avec 54 pays, des milliers de langues et des civilisations qui ont façonné le monde.\n\nContinue à poser des questions — c'est comme ça qu'on grandit ! 💡\n\nQu'est-ce qui t'intéresse le plus : l'histoire, les animaux, la géographie ?"},
+  en:{mansa:"Mansa Musa was the emperor of the Mali Empire in the 14th century. 🌍 He was one of the richest men who ever lived — so rich in gold that his journey to Mecca crashed prices across the Arab world!\n\nHe also built magnificent mosques and universities. Timbuktu flourished under his rule. 📚\n\nWhat surprises you most about him?",nil:"The Nile is the world's longest river at 6,650 km! 🌊 It flows through ten African countries and nourished Egyptian civilization for millennia.\n\nWithout the Nile, the great pyramids might not have existed. 🌿\n\nDid you know scientists still debate the exact source of the Nile?",sankara:"Thomas Sankara was the revolutionary president of Burkina Faso from 1983 to 1987. ✊\n\nHe planted millions of trees, vaccinated millions of children and refused to go into debt with rich countries.\n\nIf you were president, what would be your first decision?",nzinga:"Queen Nzinga was a warrior and diplomat from the Kingdom of Ndongo (now Angola) in the 17th century. 👑\n\nWhen the Portuguese arrived to colonize, she refused to submit! She negotiated as an equal with them for decades.\n\nShe is still considered a national heroine in Angola today. What impresses you most about her?",default:"Great question! 🌍 Africa is a huge continent with 54 countries and thousands of languages.\n\nKeep asking questions — that's how we grow! 💡\n\nWhat interests you most: history, animals, or geography?"},
+  it:{mansa:"Mansa Musa era l'imperatore dell'Impero del Mali nel 14° secolo. 🌍 Era uno degli uomini più ricchi che siano mai esistiti — così ricco d'oro che il suo viaggio alla Mecca fece crollare i prezzi in tutto il mondo arabo!\n\nHa anche costruito magnifiche moschee e università. Timbuctù fiorì sotto il suo regno. 📚\n\nCosa ti sorprende di più di lui?",nil:"Il Nilo è il fiume più lungo del mondo con 6.650 km! 🌊 Attraversa dieci paesi africani e ha nutrito la civiltà egizia per millenni.\n\nSenza il Nilo, le grandi piramidi forse non sarebbero esistite. 🌿\n\nSapevi che gli scienziati dibattono ancora sulla fonte esatta del Nilo?",sankara:"Thomas Sankara era il presidente rivoluzionario del Burkina Faso dal 1983 al 1987. ✊\n\nHa piantato milioni di alberi, vaccinato milioni di bambini e rifiutato di indebitarsi con i paesi ricchi.\n\nSe fossi presidente, qual sarebbe la tua prima decisione?",nzinga:"La Regina Nzinga era una guerriera e diplomatica del Regno di Ndongo (Angola) nel 17° secolo. 👑\n\nQuando i Portoghesi arrivarono per colonizzare, rifiutò di sottomettersi! Negoziò alla pari con loro per decenni.\n\nÈ ancora considerata un'eroina nazionale in Angola oggi. Cosa ti impressiona di più di lei?",default:"Che bella domanda! 🌍 L'Africa è un continente enorme con 54 paesi e migliaia di lingue.\n\nContinua a fare domande — è così che si cresce! 💡\n\nCosa ti interessa di più: la storia, gli animali o la geografia?"}
+};
+
+function repond(){
+  const inp=$('ia-qin');const q=inp.value.trim().toLowerCase();if(!q)return;
+  const R=REPONS[lang]||REPONS.fr;
+  let rep=R.default;
+  if(q.includes('mansa')||q.includes('musa'))rep=R.mansa;
+  else if(q.includes('nil')||q.includes('nile')||q.includes('nilo'))rep=R.nil;
+  else if(q.includes('sankara'))rep=R.sankara;
+  else if(q.includes('nzinga'))rep=R.nzinga;
+  const res=$('ia-ares');res.className='ia-result grn show';
+  res.innerHTML='<div style="font-size:13px;line-height:1.7;color:#2C2C2A">'+rep.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')+'</div>';
+  inp.value='';
+}
+
+// ============================================================
+// PREMIUM
+// ============================================================
+function tryUnlock(section,idx){
+  const ml=L().modal;
+  $('m-ti').textContent=ml.ti;$('m-de').textContent=ml.de;
+  $('m-pr').innerHTML=ml.pr+' <span style="font-size:13px;color:#888;font-weight:400">'+ml.prs+'</span>';
+  $('m-cancel').textContent=ml.cancel;$('m-buy').textContent=ml.buy;$('m-err').textContent=ml.err;
+  $('code-in').value='';$('m-err').className='modal-err';
+  $('modal-bg').className='modal-bg show';
+}
+function closeModal(){$('modal-bg').className='modal-bg';}
+function submitCode(){
+  const code=$('code-in').value.trim().toUpperCase();
+  if(CODES[code]){
+    ['empires','mythes','maths2','langues','heros','ia2'].forEach(s=>UNLOCKED.add(s));
+    closeModal();
+    for(let i=0;i<6;i++){const lk=$('lk'+i);if(lk){lk.textContent='✅';lk.className='unlk';}}
+  }else{$('m-err').className='modal-err show';$('code-in').value='';}
+}
+
+// ============================================================
+// INIT
+// ============================================================
+const savedLang=localStorage.getItem('knipo_lang');
+const savedXP=parseInt(localStorage.getItem('knipo_xp')||'0');
+if(savedXP)xpTotal=savedXP;
+if(savedLang&&T[savedLang]){
+  lang=savedLang;
+  document.querySelectorAll('.lb').forEach(b=>{if(b.textContent.includes(savedLang.toUpperCase()))b.classList.add('on');else b.classList.remove('on');});
+}
+applyLang();
+</script>
+
+<!-- PWA Service Worker -->
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+
+</body>
+</html>
