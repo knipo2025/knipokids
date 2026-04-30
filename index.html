@@ -186,6 +186,39 @@ h1 span{color:#1D9E75}
 .sd-text{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:#fff;line-height:1.35;flex:1}
 .sd-btn{padding:7px 14px;border-radius:9px;border:none;background:rgba(255,255,255,.22);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}
 .sd-btn:hover{background:rgba(255,255,255,.35)}
+/* ===== TIMER ===== */
+.timer-container{position:relative;display:flex;align-items:center;justify-content:center;width:54px;height:54px;margin:0 auto 4px}
+.timer-svg{width:54px;height:54px;transform:rotate(-90deg)}
+.timer-bg{fill:none;stroke:#F1EFE8;stroke-width:3.5}
+.timer-fill{fill:none;stroke:#1D9E75;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:0;transition:stroke-dashoffset .92s linear,stroke .3s}
+.timer-num{position:absolute;font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:#2C2C2A;pointer-events:none}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.timer-pulse{animation:timerPulse .5s ease infinite}
+/* ===== ONBOARDING ===== */
+.onboard-bg{position:fixed;inset:0;background:#FFFDF6;background-image:radial-gradient(#1D9E7509 1.5px,transparent 1.5px);background-size:24px 24px;z-index:9990;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px}
+.onboard-slide{text-align:center;max-width:340px;width:100%}
+@keyframes obFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.onboard-slide-anim{animation:obFadeIn .4s cubic-bezier(.2,.8,.4,1)}
+.onboard-mascot{font-size:96px;display:block;margin-bottom:10px;animation:mascotFloat 2.4s ease-in-out infinite alternate}
+@keyframes mascotFloat{from{transform:translateY(0) scale(1)}to{transform:translateY(-12px) scale(1.06)}}
+.onboard-title{font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:#BA7517;margin-bottom:8px;line-height:1.2}
+.onboard-sub{font-size:13px;color:#777;line-height:1.7;margin-bottom:22px;font-weight:600}
+.onboard-topics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:20px}
+.onboard-topic{background:linear-gradient(135deg,#F1EFE8,#E8E5D8);border-radius:14px;padding:12px 6px;text-align:center;transition:transform .15s}
+.onboard-topic:hover{transform:scale(1.04)}
+.onboard-topic-ic{font-size:26px;display:block;margin-bottom:3px}
+.onboard-topic-tx{font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.onboard-reward{display:flex;justify-content:center;gap:16px;margin-bottom:22px}
+.onboard-reward-item{text-align:center}
+.onboard-reward-ic{font-size:36px;display:block;margin-bottom:4px}
+.onboard-reward-tx{font-size:11px;font-weight:700;color:#888}
+.onboard-dots{display:flex;gap:7px;justify-content:center;margin-bottom:22px}
+.onboard-dot{width:9px;height:9px;border-radius:50%;background:#ddd;transition:all .3s}
+.onboard-dot.on{background:#1D9E75;transform:scale(1.2)}
+.onboard-btn{width:100%;max-width:320px;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#EF9F27,#F5B848);color:#fff;font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 4px 18px rgba(239,159,39,.4);transition:transform .15s,box-shadow .15s;margin-bottom:0}
+.onboard-btn:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(239,159,39,.5)}
+.onboard-skip{margin-top:12px;font-size:12px;color:#bbb;cursor:pointer;font-weight:700;background:none;border:none;padding:6px 12px}
+.onboard-skip:hover{color:#888}
 /* ===== SHARE ===== */
 .sbtn-share{width:100%;padding:12px;border-radius:11px;border:none;background:linear-gradient(135deg,#1D9E75,#178a65);color:#fff;font-family:'Baloo 2',cursive;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(29,158,117,.35)}
 .sbtn-share:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(29,158,117,.45)}
@@ -196,6 +229,18 @@ h1 span{color:#1D9E75}
 </head>
 <body>
 <canvas id="confetti-canvas"></canvas>
+
+<!-- ONBOARDING (première visite) -->
+<div id="onboard-bg" class="onboard-bg hidden">
+  <div class="onboard-slide onboard-slide-anim" id="onboard-slide"></div>
+  <div class="onboard-dots">
+    <div class="onboard-dot on" id="ob-d0"></div>
+    <div class="onboard-dot" id="ob-d1"></div>
+    <div class="onboard-dot" id="ob-d2"></div>
+  </div>
+  <button class="onboard-btn" id="onboard-btn" onclick="nextOnboarding()">Suivant →</button>
+  <button class="onboard-skip" onclick="finishOnboarding()" id="onboard-skip">Passer</button>
+</div>
 
 <!-- PWA INSTALL BAR -->
 <div class="install-bar hidden" id="install-bar">
@@ -352,6 +397,13 @@ h1 span{color:#1D9E75}
   <button class="back-btn" onclick="goHome()" id="bk-q">← Accueil</button>
   <div class="qhead" id="qhead"><span class="qhi-big" id="qhi">🏛️</span><div class="qht" id="qht">Histoire</div></div>
   <div class="dots" id="dots"></div>
+  <div class="timer-container" id="timer-wrap">
+    <svg class="timer-svg" viewBox="0 0 36 36">
+      <circle class="timer-bg" cx="18" cy="18" r="15.9"/>
+      <circle class="timer-fill" id="timer-fill" cx="18" cy="18" r="15.9"/>
+    </svg>
+    <div class="timer-num" id="timer-num">15</div>
+  </div>
   <div class="combo-msg" id="combo-msg"></div>
   <div class="qcard"><span class="qem" id="qem"></span><div class="qtx" id="qtx"></div><div class="qhint" id="qhint"></div></div>
   <div class="agrid" id="agrid"></div>
@@ -557,11 +609,16 @@ let deferredPrompt=null;
 let streak=0,prevLevel=1;
 let completedTopics=new Set(JSON.parse(localStorage.getItem('knipo_badges')||'[]'));
 let dayStreak=0,dailyDone=false,dailyPool=[];
+// Timer
+let timerInterval=null,timerSec=15,currentCorrect=0,currentExp='';
+const TIMER_MAX=15;
+// Onboarding
+let onboardStep=0;
 
 function $(id){return document.getElementById(id);}
 function L(){return T[lang];}
 function showPage(id){['page-home','page-quiz','page-puzzle','page-success'].forEach(p=>$(p).classList.add('hidden'));$(id).classList.remove('hidden');}
-function goHome(){showPage('page-home');}
+function goHome(){clearTimer();showPage('page-home');}
 
 function updateXP(){
   const lvl=Math.floor(xpTotal/1000)+1;
@@ -666,6 +723,7 @@ function renderQ(){
   const dots=$('dots');dots.innerHTML='';
   const total=Math.min(pool.length,8);
   for(let i=0;i<total;i++){const d=document.createElement('div');d.className='dot'+(i<curQ?' dn':i===curQ?' cr':'');dots.appendChild(d);}
+  currentCorrect=q.c;currentExp=q.x[lang]||q.x.fr;
   $('qem').textContent=q.e;
   $('qtx').textContent=q.q[lang]||q.q.fr;
   $('qhint').textContent=L().quiz.hint+' '+(q.h[lang]||q.h.fr);
@@ -673,10 +731,11 @@ function renderQ(){
   const grid=$('agrid');grid.innerHTML='';
   answers.forEach((a,i)=>{const b=document.createElement('button');b.className='abtn';b.textContent=a;b.onclick=function(){pick(i,q.c,q.x[lang]||q.x.fr);};grid.appendChild(b);});
   $('fb').className='fb';$('nxtbtn').className='nxtbtn';$('nxtbtn').textContent=L().quiz.next;
+  startTimer();
 }
 
 function pick(ch,cor,exp){
-  if(answered)return;answered=true;
+  if(answered)return;answered=true;clearTimer();
   const btns=$('agrid').querySelectorAll('.abtn');
   btns.forEach((b,i)=>{b.disabled=true;if(i===cor)b.classList.add('ok');if(i===ch&&ch!==cor)b.classList.add('no');});
   const ok=ch===cor;
@@ -699,7 +758,7 @@ function pick(ch,cor,exp){
   }
   $('fb').className='fb show '+(ok?'ok':'no');
   $('fb-ic').textContent=ok?'🌟':'💪';
-  $('fb-ti').textContent=ok?L().quiz.ok:L().quiz.no;
+  $('fb-ti').textContent=randFeedback(ok);
   $('fb-ms').textContent=exp;
   $('nxtbtn').className='nxtbtn show';
 }
@@ -1134,6 +1193,128 @@ function denyNotif(){
 }
 
 // ============================================================
+// FEEDBACK VARIÉ (20+ messages)
+// ============================================================
+const FEEDBACK_OK={
+  fr:['Excellent ! 🌟','Brillant ! 💫','Tu es fort·e ! 💪','Parfait ! 🎯','Incroyable ! 🔥','Bravo champion ! 👑','Tu déchires ! ⚡','Wouah ! 🎉','Top niveau ! 🏆','Super ! ✨','Tu es une étoile ! 🌟','Kapow ! 💥','Magnifique ! 🦁','Quel génie ! 🧠','Rien ne t\'arrête ! 🚀','Trop fort·e ! 😤','En plein dans le mille ! 🎯','Légendaire ! 👑','Kazi nzuri ! 🌍','Asante sana ! 🙌'],
+  en:['Excellent! 🌟','Brilliant! 💫','You\'re strong! 💪','Perfect! 🎯','Incredible! 🔥','Well done champ! 👑','You rock! ⚡','Wow! 🎉','Top level! 🏆','Super! ✨','You\'re a star! 🌟','Kapow! 💥','Magnificent! 🦁','What a genius! 🧠','Nothing stops you! 🚀','Too good! 😤','Bullseye! 🎯','Legendary! 👑','Sawa sawa! 🌍','Amazing! 🙌'],
+  it:['Eccellente! 🌟','Brillante! 💫','Sei forte! 💪','Perfetto! 🎯','Incredibile! 🔥','Bravo campione! 👑','Sei una roccia! ⚡','Wow! 🎉','Livello top! 🏆','Super! ✨','Sei una stella! 🌟','Kapow! 💥','Magnifico! 🦁','Che genio! 🧠','Niente ti ferma! 🚀','Troppo forte! 😤','Nel segno! 🎯','Leggendario! 👑','Fantastico! 🫶','Inarrestabile! 🚀']
+};
+const FEEDBACK_NO={
+  fr:['Presque ! 💪','Continue ! 🌱','Tu vas y arriver ! 🔥','Pas grave ! 😊','La prochaine fois ! ✨','Tu apprends ! 🧠','C\'est en forgeant ! 💪','Ne lâche pas ! 🫶','Erreur = progrès ! 📈','Ça viendra ! 🌟','Retiens bien ! 💡','Observe la bonne réponse ! 👀','Tu progresses ! 🚀','Courage ! 😤','Le savant n\'a jamais fini d\'apprendre ! 📚','Tu vas cartonner bientôt ! 👑','C\'est le chemin ! 🌍','Chaque erreur enseigne ! 🦁','Le savoir se construit ! 🏛️','Pas loin ! ⚡'],
+  en:['Almost! 💪','Keep going! 🌱','You\'ll get it! 🔥','No worries! 😊','Next time! ✨','You\'re learning! 🧠','Practice makes perfect! 💪','Don\'t give up! 🫶','Mistakes = progress! 📈','It\'ll come! 🌟','Remember well! 💡','Check the right answer! 👀','You\'re improving! 🚀','Courage! 😤','The wise never stop learning! 📚','You\'ll be great soon! 👑','This is the path! 🌍','Every mistake teaches! 🦁','Knowledge builds up! 🏛️','So close! ⚡'],
+  it:['Quasi! 💪','Continua! 🌱','Ce la farai! 🔥','Non importa! 😊','La prossima volta! ✨','Stai imparando! 🧠','La pratica rende perfetti! 💪','Non mollare! 🫶','Errori = progresso! 📈','Arriverà! 🌟','Ricorda bene! 💡','Guarda la risposta giusta! 👀','Stai migliorando! 🚀','Coraggio! 😤','Il saggio impara sempre! 📚','Sarai grande presto! 👑','È la strada! 🌍','Ogni errore insegna! 🦁','Il sapere si costruisce! 🏛️','Così vicino! ⚡']
+};
+const FEEDBACK_TIMEOUT={fr:'Trop lent ⏱️',en:'Too slow ⏱️',it:'Troppo lento ⏱️'};
+function randFeedback(ok){const arr=(ok?FEEDBACK_OK:FEEDBACK_NO)[lang]||(ok?FEEDBACK_OK:FEEDBACK_NO).fr;return arr[Math.floor(Math.random()*arr.length)];}
+
+// ============================================================
+// TIMER
+// ============================================================
+function startTimer(){
+  clearTimer();timerSec=TIMER_MAX;updateTimerUI();
+  timerInterval=setInterval(()=>{
+    timerSec--;updateTimerUI();
+    if(timerSec<=0){clearTimer();if(!answered)timeOut();}
+  },1000);
+}
+function clearTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}}
+function updateTimerUI(){
+  const num=$('timer-num');const fill=$('timer-fill');const wrap=$('timer-wrap');
+  if(num)num.textContent=timerSec;
+  if(fill){
+    fill.style.strokeDashoffset=100*(1-timerSec/TIMER_MAX);
+    fill.style.stroke=timerSec<=4?'#D85A30':timerSec<=8?'#EF9F27':'#1D9E75';
+  }
+  if(wrap){wrap.className='timer-container'+(timerSec<=4?' timer-pulse':'');}
+}
+function timeOut(){
+  answered=true;
+  const btns=$('agrid').querySelectorAll('.abtn');
+  btns.forEach((b,i)=>{b.disabled=true;if(i===currentCorrect)b.classList.add('ok');});
+  streak=0;updateStreak();
+  playSound('wrong');
+  if(navigator.vibrate)navigator.vibrate([25,50,25]);
+  const ag=$('agrid');ag.classList.add('shake');setTimeout(()=>ag.classList.remove('shake'),460);
+  $('fb').className='fb show no';
+  $('fb-ic').textContent='⏱️';
+  $('fb-ti').textContent=FEEDBACK_TIMEOUT[lang]||FEEDBACK_TIMEOUT.fr;
+  $('fb-ms').textContent=currentExp;
+  $('nxtbtn').className='nxtbtn show';
+}
+
+// ============================================================
+// ONBOARDING
+// ============================================================
+const ONBOARD=[
+  {ic:'🦁',
+   ti:{fr:'Bienvenue dans KNIPO Kids !',en:'Welcome to KNIPO Kids!',it:'Benvenuto in KNIPO Kids!'},
+   sub:{fr:'Je suis <strong>Kani</strong>, ton lion guide ! 🌍<br>Ensemble on va explorer l\'Afrique,<br>son histoire, ses animaux et bien plus !',en:'I\'m <strong>Kani</strong>, your lion guide! 🌍<br>Together we\'ll explore Africa,<br>its history, animals and much more!',it:'Sono <strong>Kani</strong>, il tuo leone guida! 🌍<br>Insieme esploreremo l\'Africa,<br>la sua storia, gli animali e tanto altro!'},
+   btn:{fr:'Suivant →',en:'Next →',it:'Avanti →'}},
+  {ic:'🌍',
+   ti:{fr:'6 thèmes pour tout apprendre',en:'6 themes to learn everything',it:'6 temi per imparare tutto'},
+   topics:true,
+   btn:{fr:'Et ensuite ? →',en:'What\'s next? →',it:'E poi? →'}},
+  {ic:'🏆',
+   ti:{fr:'Gagne des XP, des badges et des combos !',en:'Earn XP, badges and combos!',it:'Guadagna XP, badge e combo!'},
+   rewards:true,
+   btn:{fr:'C\'est parti ! 🚀',en:'Let\'s go! 🚀',it:'Andiamo! 🚀'}}
+];
+const ONBOARD_TOPICS=[
+  {ic:'🏛️',fr:'Histoire',en:'History',it:'Storia'},
+  {ic:'🌿',fr:'Nature',en:'Nature',it:'Natura'},
+  {ic:'🔢',fr:'Maths',en:'Maths',it:'Maths'},
+  {ic:'💬',fr:'Proverbes',en:'Proverbs',it:'Proverbi'},
+  {ic:'🦍',fr:'Animaux',en:'Animals',it:'Animali'},
+  {ic:'🗺️',fr:'Géo',en:'Geo',it:'Geo'}
+];
+const ONBOARD_REWARDS=[
+  {ic:'⚡',fr:'Réponds vite\npour + de XP',en:'Answer fast\nfor more XP',it:'Rispondi veloce\nper + XP'},
+  {ic:'🔥',fr:'Défi du jour\nchaque matin',en:'Daily challenge\nevery morning',it:'Sfida del giorno\nogni mattina'},
+  {ic:'🦁',fr:'Monte de niveau\net évolue',en:'Level up\nand evolve',it:'Sali di livello\ne evolvi'}
+];
+
+function showOnboarding(){
+  const bg=$('onboard-bg');if(!bg)return;
+  bg.classList.remove('hidden');
+  onboardStep=0;
+  renderOnboardSlide();
+  const skip=$('onboard-skip');
+  if(skip){const s={fr:'Passer',en:'Skip',it:'Salta'};skip.textContent=s[lang]||s.fr;}
+}
+function renderOnboardSlide(){
+  const slide=ONBOARD[onboardStep];
+  const el=$('onboard-slide');if(!el)return;
+  [0,1,2].forEach(i=>$('ob-d'+i)&&($('ob-d'+i).className='onboard-dot'+(i===onboardStep?' on':'')));
+  let html=`<span class="onboard-mascot">${slide.ic}</span>`;
+  html+=`<div class="onboard-title">${slide.ti[lang]||slide.ti.fr}</div>`;
+  if(slide.topics){
+    html+=`<div class="onboard-topics">`;
+    ONBOARD_TOPICS.forEach(t=>{html+=`<div class="onboard-topic"><span class="onboard-topic-ic">${t.ic}</span><div class="onboard-topic-tx">${t[lang]||t.fr}</div></div>`;});
+    html+=`</div>`;
+  } else if(slide.rewards){
+    html+=`<div class="onboard-reward">`;
+    ONBOARD_REWARDS.forEach(r=>{html+=`<div class="onboard-reward-item"><span class="onboard-reward-ic">${r.ic}</span><div class="onboard-reward-tx">${(r[lang]||r.fr).replace(/\n/g,'<br>')}</div></div>`;});
+    html+=`</div>`;
+  } else {
+    html+=`<div class="onboard-sub">${slide.sub[lang]||slide.sub.fr}</div>`;
+  }
+  el.innerHTML=html;
+  el.className='onboard-slide onboard-slide-anim';
+  setTimeout(()=>el.classList.remove('onboard-slide-anim'),450);
+  const btn=$('onboard-btn');if(btn)btn.textContent=slide.btn[lang]||slide.btn.fr;
+}
+function nextOnboarding(){
+  onboardStep++;
+  if(onboardStep>=ONBOARD.length){finishOnboarding();return;}
+  renderOnboardSlide();
+}
+function finishOnboarding(){
+  localStorage.setItem('knipo_onboarded','1');
+  const bg=$('onboard-bg');if(bg)bg.classList.add('hidden');
+}
+
+// ============================================================
 // SOUND ENGINE
 // ============================================================
 let audioCtx=null;
@@ -1209,6 +1390,7 @@ if(savedLang&&T[savedLang]){
 }
 applyLang();
 checkDailyReminder();
+if(!localStorage.getItem('knipo_onboarded')){showOnboarding();}
 </script>
 
 <!-- PWA Service Worker -->
