@@ -227,6 +227,34 @@ h1 span{color:#1D9E75}
 .sbtn-share:active{transform:scale(.97)}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#2C2C2A;color:#fff;padding:10px 22px;border-radius:20px;font-family:'Baloo 2',cursive;font-size:13px;font-weight:700;z-index:9999;white-space:nowrap;animation:toastIn .3s ease forwards}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+/* ===== #1 CARD ENTRANCE ===== */
+@keyframes cardIn{from{opacity:0;transform:translateY(24px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card-in{animation:cardIn .48s cubic-bezier(.2,.8,.4,1) both}
+/* ===== #2 QUIZ INTRO ===== */
+.intro-page{border-radius:22px;padding:36px 20px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;min-height:72vh}
+.intro-page::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.18);z-index:0;border-radius:22px}
+.intro-content{position:relative;z-index:1;max-width:340px;width:100%}
+.intro-ic{font-size:96px;display:block;margin-bottom:14px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.3))}
+@keyframes introIcIn{from{transform:scale(0) rotate(-12deg);opacity:0}65%{transform:scale(1.18) rotate(4deg)}to{transform:scale(1) rotate(0);opacity:1}}
+.intro-ic-anim{animation:introIcIn .65s cubic-bezier(.2,.8,.4,1) both}
+.intro-title{font-family:'Baloo 2',cursive;font-size:32px;font-weight:800;color:#fff;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.3);line-height:1.1}
+.intro-txt{font-size:14px;color:rgba(255,255,255,.9);line-height:1.75;max-width:310px;margin:0 auto 30px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.2)}
+@keyframes introBtnGlow{0%,100%{box-shadow:0 4px 20px rgba(255,255,255,.25),0 0 0 0 rgba(255,255,255,.2)}50%{box-shadow:0 6px 28px rgba(255,255,255,.4),0 0 0 8px rgba(255,255,255,.05)}}
+.intro-btn{padding:16px 44px;border-radius:18px;border:none;background:#fff;font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;cursor:pointer;animation:introBtnGlow 2.2s ease infinite;transition:transform .15s}
+.intro-btn:hover{transform:translateY(-3px) scale(1.04)}
+.intro-back-btn{background:none;border:none;cursor:pointer;font-size:12px;font-weight:700;color:rgba(255,255,255,.55);padding:4px 0 14px;display:flex;align-items:center;gap:4px;transition:color .15s}
+.intro-back-btn:hover{color:#fff}
+/* ===== #3 SUCCESS AMÉLIORÉ ===== */
+@keyframes trophyIn{from{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.28) rotate(4deg)}80%{transform:scale(.94)}to{transform:scale(1);opacity:1}}
+.s-tr-anim{animation:trophyIn .75s cubic-bezier(.2,.8,.4,1) both!important}
+.s-stars{display:flex;justify-content:center;gap:5px;margin:4px 0 12px;font-size:38px;min-height:46px}
+@keyframes starIn{from{transform:scale(0) rotate(-20deg);opacity:0}70%{transform:scale(1.3)}to{transform:scale(1);opacity:1}}
+.s-star{display:inline-block;animation:starIn .45s cubic-bezier(.2,.8,.4,1) both}
+/* ===== #4 FAIT DU JOUR ===== */
+.fact-card{background:linear-gradient(135deg,#1D2545,#0f3460);border-radius:16px;padding:14px 16px;margin-top:6px;display:flex;align-items:flex-start;gap:12px;cursor:default}
+.fact-ic{font-size:30px;flex-shrink:0;margin-top:1px}
+.fact-lbl{font-size:10px;font-weight:800;color:#EF9F27;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.fact-txt{font-size:13px;color:rgba(255,255,255,.88);line-height:1.6;font-weight:600}
 </style>
 </head>
 <body>
@@ -320,7 +348,7 @@ h1 span{color:#1D9E75}
     <button class="tab" onclick="showTab('t-prem',this)" id="tb-prem">👑 Premium</button>
   </div>
   <div id="t-learn">
-    <button class="daily-card" id="daily-card" onclick="startDailyChallenge()">
+    <button class="daily-card" id="daily-card" onclick="showIntro('daily')">
       <div class="daily-ic">🌟</div>
       <div class="daily-right">
         <div class="daily-ti" id="daily-ti">Défi du jour</div>
@@ -331,12 +359,16 @@ h1 span{color:#1D9E75}
     </button>
     <div style="font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;color:#bbb;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:8px" id="lbl-explore">🌍 Explore un thème</div>
     <div class="grid">
-      <button class="gcard gc-h" onclick="startQuiz('histoire')"><span class="ci">🏛️</span><span class="ct" id="ct-h">Histoire</span><span class="cs" id="cs-h">Empires africains</span></button>
-      <button class="gcard gc-n" onclick="startQuiz('nature')"><span class="ci">🌿</span><span class="ct" id="ct-n">Nature</span><span class="cs" id="cs-n">Faune & flore</span></button>
-      <button class="gcard gc-c" onclick="startQuiz('maths')"><span class="ci">🔢</span><span class="ct" id="ct-c">Chiffres</span><span class="cs" id="cs-c">Maths fun</span></button>
-      <button class="gcard gc-l" onclick="startQuiz('proverbes')"><span class="ci">💬</span><span class="ct" id="ct-l">Proverbes</span><span class="cs" id="cs-l">Sagesse africaine</span></button>
-      <button class="gcard gc-a" onclick="startQuiz('animaux')"><span class="ci">🦁</span><span class="ct" id="ct-a">Animaux</span><span class="cs" id="cs-a">Savane & jungle</span></button>
-      <button class="gcard gc-g" onclick="startQuiz('geo')"><span class="ci">🗺️</span><span class="ct" id="ct-g">Géographie</span><span class="cs" id="cs-g">Pays & capitales</span></button>
+      <button class="gcard gc-h" onclick="showIntro('histoire')"><span class="ci">🏛️</span><span class="ct" id="ct-h">Histoire</span><span class="cs" id="cs-h">Empires africains</span></button>
+      <button class="gcard gc-n" onclick="showIntro('nature')"><span class="ci">🌿</span><span class="ct" id="ct-n">Nature</span><span class="cs" id="cs-n">Faune & flore</span></button>
+      <button class="gcard gc-c" onclick="showIntro('maths')"><span class="ci">🔢</span><span class="ct" id="ct-c">Chiffres</span><span class="cs" id="cs-c">Maths fun</span></button>
+      <button class="gcard gc-l" onclick="showIntro('proverbes')"><span class="ci">💬</span><span class="ct" id="ct-l">Proverbes</span><span class="cs" id="cs-l">Sagesse africaine</span></button>
+      <button class="gcard gc-a" onclick="showIntro('animaux')"><span class="ci">🦁</span><span class="ct" id="ct-a">Animaux</span><span class="cs" id="cs-a">Savane & jungle</span></button>
+      <button class="gcard gc-g" onclick="showIntro('geo')"><span class="ci">🗺️</span><span class="ct" id="ct-g">Géographie</span><span class="cs" id="cs-g">Pays & capitales</span></button>
+    </div>
+    <div class="fact-card" id="fact-card">
+      <div class="fact-ic" id="fact-ic">🌍</div>
+      <div><div class="fact-lbl" id="fact-lbl">Le savais-tu ? 💡</div><div class="fact-txt" id="fact-txt"></div></div>
     </div>
   </div>
   <div id="t-puzzle" class="hidden">
@@ -397,6 +429,19 @@ h1 span{color:#1D9E75}
   <div class="footer">KNIPO Kids &copy; 2025 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
 </div>
 
+<!-- INTRO PAGE (avant chaque quiz) -->
+<div id="page-intro" class="hidden">
+  <button class="intro-back-btn" onclick="goHome()" id="bk-intro">← Accueil</button>
+  <div class="intro-page" id="intro-bg">
+    <div class="intro-content">
+      <span class="intro-ic intro-ic-anim" id="intro-ic">🏛️</span>
+      <div class="intro-title" id="intro-ti">Histoire</div>
+      <div class="intro-txt" id="intro-tx"></div>
+      <button class="intro-btn" id="intro-btn" onclick="launchQuiz()">C'est parti ! 🚀</button>
+    </div>
+  </div>
+</div>
+
 <!-- QUIZ PAGE -->
 <div id="page-quiz" class="hidden">
   <button class="back-btn" onclick="goHome()" id="bk-q">← Accueil</button>
@@ -428,7 +473,8 @@ h1 span{color:#1D9E75}
 <!-- SUCCESS PAGE -->
 <div id="page-success" class="hidden">
   <div class="success">
-    <span class="s-tr">🏆</span>
+    <span class="s-tr" id="s-tr">🏆</span>
+    <div class="s-stars" id="s-stars"></div>
     <div class="s-ti" id="win-ti">Félicitations !</div>
     <div class="s-sb" id="win-sb">Tu as terminé la session !</div>
     <div class="s-stats">
@@ -622,8 +668,147 @@ let onboardStep=0;
 
 function $(id){return document.getElementById(id);}
 function L(){return T[lang];}
-function showPage(id){['page-home','page-quiz','page-puzzle','page-success'].forEach(p=>$(p).classList.add('hidden'));$(id).classList.remove('hidden');}
-function goHome(){clearTimer();showPage('page-home');}
+function showPage(id){['page-home','page-intro','page-quiz','page-puzzle','page-success'].forEach(p=>$(p)&&$(p).classList.add('hidden'));$(id)&&$(id).classList.remove('hidden');}
+function goHome(){clearTimer();showPage('page-home');setTimeout(animateHomeCards,40);}
+
+// ============================================================
+// #1 CARD ENTRANCE ANIMATION
+// ============================================================
+function animateHomeCards(){
+  const els=[...(document.querySelectorAll('#t-learn .daily-card, #t-learn .gcard'))];
+  els.forEach((el,i)=>{
+    el.classList.remove('card-in');
+    void el.offsetWidth;
+    el.style.animationDelay=(i*60)+'ms';
+    el.classList.add('card-in');
+  });
+}
+
+// ============================================================
+// #2 QUIZ INTRO SCREEN
+// ============================================================
+const INTRO={
+  histoire:{bg:'linear-gradient(135deg,#7a4200,#D4890A)',
+    fr:"Remonte le temps ! Rois puissants, empires d'or, savants brillants... L'Afrique a écrit une histoire extraordinaire. Es-tu prêt·e à la découvrir ?",
+    en:"Travel back in time! Powerful kings, golden empires, brilliant scholars... Africa wrote an extraordinary history. Are you ready to discover it?",
+    it:"Torna indietro nel tempo! Re potenti, imperi d'oro... L'Africa ha scritto una storia straordinaria. Sei pronto a scoprirla?"},
+  nature:{bg:'linear-gradient(135deg,#1a5c1a,#2D9A2D)',
+    fr:"Bienvenue dans la savane ! Lions, baobabs, chutes géantes... La nature africaine est la plus incroyable du monde. Montre ce que tu sais !",
+    en:"Welcome to the savanna! Lions, baobabs, giant waterfalls... Africa's nature is the most incredible. Show what you know!",
+    it:"Benvenuto nella savana! Leoni, baobab... La natura africana è la più incredibile. Mostra cosa sai!"},
+  maths:{bg:'linear-gradient(135deg,#0f3460,#178a65)',
+    fr:"L'os d'Ishango — vieux de 20 000 ans — est la plus vieille preuve de maths au monde... et il vient d'Afrique ! Montre ton intelligence !",
+    en:"The Ishango bone — 20,000 years old — is the world's oldest proof of maths... and it comes from Africa! Show your intelligence!",
+    it:"L'osso di Ishango — 20.000 anni — è la più antica prova di matematica al mondo... e viene dall'Africa! Mostra la tua intelligenza!"},
+  proverbes:{bg:'linear-gradient(135deg,#3D3099,#6B63D4)',
+    fr:"Les anciens d'Afrique transmettaient leur sagesse de génération en génération. Chaque proverbe cache un trésor de sens. Sauras-tu les comprendre ?",
+    en:"Africa's elders passed their wisdom through generations. Each proverb hides a treasure of meaning. Will you understand them?",
+    it:"Gli anziani africani tramandavano la saggezza di generazione in generazione. Ogni proverbio nasconde un tesoro. Riuscirai a capirli?"},
+  animaux:{bg:'linear-gradient(135deg,#7a3200,#C0621A)',
+    fr:"L'Afrique abrite 1 100 espèces de mammifères — le continent le plus riche en biodiversité ! Guépard, gorille, okapi... Combien en connais-tu vraiment ?",
+    en:"Africa is home to 1,100 mammal species — the most biodiverse continent! Cheetah, gorilla, okapi... How many do you really know?",
+    it:"L'Africa ospita 1.100 specie di mammiferi — il continente più ricco di biodiversità! Ghepardo, gorilla... Quante ne conosci davvero?"},
+  geo:{bg:'linear-gradient(135deg,#0a3d6b,#1565a0)',
+    fr:"54 pays, des milliers de langues, des déserts immenses et des forêts profondes... L'Afrique est le continent le plus diversifié du monde. Es-tu prêt·e à l'explorer ?",
+    en:"54 countries, thousands of languages, vast deserts and deep forests... Africa is the most diverse continent. Ready to explore it?",
+    it:"54 paesi, migliaia di lingue, deserti immensi e foreste profonde... L'Africa è la più diversificata del mondo. Pronto a esplorarla?"},
+  daily:{bg:'linear-gradient(135deg,#1D2545,#0f3460)',
+    fr:"5 questions choisies spécialement pour aujourd'hui ! Réponds bien, garde ta série et gagne +50 XP bonus. L'Afrique t'attend ! 🌍",
+    en:"5 questions chosen specially for today! Answer well, keep your streak and earn +50 XP bonus. Africa awaits! 🌍",
+    it:"5 domande scelte appositamente per oggi! Rispondi bene, mantieni la serie e guadagna +50 XP bonus. L'Africa ti aspetta! 🌍"}
+};
+const INTRO_ICONS={histoire:'🏛️',nature:'🌿',maths:'🔢',proverbes:'💬',animaux:'🦁',geo:'🗺️',daily:'🌟'};
+const INTRO_BTN_COLOR={histoire:'#7a4200',nature:'#1a5c1a',maths:'#0f3460',proverbes:'#3D3099',animaux:'#7a3200',geo:'#0a3d6b',daily:'#0f3460'};
+let pendingSubj='';
+
+function showIntro(subj){
+  if(subj==='daily'&&dailyDone)return;
+  pendingSubj=subj;
+  const d=INTRO[subj]||INTRO.histoire;
+  const names={histoire:L().cards.h,nature:L().cards.n,maths:L().cards.c,proverbes:L().cards.l,animaux:L().cards.a||'Animaux',geo:L().cards.g||'Géographie',daily:{fr:'Défi du Jour',en:'Daily Challenge',it:'Sfida del Giorno'}[lang]||'Défi'};
+  const bg=$('intro-bg');if(bg)bg.style.background=d.bg;
+  const ic=$('intro-ic');if(ic){ic.textContent=INTRO_ICONS[subj]||'📚';ic.className='intro-ic';void ic.offsetWidth;ic.className='intro-ic intro-ic-anim';}
+  const ti=$('intro-ti');if(ti)ti.textContent=names[subj]||subj;
+  const tx=$('intro-tx');if(tx)tx.textContent=d[lang]||d.fr;
+  const btn=$('intro-btn');
+  if(btn){
+    const t={fr:'C\'est parti ! 🚀',en:'Let\'s go! 🚀',it:'Andiamo! 🚀'};
+    btn.textContent=t[lang]||t.fr;
+    btn.style.color=INTRO_BTN_COLOR[subj]||'#1D2545';
+  }
+  const bk=$('bk-intro');if(bk){const t={fr:'← Accueil',en:'← Home',it:'← Inizio'};bk.textContent=t[lang]||t.fr;}
+  showPage('page-intro');
+}
+
+function launchQuiz(){
+  if(pendingSubj==='daily')startDailyChallenge();
+  else startQuiz(pendingSubj);
+}
+
+// ============================================================
+// #3 SUCCESS SCREEN — ÉTOILES + STATS ANIMÉES
+// ============================================================
+function showStars(score,total){
+  const pct=score/total;
+  const n=pct>=1?3:pct>=.75?2:pct>=.5?1:0;
+  const container=$('s-stars');if(!container)return;
+  let html='';
+  for(let i=0;i<3;i++){
+    const delay=180+i*160;
+    html+=`<span class="s-star" style="animation-delay:${delay}ms">${i<n?'⭐':'☆'}</span>`;
+  }
+  container.innerHTML=html;
+}
+
+function animateStats(score,total,xp){
+  const tr=$('s-tr');if(tr){tr.className='s-tr s-tr-anim';setTimeout(()=>tr.classList.remove('s-tr-anim'),900);}
+  showStars(score,total);
+  const scEl=$('fin-sc'),xpEl=$('fin-xp');
+  let i=0;const steps=22;
+  const timer=setInterval(()=>{
+    i++;const t=i/steps;
+    if(scEl)scEl.textContent=Math.round(score*Math.min(1,t))+'/'+total;
+    if(xpEl)xpEl.textContent='+'+Math.round(xp*Math.min(1,t))+' XP';
+    if(i>=steps){
+      if(scEl)scEl.textContent=score+'/'+total;
+      if(xpEl)xpEl.textContent='+'+xp+' XP';
+      clearInterval(timer);
+    }
+  },36);
+}
+
+// ============================================================
+// #4 FAIT DU JOUR
+// ============================================================
+const DAILY_FACTS=[
+  {e:'🏛️',fr:"L'université de Tombouctou existait avant Oxford ! Elle accueillait 25 000 étudiants au 14e siècle.",en:"Timbuktu's university existed before Oxford! It hosted 25,000 students in the 14th century.",it:"L'università di Timbuctù esisteva prima di Oxford! Ospitava 25.000 studenti nel 14° secolo."},
+  {e:'🌍',fr:"L'Afrique est si grande que les USA, la Chine, l'Inde et l'Europe entrent TOUS à l'intérieur !",en:"Africa is so large that the USA, China, India and all of Europe fit inside it!",it:"L'Africa è così grande che USA, Cina, India ed Europa entrano tutte al suo interno!"},
+  {e:'💰',fr:"Mansa Musa était si riche que son passage au Caire en 1324 provoqua une inflation qui dura 10 ans !",en:"Mansa Musa was so rich his 1324 Cairo stopover caused inflation lasting 10 years!",it:"Mansa Musa era così ricco che il suo passaggio al Cairo nel 1324 causò un'inflazione durata 10 anni!"},
+  {e:'🦛',fr:"Le rhinocéros peut courir à 50 km/h malgré ses 2 tonnes. Ne le provoque surtout pas !",en:"The rhino can run at 50 km/h despite weighing 2 tons. Whatever you do, don't provoke it!",it:"Il rinoceronte può correre a 50 km/h nonostante le 2 tonnellate. Non provocarlo!"},
+  {e:'📚',fr:"L'Éthiopie possède son propre alphabet — le Ge'ez — avec plus de 230 caractères. Un des plus anciens du monde !",en:"Ethiopia has its own alphabet — Ge'ez — with over 230 characters. One of the oldest in the world!",it:"L'Etiopia ha il proprio alfabeto — il Ge'ez — con oltre 230 caratteri. Uno dei più antichi del mondo!"},
+  {e:'🌊',fr:"Le lac Victoria est si grand qu'un avion prend 1 heure pour le survoler d'un bout à l'autre !",en:"Lake Victoria is so large that a plane takes 1 hour to fly from one end to the other!",it:"Il lago Vittoria è così grande che un aereo impiega 1 ora per sorvolarlo da un'estremità all'altra!"},
+  {e:'🦁',fr:"Un lion peut dormir jusqu'à 20 heures par jour. Le roi de la savane est aussi le roi de la sieste !",en:"A lion can sleep up to 20 hours a day. The king of the savanna is also the king of napping!",it:"Un leone può dormire fino a 20 ore al giorno. Il re della savana è anche il re del pisolino!"},
+  {e:'🗺️',fr:"Le Nil coule vers le NORD ! C'est un des rares grands fleuves au monde à couler du sud vers le nord.",en:"The Nile flows NORTHWARD! It's one of the few major rivers in the world flowing from south to north.",it:"Il Nilo scorre verso NORD! È uno dei pochi grandi fiumi al mondo che scorre da sud a nord."},
+  {e:'🐘',fr:"Les éléphants se reconnaissent dans les miroirs. Ils ont une conscience d'eux-mêmes, comme les humains !",en:"Elephants recognize themselves in mirrors. They have self-awareness, just like humans!",it:"Gli elefanti si riconoscono negli specchi. Hanno autoconsapevolezza, proprio come gli esseri umani!"},
+  {e:'🌴',fr:"Le baobab peut stocker 100 000 litres d'eau dans son tronc et vivre plus de 3 000 ans !",en:"The baobab can store 100,000 litres of water in its trunk and live over 3,000 years!",it:"Il baobab può immagazzinare 100.000 litri d'acqua nel tronco e vivere oltre 3.000 anni!"},
+  {e:'🎵',fr:"La musique africaine a influencé le jazz, le blues, le reggae et le hip-hop. Tout vient d'Afrique !",en:"African music influenced jazz, blues, reggae and hip-hop. Everything comes from Africa!",it:"La musica africana ha influenzato jazz, blues, reggae e hip-hop. Tutto viene dall'Africa!"},
+  {e:'🏆',fr:"L'Éthiopie a battu l'Italie à la bataille d'Adwa en 1896 et n'a JAMAIS été colonisée !",en:"Ethiopia defeated Italy at Adwa in 1896 and was NEVER colonized!",it:"L'Etiopia ha sconfitto l'Italia ad Adwa nel 1896 e non è MAI stata colonizzata!"},
+  {e:'💎',fr:"L'Afrique du Sud produit 77% du platine mondial — un métal qui vaut 3 fois plus que l'or !",en:"South Africa produces 77% of the world's platinum — a metal worth 3 times more than gold!",it:"Il Sudafrica produce il 77% del platino mondiale — un metallo che vale 3 volte più dell'oro!"},
+  {e:'🦍',fr:"Le gorille vit en famille soudée. Le mâle dominant protège ses proches toute sa vie, comme un vrai papa !",en:"Gorillas live in close-knit families. The dominant male protects his family for life, like a true father!",it:"I gorilla vivono in famiglie unite. Il maschio dominante protegge la sua famiglia per tutta la vita!"},
+  {e:'🐆',fr:"Le guépard est le seul grand félin incapable de rugir. En revanche, il ronronne... comme un chat !",en:"The cheetah is the only big cat unable to roar. But it can purr... just like a house cat!",it:"Il ghepardo è l'unico grande felino incapace di ruggire. Però fa le fusa... come un gatto!"}
+];
+function getDailyFact(){
+  const key=getDailyKey();let seed=0;
+  for(let i=0;i<key.length;i++)seed+=key.charCodeAt(i);
+  return DAILY_FACTS[seed%DAILY_FACTS.length];
+}
+function renderFactCard(){
+  const fact=getDailyFact();
+  const ic=$('fact-ic'),lbl=$('fact-lbl'),txt=$('fact-txt');
+  if(ic)ic.textContent=fact.e;
+  if(lbl){const l={fr:'Le savais-tu ? 💡',en:'Did you know? 💡',it:'Lo sapevi? 💡'};lbl.textContent=l[lang]||l.fr;}
+  if(txt)txt.textContent=fact[lang]||fact.fr;
+}
 
 function updateXP(){
   const lvl=Math.floor(xpTotal/1000)+1;
@@ -683,7 +868,7 @@ function applyLang(){
   const ws=$('win-share');if(ws)ws.innerHTML='📤 '+{fr:'Partager mon score',en:'Share my score',it:'Condividi il punteggio'}[lang];
   const row=$('topics-row');row.innerHTML='';
   l.ia.topics.forEach((t,i)=>{const b=document.createElement('button');b.className='tbtn'+(i===0?' on':'');b.textContent=t;const key=l.ia.keys[i];b.onclick=function(){selTopic(b,key);};row.appendChild(b);});
-  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();
+  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();
   const nmti=$('nm-ti');if(nmti)nmti.textContent={fr:'Rappel quotidien',en:'Daily reminder',it:'Promemoria quotidiano'}[lang]||'Rappel';
   const nmde=$('nm-de');if(nmde)nmde.textContent={fr:"On te prévient chaque jour pour ne pas perdre ta série ?",en:"Should we remind you daily so you don't lose your streak?",it:"Ti ricordiamo ogni giorno per non perdere la serie?"}[lang]||'';
   const nmno=$('nm-no');if(nmno)nmno.textContent={fr:'Non merci',en:'No thanks',it:'No grazie'}[lang]||'Non';
@@ -784,11 +969,11 @@ function nextQ(){
       completedTopics.add(curSubj);
       localStorage.setItem('knipo_badges',JSON.stringify([...completedTopics]));
     }
-    $('fin-sc').textContent=score+'/'+Math.min(pool.length,8);
-    $('fin-xp').textContent='+'+xpSess+' XP';
+    const total=Math.min(pool.length,8);
     renderBadges();
     showPage('page-success');
-    setTimeout(()=>confettiBurst(false),80);
+    setTimeout(()=>{animateStats(score,total,xpSess);},80);
+    setTimeout(()=>confettiBurst(false),120);
     playSound('levelup');
   }else renderQ();
 }
@@ -1397,6 +1582,7 @@ if(savedLang&&T[savedLang]){
 }
 applyLang();
 checkDailyReminder();
+setTimeout(animateHomeCards,150);
 if(!localStorage.getItem('knipo_onboarded')){showOnboarding();}
 </script>
 
