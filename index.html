@@ -11,14 +11,17 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Nunito',sans-serif;background-color:#FFFDF6;background-image:radial-gradient(#1D9E7509 1.5px,transparent 1.5px);background-size:24px 24px;color:#2C2C2A;padding:12px;max-width:680px;margin:0 auto}
+html{background:linear-gradient(160deg,#FFF0D0 0%,#FFFBEE 30%,#F2FAF0 65%,#EAF6FF 100%);background-attachment:fixed;min-height:100%}
+body{font-family:'Nunito',sans-serif;background:radial-gradient(ellipse 65% 40% at 8% 2%,rgba(239,159,39,.13) 0%,transparent 55%),radial-gradient(ellipse 55% 38% at 92% 95%,rgba(29,158,117,.11) 0%,transparent 55%),radial-gradient(#EF9F2710 1.5px,transparent 1.5px);background-size:auto,auto,26px 26px;background-attachment:fixed;color:#2C2C2A;padding:16px 12px 12px;max-width:680px;margin:0 auto}
+/* Barre colorée en haut */
+.app-rainbow{position:fixed;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#1D9E75 0%,#52C98A 18%,#EF9F27 36%,#F5B848 50%,#534AB7 66%,#E91E8C 82%,#1D9E75 100%);z-index:99999;pointer-events:none}
 .hidden{display:none!important}
-h1{font-family:'Baloo 2',cursive;font-size:28px;color:#BA7517;text-align:center;letter-spacing:2px}
+h1{font-family:'Baloo 2',cursive;font-size:32px;color:#BA7517;text-align:center;letter-spacing:2px;text-shadow:0 2px 0 rgba(186,117,23,.15)}
 h1 span{color:#1D9E75}
-.tagline{text-align:center;font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.tagline{text-align:center;font-size:11px;color:#A08050;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;font-weight:700}
 .lang-row{display:flex;justify-content:center;gap:6px;margin-bottom:10px}
-.lb{padding:4px 10px;border-radius:8px;border:1.5px solid #ddd;background:none;font-size:12px;font-weight:700;cursor:pointer;color:#888}
-.lb.on{background:#FAEEDA;border-color:#BA7517;color:#BA7517}
+.lb{padding:5px 12px;border-radius:20px;border:2px solid #E8D5AA;background:rgba(255,255,255,.6);font-size:12px;font-weight:800;cursor:pointer;color:#A08050;transition:all .2s;backdrop-filter:blur(4px)}
+.lb.on{background:linear-gradient(135deg,#EF9F27,#F5B848);border-color:transparent;color:#fff;box-shadow:0 2px 10px rgba(239,159,39,.4)}
 .xp-wrap{background:linear-gradient(135deg,#1D2545,#0f3460);border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;margin-bottom:12px;box-shadow:0 6px 24px rgba(15,52,96,.45);position:relative;overflow:hidden}
 .xp-wrap::before{content:'🌍';position:absolute;right:-8px;top:-10px;font-size:90px;opacity:.06;pointer-events:none;line-height:1}
 .xp-av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#EF9F27,#BA7517);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 3px 10px rgba(239,159,39,.5);flex-shrink:0;animation:mascotFloat 3s ease-in-out infinite alternate}
@@ -47,7 +50,7 @@ h1 span{color:#1D9E75}
 .dots{display:flex;gap:5px;justify-content:center;margin-bottom:10px}
 .dot{width:9px;height:9px;border-radius:50%;background:#ddd}
 .dot.dn{background:#1D9E75}.dot.cr{background:#EF9F27}
-.qcard{background:#fff;border:none;border-radius:16px;padding:16px;margin-bottom:10px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.qcard{background:rgba(255,255,255,.88);border:none;border-radius:18px;padding:16px;margin-bottom:10px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.09);backdrop-filter:blur(8px)}
 .qem{font-size:48px;display:block;margin-bottom:8px}
 .qtx{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;line-height:1.3;margin-bottom:4px}
 .qhint{font-size:12px;color:#888}
@@ -66,13 +69,15 @@ h1 span{color:#1D9E75}
 .nxtbtn{width:100%;padding:12px;border-radius:11px;border:none;background:linear-gradient(135deg,#EF9F27,#F5B848);color:#fff;font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;cursor:pointer;display:none;transition:transform .15s,box-shadow .15s}
 .nxtbtn.show{display:block;box-shadow:0 4px 14px rgba(239,159,39,.4)}
 .nxtbtn.show:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(239,159,39,.5)}
-.parea{background:#fff;border:.5px solid #ddd;border-radius:15px;padding:14px;margin-bottom:10px}
+.parea{background:rgba(255,255,255,.85);border:1.5px solid rgba(239,159,39,.2);border-radius:18px;padding:16px;margin-bottom:10px;backdrop-filter:blur(8px);box-shadow:0 3px 16px rgba(0,0,0,.07)}
 .sentence{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:12px;font-family:'Baloo 2',cursive;font-size:15px;font-weight:700}
-.dzone{border:2px dashed #ddd;border-radius:7px;padding:5px 12px;min-width:80px;text-align:center;color:#888;cursor:pointer}
-.dzone.filled{border-style:solid;border-color:#1D9E75;background:#E1F5EE;color:#3B6D11;font-family:'Baloo 2',cursive;font-weight:700}
+.dzone{border:2.5px dashed #C8A87A;border-radius:10px;padding:6px 16px;min-width:90px;text-align:center;color:#C8A87A;cursor:pointer;background:rgba(255,255,255,.5);transition:all .2s;font-weight:700}
+.dzone.filled{border-style:solid;border-color:#1D9E75;background:linear-gradient(135deg,#E1F5EE,#C8EED8);color:#2A6B40;font-family:'Baloo 2',cursive;font-weight:800;box-shadow:0 2px 8px rgba(29,158,117,.25)}
 .wbank{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
-.wbtn{background:#FAEEDA;border:1.5px solid #EF9F27;border-radius:7px;padding:5px 11px;font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;color:#BA7517;cursor:pointer}
-.wbtn.sel{outline:2.5px solid #534AB7;background:#EEEDFE;border-color:#534AB7;color:#534AB7}
+.wbtn{background:linear-gradient(135deg,#FFF4D8,#FAEEDA);border:2px solid #EF9F27;border-radius:10px;padding:8px 14px;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;color:#BA7517;cursor:pointer;transition:all .18s;box-shadow:0 2px 8px rgba(239,159,39,.2)}
+.wbtn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(239,159,39,.35)}
+.wbtn:active{transform:scale(.95)}
+.wbtn.sel{background:linear-gradient(135deg,#EEEDFE,#DDD9FD);border-color:#534AB7;color:#534AB7;box-shadow:0 3px 12px rgba(83,74,183,.35);transform:translateY(-2px)}
 .ckbtn{padding:8px 18px;border-radius:11px;border:none;background:#1D9E75;color:#fff;font-family:'Baloo 2',cursive;font-size:14px;font-weight:700;cursor:pointer}
 .ckbtn:disabled{opacity:.4}
 .iabox{background:#fff;border:.5px solid #ddd;border-radius:15px;padding:14px;margin-bottom:10px}
@@ -258,6 +263,7 @@ h1 span{color:#1D9E75}
 </style>
 </head>
 <body>
+<div class="app-rainbow"></div>
 <canvas id="confetti-canvas"></canvas>
 
 <!-- ONBOARDING (première visite) -->
@@ -1006,8 +1012,29 @@ function renderPuzzle(){
   body.appendChild(area);
 }
 
-function pickW(el,w){document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));if(selW===w){selW=null;return;}selW=w;el.classList.add('sel');}
-function placeW(dz){if(!selW)return;dz.textContent=selW;dz.className='dzone filled';dz.dataset.v=selW;document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));selW=null;const ck=$('ck');if(ck)ck.disabled=false;}
+function pickW(el,w){
+  const dz=document.querySelector('#puz-body .dzone');if(!dz)return;
+  // Si on reclique le même mot → vide le trou
+  if(el.classList.contains('sel')){
+    el.classList.remove('sel');selW=null;
+    dz.textContent='?';dz.className='dzone';dz.dataset.v='';
+    const ck=$('ck');if(ck)ck.disabled=true;return;
+  }
+  // Placement direct dans le trou
+  document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');selW=w;
+  dz.textContent=w;dz.className='dzone filled';dz.dataset.v=w;
+  if(navigator.vibrate)navigator.vibrate(20);
+  const ck=$('ck');if(ck)ck.disabled=false;
+}
+function placeW(dz){
+  // Cliquer sur le trou rempli → le vider
+  if(dz.classList.contains('filled')){
+    dz.textContent='?';dz.className='dzone';dz.dataset.v='';
+    document.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));
+    selW=null;const ck=$('ck');if(ck)ck.disabled=true;
+  }
+}
 
 function checkPuzz(p){
   const dz=$('dz');if(!dz||!dz.dataset.v)return;
