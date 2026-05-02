@@ -23,6 +23,8 @@ h1 span{color:#FFE082}
 .lb{padding:6px 14px;border-radius:20px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.18);font-size:12px;font-weight:800;cursor:pointer;color:#fff;transition:all .2s;backdrop-filter:blur(10px)}
 .lb:hover{background:rgba(255,255,255,.3)}
 .lb.on{background:#fff;border-color:transparent;color:#E65100;box-shadow:0 3px 14px rgba(0,0,0,.25)}
+.age-pick-btn{background:rgba(239,159,39,.35)!important;border-color:rgba(255,224,130,.6)!important}
+.age-pick-btn:hover{background:rgba(239,159,39,.5)!important}
 .xp-wrap{background:linear-gradient(135deg,#1D2545,#0f3460);border-radius:20px;padding:14px 16px;display:flex;align-items:center;gap:14px;margin-bottom:12px;box-shadow:0 6px 24px rgba(15,52,96,.45);position:relative;overflow:hidden}
 .xp-wrap::before{content:'🌍';position:absolute;right:-8px;top:-10px;font-size:90px;opacity:.06;pointer-events:none;line-height:1}
 .xp-av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#EF9F27,#BA7517);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 3px 10px rgba(239,159,39,.5);flex-shrink:0;animation:mascotFloat 3s ease-in-out infinite alternate}
@@ -272,19 +274,301 @@ h1 span{color:#FFE082}
 .fact-ic{font-size:30px;flex-shrink:0;margin-top:1px}
 .fact-lbl{font-size:10px;font-weight:800;color:#EF9F27;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
 .fact-txt{font-size:13px;color:rgba(255,255,255,.88);line-height:1.6;font-weight:600}
+
+
+/* ===== ONBOARD LANG PICKER (en haut) ===== */
+.onboard-lang{position:absolute;top:18px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:5}
+.onboard-lang .olb{padding:7px 14px;border-radius:22px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.18);font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;cursor:pointer;color:#fff;transition:all .2s;backdrop-filter:blur(10px)}
+.onboard-lang .olb:hover{background:rgba(255,255,255,.3);transform:translateY(-2px)}
+.onboard-lang .olb.on{background:#fff;border-color:transparent;color:#E65100;box-shadow:0 4px 14px rgba(0,0,0,.25);transform:scale(1.06)}
+.onboard-bg{padding-top:64px!important}
+
+/* ===== MASCOTTE VIVANTE ===== */
+.mascot-bubble{position:fixed;bottom:90px;right:14px;max-width:240px;background:#fff;border-radius:18px;padding:10px 14px 11px;box-shadow:0 8px 28px rgba(0,0,0,.22);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:#2C2C2A;line-height:1.4;z-index:9994;display:none;animation:mbIn .4s cubic-bezier(.2,.8,.4,1);border:2px solid #EF9F27}
+.mascot-bubble.show{display:block}
+.mascot-bubble::after{content:'';position:absolute;bottom:-9px;right:24px;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:9px solid #EF9F27}
+.mascot-bubble::before{content:'';position:absolute;bottom:-6px;right:26px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #fff;z-index:1}
+@keyframes mbIn{from{opacity:0;transform:translateY(14px) scale(.85)}to{opacity:1;transform:translateY(0) scale(1)}}
+.mascot-floating{position:fixed;bottom:18px;right:14px;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#EF9F27,#BA7517);display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 6px 20px rgba(239,159,39,.45);cursor:pointer;z-index:9993;animation:mascotFloat 3s ease-in-out infinite alternate;border:3px solid #fff}
+.mascot-floating:active{transform:scale(.92)}
+.mascot-floating.happy{animation:mascotJump .5s ease}
+@keyframes mascotJump{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-18px) rotate(-12deg)}60%{transform:translateY(-8px) rotate(8deg)}}
+/* ===== BOUTON TTS ===== */
+.tts-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:none;background:linear-gradient(135deg,#534AB7,#7A6FE5);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 3px 10px rgba(83,74,183,.4);transition:transform .15s;margin:6px auto 4px}
+.tts-btn:active{transform:scale(.9)}
+.tts-btn.speaking{animation:ttsPulse .6s ease infinite}
+@keyframes ttsPulse{0%,100%{box-shadow:0 0 0 0 rgba(83,74,183,.5)}50%{box-shadow:0 0 0 10px rgba(83,74,183,0)}}
+/* ===== ALBUM ===== */
+.album-page{padding:6px 0 80px}
+.album-h{font-family:'Baloo 2',cursive;font-size:24px;color:#fff;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:6px}
+.album-prog{text-align:center;color:rgba(255,255,255,.85);font-size:13px;font-weight:700;margin-bottom:14px}
+.album-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 2px}
+.acard{aspect-ratio:3/4;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px;text-align:center;cursor:pointer;transition:transform .2s;position:relative;overflow:hidden;border:none}
+.acard.locked{background:rgba(0,0,0,.25);border:2px dashed rgba(255,255,255,.25);color:rgba(255,255,255,.4)}
+.acard.locked .ac-em{filter:blur(6px) grayscale(1);opacity:.5}
+.acard.unlocked{background:linear-gradient(160deg,#fff,#FFF4D8);border:2px solid #EF9F27;box-shadow:0 4px 16px rgba(0,0,0,.18);color:#2C2C2A}
+.acard.unlocked:hover{transform:translateY(-4px) scale(1.04)}
+.ac-em{font-size:38px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))}
+.ac-name{font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;line-height:1.1;padding:0 2px}
+.ac-rar{position:absolute;top:4px;right:4px;font-size:9px;font-weight:900;background:rgba(0,0,0,.18);color:#fff;border-radius:8px;padding:1px 5px;letter-spacing:.5px}
+.acard.unlocked .ac-rar{background:#EF9F27;color:#fff}
+.cardmodal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9997;align-items:center;justify-content:center;padding:20px}
+.cardmodal-bg.show{display:flex}
+.cardmodal{background:linear-gradient(160deg,#fff,#FFF4D8);border-radius:22px;padding:24px 18px;max-width:320px;width:100%;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.4);animation:cmIn .4s cubic-bezier(.2,.8,.4,1);border:3px solid #EF9F27}
+@keyframes cmIn{from{opacity:0;transform:scale(.7) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.cm-em{font-size:90px;line-height:1;margin-bottom:8px;display:block;filter:drop-shadow(0 6px 12px rgba(0,0,0,.2))}
+.cm-name{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:#BA7517;margin-bottom:8px}
+.cm-desc{font-size:13px;color:#2C2C2A;line-height:1.55;font-weight:600;margin-bottom:14px}
+.cm-close{padding:10px 24px;border-radius:12px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;cursor:pointer}
+/* ===== COFFRE SURPRISE ===== */
+.chest-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9998;align-items:center;justify-content:center;padding:20px}
+.chest-bg.show{display:flex}
+.chest-modal{text-align:center;max-width:340px;width:100%}
+.chest-em{font-size:130px;line-height:1;display:block;cursor:pointer;animation:chestShake 1.2s ease-in-out infinite;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35))}
+@keyframes chestShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.chest-em.opened{animation:chestOpen .6s ease forwards}
+@keyframes chestOpen{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(-12deg)}100%{transform:scale(1.1)}}
+.chest-tap{font-family:'Baloo 2',cursive;color:#FFE082;font-size:18px;font-weight:800;margin-top:14px;text-shadow:0 2px 8px rgba(0,0,0,.4);animation:tapPulse 1s ease-in-out infinite}
+@keyframes tapPulse{0%,100%{opacity:.7}50%{opacity:1;transform:scale(1.05)}}
+.chest-reward{font-family:'Baloo 2',cursive;color:#fff;font-size:22px;font-weight:800;margin-top:18px;text-shadow:0 3px 12px rgba(0,0,0,.5);display:none;animation:rewardIn .55s cubic-bezier(.2,.8,.4,1);line-height:1.4}
+.chest-reward.show{display:block}
+@keyframes rewardIn{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+.chest-cta{margin-top:14px;padding:11px 26px;border-radius:14px;border:none;background:#fff;color:#E65100;font-family:'Baloo 2',cursive;font-weight:800;font-size:15px;cursor:pointer;display:none;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.chest-cta.show{display:inline-block;animation:rewardIn .5s ease .2s both}
+/* ===== PLUIE EMOJIS ===== */
+.emoji-fall{position:fixed;top:-50px;font-size:32px;pointer-events:none;z-index:9995;animation:emojiFall 1.6s linear forwards}
+@keyframes emojiFall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:.7}}
+/* ===== AGE PICKER (onboarding) ===== */
+.age-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.age-btn{background:rgba(255,255,255,.18);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:16px;padding:16px 6px;color:#fff;cursor:pointer;transition:all .2s;font-family:'Baloo 2',cursive}
+.age-btn:hover{background:rgba(255,255,255,.28);transform:scale(1.05)}
+.age-btn.on{background:#fff;color:#E65100;border-color:#fff;box-shadow:0 4px 16px rgba(255,255,255,.3)}
+.age-btn-ic{font-size:32px;display:block;margin-bottom:4px}
+.age-btn-tx{font-size:13px;font-weight:800;line-height:1.1}
+.age-btn-sub{font-size:9px;font-weight:700;opacity:.8;margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
+/* ===== SOUND TOGGLE ===== */
+.sound-toggle{position:fixed;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.3);color:#fff;font-size:18px;cursor:pointer;z-index:99998;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.sound-toggle:hover{transform:scale(1.08)}
+.sound-toggle:active{transform:scale(.92)}
+
+
+
+
+
+
+/* ===== TAP-THE-RIGHT-ONE ===== */
+.tap-page{position:relative}
+.tap-target{text-align:center;padding:18px 14px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,244,216,.95));border-radius:18px;margin-bottom:12px;box-shadow:0 6px 22px rgba(0,0,0,.15)}
+.tap-prompt-lbl{font-size:11px;font-weight:800;color:#888;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.tap-prompt{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:#E65100;line-height:1.2}
+.tap-stats{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px}
+.tap-stat{flex:1;background:rgba(255,255,255,.85);border-radius:12px;padding:8px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.tap-stat-l{font-size:10px;color:#888;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.tap-stat-n{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#2C2C2A;line-height:1}
+.tap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;background:rgba(0,0,0,.18);border-radius:14px;padding:7px;min-height:60vh;backdrop-filter:blur(6px)}
+.tap-cell{aspect-ratio:1;background:#fff;border:none;border-radius:11px;cursor:pointer;font-size:34px;display:flex;align-items:center;justify-content:center;transition:all .15s;box-shadow:0 3px 8px rgba(0,0,0,.1);user-select:none}
+.tap-cell:active{transform:scale(.85)}
+.tap-cell.correct{background:linear-gradient(135deg,#52C98A,#1D9E75);color:#fff;animation:tapPop .35s ease}
+.tap-cell.wrong{background:linear-gradient(135deg,#FFB199,#D85A30);color:#fff;animation:tapShake .35s ease}
+@keyframes tapPop{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes tapShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.tap-progress{height:6px;background:rgba(255,255,255,.2);border-radius:6px;overflow:hidden;margin-bottom:10px}
+.tap-progress-fill{height:100%;background:linear-gradient(90deg,#1D9E75,#FFD000,#FF6D00);width:100%;transition:width 1s linear}
+.tap-progress-fill.warn{background:linear-gradient(90deg,#FF6D00,#D85A30)}
+.tap-end{text-align:center;padding:30px 18px}
+.tap-end-em{font-size:64px;line-height:1;margin-bottom:10px;display:block}
+.tap-end-ti{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:6px}
+.tap-end-stats{display:flex;justify-content:center;gap:14px;margin:12px 0}
+.tap-end-stat{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:14px;padding:14px 18px;border:1.5px solid rgba(255,255,255,.35);min-width:100px}
+.tap-end-stat-n{font-family:'Baloo 2',cursive;font-size:30px;font-weight:800;color:#fff;line-height:1}
+.tap-end-stat-l{font-size:11px;color:rgba(255,255,255,.75);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+
+/* ===== INDICATEUR OFFLINE ===== */
+.offline-pill{position:fixed;top:14px;left:14px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.3);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:11px;padding:6px 12px;border-radius:20px;z-index:99999;display:none;align-items:center;gap:5px;animation:pillSlide .4s ease}
+.offline-pill.show{display:inline-flex}
+.offline-pill::before{content:'';width:8px;height:8px;border-radius:50%;background:#FFB300;animation:pillBlink 1.4s ease-in-out infinite}
+@keyframes pillBlink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes pillSlide{from{transform:translateX(-20px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* ===== ONBOARD NAME / BIRTHDAY ===== */
+.onboard-input{width:100%;max-width:300px;padding:14px 16px;border-radius:14px;border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.18);color:#fff;font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;text-align:center;letter-spacing:.5px;margin-bottom:14px;backdrop-filter:blur(8px);transition:all .2s}
+.onboard-input::placeholder{color:rgba(255,255,255,.5);font-weight:700}
+.onboard-input:focus{outline:none;background:#fff;color:#E65100;border-color:#fff;box-shadow:0 4px 18px rgba(255,255,255,.25)}
+.onboard-bday{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.onboard-bday select{flex:1;max-width:130px;padding:13px 8px;border-radius:14px;border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.18);color:#fff;font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;text-align:center;backdrop-filter:blur(8px);cursor:pointer;appearance:none;-webkit-appearance:none}
+.onboard-bday select option{color:#2C2C2A}
+.onboard-bday-lbl{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:center}
+.bday-celebration{position:fixed;inset:0;background:radial-gradient(circle,rgba(255,209,127,.4) 0%,rgba(0,0,0,.5) 70%);z-index:9999;display:flex;align-items:center;justify-content:center;animation:bdayBg .6s ease;padding:20px;cursor:pointer}
+@keyframes bdayBg{from{opacity:0}to{opacity:1}}
+.bday-card{background:linear-gradient(160deg,#FFD37A,#FF8C00);border-radius:24px;padding:30px 24px;text-align:center;max-width:340px;box-shadow:0 12px 40px rgba(0,0,0,.4);border:4px solid #fff;animation:bdayPop .7s cubic-bezier(.2,.8,.4,1)}
+@keyframes bdayPop{0%{transform:scale(0) rotate(-15deg);opacity:0}65%{transform:scale(1.1) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.bday-em{font-size:80px;line-height:1;margin-bottom:10px;display:block;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25))}
+.bday-ti{font-family:'Baloo 2',cursive;font-size:30px;font-weight:800;color:#fff;margin-bottom:6px;text-shadow:0 3px 12px rgba(0,0,0,.3)}
+.bday-sub{font-family:'Baloo 2',cursive;font-size:16px;font-weight:700;color:rgba(255,255,255,.95);margin-bottom:14px;line-height:1.4}
+.bday-bonus{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:#fff;background:rgba(255,255,255,.2);padding:10px 20px;border-radius:18px;display:inline-block;backdrop-filter:blur(8px)}
+.bday-tap{font-size:11px;color:rgba(255,255,255,.7);font-weight:700;margin-top:14px;text-transform:uppercase;letter-spacing:1px}
+
+/* ===== BOUTIQUE MASCOTTE ===== */
+.shop-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9997;align-items:flex-end;justify-content:center;padding:0}
+.shop-bg.show{display:flex}
+.shop-modal{background:linear-gradient(160deg,#fff,#FFF4D8);border-radius:24px 24px 0 0;padding:18px 16px 28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.2,.8,.4,1);box-shadow:0 -8px 32px rgba(0,0,0,.4)}
+.shop-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.shop-ti{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#BA7517}
+.shop-close{background:#F1EFE8;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.shop-coin{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#EF9F27,#BA7517);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:13px;padding:6px 12px;border-radius:18px;margin-bottom:12px}
+.shop-preview{text-align:center;margin:6px 0 14px;padding:18px;background:rgba(239,159,39,.08);border-radius:18px;position:relative}
+.shop-preview-mascot{font-size:80px;line-height:1;display:inline-block;position:relative}
+.shop-preview-mascot .acc{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:45px;pointer-events:none}
+.shop-preview-name{font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;color:#888;margin-top:8px;letter-spacing:.5px}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.shop-item{background:#fff;border-radius:16px;padding:12px 6px;text-align:center;border:2px solid #FAEEDA;cursor:pointer;transition:all .2s;position:relative}
+.shop-item:hover:not(.locked){transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.shop-item.equipped{border-color:#1D9E75;background:linear-gradient(135deg,#fff,#E1F5EE);box-shadow:0 4px 14px rgba(29,158,117,.25)}
+.shop-item.locked{opacity:.62;cursor:not-allowed}
+.shop-item.locked .shop-em{filter:grayscale(.5)}
+.shop-em{font-size:38px;line-height:1;margin-bottom:4px;display:block}
+.shop-name{font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;color:#2C2C2A;line-height:1.1;margin-bottom:4px}
+.shop-cost{font-size:10px;font-weight:800;color:#EF9F27;letter-spacing:.5px}
+.shop-cost.free{color:#1D9E75}
+.shop-equipped-tag{position:absolute;top:4px;right:4px;background:#1D9E75;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:8px}
+.shop-name-input{width:100%;padding:10px 12px;border-radius:12px;border:2px solid #FAEEDA;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;background:#FFF8EC;color:#2C2C2A;margin-bottom:12px;text-align:center;letter-spacing:.5px}
+.shop-name-input:focus{outline:none;border-color:#EF9F27;background:#fff}
+.shop-section-h{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin:14px 0 8px}
+.toast-buy{position:fixed;top:30%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#1D9E75,#52C98A);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:16px;padding:14px 22px;border-radius:18px;z-index:99999;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:fbIn .35s cubic-bezier(.2,.8,.4,1)}
+
+/* ===== CARTE D'AFRIQUE ===== */
+.map-page{padding:6px 0 30px}
+.map-h{font-family:'Baloo 2',cursive;font-size:20px;color:#fff;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:4px}
+.map-sub{text-align:center;color:rgba(255,255,255,.8);font-size:12px;font-weight:700;margin-bottom:14px}
+.map-wrap{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:1/1.18;background:radial-gradient(ellipse at center,rgba(255,255,255,.08) 0%,rgba(255,255,255,0) 65%);border-radius:24px}
+.map-svg{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 20px rgba(0,0,0,.25))}
+.map-region{cursor:pointer;transition:all .25s;transform-origin:center;transform-box:fill-box}
+.map-region:hover{transform:scale(1.06);filter:brightness(1.15) drop-shadow(0 0 8px rgba(255,255,255,.5))}
+.map-region:active{transform:scale(.96)}
+.map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;color:#fff;cursor:pointer;font-family:'Baloo 2',cursive;font-weight:800;text-align:center;transition:all .25s cubic-bezier(.2,.8,.4,1);box-shadow:0 5px 18px rgba(0,0,0,.4);border:3px solid #fff;z-index:3;transform:translate(-50%,-50%)}
+.map-pin::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 65%);z-index:-1;pointer-events:none}
+.map-pin::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;opacity:0;animation:radarPing 2.4s ease-out infinite;pointer-events:none}
+.map-pin:hover{transform:translate(-50%,-50%) scale(1.15);box-shadow:0 8px 28px rgba(0,0,0,.5);z-index:5}
+.map-pin:active{transform:translate(-50%,-50%) scale(.92)}
+.map-pin .pin-em{font-size:22px;line-height:1;margin-bottom:1px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.map-pin .pin-tx{font-size:8.5px;line-height:1;letter-spacing:.3px;text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.5);font-weight:900}
+@keyframes radarPing{0%{transform:scale(1);opacity:.9}80%{transform:scale(2.2);opacity:0}100%{transform:scale(2.2);opacity:0}}
+/* Décalage des animations pour que les pings soient désynchronisés */
+.map-pin#mph::after{animation-delay:0s}
+.map-pin#mpn::after{animation-delay:.4s}
+.map-pin#mpc::after{animation-delay:.8s}
+.map-pin#mpl::after{animation-delay:1.2s}
+.map-pin#mpa::after{animation-delay:1.6s}
+.map-pin#mpg::after{animation-delay:2.0s}
+.mp-h{background:linear-gradient(135deg,#E65100,#FF8C00)}
+.mp-n{background:linear-gradient(135deg,#1D9E75,#52C98A)}
+.mp-c{background:linear-gradient(135deg,#0f3460,#178a65)}
+.mp-l{background:linear-gradient(135deg,#534AB7,#7A6FE5)}
+.mp-a{background:linear-gradient(135deg,#BA7517,#EF9F27)}
+.mp-g{background:linear-gradient(135deg,#0a3d6b,#1565a0)}
+.map-label{position:absolute;color:#fff;font-family:'Baloo 2',cursive;font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:none}
+.map-tip{text-align:center;color:rgba(255,255,255,.65);font-size:11px;font-weight:700;margin-top:14px;letter-spacing:.5px}
+
+/* ===== MODE 2 JOUEURS ===== */
+.tp-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:18px;background:rgba(83,74,183,.25);border:1.5px solid rgba(255,255,255,.4);color:#fff;font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;cursor:pointer;backdrop-filter:blur(8px);transition:all .2s}
+.tp-toggle:hover{background:rgba(83,74,183,.4)}
+.tp-toggle.on{background:#fff;color:#534AB7;border-color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.tp-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:22px;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;color:#fff;margin:0 auto 10px;box-shadow:0 4px 14px rgba(0,0,0,.18);animation:tpPulse 2s ease-in-out infinite}
+.tp-badge.p1{background:linear-gradient(135deg,#EF9F27,#BA7517)}
+.tp-badge.p2{background:linear-gradient(135deg,#534AB7,#7A6FE5)}
+@keyframes tpPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.tp-scoreboard{display:flex;justify-content:center;gap:8px;margin-bottom:10px}
+.tp-pscore{flex:1;max-width:160px;background:rgba(255,255,255,.85);border-radius:14px;padding:8px 10px;text-align:center;border:2px solid transparent;transition:all .25s}
+.tp-pscore.active{border-color:#EF9F27;transform:scale(1.06);box-shadow:0 4px 14px rgba(239,159,39,.35)}
+.tp-pscore.p2.active{border-color:#534AB7;box-shadow:0 4px 14px rgba(83,74,183,.35)}
+.tp-pname{font-family:'Baloo 2',cursive;font-size:12px;font-weight:800;color:#2C2C2A;line-height:1.2}
+.tp-pscore.p1 .tp-pname{color:#BA7517}
+.tp-pscore.p2 .tp-pname{color:#534AB7}
+.tp-pnum{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#2C2C2A;line-height:1}
+.tp-winner{margin:10px auto 14px;padding:14px 20px;border-radius:18px;background:linear-gradient(135deg,#FFD000,#EF9F27);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:18px;text-align:center;box-shadow:0 6px 22px rgba(239,159,39,.5);max-width:260px;animation:winnerIn .55s cubic-bezier(.2,.8,.4,1)}
+@keyframes winnerIn{from{opacity:0;transform:scale(.7) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.tp-vs{font-size:18px;color:#888;font-weight:800;align-self:center}
+
+/* ===== MEMORY MATCH ===== */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0;perspective:600px}
+.mc{aspect-ratio:1;cursor:pointer;transform-style:preserve-3d;transition:transform .5s;position:relative}
+.mc.flip{transform:rotateY(180deg)}
+.mc.found{opacity:.55;pointer-events:none}
+.mc-side{position:absolute;inset:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:36px;backface-visibility:hidden;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.mc-back{background:linear-gradient(135deg,#EF9F27,#BA7517);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:24px}
+.mc-front{background:linear-gradient(160deg,#fff,#FFF4D8);transform:rotateY(180deg);border:2px solid #EF9F27}
+.mem-info{text-align:center;color:#fff;font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;margin-bottom:8px;text-shadow:0 2px 6px rgba(0,0,0,.25)}
+
 </style>
 </head>
 <body>
 <div class="app-rainbow"></div>
 <canvas id="confetti-canvas"></canvas>
+<div id="offline-pill" class="offline-pill"><span id="offline-txt">Hors-ligne</span></div>
+<!-- ===== MASCOTTE FLOTTANTE + BULLE ===== -->
+<div id="mascot-bubble" class="mascot-bubble"></div>
+<div id="mascot-floating" class="mascot-floating" onclick="mascotTap()">🦁</div>
+
+<!-- ===== TOGGLE SON AMBIANT ===== -->
+<button id="sound-toggle" class="sound-toggle" onclick="toggleAmbient()" title="Musique">🔇</button>
+
+<!-- ===== MODAL CARTE COLLECTIBLE ===== -->
+<div id="cardmodal-bg" class="cardmodal-bg" onclick="if(event.target===this)closeCardModal()">
+  <div class="cardmodal">
+    <span class="cm-em" id="cm-em">🦁</span>
+    <div class="cm-name" id="cm-name">Lion</div>
+    <div class="cm-desc" id="cm-desc"></div>
+    <button class="cm-close" onclick="closeCardModal()">Super !</button>
+  </div>
+</div>
+
+
+<!-- ===== BOUTIQUE MASCOTTE ===== -->
+<div id="shop-bg" class="shop-bg" onclick="if(event.target===this)closeShop()">
+  <div class="shop-modal">
+    <div class="shop-head">
+      <div class="shop-ti" id="shop-ti">🎩 Habille ta mascotte</div>
+      <button class="shop-close" onclick="closeShop()">✕</button>
+    </div>
+    <div class="shop-coin">⭐ <span id="shop-xp">0</span> XP</div>
+    <div class="shop-preview">
+      <div class="shop-preview-mascot" id="shop-preview"><span class="base">🦁</span></div>
+      <div class="shop-preview-name" id="shop-prevname">Kani</div>
+    </div>
+    <div class="shop-section-h" id="shop-h-username">👤 Ton prénom</div>
+    <input type="text" class="shop-name-input" id="shop-username-input" maxlength="16" placeholder="Ton prénom" oninput="setUserName(this.value)">
+    <div class="shop-section-h" id="shop-h-name">📝 Donne un nom à ta mascotte</div>
+    <input type="text" class="shop-name-input" id="shop-name-input" maxlength="14" placeholder="Kani" oninput="setMascotName(this.value)">
+    <div class="shop-section-h" id="shop-h-acc">🎩 Accessoires</div>
+    <div class="shop-grid" id="shop-grid"></div>
+  </div>
+</div>
+
+<!-- ===== MODAL COFFRE SURPRISE ===== -->
+<div id="chest-bg" class="chest-bg">
+  <div class="chest-modal">
+    <span id="chest-em" class="chest-em" onclick="openChest()">🎁</span>
+    <div id="chest-tap" class="chest-tap">Tape pour ouvrir !</div>
+    <div id="chest-reward" class="chest-reward"></div>
+    <button id="chest-cta" class="chest-cta" onclick="closeChest()">Continuer</button>
+  </div>
+</div>
+
 
 <!-- ONBOARDING (première visite) -->
 <div id="onboard-bg" class="onboard-bg hidden">
+  <div class="onboard-lang">
+    <button class="olb on" id="ol-fr" onclick="setLangOnboard('fr',this)">🇫🇷 FR</button>
+    <button class="olb" id="ol-en" onclick="setLangOnboard('en',this)">🇬🇧 EN</button>
+    <button class="olb" id="ol-it" onclick="setLangOnboard('it',this)">🇮🇹 IT</button>
+  </div>
   <div class="onboard-slide onboard-slide-anim" id="onboard-slide"></div>
   <div class="onboard-dots">
     <div class="onboard-dot on" id="ob-d0"></div>
     <div class="onboard-dot" id="ob-d1"></div>
     <div class="onboard-dot" id="ob-d2"></div>
+    <div class="onboard-dot" id="ob-d3"></div>
+    <div class="onboard-dot" id="ob-d4"></div>
   </div>
   <button class="onboard-btn" id="onboard-btn" onclick="nextOnboarding()">Suivant →</button>
   <button class="onboard-skip" onclick="finishOnboarding()" id="onboard-skip">Passer</button>
@@ -321,6 +605,24 @@ h1 span{color:#FFE082}
   </div>
 </div>
 
+
+<!-- ===== MODAL ÂGE ===== -->
+<div class="modal-bg" id="age-modal-bg">
+  <div class="modal" style="max-width:380px">
+    <span class="modal-ic">🎂</span>
+    <div class="modal-ti" id="age-m-ti">Choisis ton âge</div>
+    <div class="modal-de" id="age-m-de">Les questions s'adaptent à ton âge !</div>
+    <div class="age-grid" style="margin-top:14px">
+      <button class="age-btn" data-age="4-6" onclick="setAgeFromModal('4-6',this)"><span class="age-btn-ic">👶</span><div class="age-btn-tx" id="age-m-1">4 - 6 ans</div><div class="age-btn-sub" id="age-ms-1">Mode calme</div></button>
+      <button class="age-btn" data-age="7-9" onclick="setAgeFromModal('7-9',this)"><span class="age-btn-ic">🦁</span><div class="age-btn-tx" id="age-m-2">7 - 9 ans</div><div class="age-btn-sub" id="age-ms-2">Aventurier</div></button>
+      <button class="age-btn" data-age="10+" onclick="setAgeFromModal('10+',this)"><span class="age-btn-ic">⭐</span><div class="age-btn-tx" id="age-m-3">10 + ans</div><div class="age-btn-sub" id="age-ms-3">Expert</div></button>
+    </div>
+    <div class="modal-btns" style="margin-top:14px">
+      <button class="mbtn-s" onclick="closeAgeModal()" id="age-m-close">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <!-- NOTIFICATION PROMPT -->
 <div class="modal-bg" id="notif-modal">
   <div class="modal">
@@ -349,6 +651,10 @@ h1 span{color:#FFE082}
     <button class="lb on" onclick="setLang('fr',this)">🇫🇷 FR</button>
     <button class="lb" onclick="setLang('en',this)">🇬🇧 EN</button>
     <button class="lb" onclick="setLang('it',this)">🇮🇹 IT</button>
+    <button class="lb age-pick-btn" id="age-pick-btn" onclick="openAgeModal()" title="Mon âge">🎂 <span id="age-pick-lbl">Âge</span></button>
+    <button class="lb tp-toggle" id="tp-toggle" onclick="toggle2P(this)" title="Mode 2 joueurs">👥 <span id="tp-lbl">Solo</span></button>
+    <button class="lb" id="shop-btn" onclick="openShop()" title="Boutique mascotte" style="background:rgba(83,74,183,.25)!important;border-color:rgba(255,255,255,.4)!important">🎩</button>
+    <button class="lb" id="skinshop-btn" onclick="openSkinShop()" title="Fond d'écran" style="background:rgba(29,158,117,.3)!important;border-color:rgba(255,255,255,.4)!important">🎨</button>
   </div>
   <div class="xp-wrap">
     <div class="xp-av" id="xp-av">🐣</div>
@@ -361,8 +667,10 @@ h1 span{color:#FFE082}
   </div>
   <div class="tabs">
     <button class="tab on" onclick="showTab('t-learn',this)" id="tb-learn">📚 Apprendre</button>
+    <button class="tab" onclick="showTab('t-map',this)" id="tb-map">🗺️ Carte</button>
     <button class="tab" onclick="showTab('t-puzzle',this)" id="tb-puzzle">🧩 Puzzles</button>
     <button class="tab" onclick="showTab('t-ia',this)" id="tb-ia">✨ Prof IA</button>
+    <button class="tab tab-mini" onclick="showTab('t-album',this)" id="tb-album">📔</button>
     <button class="tab" onclick="showTab('t-prem',this)" id="tb-prem">👑 Premium</button>
   </div>
   <div id="t-learn">
@@ -389,6 +697,36 @@ h1 span{color:#FFE082}
       <div><div class="fact-lbl" id="fact-lbl">Le savais-tu ? 💡</div><div class="fact-txt" id="fact-txt"></div></div>
     </div>
   </div>
+  <div id="t-map" class="hidden map-page">
+    <div class="map-h" id="map-h">🗺️ Voyage en Afrique</div>
+    <div class="map-sub" id="map-sub">Tape une région pour explorer son thème !</div>
+    <div class="map-wrap" id="map-wrap">
+      <svg class="map-svg" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- Silhouette stylisée de l'Afrique (forme simplifiée) -->
+        <defs>
+          <linearGradient id="afrGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFD37A" stop-opacity=".95"/>
+            <stop offset="50%" stop-color="#EF9F27" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#5C8F3A" stop-opacity=".85"/>
+          </linearGradient>
+        </defs>
+        <!-- Continent (forme stylisée) -->
+        <path d="M 105,30 L 230,28 Q 280,32 290,75 L 300,130 Q 305,155 295,175 L 280,200 Q 285,225 295,250 L 285,290 Q 270,330 240,355 L 210,385 Q 195,400 175,395 L 160,385 Q 140,365 130,335 L 115,300 Q 95,275 85,240 L 75,200 Q 65,170 70,140 L 80,90 Q 88,55 105,30 Z"
+              fill="url(#afrGrad)" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" opacity=".88"/>
+        <!-- Madagascar -->
+        <path d="M 305,290 Q 318,298 320,320 L 318,355 Q 315,372 305,375 L 300,360 Q 298,335 300,310 Z"
+              fill="url(#afrGrad)" stroke="#fff" stroke-width="2" opacity=".85"/>
+      </svg>
+      <!-- Pins cliquables (positionnement absolu en %) -->
+      <button class="map-pin mp-g" style="top:14%;left:50%" onclick="goMapTopic('geo')" id="mpg"><span class="pin-em">🗺️</span><span class="pin-tx" id="mpg-tx">Sahara</span></button>
+      <button class="map-pin mp-h" style="top:33%;left:25%" onclick="goMapTopic('histoire')" id="mph"><span class="pin-em">🏛️</span><span class="pin-tx" id="mph-tx">Mali</span></button>
+      <button class="map-pin mp-l" style="top:42%;left:68%" onclick="goMapTopic('proverbes')" id="mpl"><span class="pin-em">💬</span><span class="pin-tx" id="mpl-tx">Sagesse</span></button>
+      <button class="map-pin mp-n" style="top:58%;left:42%" onclick="goMapTopic('nature')" id="mpn"><span class="pin-em">🌿</span><span class="pin-tx" id="mpn-tx">Congo</span></button>
+      <button class="map-pin mp-a" style="top:67%;left:70%" onclick="goMapTopic('animaux')" id="mpa"><span class="pin-em">🦁</span><span class="pin-tx" id="mpa-tx">Savane</span></button>
+      <button class="map-pin mp-c" style="top:85%;left:48%" onclick="goMapTopic('maths')" id="mpc"><span class="pin-em">🔢</span><span class="pin-tx" id="mpc-tx">Maths</span></button>
+    </div>
+    <div class="map-tip" id="map-tip">💡 6 régions, 6 aventures !</div>
+  </div>
   <div id="t-puzzle" class="hidden">
     <div class="grid">
       <button class="gcard gc-p" onclick="startPuzzle(0)"><span class="ci">🔤</span><span class="ct" id="pt0">Empire du Mali</span><span class="cs" id="ps0">Complète la phrase</span></button>
@@ -397,6 +735,9 @@ h1 span{color:#FFE082}
       <button class="gcard gc-n" onclick="startPuzzle(3)"><span class="ci">🦁</span><span class="ct" id="pt3">Animaux</span><span class="cs" id="ps3">Qui suis-je ?</span></button>
       <button class="gcard gc-l" onclick="startPuzzle(4)"><span class="ci">👑</span><span class="ct" id="pt4">Rois & Reines</span><span class="cs" id="ps4">Figure historique</span></button>
       <button class="gcard gc-h" onclick="startPuzzle(5)"><span class="ci">🌍</span><span class="ct" id="pt5">Géographie</span><span class="cs" id="ps5">Pays & capitales</span></button>
+      <button class="gcard" style="background:linear-gradient(160deg,#FFEFD5,#FFD188)" onclick="launchMemory()"><span class="ci">🧠</span><span class="ct" id="pt-mem">Memory</span><span class="cs" id="ps-mem">Trouve les paires</span></button>
+      <button class="gcard" style="background:linear-gradient(160deg,#E0FDF4,#9EE8D0)" onclick="launchMix()"><span class="ci">🎲</span><span class="ct" id="pt-mix">Mix Surprise</span><span class="cs" id="ps-mix">Tous thèmes mélangés</span></button>
+      <button class="gcard" style="background:linear-gradient(160deg,#FFE0E6,#FFB199)" onclick="launchTap()"><span class="ci">⚡</span><span class="ct" id="pt-tap">Tap Rapide</span><span class="cs" id="ps-tap">30s pour briller</span></button>
     </div>
   </div>
   <div id="t-ia" class="hidden">
@@ -425,7 +766,7 @@ h1 span{color:#FFE082}
       <div style="font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#fff" id="prem-ti">KNIPO KIDS Premium</div>
       <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:3px;line-height:1.5" id="prem-de">Tout le contenu. Une seule fois. Pour toujours.</div>
       <div class="prem-stats">
-        <div><div class="prem-stat-n">200+</div><div class="prem-stat-l" id="ps-q">Questions</div></div>
+        <div><div class="prem-stat-n" id="prem-stat-q">40</div><div class="prem-stat-l" id="ps-q">Questions premium</div></div>
         <div><div class="prem-stat-n">6</div><div class="prem-stat-l" id="ps-t">Thèmes exclusifs</div></div>
         <div><div class="prem-stat-n">∞</div><div class="prem-stat-l" id="ps-ia">IA illimitée</div></div>
       </div>
@@ -443,6 +784,11 @@ h1 span{color:#FFE082}
       <button class="gcard" style="background:linear-gradient(135deg,#EEEDFE,#E1F5EE)" onclick="tryUnlock('ia2',5)"><span class="ci">🤖</span><span class="ct" id="pc5">IA Illimitée</span><span class="cs" id="pcs5">Questions infinies</span><span class="lock" id="lk5">🔒 Bientôt</span></button>
     </div>
     <div style="background:#F1EFE8;border-radius:10px;padding:10px;text-align:center;font-size:12px;color:#888;font-weight:700" id="prem-cta">🚀 Le Premium arrive bientôt. Reviens vite !</div>
+  </div>
+  <div id="t-album" class="hidden album-page">
+    <div class="album-h" id="album-h">📔 Mon Album</div>
+    <div class="album-prog" id="album-prog">0 / 0 cartes</div>
+    <div class="album-grid" id="album-grid"></div>
   </div>
   <div class="footer">KNIPO Kids &copy; 2025 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
 </div>
@@ -472,6 +818,8 @@ h1 span{color:#FFE082}
     </svg>
     <div class="timer-num" id="timer-num">15</div>
   </div>
+  <div id="tp-badge-wrap" style="text-align:center"></div>
+  <div id="tp-scoreboard"></div>
   <div class="combo-msg" id="combo-msg"></div>
   <div class="qcard"><span class="qem" id="qem"></span><div class="qtx" id="qtx"></div><div class="qhint" id="qhint"></div></div>
   <div class="agrid" id="agrid"></div>
@@ -486,6 +834,20 @@ h1 span{color:#FFE082}
   <div id="puz-body"></div>
   <div class="fb" id="pfb"><span class="fb-ic" id="pfb-ic"></span><div class="fb-body"><strong id="pfb-ti"></strong><span id="pfb-ms"></span></div></div>
   <button class="nxtbtn" id="pnxtbtn" onclick="nextPuzzle()">Continuer →</button>
+</div>
+
+
+<!-- TAP-THE-RIGHT-ONE PAGE -->
+<div id="page-tap" class="hidden">
+  <button class="back-btn" onclick="endTapGame(true)" id="bk-tap">← Accueil</button>
+  <div class="tap-target"><div class="tap-prompt-lbl" id="tap-lbl">Tape sur :</div><div class="tap-prompt" id="tap-prompt">🦁</div></div>
+  <div class="tap-stats">
+    <div class="tap-stat"><div class="tap-stat-l" id="tap-tl">Score</div><div class="tap-stat-n" id="tap-score">0</div></div>
+    <div class="tap-stat"><div class="tap-stat-l" id="tap-cl">Combo</div><div class="tap-stat-n" id="tap-combo">0</div></div>
+    <div class="tap-stat"><div class="tap-stat-l" id="tap-tml">Temps</div><div class="tap-stat-n" id="tap-time">30</div></div>
+  </div>
+  <div class="tap-progress"><div class="tap-progress-fill" id="tap-fill"></div></div>
+  <div class="tap-grid" id="tap-grid"></div>
 </div>
 
 <!-- SUCCESS PAGE -->
@@ -680,14 +1042,14 @@ let completedTopics=new Set(JSON.parse(localStorage.getItem('knipo_badges')||'[]
 let dayStreak=0,dailyDone=false,dailyPool=[];
 // Timer
 let timerInterval=null,timerSec=15,currentCorrect=0,currentExp='';
-const TIMER_MAX=15;
+let TIMER_MAX=15;window.TIMER_MAX_BASE=15;
 // Onboarding
 let onboardStep=0;
 
 function $(id){return document.getElementById(id);}
 function L(){return T[lang];}
-function showPage(id){['page-home','page-intro','page-quiz','page-puzzle','page-success'].forEach(p=>$(p)&&$(p).classList.add('hidden'));$(id)&&$(id).classList.remove('hidden');}
-function goHome(){clearTimer();showPage('page-home');setTimeout(animateHomeCards,40);}
+function showPage(id){['page-home','page-intro','page-quiz','page-puzzle','page-success','page-tap'].forEach(p=>$(p)&&$(p).classList.add('hidden'));$(id)&&$(id).classList.remove('hidden');}
+function goHome(){clearTimer();stopSpeak&&stopSpeak();showPage('page-home');setTimeout(animateHomeCards,40);if(typeof refreshMascotEmoji==='function')refreshMascotEmoji();}
 
 // ============================================================
 // #1 CARD ENTRANCE ANIMATION
@@ -781,6 +1143,16 @@ function showStars(score,total){
 function animateStats(score,total,xp){
   const tr=$('s-tr');if(tr){tr.className='s-tr s-tr-anim';setTimeout(()=>tr.classList.remove('s-tr-anim'),900);}
   showStars(score,total);
+  // 2P : injection du gagnant
+  const sub=document.getElementById('win-sb');
+  if(is2P && sub){
+    const lab={fr:{w:'gagne !',t:'Égalité !',sub:'Match terminé'},en:{w:'wins!',t:'Tie!',sub:'Match over'},it:{w:'vince!',t:'Pareggio!',sub:'Partita finita'}}[lang]||{w:'gagne !',t:'Égalité !',sub:'Match terminé'};
+    let msg='';
+    if(pScores[0]>pScores[1])msg=`🏆 ${pNames[0]} ${lab.w}`;
+    else if(pScores[1]>pScores[0])msg=`🏆 ${pNames[1]} ${lab.w}`;
+    else msg=`🤝 ${lab.t}`;
+    sub.innerHTML=`<div class="tp-winner">${msg}</div>${pNames[0]}: ${pScores[0]}/${total} · ${pNames[1]}: ${pScores[1]}/${total}`;
+  }
   const scEl=$('fin-sc'),xpEl=$('fin-xp');
   let i=0;const steps=22;
   const timer=setInterval(()=>{
@@ -886,7 +1258,7 @@ function applyLang(){
   const ws=$('win-share');if(ws)ws.innerHTML='📤 '+{fr:'Partager mon score',en:'Share my score',it:'Condividi il punteggio'}[lang];
   const row=$('topics-row');row.innerHTML='';
   l.ia.topics.forEach((t,i)=>{const b=document.createElement('button');b.className='tbtn'+(i===0?' on':'');b.textContent=t;const key=l.ia.keys[i];b.onclick=function(){selTopic(b,key);};row.appendChild(b);});
-  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();
+  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();if(typeof refreshMascotEmoji==='function')refreshMascotEmoji();if(typeof refreshAgeButton==='function')refreshAgeButton();if(typeof refresh2PLabel==='function')refresh2PLabel();if(typeof refreshMapLabels==='function')refreshMapLabels();if(typeof refreshPuzzleLabels==='function')refreshPuzzleLabels();if(typeof refreshTapLabels==='function')refreshTapLabels();
   const nmti=$('nm-ti');if(nmti)nmti.textContent={fr:'Rappel quotidien',en:'Daily reminder',it:'Promemoria quotidiano'}[lang]||'Rappel';
   const nmde=$('nm-de');if(nmde)nmde.textContent={fr:"On te prévient chaque jour pour ne pas perdre ta série ?",en:"Should we remind you daily so you don't lose your streak?",it:"Ti ricordiamo ogni giorno per non perdere la serie?"}[lang]||'';
   const nmno=$('nm-no');if(nmno)nmno.textContent={fr:'Non merci',en:'No thanks',it:'No grazie'}[lang]||'Non';
@@ -894,7 +1266,7 @@ function applyLang(){
 }
 
 function showTab(id,btn){
-  ['t-learn','t-puzzle','t-ia','t-prem'].forEach(t=>$(t).classList.add('hidden'));
+  ['t-learn','t-puzzle','t-ia','t-prem','t-album','t-map'].forEach(t=>$(t).classList.add('hidden'));if(id==='t-album')renderAlbum();
   $(id).classList.remove('hidden');
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
 }
@@ -902,9 +1274,142 @@ function showTab(id,btn){
 // ============================================================
 // QUIZ
 // ============================================================
+
+// ============================================================
+// KIDS_QDB — Questions simples pour les 4-6 ans (visuel, comptage, couleurs)
+// ============================================================
+const KIDS_QDB = {
+  histoire:[
+    {e:'👑',q:{fr:"Quel chapeau porte un roi ?",en:"What does a king wear on his head?",it:"Cosa indossa un re in testa?"},h:{fr:"Brille et a des pointes",en:"It shines and has points",it:"Brilla e ha punte"},a:{fr:['Casquette','Couronne','Chapeau','Bonnet'],en:['Cap','Crown','Hat','Bonnet'],it:['Berretto','Corona','Cappello','Cuffia']},c:1,x:{fr:"Une couronne ! En Afrique aussi il y avait des rois et reines avec de belles couronnes.",en:"A crown! In Africa too there were kings and queens with beautiful crowns.",it:"Una corona! Anche in Africa c'erano re e regine con belle corone."}},
+    {e:'🏰',q:{fr:"Où vivait un grand chef africain autrefois ?",en:"Where did a great African leader live long ago?",it:"Dove viveva un grande capo africano nel passato?"},h:{fr:"Très grande maison",en:"Very big house",it:"Una casa molto grande"},a:{fr:['Tente','Palais','Voiture','Bateau'],en:['Tent','Palace','Car','Boat'],it:['Tenda','Palazzo','Auto','Barca']},c:1,x:{fr:"Dans un palais ! Les rois et reines d'Afrique vivaient dans des palais magnifiques.",en:"In a palace! African kings and queens lived in beautiful palaces.",it:"In un palazzo! I re e le regine d'Africa vivevano in palazzi bellissimi."}},
+    {e:'⭐',q:{fr:"Que veut dire 'héros' ?",en:"What does 'hero' mean?",it:"Cosa significa 'eroe'?"},h:{fr:"Quelqu'un de bien",en:"Someone good",it:"Qualcuno di buono"},a:{fr:['Méchant','Courageux','Triste','Fatigué'],en:['Mean','Brave','Sad','Tired'],it:['Cattivo','Coraggioso','Triste','Stanco']},c:1,x:{fr:"Un héros est très courageux ! L'Afrique a beaucoup de héros qui ont aidé leurs peuples.",en:"A hero is very brave! Africa has many heroes who helped their people.",it:"Un eroe è molto coraggioso! L'Africa ha tanti eroi che hanno aiutato i loro popoli."}},
+    {e:'📜',q:{fr:"Avant les livres, comment les histoires se racontaient ?",en:"Before books, how were stories told?",it:"Prima dei libri, come si raccontavano le storie?"},h:{fr:"Avec la bouche",en:"With the mouth",it:"Con la bocca"},a:{fr:['En écrivant','En parlant','En dessinant','En dansant'],en:['By writing','By speaking','By drawing','By dancing'],it:['Scrivendo','Parlando','Disegnando','Ballando']},c:1,x:{fr:"En parlant ! Les conteurs africains, les griots, racontent les histoires de bouche à oreille.",en:"By speaking! African storytellers, the griots, tell stories by word of mouth.",it:"Parlando! I cantastorie africani, i griot, raccontano le storie a voce."}},
+    {e:'🌍',q:{fr:"Sur quel continent vivaient les pharaons ?",en:"On which continent did pharaohs live?",it:"In quale continente vivevano i faraoni?"},h:{fr:"Le berceau de l'humanité",en:"The cradle of humanity",it:"La culla dell'umanità"},a:{fr:['Asie','Europe','Afrique','Amérique'],en:['Asia','Europe','Africa','America'],it:['Asia','Europa','Africa','America']},c:2,x:{fr:"En Afrique ! Les pharaons d'Égypte étaient africains et ont construit les pyramides.",en:"In Africa! The Egyptian pharaohs were African and built the pyramids.",it:"In Africa! I faraoni egiziani erano africani e costruirono le piramidi."}}
+  ],
+  nature:[
+    {e:'🌳',q:{fr:"Quel arbre stocke beaucoup d'eau ?",en:"Which tree stores lots of water?",it:"Quale albero immagazzina molta acqua?"},h:{fr:"Très très gros tronc",en:"Very fat trunk",it:"Tronco molto grosso"},a:{fr:['Sapin','Baobab','Pommier','Bambou'],en:['Pine','Baobab','Apple tree','Bamboo'],it:['Pino','Baobab','Melo','Bambù']},c:1,x:{fr:"Le baobab ! Son énorme tronc peut garder des milliers de litres d'eau.",en:"The baobab! Its huge trunk can hold thousands of liters of water.",it:"Il baobab! Il suo enorme tronco può contenere migliaia di litri d'acqua."}},
+    {e:'☀️',q:{fr:"Comment est le climat dans le désert ?",en:"What is the desert climate like?",it:"Com'è il clima nel deserto?"},h:{fr:"Très chaud le jour",en:"Very hot during day",it:"Molto caldo di giorno"},a:{fr:['Glacé','Pluvieux','Chaud','Neigeux'],en:['Icy','Rainy','Hot','Snowy'],it:['Ghiacciato','Piovoso','Caldo','Nevoso']},c:2,x:{fr:"Très chaud ! Dans le Sahara il fait très chaud le jour. La nuit, par contre, il peut faire froid.",en:"Very hot! In the Sahara it's very hot during the day. At night, it can be cold!",it:"Molto caldo! Nel Sahara fa molto caldo di giorno. Di notte invece può fare freddo!"}},
+    {e:'💧',q:{fr:"Sans quoi les plantes ne peuvent pas pousser ?",en:"Without what can't plants grow?",it:"Senza cosa le piante non possono crescere?"},h:{fr:"On la boit",en:"We drink it",it:"La beviamo"},a:{fr:['Sable','Eau','Cailloux','Vent'],en:['Sand','Water','Stones','Wind'],it:['Sabbia','Acqua','Sassi','Vento']},c:1,x:{fr:"Sans eau, rien ne pousse ! Les plantes boivent l'eau par leurs racines.",en:"Without water, nothing grows! Plants drink water through their roots.",it:"Senza acqua niente cresce! Le piante bevono acqua dalle radici."}},
+    {e:'🌴',q:{fr:"Quel arbre donne des noix de coco ?",en:"Which tree gives coconuts?",it:"Quale albero dà le noci di cocco?"},h:{fr:"Grand et droit, près de la mer",en:"Tall and straight, near the sea",it:"Alto e dritto, vicino al mare"},a:{fr:['Bananier','Cocotier','Manguier','Olivier'],en:['Banana tree','Coconut palm','Mango tree','Olive tree'],it:['Banano','Cocco','Mango','Ulivo']},c:1,x:{fr:"Le cocotier ! Il pousse près des plages d'Afrique et donne des noix de coco délicieuses.",en:"The coconut palm! It grows near African beaches and gives delicious coconuts.",it:"Il cocco! Cresce vicino alle spiagge africane e dà deliziose noci di cocco."}},
+    {e:'🌊',q:{fr:"De quelle couleur est l'eau de la mer ?",en:"What color is sea water?",it:"Di che colore è l'acqua del mare?"},h:{fr:"Comme le ciel",en:"Like the sky",it:"Come il cielo"},a:{fr:['Rose','Bleue','Jaune','Verte'],en:['Pink','Blue','Yellow','Green'],it:['Rosa','Blu','Gialla','Verde']},c:1,x:{fr:"Bleue ! L'eau reflète le ciel. L'Afrique est entourée par 2 océans : l'Atlantique et l'Indien.",en:"Blue! Water reflects the sky. Africa is surrounded by 2 oceans: Atlantic and Indian.",it:"Blu! L'acqua riflette il cielo. L'Africa è circondata da 2 oceani: Atlantico e Indiano."}}
+  ],
+  maths:[
+    {e:'🦁',q:{fr:"1 lion + 1 lion = combien ?",en:"1 lion + 1 lion = how many?",it:"1 leone + 1 leone = quanti?"},h:{fr:"Compte sur tes doigts !",en:"Count on your fingers!",it:"Conta sulle dita!"},a:{fr:['1','2','3','4'],en:['1','2','3','4'],it:['1','2','3','4']},c:1,x:{fr:"1 + 1 = 2 lions ! 🦁🦁",en:"1 + 1 = 2 lions! 🦁🦁",it:"1 + 1 = 2 leoni! 🦁🦁"}},
+    {e:'🐘',q:{fr:"Combien de pattes a un éléphant ?",en:"How many legs does an elephant have?",it:"Quante zampe ha un elefante?"},h:{fr:"Comme un chien ou un chat !",en:"Same as a dog or cat!",it:"Come un cane o un gatto!"},a:{fr:['2','3','4','5'],en:['2','3','4','5'],it:['2','3','4','5']},c:2,x:{fr:"4 pattes ! Comme tous les mammifères qui marchent.",en:"4 legs! Like all walking mammals.",it:"4 zampe! Come tutti i mammiferi che camminano."}},
+    {e:'🍌',q:{fr:"3 bananes - 1 banane = ?",en:"3 bananas - 1 banana = ?",it:"3 banane - 1 banana = ?"},h:{fr:"On enlève 1 sur 3",en:"Remove 1 from 3",it:"Togli 1 da 3"},a:{fr:['1','2','3','4'],en:['1','2','3','4'],it:['1','2','3','4']},c:1,x:{fr:"3 - 1 = 2 bananes ! 🍌🍌",en:"3 - 1 = 2 bananas! 🍌🍌",it:"3 - 1 = 2 banane! 🍌🍌"}},
+    {e:'🦒',q:{fr:"Combien de girafes ? 🦒🦒🦒",en:"How many giraffes? 🦒🦒🦒",it:"Quante giraffe? 🦒🦒🦒"},h:{fr:"Compte les emojis",en:"Count the emojis",it:"Conta gli emoji"},a:{fr:['1','2','3','4'],en:['1','2','3','4'],it:['1','2','3','4']},c:2,x:{fr:"3 girafes ! Tu sais bien compter.",en:"3 giraffes! You count well.",it:"3 giraffe! Sai contare bene."}},
+    {e:'🐍',q:{fr:"2 + 3 = ?",en:"2 + 3 = ?",it:"2 + 3 = ?"},h:{fr:"Ajoute deux et trois",en:"Add two and three",it:"Aggiungi due e tre"},a:{fr:['4','5','6','7'],en:['4','5','6','7'],it:['4','5','6','7']},c:1,x:{fr:"2 + 3 = 5 ! Bravo, tu sais déjà additionner !",en:"2 + 3 = 5! Bravo, you can already add!",it:"2 + 3 = 5! Bravo, sai già fare le addizioni!"}},
+    {e:'🌟',q:{fr:"Combien de doigts as-tu sur une main ?",en:"How many fingers on one hand?",it:"Quante dita hai su una mano?"},h:{fr:"Regarde ta main !",en:"Look at your hand!",it:"Guarda la tua mano!"},a:{fr:['3','4','5','6'],en:['3','4','5','6'],it:['3','4','5','6']},c:2,x:{fr:"5 doigts ! Le pouce, l'index, le majeur, l'annulaire et l'auriculaire.",en:"5 fingers! Thumb, index, middle, ring and pinky.",it:"5 dita! Pollice, indice, medio, anulare e mignolo."}}
+  ],
+  proverbes:[
+    {e:'❤️',q:{fr:"Que faut-il dire quand quelqu'un t'aide ?",en:"What do you say when someone helps you?",it:"Cosa dici quando qualcuno ti aiuta?"},h:{fr:"Mot poli !",en:"A polite word!",it:"Parola educata!"},a:{fr:['Au revoir','Merci','Bonjour','Pardon'],en:['Goodbye','Thank you','Hello','Sorry'],it:['Ciao','Grazie','Buongiorno','Scusa']},c:1,x:{fr:"Merci ! En Afrique de l'Est on dit 'Asante' (en swahili). En Wolof on dit 'Jërejëf'.",en:"Thank you! In East Africa they say 'Asante' (Swahili). In Wolof: 'Jërejëf'.",it:"Grazie! In Africa orientale si dice 'Asante' (swahili). In wolof: 'Jërejëf'."}},
+    {e:'🤝',q:{fr:"Pour porter un gros sac, c'est mieux d'être...",en:"To carry a heavy bag, it's better to be...",it:"Per portare una borsa pesante, è meglio essere..."},h:{fr:"Plus on est, mieux c'est !",en:"The more, the better!",it:"Più si è, meglio è!"},a:{fr:['Tout seul','À plusieurs','Très petit','Endormi'],en:['Alone','Together','Very small','Asleep'],it:['Da solo','Insieme','Piccolissimo','Addormentato']},c:1,x:{fr:"À plusieurs ! En Afrique, on dit 'seul on va plus vite, ensemble on va plus loin'.",en:"Together! In Africa they say 'alone we go faster, together we go further'.",it:"Insieme! In Africa si dice 'da soli si va più veloce, insieme si va più lontano'."}},
+    {e:'😊',q:{fr:"Comment dit-on bonjour de manière joyeuse ?",en:"How do you say hello cheerfully?",it:"Come si dice ciao allegramente?"},h:{fr:"Avec un sourire",en:"With a smile",it:"Con un sorriso"},a:{fr:['En pleurant','En riant','En dormant','En courant'],en:['Crying','Laughing','Sleeping','Running'],it:['Piangendo','Ridendo','Dormendo','Correndo']},c:1,x:{fr:"En souriant ! En Afrique, dire bonjour avec joie est très important — ça montre du respect.",en:"With a smile! In Africa, greeting cheerfully is very important — it shows respect.",it:"Con un sorriso! In Africa, salutare allegramente è molto importante — mostra rispetto."}},
+    {e:'👨‍👩‍👧‍👦',q:{fr:"La famille c'est important parce qu'on...",en:"Family is important because we...",it:"La famiglia è importante perché ci..."},h:{fr:"On s'entraide",en:"We help each other",it:"Ci si aiuta"},a:{fr:['...se dispute','...s\'aime et s\'aide','...se cache','...court'],en:['...argue','...love and help each other','...hide','...run'],it:['...si litiga','...ci si vuole bene','...ci si nasconde','...si corre']},c:1,x:{fr:"On s'aime et on s'aide ! En Afrique, la famille c'est aussi les cousins, oncles, tantes — toute la communauté.",en:"We love and help each other! In Africa, family includes cousins, uncles, aunts — the whole community.",it:"Ci si vuole bene e ci si aiuta! In Africa la famiglia include cugini, zii, zie — tutta la comunità."}},
+    {e:'🌟',q:{fr:"Quand tu rates, qu'est-ce que tu fais ?",en:"When you fail, what do you do?",it:"Quando sbagli, cosa fai?"},h:{fr:"Tu ne dois pas abandonner !",en:"Don't give up!",it:"Non mollare!"},a:{fr:['J\'arrête','Je réessaie','Je pleure','Je dors'],en:['I stop','I try again','I cry','I sleep'],it:['Smetto','Riprovo','Piango','Dormo']},c:1,x:{fr:"Je réessaie ! Comme dit le proverbe : 'la chute n'est pas un échec, l'échec c'est de rester par terre'.",en:"I try again! As the proverb says: 'falling isn't failure, failure is staying down'.",it:"Riprovo! Come dice il proverbio: 'la caduta non è un fallimento, il fallimento è restare a terra'."}}
+  ],
+  animaux:[
+    {e:'🦁',q:{fr:"Quel animal rugit très fort ?",en:"Which animal roars very loudly?",it:"Quale animale ruggisce fortissimo?"},h:{fr:"Le roi de la savane !",en:"King of the savanna!",it:"Il re della savana!"},a:{fr:['Lapin','Lion','Souris','Poisson'],en:['Rabbit','Lion','Mouse','Fish'],it:['Coniglio','Leone','Topo','Pesce']},c:1,x:{fr:"Le lion ! Son rugissement s'entend à 8 km de distance — c'est très fort !",en:"The lion! Its roar can be heard 8 km away — that's very loud!",it:"Il leone! Il suo ruggito si sente a 8 km di distanza!"}},
+    {e:'🐘',q:{fr:"Quel animal a une trompe ?",en:"Which animal has a trunk?",it:"Quale animale ha una proboscide?"},h:{fr:"Très grand, gris !",en:"Very big, grey!",it:"Molto grande, grigio!"},a:{fr:['Lion','Éléphant','Zèbre','Singe'],en:['Lion','Elephant','Zebra','Monkey'],it:['Leone','Elefante','Zebra','Scimmia']},c:1,x:{fr:"L'éléphant ! Sa trompe lui sert à boire, manger, et même prendre une douche !",en:"The elephant! Its trunk helps it drink, eat and even shower!",it:"L'elefante! La sua proboscide serve a bere, mangiare e anche fare la doccia!"}},
+    {e:'🦒',q:{fr:"Quel animal a un très long cou ?",en:"Which animal has a very long neck?",it:"Quale animale ha un collo lunghissimo?"},h:{fr:"Pour atteindre les feuilles en haut",en:"To reach high leaves",it:"Per raggiungere foglie alte"},a:{fr:['Lapin','Girafe','Tortue','Lion'],en:['Rabbit','Giraffe','Turtle','Lion'],it:['Coniglio','Giraffa','Tartaruga','Leone']},c:1,x:{fr:"La girafe ! Avec son long cou elle mange les feuilles tout en haut des arbres.",en:"The giraffe! With its long neck it eats leaves at the top of trees.",it:"La giraffa! Con il suo collo lungo mangia foglie in cima agli alberi."}},
+    {e:'🦓',q:{fr:"De quelles couleurs est le zèbre ?",en:"What colors is the zebra?",it:"Di che colori è la zebra?"},h:{fr:"Deux couleurs très différentes",en:"Two very different colors",it:"Due colori molto diversi"},a:{fr:['Vert et rouge','Noir et blanc','Bleu et jaune','Rose et orange'],en:['Green and red','Black and white','Blue and yellow','Pink and orange'],it:['Verde e rosso','Nero e bianco','Blu e giallo','Rosa e arancione']},c:1,x:{fr:"Noir et blanc avec des rayures ! Chaque zèbre a un motif unique au monde.",en:"Black and white with stripes! Every zebra has a unique pattern in the world.",it:"Nero e bianco a strisce! Ogni zebra ha un motivo unico al mondo."}},
+    {e:'🐒',q:{fr:"Quel animal aime grimper aux arbres et fait 'ouh ouh' ?",en:"Which animal climbs trees and goes 'ooh ooh'?",it:"Quale animale si arrampica sugli alberi e fa 'uh uh'?"},h:{fr:"Aime les bananes",en:"Loves bananas",it:"Ama le banane"},a:{fr:['Crocodile','Singe','Poisson','Éléphant'],en:['Crocodile','Monkey','Fish','Elephant'],it:['Coccodrillo','Scimmia','Pesce','Elefante']},c:1,x:{fr:"Le singe ! Il vit dans les forêts d'Afrique et se balance d'arbre en arbre.",en:"The monkey! It lives in African forests and swings from tree to tree.",it:"La scimmia! Vive nelle foreste africane e si dondola di albero in albero."}},
+    {e:'🐢',q:{fr:"Quel animal porte sa maison sur son dos ?",en:"Which animal carries its house on its back?",it:"Quale animale porta la casa sulla schiena?"},h:{fr:"Très lent !",en:"Very slow!",it:"Molto lento!"},a:{fr:['Lapin','Tortue','Lion','Crocodile'],en:['Rabbit','Turtle','Lion','Crocodile'],it:['Coniglio','Tartaruga','Leone','Coccodrillo']},c:1,x:{fr:"La tortue ! Sa carapace est sa maison qu'elle emporte partout.",en:"The turtle! Its shell is the home it takes everywhere.",it:"La tartaruga! Il suo guscio è la casa che porta ovunque."}}
+  ],
+  geo:[
+    {e:'🌍',q:{fr:"Sur quel continent vivent les lions sauvages ?",en:"On which continent do wild lions live?",it:"In quale continente vivono i leoni selvaggi?"},h:{fr:"Le berceau de l'humanité",en:"The cradle of humanity",it:"La culla dell'umanità"},a:{fr:['Europe','Afrique','Asie','Australie'],en:['Europe','Africa','Asia','Australia'],it:['Europa','Africa','Asia','Australia']},c:1,x:{fr:"En Afrique ! C'est leur maison naturelle dans les savanes.",en:"In Africa! It's their natural home in the savannas.",it:"In Africa! È la loro casa naturale nelle savane."}},
+    {e:'🏜️',q:{fr:"Comment s'appelle un endroit avec beaucoup de sable ?",en:"What's a place with lots of sand called?",it:"Come si chiama un posto con tanta sabbia?"},h:{fr:"Très chaud, peu d'eau",en:"Very hot, little water",it:"Molto caldo, poca acqua"},a:{fr:['Forêt','Désert','Lac','Plage'],en:['Forest','Desert','Lake','Beach'],it:['Foresta','Deserto','Lago','Spiaggia']},c:1,x:{fr:"Un désert ! Le Sahara est le plus grand désert d'Afrique.",en:"A desert! The Sahara is Africa's biggest desert.",it:"Un deserto! Il Sahara è il deserto più grande dell'Africa."}},
+    {e:'🌳',q:{fr:"Comment s'appelle un endroit avec beaucoup d'arbres ?",en:"What's a place with lots of trees called?",it:"Come si chiama un posto con tanti alberi?"},h:{fr:"Très vert, plein d'animaux",en:"Very green, full of animals",it:"Molto verde, pieno di animali"},a:{fr:['Désert','Plage','Forêt','Ville'],en:['Desert','Beach','Forest','City'],it:['Deserto','Spiaggia','Foresta','Città']},c:2,x:{fr:"Une forêt ! La forêt du Congo est immense et abrite beaucoup d'animaux.",en:"A forest! Congo's forest is huge and home to many animals.",it:"Una foresta! La foresta del Congo è enorme e ospita tanti animali."}},
+    {e:'🌊',q:{fr:"Comment s'appelle une grande étendue d'eau salée ?",en:"What's a large area of salty water called?",it:"Come si chiama una grande estensione di acqua salata?"},h:{fr:"Bleue, très grande !",en:"Blue, very big!",it:"Blu, molto grande!"},a:{fr:['Étang','Mer','Flaque','Rivière'],en:['Pond','Sea','Puddle','River'],it:['Stagno','Mare','Pozzanghera','Fiume']},c:1,x:{fr:"La mer ! L'Afrique est entourée par la mer Méditerranée et 2 océans.",en:"The sea! Africa is surrounded by the Mediterranean Sea and 2 oceans.",it:"Il mare! L'Africa è circondata dal Mar Mediterraneo e da 2 oceani."}},
+    {e:'⛰️',q:{fr:"Comment s'appelle une très haute montagne ?",en:"What's a very high mountain called?",it:"Come si chiama una montagna molto alta?"},h:{fr:"Avec de la neige en haut",en:"With snow on top",it:"Con la neve in cima"},a:{fr:['Colline','Sommet','Plage','Vallée'],en:['Hill','Peak','Beach','Valley'],it:['Collina','Vetta','Spiaggia','Valle']},c:1,x:{fr:"Un sommet ! Le Kilimandjaro en Tanzanie est le plus haut sommet d'Afrique (5 895 m).",en:"A peak! Kilimanjaro in Tanzania is Africa's highest peak (5,895 m).",it:"Una vetta! Il Kilimangiaro in Tanzania è la vetta più alta d'Africa (5.895 m)."}},
+    {e:'🏝️',q:{fr:"Comment s'appelle un terrain entouré d'eau ?",en:"What's land surrounded by water called?",it:"Come si chiama una terra circondata dall'acqua?"},h:{fr:"On y va en bateau",en:"You go there by boat",it:"Ci si va in barca"},a:{fr:['Île','Pont','Tunnel','Forêt'],en:['Island','Bridge','Tunnel','Forest'],it:['Isola','Ponte','Tunnel','Foresta']},c:1,x:{fr:"Une île ! Madagascar est la plus grande île d'Afrique.",en:"An island! Madagascar is Africa's largest island.",it:"Un'isola! Il Madagascar è la più grande isola d'Africa."}}
+  ]
+};
+
+
+// ===== Pack 11a — Questions supplémentaires KIDS (4-6 ans) =====
+KIDS_QDB.histoire.push(
+  {e:'⚔️',q:{fr:"Avec quoi se battaient les guerriers d'autrefois ?",en:"What did ancient warriors fight with?",it:"Con cosa combattevano i guerrieri antichi?"},h:{fr:"Pas avec des fusils !",en:"Not with guns!",it:"Non con i fucili!"},a:{fr:['Lance','Téléphone','Crayon','Banane'],en:['Spear','Phone','Pencil','Banana'],it:['Lancia','Telefono','Matita','Banana']},c:0,x:{fr:"Avec des lances et des boucliers ! Les guerriers africains étaient très courageux.",en:"With spears and shields! African warriors were very brave.",it:"Con lance e scudi! I guerrieri africani erano molto coraggiosi."}},
+  {e:'🥁',q:{fr:"Quel instrument résonne fort dans les fêtes africaines ?",en:"Which instrument booms in African celebrations?",it:"Quale strumento risuona forte nelle feste africane?"},h:{fr:"On tape dessus !",en:"You bang on it!",it:"Si batte sopra!"},a:{fr:['Flûte','Tambour','Piano','Guitare'],en:['Flute','Drum','Piano','Guitar'],it:['Flauto','Tamburo','Piano','Chitarra']},c:1,x:{fr:"Le tambour ! En Afrique, le djembé fait danser tout le village.",en:"The drum! In Africa, the djembe makes the whole village dance.",it:"Il tamburo! In Africa, il djembé fa ballare tutto il villaggio."}},
+  {e:'👶',q:{fr:"Comment appelle-t-on un petit roi ?",en:"What's a little king called?",it:"Come si chiama un piccolo re?"},h:{fr:"Comme un petit prince",en:"Like a little prince",it:"Come un piccolo principe"},a:{fr:['Chat','Prince','Pirate','Voleur'],en:['Cat','Prince','Pirate','Thief'],it:['Gatto','Principe','Pirata','Ladro']},c:1,x:{fr:"Un prince ! Le fils d'un roi devient prince — pareil dans toutes les royautés africaines.",en:"A prince! The son of a king becomes a prince — same in all African royalty.",it:"Un principe! Il figlio di un re diventa principe — uguale in tutte le monarchie africane."}},
+  {e:'🌍',q:{fr:"Sur quel continent es-tu si tu vois des baobabs ?",en:"What continent are you on if you see baobabs?",it:"In quale continente sei se vedi baobab?"},h:{fr:"Le berceau de l'humanité",en:"The cradle of humanity",it:"La culla dell'umanità"},a:{fr:['Europe','Afrique','Asie','Amérique'],en:['Europe','Africa','Asia','America'],it:['Europa','Africa','Asia','America']},c:1,x:{fr:"En Afrique ! Le baobab est l'arbre symbole du continent africain.",en:"In Africa! The baobab is the symbolic tree of the African continent.",it:"In Africa! Il baobab è l'albero simbolo del continente africano."}},
+  {e:'🏠',q:{fr:"Comment s'appelle une maison faite avec de la paille ?",en:"What's a straw-roof house called?",it:"Come si chiama una casa di paglia?"},h:{fr:"Forme ronde, toit pointu",en:"Round shape, pointy roof",it:"Forma rotonda, tetto a punta"},a:{fr:['Igloo','Case','Château','Cabane'],en:['Igloo','Hut','Castle','Cabin'],it:['Igloo','Capanna','Castello','Baracca']},c:1,x:{fr:"Une case ! Dans beaucoup de villages d'Afrique, les maisons traditionnelles sont des cases avec un toit en paille.",en:"A hut! In many African villages, traditional homes are huts with thatched roofs.",it:"Una capanna! In molti villaggi africani le case tradizionali sono capanne con tetto di paglia."}},
+  {e:'🎭',q:{fr:"Que portent les danseurs traditionnels sur leur visage ?",en:"What do traditional dancers wear on their faces?",it:"Cosa indossano i ballerini tradizionali sul viso?"},h:{fr:"Cache le visage",en:"Hides the face",it:"Nasconde il viso"},a:{fr:['Lunettes','Masque','Foulard','Couronne'],en:['Glasses','Mask','Scarf','Crown'],it:['Occhiali','Maschera','Sciarpa','Corona']},c:1,x:{fr:"Un masque ! Les masques africains sont très beaux et racontent des histoires anciennes.",en:"A mask! African masks are beautiful and tell ancient stories.",it:"Una maschera! Le maschere africane sono bellissime e raccontano storie antiche."}},
+  {e:'🌅',q:{fr:"Quand les pyramides ont-elles été construites ?",en:"When were the pyramids built?",it:"Quando furono costruite le piramidi?"},h:{fr:"Très très très longtemps",en:"Very very long ago",it:"Molto molto tempo fa"},a:{fr:['L\'année dernière','Il y a 10 ans','Il y a très longtemps','Demain'],en:['Last year','10 years ago','Very long ago','Tomorrow'],it:['L\'anno scorso','10 anni fa','Tantissimo tempo fa','Domani']},c:2,x:{fr:"Il y a très très longtemps — il y a plus de 4 500 ans, dans l'Égypte ancienne en Afrique !",en:"Very very long ago — over 4,500 years ago, in ancient Egypt in Africa!",it:"Molto molto tempo fa — oltre 4.500 anni fa, nell'antico Egitto in Africa!"}}
+);
+
+KIDS_QDB.nature.push(
+  {e:'🌞',q:{fr:"Qu'est-ce qui éclaire et chauffe la Terre ?",en:"What lights and warms the Earth?",it:"Cosa illumina e scalda la Terra?"},h:{fr:"Tu le vois le matin",en:"You see it in the morning",it:"Lo vedi al mattino"},a:{fr:['La Lune','Le Soleil','Une lampe','Un nuage'],en:['Moon','Sun','Lamp','Cloud'],it:['Luna','Sole','Lampada','Nuvola']},c:1,x:{fr:"Le Soleil ! C'est lui qui réchauffe les pays d'Afrique et fait pousser les plantes.",en:"The Sun! It warms African countries and helps plants grow.",it:"Il Sole! Riscalda i paesi africani e fa crescere le piante."}},
+  {e:'🌧️',q:{fr:"Que tombe du ciel quand il y a beaucoup de nuages ?",en:"What falls from the sky with lots of clouds?",it:"Cosa cade dal cielo con tante nuvole?"},h:{fr:"Mouille le sol",en:"Wets the ground",it:"Bagna la terra"},a:{fr:['Sable','Pluie','Glace','Pierre'],en:['Sand','Rain','Ice','Stone'],it:['Sabbia','Pioggia','Ghiaccio','Pietra']},c:1,x:{fr:"La pluie ! En Afrique, la saison des pluies fait verdir toute la savane.",en:"Rain! In Africa, the rainy season turns the savanna green.",it:"La pioggia! In Africa la stagione delle piogge fa diventare verde la savana."}},
+  {e:'🌽',q:{fr:"Quel aliment jaune pousse en gros épis en Afrique ?",en:"What yellow food grows on big ears in Africa?",it:"Quale cibo giallo cresce in grosse pannocchie in Africa?"},h:{fr:"On en fait du pop-corn !",en:"You make popcorn from it!",it:"Si fa il pop-corn!"},a:{fr:['Carotte','Maïs','Tomate','Patate'],en:['Carrot','Corn','Tomato','Potato'],it:['Carota','Mais','Pomodoro','Patata']},c:1,x:{fr:"Le maïs ! C'est un aliment très important dans beaucoup de pays d'Afrique.",en:"Corn! It's an important food in many African countries.",it:"Il mais! È un alimento importante in molti paesi africani."}},
+  {e:'🐝',q:{fr:"Quel petit animal fait du miel ?",en:"Which little animal makes honey?",it:"Quale piccolo animale fa il miele?"},h:{fr:"Buzz buzz...",en:"Buzz buzz...",it:"Bzz bzz..."},a:{fr:['Fourmi','Abeille','Mouche','Papillon'],en:['Ant','Bee','Fly','Butterfly'],it:['Formica','Ape','Mosca','Farfalla']},c:1,x:{fr:"L'abeille ! Le miel africain est délicieux — beaucoup de villages l'utilisent comme médicament naturel.",en:"The bee! African honey is delicious — many villages use it as natural medicine.",it:"L'ape! Il miele africano è delizioso — molti villaggi lo usano come medicina naturale."}},
+  {e:'🍃',q:{fr:"De quelle couleur sont les feuilles d'arbre en bonne santé ?",en:"What color are healthy leaves?",it:"Di che colore sono le foglie sane?"},h:{fr:"Comme l'herbe",en:"Like grass",it:"Come l'erba"},a:{fr:['Rouge','Verte','Bleue','Noire'],en:['Red','Green','Blue','Black'],it:['Rossa','Verde','Blu','Nera']},c:1,x:{fr:"Verte ! Les feuilles vertes nous donnent l'oxygène pour respirer.",en:"Green! Green leaves give us oxygen to breathe.",it:"Verdi! Le foglie verdi ci danno l'ossigeno per respirare."}},
+  {e:'❄️',q:{fr:"Vrai ou faux : il neige sur certaines montagnes d'Afrique ?",en:"True or false: snow falls on some African mountains?",it:"Vero o falso: nevica su alcune montagne africane?"},h:{fr:"Très haut, ça gèle !",en:"Very high, it freezes!",it:"Molto in alto, gela!"},a:{fr:['Faux','Vrai','Peut-être','Jamais'],en:['False','True','Maybe','Never'],it:['Falso','Vero','Forse','Mai']},c:1,x:{fr:"Vrai ! Le Kilimandjaro en Tanzanie a de la neige tout en haut, malgré le climat chaud.",en:"True! Kilimanjaro in Tanzania has snow at the top, despite the hot climate.",it:"Vero! Il Kilimangiaro in Tanzania ha neve in cima, nonostante il clima caldo."}},
+  {e:'🌹',q:{fr:"Que produisent les plantes pour devenir des fruits ?",en:"What do plants make before becoming fruits?",it:"Cosa producono le piante prima di diventare frutti?"},h:{fr:"Sentent bon",en:"Smell nice",it:"Profumano bene"},a:{fr:['Fleurs','Pierres','Glace','Plumes'],en:['Flowers','Stones','Ice','Feathers'],it:['Fiori','Pietre','Ghiaccio','Piume']},c:0,x:{fr:"Des fleurs ! Avant de devenir mangues, papayes ou bananes, les arbres fabriquent de jolies fleurs.",en:"Flowers! Before becoming mangoes, papayas or bananas, trees make beautiful flowers.",it:"Fiori! Prima di diventare manghi, papaye o banane, gli alberi fanno bei fiori."}}
+);
+
+KIDS_QDB.maths.push(
+  {e:'🍎',q:{fr:"Combien de pommes ? 🍎🍎",en:"How many apples? 🍎🍎",it:"Quante mele? 🍎🍎"},h:{fr:"Compte les emojis",en:"Count the emojis",it:"Conta gli emoji"},a:{fr:['1','2','3','4'],en:['1','2','3','4'],it:['1','2','3','4']},c:1,x:{fr:"2 pommes ! 🍎🍎",en:"2 apples! 🍎🍎",it:"2 mele! 🍎🍎"}},
+  {e:'🦁',q:{fr:"5 - 3 = ?",en:"5 - 3 = ?",it:"5 - 3 = ?"},h:{fr:"Enlève 3 sur 5",en:"Remove 3 from 5",it:"Togli 3 da 5"},a:{fr:['1','2','3','4'],en:['1','2','3','4'],it:['1','2','3','4']},c:1,x:{fr:"5 - 3 = 2 ! Bravo, c'est une petite soustraction.",en:"5 - 3 = 2! Bravo, a little subtraction.",it:"5 - 3 = 2! Bravo, una piccola sottrazione."}},
+  {e:'⚪',q:{fr:"Quel chiffre vient après 7 ?",en:"Which number comes after 7?",it:"Quale numero viene dopo 7?"},h:{fr:"On compte vers le haut",en:"Count up",it:"Conta in su"},a:{fr:['6','8','9','5'],en:['6','8','9','5'],it:['6','8','9','5']},c:1,x:{fr:"Après 7 vient 8 ! On compte : 5, 6, 7, 8...",en:"After 7 comes 8! Count: 5, 6, 7, 8...",it:"Dopo il 7 viene 8! Si conta: 5, 6, 7, 8..."}},
+  {e:'🎈',q:{fr:"Tu as 4 ballons. Tu en gagnes 1. Combien en tout ?",en:"You have 4 balloons. You get 1 more. How many total?",it:"Hai 4 palloncini. Ne ricevi 1. Quanti in tutto?"},h:{fr:"4 plus 1",en:"4 plus 1",it:"4 più 1"},a:{fr:['3','4','5','6'],en:['3','4','5','6'],it:['3','4','5','6']},c:2,x:{fr:"4 + 1 = 5 ballons ! 🎈🎈🎈🎈🎈",en:"4 + 1 = 5 balloons! 🎈🎈🎈🎈🎈",it:"4 + 1 = 5 palloncini! 🎈🎈🎈🎈🎈"}},
+  {e:'🌟',q:{fr:"Quel chiffre est le plus grand ?",en:"Which number is biggest?",it:"Quale numero è più grande?"},h:{fr:"Le plus en haut !",en:"The highest!",it:"Il più alto!"},a:{fr:['3','7','5','2'],en:['3','7','5','2'],it:['3','7','5','2']},c:1,x:{fr:"7 est le plus grand ! Plus le chiffre est haut, plus la quantité est grande.",en:"7 is the biggest! The higher the number, the bigger the amount.",it:"7 è il più grande! Più alto è il numero, più grande è la quantità."}},
+  {e:'🐘',q:{fr:"2 éléphants + 2 éléphants = ?",en:"2 elephants + 2 elephants = ?",it:"2 elefanti + 2 elefanti = ?"},h:{fr:"Le double de 2",en:"Double 2",it:"Il doppio di 2"},a:{fr:['3','4','5','6'],en:['3','4','5','6'],it:['3','4','5','6']},c:1,x:{fr:"2 + 2 = 4 éléphants ! 🐘🐘🐘🐘",en:"2 + 2 = 4 elephants! 🐘🐘🐘🐘",it:"2 + 2 = 4 elefanti! 🐘🐘🐘🐘"}}
+);
+
+KIDS_QDB.proverbes.push(
+  {e:'🤲',q:{fr:"Quand un ami est triste, qu'est-ce qu'on fait ?",en:"When a friend is sad, what do we do?",it:"Quando un amico è triste, cosa facciamo?"},h:{fr:"On le réconforte",en:"We comfort them",it:"Lo consoliamo"},a:{fr:['On rit','On le console','On part','On crie'],en:['Laugh','Comfort','Leave','Shout'],it:['Si ride','Si consola','Si va via','Si grida']},c:1,x:{fr:"On le console ! Un ami triste a besoin d'écoute et d'un câlin.",en:"We comfort them! A sad friend needs listening and a hug.",it:"Si consola! Un amico triste ha bisogno di ascolto e di un abbraccio."}},
+  {e:'👵',q:{fr:"Que doit-on faire avec les personnes âgées ?",en:"What should we do with elders?",it:"Cosa dovremmo fare con gli anziani?"},h:{fr:"Ils savent beaucoup !",en:"They know a lot!",it:"Sanno tanto!"},a:{fr:['Les ignorer','Les écouter','Les pousser','Les fâcher'],en:['Ignore','Listen','Push','Anger'],it:['Ignorarli','Ascoltarli','Spingerli','Farli arrabbiare']},c:1,x:{fr:"Les écouter ! En Afrique, on dit que la sagesse vient des personnes âgées — elles ont vu beaucoup de choses.",en:"Listen! In Africa it's said wisdom comes from elders — they've seen so much.",it:"Ascoltarli! In Africa si dice che la saggezza viene dagli anziani — hanno visto tanto."}},
+  {e:'🍽️',q:{fr:"À table, c'est mieux de manger...",en:"At the table, it's better to eat...",it:"A tavola, è meglio mangiare..."},h:{fr:"Avec qui aimes-tu manger ?",en:"Who do you like to eat with?",it:"Con chi ami mangiare?"},a:{fr:['Tout seul','En famille','Très vite','Sans bouger'],en:['Alone','With family','Very fast','Without moving'],it:['Da solo','In famiglia','Velocissimo','Senza muoversi']},c:1,x:{fr:"En famille ! En Afrique, les repas en famille sont très importants — c'est un moment de partage.",en:"With family! In Africa, family meals matter a lot — they're moments of sharing.",it:"In famiglia! In Africa i pasti in famiglia sono molto importanti — sono momenti di condivisione."}},
+  {e:'❌',q:{fr:"Si tu casses quelque chose par accident, tu dois...",en:"If you break something by accident, you should...",it:"Se rompi qualcosa per sbaglio, dovresti..."},h:{fr:"Dire la vérité",en:"Tell the truth",it:"Dire la verità"},a:{fr:['Te cacher','Le dire','Mentir','Pleurer'],en:['Hide','Say it','Lie','Cry'],it:['Nasconderti','Dirlo','Mentire','Piangere']},c:1,x:{fr:"Le dire ! Être honnête est une grande qualité — on peut tous se tromper.",en:"Say it! Being honest is a great quality — we all make mistakes.",it:"Dirlo! Essere onesti è una grande qualità — tutti possiamo sbagliare."}},
+  {e:'💪',q:{fr:"Apprendre est-il...",en:"Learning is...",it:"Imparare è..."},h:{fr:"Mot positif",en:"Positive word",it:"Parola positiva"},a:{fr:['Inutile','Important','Ennuyeux','Difficile pour toujours'],en:['Useless','Important','Boring','Hard forever'],it:['Inutile','Importante','Noioso','Sempre difficile']},c:1,x:{fr:"Important ! Apprendre tous les jours, c'est comme manger pour grandir — pour le cerveau.",en:"Important! Learning every day is like eating to grow — for the brain.",it:"Importante! Imparare ogni giorno è come mangiare per crescere — per il cervello."}},
+  {e:'🎁',q:{fr:"C'est mieux de recevoir ou de donner ?",en:"Better to receive or give?",it:"Meglio ricevere o dare?"},h:{fr:"Les deux sont bien, mais...",en:"Both are good, but...",it:"Entrambi belli, ma..."},a:{fr:['Recevoir','Donner','Aucun','Voler'],en:['Receive','Give','Neither','Steal'],it:['Ricevere','Dare','Nessuno','Rubare']},c:1,x:{fr:"Donner ! En Afrique, partager est une grande joie. La générosité rend riche.",en:"Give! In Africa, sharing is a great joy. Generosity makes you rich.",it:"Dare! In Africa, condividere è una grande gioia. La generosità rende ricchi."}},
+  {e:'😊',q:{fr:"Pour avoir des amis, il faut être...",en:"To have friends, you should be...",it:"Per avere amici, bisogna essere..."},h:{fr:"Toujours souriant !",en:"Always smiling!",it:"Sempre sorridenti!"},a:{fr:['Méchant','Gentil','Triste','Froid'],en:['Mean','Kind','Sad','Cold'],it:['Cattivo','Gentile','Triste','Freddo']},c:1,x:{fr:"Gentil ! Un ami gentil, c'est un trésor. Sois bon avec les autres et ils seront bons avec toi.",en:"Kind! A kind friend is a treasure. Be good to others, they'll be good to you.",it:"Gentile! Un amico gentile è un tesoro. Sii buono con gli altri, lo saranno con te."}}
+);
+
+KIDS_QDB.animaux.push(
+  {e:'🐊',q:{fr:"Quel animal vit dans les rivières et a beaucoup de dents ?",en:"Which river animal has lots of teeth?",it:"Quale animale di fiume ha tanti denti?"},h:{fr:"Vert, dans l'eau",en:"Green, in water",it:"Verde, nell'acqua"},a:{fr:['Poisson','Crocodile','Canard','Tortue'],en:['Fish','Crocodile','Duck','Turtle'],it:['Pesce','Coccodrillo','Anatra','Tartaruga']},c:1,x:{fr:"Le crocodile ! Il vit dans les fleuves d'Afrique comme le Nil.",en:"The crocodile! It lives in African rivers like the Nile.",it:"Il coccodrillo! Vive nei fiumi africani come il Nilo."}},
+  {e:'🦛',q:{fr:"Quel animal aime se baigner dans les rivières ?",en:"Which big animal loves bathing in rivers?",it:"Quale grande animale ama bagnarsi nei fiumi?"},h:{fr:"Très très gros, gris",en:"Very big, grey",it:"Molto grande, grigio"},a:{fr:['Lapin','Hippopotame','Souris','Chat'],en:['Rabbit','Hippo','Mouse','Cat'],it:['Coniglio','Ippopotamo','Topo','Gatto']},c:1,x:{fr:"L'hippopotame ! Il passe des heures dans l'eau pour rester au frais.",en:"The hippo! It spends hours in water to stay cool.",it:"L'ippopotamo! Passa ore nell'acqua per stare fresco."}},
+  {e:'🦩',q:{fr:"Quel oiseau rose se tient sur une seule patte ?",en:"Which pink bird stands on one leg?",it:"Quale uccello rosa sta su una zampa sola?"},h:{fr:"Couleur rose",en:"Pink color",it:"Colore rosa"},a:{fr:['Pigeon','Flamant','Aigle','Pingouin'],en:['Pigeon','Flamingo','Eagle','Penguin'],it:['Piccione','Fenicottero','Aquila','Pinguino']},c:1,x:{fr:"Le flamant rose ! Il dort sur une patte et mange des crevettes qui lui donnent sa belle couleur.",en:"The flamingo! It sleeps on one leg and eats shrimp that color it pink.",it:"Il fenicottero! Dorme su una zampa e mangia gamberi che gli danno il colore rosa."}},
+  {e:'🐍',q:{fr:"Quel animal n'a pas de pattes et rampe ?",en:"Which animal has no legs and crawls?",it:"Quale animale non ha zampe e striscia?"},h:{fr:"Long et fin",en:"Long and thin",it:"Lungo e sottile"},a:{fr:['Lézard','Serpent','Souris','Insecte'],en:['Lizard','Snake','Mouse','Bug'],it:['Lucertola','Serpente','Topo','Insetto']},c:1,x:{fr:"Le serpent ! Il y en a beaucoup en Afrique. Le python d'Afrique peut atteindre 6 mètres.",en:"The snake! Africa has many. The African python can reach 6 meters.",it:"Il serpente! In Africa ce ne sono tanti. Il pitone africano arriva a 6 metri."}},
+  {e:'🐦',q:{fr:"Comment volent les oiseaux ?",en:"How do birds fly?",it:"Come volano gli uccelli?"},h:{fr:"Avec ce qu'ils ont sur le dos",en:"With what's on their back",it:"Con ciò che hanno sulla schiena"},a:{fr:['Pattes','Ailes','Plumes','Yeux'],en:['Legs','Wings','Feathers','Eyes'],it:['Zampe','Ali','Piume','Occhi']},c:1,x:{fr:"Avec leurs ailes ! Les oiseaux battent des ailes pour s'envoler dans le ciel.",en:"With their wings! Birds flap wings to fly into the sky.",it:"Con le ali! Gli uccelli sbattono le ali per volare nel cielo."}},
+  {e:'🦗',q:{fr:"Combien de pattes ont les insectes en général ?",en:"How many legs do insects usually have?",it:"Quante zampe hanno solitamente gli insetti?"},h:{fr:"Plus que les humains !",en:"More than humans!",it:"Più degli umani!"},a:{fr:['2','4','6','8'],en:['2','4','6','8'],it:['2','4','6','8']},c:2,x:{fr:"6 pattes ! Les insectes ont toujours 6 pattes — c'est ce qui les définit.",en:"6 legs! Insects always have 6 legs — that's what defines them.",it:"6 zampe! Gli insetti hanno sempre 6 zampe — è ciò che li definisce."}}
+);
+
+KIDS_QDB.geo.push(
+  {e:'🇫🇷',q:{fr:"Sur quel continent es-tu maintenant ?",en:"What continent are you on now?",it:"In quale continente sei adesso?"},h:{fr:"Demande à un adulte",en:"Ask an adult",it:"Chiedi a un adulto"},a:{fr:['Afrique','Europe','Asie','Tous'],en:['Africa','Europe','Asia','All'],it:['Africa','Europa','Asia','Tutti']},c:0,x:{fr:"Cela dépend où tu vis ! L'Afrique, l'Europe, l'Asie sont des continents très différents et magnifiques.",en:"It depends where you live! Africa, Europe, Asia are very different and beautiful continents.",it:"Dipende da dove vivi! Africa, Europa, Asia sono continenti diversi e magnifici."}},
+  {e:'🌎',q:{fr:"Combien de continents y a-t-il dans le monde ?",en:"How many continents in the world?",it:"Quanti continenti ci sono nel mondo?"},h:{fr:"Plus que les doigts d'une main !",en:"More than fingers on one hand!",it:"Più delle dita di una mano!"},a:{fr:['3','5','7','10'],en:['3','5','7','10'],it:['3','5','7','10']},c:2,x:{fr:"7 continents : Afrique, Europe, Asie, Amérique du Nord, Amérique du Sud, Océanie et Antarctique.",en:"7 continents: Africa, Europe, Asia, North America, South America, Oceania and Antarctica.",it:"7 continenti: Africa, Europa, Asia, Nord America, Sud America, Oceania e Antartide."}},
+  {e:'🦓',q:{fr:"Où trouve-t-on des zèbres dans la nature ?",en:"Where do zebras live in the wild?",it:"Dove vivono le zebre in natura?"},h:{fr:"Pas dans un zoo !",en:"Not in a zoo!",it:"Non in uno zoo!"},a:{fr:['Forêt','Savane','Désert','Mer'],en:['Forest','Savanna','Desert','Sea'],it:['Foresta','Savana','Deserto','Mare']},c:1,x:{fr:"Dans la savane ! Les zèbres vivent dans les grandes plaines d'herbe d'Afrique de l'Est et du Sud.",en:"In the savanna! Zebras live in the great grasslands of East and Southern Africa.",it:"Nella savana! Le zebre vivono nelle grandi praterie dell'Africa orientale e meridionale."}},
+  {e:'🌅',q:{fr:"Le soleil se lève à...",en:"The sun rises in the...",it:"Il sole sorge a..."},h:{fr:"Côté opposé au coucher",en:"Opposite to where it sets",it:"Opposto al tramonto"},a:{fr:['Ouest','Est','Nord','Sud'],en:['West','East','North','South'],it:['Ovest','Est','Nord','Sud']},c:1,x:{fr:"À l'est ! Le soleil se lève toujours à l'est et se couche à l'ouest. Partout dans le monde.",en:"In the east! The sun always rises in the east and sets in the west. Everywhere.",it:"Ad est! Il sole sorge sempre ad est e tramonta ad ovest. Ovunque."}},
+  {e:'🏖️',q:{fr:"Comment s'appelle le bord de la mer avec du sable ?",en:"What's the sandy edge of the sea called?",it:"Come si chiama il bordo del mare con la sabbia?"},h:{fr:"On y va l'été",en:"You go there in summer",it:"Ci si va d'estate"},a:{fr:['Plage','Désert','Forêt','Montagne'],en:['Beach','Desert','Forest','Mountain'],it:['Spiaggia','Deserto','Foresta','Montagna']},c:0,x:{fr:"La plage ! L'Afrique a des plages magnifiques au Sénégal, au Maroc, au Kenya...",en:"The beach! Africa has beautiful beaches in Senegal, Morocco, Kenya...",it:"La spiaggia! L'Africa ha spiagge magnifiche in Senegal, Marocco, Kenya..."}},
+  {e:'🌳',q:{fr:"Comment s'appelle un endroit avec des animaux sauvages protégés ?",en:"What's a protected wild animal area called?",it:"Come si chiama una zona di animali selvatici protetti?"},h:{fr:"Pour les vacances safari",en:"For a safari holiday",it:"Per un safari"},a:{fr:['Cinéma','Parc national','Magasin','Hôpital'],en:['Cinema','National park','Shop','Hospital'],it:['Cinema','Parco nazionale','Negozio','Ospedale']},c:1,x:{fr:"Un parc national ! Le Kenya, la Tanzanie, l'Afrique du Sud ont les plus beaux parcs avec lions, éléphants...",en:"A national park! Kenya, Tanzania, South Africa have the most beautiful parks with lions, elephants...",it:"Un parco nazionale! Kenya, Tanzania, Sudafrica hanno i parchi più belli con leoni, elefanti..."}}
+);
+
+// Pool filtré par âge
+function getAgePool(key){
+  const age=(typeof userAge!=='undefined' && userAge)?userAge:'';
+  if(age==='4-6'){
+    return KIDS_QDB[key] || KIDS_QDB.animaux;
+  }
+  // 7-9 → questions de base seulement (les 8-10 premières)
+  // 10+ → tout
+  const fullPool = QDB[key] || [];
+  if(age==='7-9'){
+    // Limite aux questions originales (les premières) — exclut les .push() complexes
+    const baseLimits = {histoire:10, nature:10, maths:10, proverbes:8, animaux:9, geo:8};
+    const lim = baseLimits[key] || fullPool.length;
+    return fullPool.slice(0, lim);
+  }
+  return fullPool; // 10+ ou pas d'âge défini : tout
+}
+
 function getPool(key){
-  const pools={histoire:QDB.histoire,nature:QDB.nature,maths:QDB.maths,proverbes:QDB.proverbes,animaux:QDB.animaux,geo:QDB.geo,mix:[...QDB.histoire,...QDB.nature,...QDB.maths,...QDB.proverbes,...QDB.animaux,...QDB.geo]};
-  return pools[key]||pools.mix;
+  if(key==='mix'){
+    const themes=['histoire','nature','maths','proverbes','animaux','geo'];
+    let mixed=[];themes.forEach(t=>{mixed=mixed.concat(getAgePool(t));});
+    return mixed.length?mixed:QDB.histoire;
+  }
+  return getAgePool(key);
 }
 
 function getRandIdx(key,pool){
@@ -916,6 +1421,8 @@ function getRandIdx(key,pool){
 
 function startQuiz(subj){
   curMode='quiz';curSubj=subj;curQ=0;score=0;xpSess=0;answered=false;streak=0;updateStreak();
+  reset2PScores();
+  show2PUI();
   const ic={histoire:'🏛️',nature:'🌿',maths:'🔢',proverbes:'💬',geo:'🗺️',animaux:'🦍'};
   const bg={histoire:'rgba(255,243,219,.92)',nature:'rgba(224,248,224,.92)',maths:'rgba(210,242,235,.92)',proverbes:'rgba(230,228,252,.92)',geo:'rgba(215,236,253,.92)',animaux:'rgba(252,228,218,.92)'};
   const names={histoire:L().cards.h,nature:L().cards.n,maths:L().cards.c,proverbes:L().cards.l,geo:L().cards.g||'Géo',animaux:L().cards.a||'Animaux'};
@@ -926,7 +1433,7 @@ function startQuiz(subj){
 }
 
 function renderQ(){
-  const pool=QDB[curSubj]||QDB.histoire;
+  const pool=getAgePool(curSubj)||QDB.histoire;
   const idx=getRandIdx(curSubj,pool);
   const q=pool[idx];
   answered=false;
@@ -936,6 +1443,8 @@ function renderQ(){
   currentCorrect=q.c;currentExp=q.x[lang]||q.x.fr;
   $('qem').textContent=q.e;
   $('qtx').textContent=q.q[lang]||q.q.fr;
+  // TTS button
+  const qtx=$('qtx');if(qtx && qtx.parentNode){const old=qtx.parentNode.querySelector('.tts-btn');if(old)old.remove();const tts=makeTtsButton(()=>(q.q[lang]||q.q.fr));tts.style.display='block';qtx.parentNode.insertBefore(tts,qtx.nextSibling);}
   $('qhint').textContent=L().quiz.hint+' '+(q.h[lang]||q.h.fr);
   const answers=q.a[lang]||q.a.fr;
   const grid=$('agrid');grid.innerHTML='';
@@ -954,6 +1463,7 @@ function pick(ch,cor,exp){
     score++;xpSess+=10;xpTotal+=10;
     streak++;updateStreak();
     playSound('correct');confettiBurst(true);floatXP('+10 XP');
+    if(is2P){pScores[curPlayer]++;pXp[curPlayer]+=10;}
     if(navigator.vibrate)navigator.vibrate(40);
     updateXP();checkLevelUp();
     if(streak>=2){
@@ -972,30 +1482,23 @@ function pick(ch,cor,exp){
   $('fb-ti').textContent=randFeedback(ok);
   $('fb-ms').textContent=exp;
   $('nxtbtn').className='nxtbtn show';
+  // === KIDS-FUN HOOKS ===
+  if(ok){
+    mascotReact(streak>=3?'combo':'correct');
+    emojiRain(curSubj,12);
+    refreshMascotEmoji();
+    bumpChestCounter();
+    // Unlock une carte de la collection (1 chance sur 3)
+    if(Math.random()<.34){
+      const card=unlockRandomCardForSubject(curSubj);
+      if(card)setTimeout(()=>showCardModal(card),700);
+    }
+  } else {
+    mascotReact('wrong');
+  }
 }
 
-function nextQ(){
-  curQ++;
-  const pool=QDB[curSubj]||QDB.histoire;
-  if(curQ>=Math.min(pool.length,8)){
-    if(curSubj==='daily'){
-      completeDailyChallenge();
-      xpSess+=50;xpTotal+=50;updateXP();
-      setTimeout(()=>floatXP('+50 XP BONUS 🌟'),350);
-      updateDailyCard();
-      setTimeout(()=>showNotifPrompt(),2800);
-    } else {
-      completedTopics.add(curSubj);
-      localStorage.setItem('knipo_badges',JSON.stringify([...completedTopics]));
-    }
-    const total=Math.min(pool.length,8);
-    renderBadges();
-    showPage('page-success');
-    setTimeout(()=>{animateStats(score,total,xpSess);},80);
-    setTimeout(()=>confettiBurst(false),120);
-    playSound('levelup');
-  }else renderQ();
-}
+// nextQ() défini plus haut dans la section LAUNCHERS PUZZLE — gère Mix + Daily + thème
 
 function replayMode(){if(curMode==='quiz')startQuiz(curSubj);else startPuzzle(puzIdx);}
 
@@ -1056,8 +1559,8 @@ function checkPuzz(p){
   $('pfb-ic').textContent=ok?'🌟':'💪';
   $('pfb-ti').textContent=ok?L().puzl.ok:L().puzl.no;
   $('pfb-ms').textContent=ok?p.x:L().puzl.is+p.ans+'. '+p.x;
-  if(ok){xpSess+=15;xpTotal+=15;updateXP();playSound('correct');confettiBurst(true);floatXP('+15 XP');}
-  else{playSound('wrong');}
+  if(ok){xpSess+=15;xpTotal+=15;updateXP();playSound('correct');confettiBurst(true);floatXP('+15 XP');mascotReact('correct');emojiRain('proverbes',10);bumpChestCounter();}
+  else{playSound('wrong');mascotReact('wrong');}
   $('pnxtbtn').className='nxtbtn show';const ck=$('ck');if(ck)ck.disabled=true;
 }
 
@@ -1443,7 +1946,7 @@ function randFeedback(ok){const arr=(ok?FEEDBACK_OK:FEEDBACK_NO)[lang]||(ok?FEED
 // ============================================================
 // TIMER
 // ============================================================
-function startTimer(){
+function startTimer(){if(window.TIMER_MAX_OVERRIDE){TIMER_MAX=window.TIMER_MAX_OVERRIDE;}
   clearTimer();timerSec=TIMER_MAX;updateTimerUI();
   timerInterval=setInterval(()=>{
     timerSec--;updateTimerUI();
@@ -1483,6 +1986,15 @@ const ONBOARD=[
    ti:{fr:'Bienvenue dans KNIPO Kids !',en:'Welcome to KNIPO Kids!',it:'Benvenuto in KNIPO Kids!'},
    sub:{fr:'Je suis <strong>Kani</strong>, ton lion guide ! 🌍<br>Ensemble on va explorer l\'Afrique,<br>son histoire, ses animaux et bien plus !',en:'I\'m <strong>Kani</strong>, your lion guide! 🌍<br>Together we\'ll explore Africa,<br>its history, animals and much more!',it:'Sono <strong>Kani</strong>, il tuo leone guida! 🌍<br>Insieme esploreremo l\'Africa,<br>la sua storia, gli animali e tanto altro!'},
    btn:{fr:'Suivant →',en:'Next →',it:'Avanti →'}},
+  {ic:'👋',
+   ti:{fr:'Comment tu t\'appelles ?',en:'What\'s your name?',it:'Come ti chiami?'},
+   nameInput:true,
+   btn:{fr:'Suivant →',en:'Next →',it:'Avanti →'}},
+  {ic:'🎂',
+   ti:{fr:'Tu as quel âge ?',en:'How old are you?',it:'Quanti anni hai?'},
+   ages:true,
+   bdayInput:true,
+   btn:{fr:'Suivant →',en:'Next →',it:'Avanti →'}},
   {ic:'🌍',
    ti:{fr:'6 thèmes pour tout apprendre',en:'6 themes to learn everything',it:'6 temi per imparare tutto'},
    topics:true,
@@ -1506,10 +2018,32 @@ const ONBOARD_REWARDS=[
   {ic:'🦁',fr:'Monte de niveau\net évolue',en:'Level up\nand evolve',it:'Sali di livello\ne evolvi'}
 ];
 
+
+// Sélecteur de langue dans l'onboarding (avant que l'utilisateur entre dans l'app)
+function setLangOnboard(l,btn){
+  lang=l;localStorage.setItem('knipo_lang',l);
+  document.querySelectorAll('.olb').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  // Mettre à jour les boutons de langue de la home (au cas où)
+  document.querySelectorAll('.lb').forEach(b=>{
+    const t=b.textContent.toLowerCase();
+    b.classList.toggle('on',t.includes(l));
+  });
+  // Re-render le slide actuel dans la nouvelle langue
+  if(typeof renderOnboardSlide==='function')renderOnboardSlide();
+  // Mettre à jour le bouton skip
+  const skip=document.getElementById('onboard-skip');
+  if(skip){const s={fr:'Passer',en:'Skip',it:'Salta'};skip.textContent=s[l]||s.fr;}
+  // Appliquer la langue à toute l'app pour qu'au moment du finishOnboarding tout soit déjà en langue
+  if(typeof applyLang==='function')applyLang();
+}
+
 function showOnboarding(){
   const bg=$('onboard-bg');if(!bg)return;
   bg.classList.remove('hidden');
   onboardStep=0;
+  // Sync les boutons de langue avec la langue actuelle
+  ['fr','en','it'].forEach(l=>{const b=document.getElementById('ol-'+l);if(b)b.classList.toggle('on',lang===l);});
   renderOnboardSlide();
   const skip=$('onboard-skip');
   if(skip){const s={fr:'Passer',en:'Skip',it:'Salta'};skip.textContent=s[lang]||s.fr;}
@@ -1517,13 +2051,40 @@ function showOnboarding(){
 function renderOnboardSlide(){
   const slide=ONBOARD[onboardStep];
   const el=$('onboard-slide');if(!el)return;
-  [0,1,2].forEach(i=>$('ob-d'+i)&&($('ob-d'+i).className='onboard-dot'+(i===onboardStep?' on':'')));
+  [0,1,2,3,4].forEach(i=>{const d=$('ob-d'+i);if(d)d.className='onboard-dot'+(i===onboardStep?' on':'');});
   let html=`<span class="onboard-mascot">${slide.ic}</span>`;
   html+=`<div class="onboard-title">${slide.ti[lang]||slide.ti.fr}</div>`;
   if(slide.topics){
     html+=`<div class="onboard-topics">`;
     ONBOARD_TOPICS.forEach(t=>{html+=`<div class="onboard-topic"><span class="onboard-topic-ic">${t.ic}</span><div class="onboard-topic-tx">${t[lang]||t.fr}</div></div>`;});
     html+=`</div>`;
+  } else if(slide.nameInput){
+    const ph={fr:'Ex : Aïssa, Karim...',en:'E.g. Aïssa, Karim...',it:'Es: Aïssa, Karim...'}[lang]||'';
+    const sub={fr:'On t\'appellera par ton prénom ! 🌟',en:'We\'ll call you by name! 🌟',it:'Ti chiameremo per nome! 🌟'}[lang]||'';
+    html+='<div class="onboard-sub">'+sub+'</div>';
+    html+='<input type="text" class="onboard-input" id="ob-name-input" maxlength="16" placeholder="'+ph+'" value="'+(userName||'').replace(/"/g,'&quot;')+'" oninput="onUserNameInput(this.value)">';
+  } else if(slide.ages){
+    const opts=[
+      {v:'4-6',ic:'👶',tx:{fr:'4 - 6 ans',en:'Age 4 - 6',it:'4 - 6 anni'},sub:{fr:'Mode calme',en:'Calm mode',it:'Calmo'}},
+      {v:'7-9',ic:'🦁',tx:{fr:'7 - 9 ans',en:'Age 7 - 9',it:'7 - 9 anni'},sub:{fr:'Aventurier',en:'Adventurer',it:'Avventuriero'}},
+      {v:'10+',ic:'⭐',tx:{fr:'10 + ans',en:'Age 10+',it:'10+ anni'},sub:{fr:'Expert',en:'Expert',it:'Esperto'}}
+    ];
+    html+='<div class="age-grid">';
+    opts.forEach(o=>{html+='<button class="age-btn'+(userAge===o.v?' on':'')+'" onclick="setAge(\''+o.v+'\',this)"><span class="age-btn-ic">'+o.ic+'</span><div class="age-btn-tx">'+(o.tx[lang]||o.tx.fr)+'</div><div class="age-btn-sub">'+(o.sub[lang]||o.sub.fr)+'</div></button>';});
+    html+='</div>';
+    if(slide.bdayInput){
+      const lab={fr:'🎂 Date de naissance (optionnel)',en:'🎂 Birthday (optional)',it:'🎂 Compleanno (facoltativo)'}[lang]||'';
+      const months={fr:['Jan','Fév','Mars','Avr','Mai','Juin','Juil','Août','Sept','Oct','Nov','Déc'],en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],it:['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic']}[lang]||['Jan','Fév','Mars','Avr','Mai','Juin','Juil','Août','Sept','Oct','Nov','Déc'];
+      const stored=getUserBirthday();
+      html+='<div class="onboard-bday-lbl">'+lab+'</div>';
+      html+='<div class="onboard-bday">';
+      html+='<select id="ob-bday-day"><option value="">'+({fr:'Jour',en:'Day',it:'Giorno'}[lang]||'Jour')+'</option>';
+      for(let d=1;d<=31;d++)html+='<option value="'+d+'"'+(stored.day==d?' selected':'')+'>'+d+'</option>';
+      html+='</select>';
+      html+='<select id="ob-bday-month"><option value="">'+({fr:'Mois',en:'Month',it:'Mese'}[lang]||'Mois')+'</option>';
+      for(let m=1;m<=12;m++)html+='<option value="'+m+'"'+(stored.month==m?' selected':'')+'>'+months[m-1]+'</option>';
+      html+='</select></div>';
+    }
   } else if(slide.rewards){
     html+=`<div class="onboard-reward">`;
     ONBOARD_REWARDS.forEach(r=>{html+=`<div class="onboard-reward-item"><span class="onboard-reward-ic">${r.ic}</span><div class="onboard-reward-tx">${(r[lang]||r.fr).replace(/\n/g,'<br>')}</div></div>`;});
@@ -1537,6 +2098,11 @@ function renderOnboardSlide(){
   const btn=$('onboard-btn');if(btn)btn.textContent=slide.btn[lang]||slide.btn.fr;
 }
 function nextOnboarding(){
+  // Sauver les valeurs saisies sur la slide actuelle avant de passer
+  const inp=document.getElementById('ob-name-input');
+  if(inp && inp.value.trim()){setUserName(inp.value.trim());}
+  const bd=document.getElementById('ob-bday-day');const bm=document.getElementById('ob-bday-month');
+  if(bd && bm && bd.value && bm.value){setUserBirthday(parseInt(bd.value),parseInt(bm.value));}
   onboardStep++;
   if(onboardStep>=ONBOARD.length){finishOnboarding();return;}
   renderOnboardSlide();
@@ -1609,6 +2175,1414 @@ function renderBadges(){
   });
 }
 
+
+// ============================================================
+// KIDS-FUN ENHANCEMENTS — Mascotte / TTS / Album / Coffre / Pluie / Age / Music / Memory
+// ============================================================
+
+// ---- 1) MASCOTTE VIVANTE ----
+const MASCOT_LINES = {
+  hello:{fr:["Salut ! 🌍 Tu es prêt(e) à explorer l'Afrique ?","Hey ! Aujourd'hui on apprend des trucs incroyables !","Bienvenue ! Choisis un thème, on y va !","Coucou explorateur ! 🦁"],
+         en:["Hi! 🌍 Ready to explore Africa?","Hey! Today we learn amazing stuff!","Welcome! Pick a theme, let's go!","Hi explorer! 🦁"],
+         it:["Ciao! 🌍 Pronto a esplorare l'Africa?","Ehi! Oggi impariamo cose incredibili!","Benvenuto! Scegli un tema, andiamo!","Ciao esploratore! 🦁"]},
+  correct:{fr:["Bravo ! 🌟","Trop fort !","Tu cartonnes !","Excellent !","Génial ! ✨","Wahou !"],
+           en:["Bravo! 🌟","Awesome!","You rock!","Excellent!","Brilliant! ✨","Wow!"],
+           it:["Bravo! 🌟","Fantastico!","Sei forte!","Eccellente!","Genio! ✨"]},
+  wrong:{fr:["Pas grave, on retente !","Tu vas y arriver !","Courage ! 💪","La prochaine est la bonne !","On apprend en se trompant !"],
+         en:["No worries, try again!","You can do it!","Courage! 💪","Next one's good!","We learn by failing!"],
+         it:["Tranquillo, riprova!","Ce la puoi fare!","Coraggio! 💪","La prossima è buona!"]},
+  combo:{fr:["3 d'affilée ! 🔥","En feu !","Tu es en mode pro !","Continue comme ça !"],
+         en:["3 in a row! 🔥","On fire!","Pro mode!","Keep going!"],
+         it:["3 di fila! 🔥","In fiamme!","Modalità pro!"]},
+  daily:{fr:["N'oublie pas le défi du jour ! 🌟","Le défi t'attend !"],
+         en:["Don't forget today's challenge! 🌟","The challenge awaits!"],
+         it:["Non dimenticare la sfida! 🌟"]}
+};
+const MASCOT_EMOJI_BY_LVL = ['🐣','🦁','🦁','🐆','👑','⭐'];
+let mascotTimer=null;
+function pickRand(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function getMascotEmoji(){const lvl=Math.floor((xpTotal||0)/1000)+1;return MASCOT_EMOJI_BY_LVL[Math.min(lvl,5)]||'🦁';}
+function refreshMascotEmoji(){const m=document.getElementById('mascot-floating');if(m)m.textContent=getMascotEmoji();}
+function mascotSay(text,duration){
+  const b=document.getElementById('mascot-bubble');if(!b)return;
+  // Si nom personnalisé, préfixer parfois avec le nom
+  let prefix='';
+  if(typeof mascotName!=='undefined' && mascotName && mascotName!=='Kani' && Math.random()<.35){
+    prefix = mascotName+' : ';
+  }
+  b.textContent=prefix+text;b.classList.add('show');
+  if(mascotTimer)clearTimeout(mascotTimer);
+  mascotTimer=setTimeout(()=>b.classList.remove('show'),duration||3500);
+}
+function mascotReact(kind){
+  const set=MASCOT_LINES[kind];if(!set)return;
+  const arr=set[lang]||set.fr;
+  mascotSay(pickRand(arr));
+  const m=document.getElementById('mascot-floating');
+  if(m){m.classList.remove('happy');void m.offsetWidth;m.classList.add('happy');}
+}
+function mascotTap(){
+  // Long press géré par contexte : double-tap rapide ouvre la boutique
+  const now = Date.now();
+  if(window._lastMascotTap && now - window._lastMascotTap < 380){
+    window._lastMascotTap = 0;
+    openShop();
+    return;
+  }
+  window._lastMascotTap = now;
+  setTimeout(()=>{
+    if(window._lastMascotTap === now){
+      // Single tap → réaction normale
+      const onHome=document.getElementById('page-home') && !document.getElementById('page-home').classList.contains('hidden');
+      if(onHome && !dailyDone){mascotReact('daily');}
+      else{mascotReact('hello');}
+      if(typeof speak==='function'){
+        const b=document.getElementById('mascot-bubble');if(b && b.textContent)speak(b.textContent);
+      }
+    }
+  },400);
+}
+
+// ---- 2) NARRATION VOCALE (Web Speech API) ----
+let speechActive=false;
+function langCode(){return {fr:'fr-FR',en:'en-US',it:'it-IT'}[lang]||'fr-FR';}
+function speak(text){
+  if(!('speechSynthesis' in window))return;
+  try{
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=langCode();u.rate=.95;u.pitch=1.05;u.volume=1;
+    u.onstart=()=>{speechActive=true;document.querySelectorAll('.tts-btn').forEach(b=>b.classList.add('speaking'));};
+    u.onend=()=>{speechActive=false;document.querySelectorAll('.tts-btn').forEach(b=>b.classList.remove('speaking'));};
+    u.onerror=u.onend;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function stopSpeak(){if('speechSynthesis' in window)window.speechSynthesis.cancel();}
+function makeTtsButton(textProvider){
+  const b=document.createElement('button');b.className='tts-btn';b.type='button';b.textContent='🔊';b.title='Écouter';
+  b.onclick=function(ev){ev.stopPropagation();const t=typeof textProvider==='function'?textProvider():textProvider;if(t)speak(t);};
+  return b;
+}
+
+// ---- 3) ALBUM DE CARTES COLLECTIBLES ----
+const CARDS = [
+  // HISTOIRE (10)
+  {id:'tombouctou',e:'🕌',sub:'histoire',rar:'R',n:{fr:'Tombouctou',en:'Timbuktu',it:'Timbuctù'},d:{fr:'Cité du savoir, 700 000 manuscrits, 25 000 étudiants au 14e siècle.',en:'City of knowledge, 700,000 manuscripts, 25,000 students in the 14th century.',it:'Città del sapere, 700.000 manoscritti.'}},
+  {id:'mansa',e:'👑',sub:'histoire',rar:'L',n:{fr:'Mansa Musa',en:'Mansa Musa',it:'Mansa Musa'},d:{fr:"Empereur du Mali, l'homme le plus riche de l'histoire.",en:'Emperor of Mali, the richest man in history.',it:"Imperatore del Mali, l'uomo più ricco della storia."}},
+  {id:'nzinga',e:'⚔️',sub:'histoire',rar:'L',n:{fr:'Reine Nzinga',en:'Queen Nzinga',it:'Regina Nzinga'},d:{fr:"Guerrière et diplomate qui résista aux Portugais au 17e siècle.",en:'Warrior who resisted the Portuguese in the 17th century.',it:'Guerriera che resistette ai portoghesi nel 17° secolo.'}},
+  {id:'sankara',e:'🦁',sub:'histoire',rar:'R',n:{fr:'Thomas Sankara',en:'Thomas Sankara',it:'Thomas Sankara'},d:{fr:'Président révolutionnaire du Burkina Faso (1983-1987).',en:'Revolutionary president of Burkina Faso (1983-1987).',it:'Presidente rivoluzionario del Burkina Faso.'}},
+  {id:'cheikh',e:'📜',sub:'histoire',rar:'R',n:{fr:'Cheikh Anta Diop',en:'Cheikh Anta Diop',it:'Cheikh Anta Diop'},d:{fr:"Scientifique qui a prouvé l'origine africaine de l'Égypte ancienne.",en:'Scientist who proved ancient Egypt was African.',it:"Scienziato che ha dimostrato l'origine africana dell'Egitto antico."}},
+  {id:'mandela',e:'🎖️',sub:'histoire',rar:'L',n:{fr:'Nelson Mandela',en:'Nelson Mandela',it:'Nelson Mandela'},d:{fr:"27 ans en prison, premier président noir d'Afrique du Sud.",en:'27 years in prison, first Black president of South Africa.',it:'27 anni di prigione, primo presidente nero del Sudafrica.'}},
+  {id:'lumumba',e:'⭐',sub:'histoire',rar:'R',n:{fr:'Patrice Lumumba',en:'Patrice Lumumba',it:'Patrice Lumumba'},d:{fr:'Premier Premier ministre du Congo indépendant en 1960.',en:'First PM of independent Congo in 1960.',it:'Primo Primo Ministro del Congo indipendente nel 1960.'}},
+  {id:'ethiopie',e:'🏆',sub:'histoire',rar:'R',n:{fr:'Éthiopie',en:'Ethiopia',it:'Etiopia'},d:{fr:"Seul pays africain jamais colonisé. A vaincu l'Italie en 1896 !",en:'Only African country never colonized. Defeated Italy in 1896!',it:"Unico paese africano mai colonizzato."}},
+  {id:'ghana',e:'🏰',sub:'histoire',rar:'C',n:{fr:'Empire du Ghana',en:'Ghana Empire',it:'Impero del Ghana'},d:{fr:"Riche grâce au commerce de l'or et du sel.",en:'Rich from gold and salt trade.',it:"Ricco grazie al commercio di oro e sale."}},
+  {id:'berlin',e:'🗺️',sub:'histoire',rar:'C',n:{fr:'Conférence Berlin',en:'Berlin Conference',it:'Conferenza Berlino'},d:{fr:"En 1884, l'Europe se partage l'Afrique sans demander.",en:'In 1884, Europe divided Africa without asking.',it:"Nel 1884, l'Europa si è divisa l'Africa."}},
+  // NATURE (4)
+  {id:'baobab',e:'🌳',sub:'nature',rar:'R',n:{fr:'Baobab',en:'Baobab',it:'Baobab'},d:{fr:"Stocke 100 000 L d'eau, vit plus de 3 000 ans !",en:'Stores 100,000L of water, lives over 3,000 years!',it:"Conserva 100.000 L d'acqua, vive oltre 3.000 anni!"}},
+  {id:'savane',e:'🌾',sub:'nature',rar:'C',n:{fr:'Savane',en:'Savanna',it:'Savana'},d:{fr:"L'écosystème le plus emblématique d'Afrique.",en:"Africa's most iconic ecosystem.",it:"L'ecosistema più iconico dell'Africa."}},
+  {id:'sahara',e:'🏜️',sub:'nature',rar:'R',n:{fr:'Sahara',en:'Sahara',it:'Sahara'},d:{fr:'Le plus grand désert chaud du monde — 9 millions km².',en:"World's largest hot desert — 9 million km².",it:'Il più grande deserto caldo del mondo.'}},
+  {id:'nil',e:'🌊',sub:'nature',rar:'R',n:{fr:'Le Nil',en:'The Nile',it:'Il Nilo'},d:{fr:'Plus long fleuve du monde, 6 650 km. Coule vers le Nord !',en:"World's longest river, 6,650 km. Flows northward!",it:'Il fiume più lungo, 6.650 km.'}},
+  // ANIMAUX (8)
+  {id:'lion',e:'🦁',sub:'animaux',rar:'C',n:{fr:'Lion',en:'Lion',it:'Leone'},d:{fr:'Roi de la savane. Dort jusqu\'à 20h par jour !',en:'King of the savanna. Sleeps up to 20h/day!',it:'Re della savana.'}},
+  {id:'elephant',e:'🐘',sub:'animaux',rar:'R',n:{fr:'Éléphant',en:'Elephant',it:'Elefante'},d:{fr:'Se reconnaît dans un miroir. Mémoire incroyable.',en:'Recognizes itself in mirror. Amazing memory.',it:'Si riconosce nello specchio.'}},
+  {id:'guepard',e:'🐆',sub:'animaux',rar:'R',n:{fr:'Guépard',en:'Cheetah',it:'Ghepardo'},d:{fr:"Le plus rapide : 110 km/h. Ne rugit pas, il ronronne !",en:'Fastest land animal: 110 km/h. Purrs instead of roaring!',it:"L'animale più veloce: 110 km/h."}},
+  {id:'gorille',e:'🦍',sub:'animaux',rar:'R',n:{fr:'Gorille',en:'Gorilla',it:'Gorilla'},d:{fr:'Vit en famille soudée. Le mâle protège ses proches à vie.',en:'Lives in close family. Male protects family for life.',it:'Vive in famiglia unita.'}},
+  {id:'girafe',e:'🦒',sub:'animaux',rar:'C',n:{fr:'Girafe',en:'Giraffe',it:'Giraffa'},d:{fr:'Plus grand animal terrestre — 5 à 6 m de haut !',en:'Tallest land animal — 5 to 6 m tall!',it:'Animale terrestre più alto.'}},
+  {id:'zebre',e:'🦓',sub:'animaux',rar:'C',n:{fr:'Zèbre',en:'Zebra',it:'Zebra'},d:{fr:'Chaque zèbre a un motif de rayures unique au monde.',en:'Each zebra has unique stripes.',it:'Ogni zebra ha strisce uniche.'}},
+  {id:'rhino',e:'🦏',sub:'animaux',rar:'L',n:{fr:'Rhinocéros',en:'Rhinoceros',it:'Rinoceronte'},d:{fr:'Court à 50 km/h malgré ses 2 tonnes !',en:'Runs at 50 km/h despite weighing 2 tons!',it:'Corre a 50 km/h.'}},
+  {id:'hippo',e:'🦛',sub:'animaux',rar:'C',n:{fr:'Hippopotame',en:'Hippo',it:'Ippopotamo'},d:{fr:"Vit dans l'eau et c'est l'un des animaux les plus dangereux.",en:'Lives in water — one of the most dangerous animals.',it:"Vive nell'acqua."}},
+  // GEO (4)
+  {id:'kilimanjaro',e:'⛰️',sub:'geo',rar:'R',n:{fr:'Kilimandjaro',en:'Kilimanjaro',it:'Kilimangiaro'},d:{fr:"Plus haut sommet d'Afrique : 5 895 m. Tanzanie.",en:"Africa's highest peak: 5,895 m. Tanzania.",it:"Vetta più alta d'Africa: 5.895 m."}},
+  {id:'victoria',e:'💧',sub:'geo',rar:'R',n:{fr:'Lac Victoria',en:'Lake Victoria',it:'Lago Vittoria'},d:{fr:"Plus grand lac d'Afrique. 1h d'avion pour le traverser !",en:"Africa's largest lake. 1h flight across!",it:"Lago più grande d'Africa."}},
+  {id:'sahel',e:'🌅',sub:'geo',rar:'C',n:{fr:'Sahel',en:'Sahel',it:'Sahel'},d:{fr:"Bande qui sépare le Sahara des forêts du Sud.",en:'Strip between Sahara and southern forests.',it:'Striscia tra Sahara e foreste.'}},
+  {id:'cap',e:'🌊',sub:'geo',rar:'C',n:{fr:'Le Cap',en:'Cape Town',it:'Città del Capo'},d:{fr:"Ville du sud entre océan Atlantique et Indien.",en:'Southern city between Atlantic and Indian oceans.',it:'Città tra Atlantico e Indiano.'}},
+  // PROVERBES / SAGESSE (3)
+  {id:'ubuntu',e:'🤝',sub:'proverbes',rar:'L',n:{fr:'Ubuntu',en:'Ubuntu',it:'Ubuntu'},d:{fr:"« Je suis parce que nous sommes » — philosophie sud-africaine.",en:'"I am because we are" — South African philosophy.',it:'"Io sono perché noi siamo".'}},
+  {id:'anansi',e:'🕷️',sub:'proverbes',rar:'R',n:{fr:'Anansi',en:'Anansi',it:'Anansi'},d:{fr:"L'araignée conteur, héros du folklore africain.",en:'The spider storyteller, African folk hero.',it:'Il ragno narratore.'}},
+  {id:'griot',e:'🎤',sub:'proverbes',rar:'C',n:{fr:'Griot',en:'Griot',it:'Griot'},d:{fr:"Conteur africain qui transmet l'histoire orale.",en:'African storyteller who passes oral history.',it:'Cantastorie africano.'}},
+  // MATHS (2)
+  {id:'ishango',e:'🦴',sub:'maths',rar:'L',n:{fr:'Os d\'Ishango',en:'Ishango Bone',it:'Osso di Ishango'},d:{fr:"Plus vieille preuve de maths au monde — 20 000 ans !",en:'Oldest math proof — 20,000 years old!',it:"Più antica prova di matematica."}},
+  {id:'pyramide',e:'🔺',sub:'maths',rar:'R',n:{fr:'Pyramides',en:'Pyramids',it:'Piramidi'},d:{fr:'Monuments géants qui prouvent les maths égyptiennes.',en:'Giant monuments proving Egyptian maths.',it:'Monumenti che provano la matematica egizia.'}}
+];
+let unlockedCards = new Set(JSON.parse(localStorage.getItem('knipo_cards')||'[]'));
+function saveCards(){localStorage.setItem('knipo_cards',JSON.stringify([...unlockedCards]));}
+function unlockRandomCardForSubject(subj){
+  const pool=CARDS.filter(c=>c.sub===subj && !unlockedCards.has(c.id));
+  if(!pool.length)return null;
+  const card=pool[Math.floor(Math.random()*pool.length)];
+  unlockedCards.add(card.id);saveCards();
+  return card;
+}
+function showCardModal(card){
+  document.getElementById('cm-em').textContent=card.e;
+  document.getElementById('cm-name').textContent=card.n[lang]||card.n.fr;
+  document.getElementById('cm-desc').textContent=card.d[lang]||card.d.fr;
+  document.getElementById('cardmodal-bg').classList.add('show');
+  playSound('correct');confettiBurst(true);
+  if(navigator.vibrate)navigator.vibrate([30,40,30]);
+}
+function closeCardModal(){document.getElementById('cardmodal-bg').classList.remove('show');}
+function renderAlbum(){
+  const grid=document.getElementById('album-grid');if(!grid)return;
+  const total=CARDS.length;const got=CARDS.filter(c=>unlockedCards.has(c.id)).length;
+  const lblFr={fr:`${got} / ${total} cartes débloquées`,en:`${got} / ${total} cards unlocked`,it:`${got} / ${total} carte sbloccate`}[lang];
+  document.getElementById('album-prog').textContent=lblFr||`${got}/${total}`;
+  document.getElementById('album-h').textContent={fr:'📔 Mon Album',en:'📔 My Album',it:'📔 Il mio Album'}[lang]||'📔 Mon Album';
+  grid.innerHTML='';
+  CARDS.forEach(c=>{
+    const u=unlockedCards.has(c.id);
+    const div=document.createElement('div');
+    div.className='acard '+(u?'unlocked':'locked');
+    div.innerHTML=`<div class="ac-rar">${c.rar}</div><div class="ac-em">${u?c.e:'❓'}</div><div class="ac-name">${u?(c.n[lang]||c.n.fr):'???'}</div>`;
+    if(u)div.onclick=()=>showCardModal(c);
+    grid.appendChild(div);
+  });
+}
+
+// ---- 4) COFFRE SURPRISE ----
+let chestStreakCount = parseInt(localStorage.getItem('knipo_chest_streak')||'0');
+function bumpChestCounter(){
+  chestStreakCount++;
+  localStorage.setItem('knipo_chest_streak',String(chestStreakCount));
+  if(chestStreakCount>=5){
+    chestStreakCount=0;
+    localStorage.setItem('knipo_chest_streak','0');
+    setTimeout(showChest,650);
+  }
+}
+function showChest(){
+  const bg=document.getElementById('chest-bg');if(!bg)return;
+  document.getElementById('chest-em').className='chest-em';
+  document.getElementById('chest-em').textContent='🎁';
+  document.getElementById('chest-tap').style.display='block';
+  document.getElementById('chest-tap').textContent={fr:'Tape pour ouvrir !',en:'Tap to open!',it:'Tocca per aprire!'}[lang]||'Tape !';
+  document.getElementById('chest-reward').className='chest-reward';
+  document.getElementById('chest-reward').innerHTML='';
+  document.getElementById('chest-cta').className='chest-cta';
+  document.getElementById('chest-cta').textContent={fr:'Continuer →',en:'Continue →',it:'Continua →'}[lang]||'Continuer';
+  bg.classList.add('show');
+  if(navigator.vibrate)navigator.vibrate(50);
+}
+function openChest(){
+  const em=document.getElementById('chest-em');if(!em || em.classList.contains('opened'))return;
+  em.classList.add('opened');em.textContent='✨';
+  document.getElementById('chest-tap').style.display='none';
+  // Pick reward
+  const r=Math.random();let txt='',xpBonus=0;
+  if(r<.55){xpBonus=25;txt={fr:'+25 XP bonus ! 💛',en:'+25 XP bonus! 💛',it:'+25 XP bonus! 💛'}[lang]||'+25 XP';}
+  else if(r<.85){xpBonus=50;txt={fr:'+50 XP bonus ! ⭐',en:'+50 XP bonus! ⭐',it:'+50 XP bonus! ⭐'}[lang]||'+50 XP';}
+  else{xpBonus=100;txt={fr:'JACKPOT ! +100 XP 👑',en:'JACKPOT! +100 XP 👑',it:'JACKPOT! +100 XP 👑'}[lang]||'+100 XP';}
+  if(typeof xpTotal!=='undefined'){xpTotal+=xpBonus;updateXP();checkLevelUp();}
+  if(typeof xpSess!=='undefined')xpSess+=xpBonus;
+  setTimeout(()=>{
+    const rw=document.getElementById('chest-reward');rw.innerHTML='🎉<br>'+txt;rw.classList.add('show');
+    document.getElementById('chest-cta').classList.add('show');
+    em.textContent='🏆';em.classList.remove('opened');
+    playSound('levelup');confettiBurst(false);
+    if(navigator.vibrate)navigator.vibrate([30,50,30,50,30]);
+  },550);
+}
+function closeChest(){document.getElementById('chest-bg').classList.remove('show');}
+
+// ---- 5) PLUIE D'EMOJIS THEMATIQUES ----
+const THEME_EMOJIS={histoire:['🏛️','👑','📜','⚔️','🏰'],nature:['🌿','🌳','🌺','🍃','🌻'],maths:['🔢','✨','💯','🎯','🧠'],proverbes:['💬','📖','🌟','🤝','💡'],animaux:['🦁','🦒','🐘','🦓','🦍','🐆'],geo:['🌍','🗺️','🏔️','🌋','🌊'],daily:['🌟','✨','🎉','💫','⭐']};
+function emojiRain(theme,count){
+  const emojis=THEME_EMOJIS[theme]||THEME_EMOJIS.daily;
+  const n=count||14;
+  for(let i=0;i<n;i++){
+    setTimeout(()=>{
+      const el=document.createElement('div');
+      el.className='emoji-fall';
+      el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      el.style.left=(Math.random()*92+2)+'%';
+      el.style.fontSize=(24+Math.random()*22)+'px';
+      el.style.animationDuration=(1.2+Math.random()*1.4)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),3000);
+    },i*60);
+  }
+}
+
+// ---- 6) AGE PICKER & MODE CALME ----
+let userAge = localStorage.getItem('knipo_age') || ''; // '4-6' | '7-9' | '10+'
+function applyAgeSettings(){
+  // Ajuste TIMER_MAX selon l'âge
+  if(typeof window.TIMER_MAX_BASE==='undefined')window.TIMER_MAX_BASE=15;
+  let t=window.TIMER_MAX_BASE;
+  if(userAge==='4-6')t=999;        // mode calme : pas de timer
+  else if(userAge==='7-9')t=22;
+  else if(userAge==='10+')t=15;
+  // override la constante via fenêtre
+  window.TIMER_MAX_OVERRIDE=t;
+}
+function setAge(v,btn){
+  userAge=v;localStorage.setItem('knipo_age',v);
+  document.querySelectorAll('.age-btn').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  applyAgeSettings();
+  // Reset les pools utilisés pour repiocher dans la nouvelle tranche d'âge
+  if(typeof quizUsed!=='undefined')quizUsed={};
+  if(typeof iaUsed!=='undefined')iaUsed={};
+  if(typeof updateCount==='function')updateCount();
+  if(typeof refreshAgeButton==='function')refreshAgeButton();
+}
+
+// ---- 7) MUSIQUE D'AMBIANCE (Web Audio kora-style loop) ----
+let ambientNodes=[],ambientOn=false,ambientSchedTimer=null;
+const AMBIENT_NOTES=[392.0,440.0,523.25,587.33,659.25,783.99]; // pentatonic G major
+function startAmbient(){
+  const ctx=getAudio();if(!ctx)return;
+  ambientOn=true;
+  function pluck(freq,t,vol){
+    const o=ctx.createOscillator(),g=ctx.createGain(),lp=ctx.createBiquadFilter();
+    o.type='triangle';o.frequency.value=freq;
+    lp.type='lowpass';lp.frequency.value=1800;
+    o.connect(lp);lp.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(vol,t+.02);
+    g.gain.exponentialRampToValueAtTime(.0008,t+1.4);
+    o.start(t);o.stop(t+1.5);
+  }
+  function schedule(){
+    if(!ambientOn)return;
+    const now=ctx.currentTime;
+    for(let i=0;i<6;i++){
+      const f=AMBIENT_NOTES[Math.floor(Math.random()*AMBIENT_NOTES.length)]/(Math.random()<.3?2:1);
+      pluck(f,now+i*.85,.045+Math.random()*.025);
+    }
+    ambientSchedTimer=setTimeout(schedule,5200);
+  }
+  schedule();
+}
+function stopAmbient(){
+  ambientOn=false;
+  if(ambientSchedTimer){clearTimeout(ambientSchedTimer);ambientSchedTimer=null;}
+}
+function toggleAmbient(){
+  const btn=document.getElementById('sound-toggle');
+  if(ambientOn){stopAmbient();if(btn)btn.textContent='🔇';localStorage.setItem('knipo_ambient','0');}
+  else{startAmbient();if(btn)btn.textContent='🔊';localStorage.setItem('knipo_ambient','1');}
+}
+
+// ---- 8) MEMORY MATCH ----
+let memData={cards:[],flipped:[],found:0,pairs:0,locked:false};
+function startMemory(){
+  const pool=[
+    {e:'🦁',n:{fr:'Lion',en:'Lion',it:'Leone'}},
+    {e:'🐘',n:{fr:'Éléphant',en:'Elephant',it:'Elefante'}},
+    {e:'🦓',n:{fr:'Zèbre',en:'Zebra',it:'Zebra'}},
+    {e:'🦒',n:{fr:'Girafe',en:'Giraffe',it:'Giraffa'}},
+    {e:'🐆',n:{fr:'Guépard',en:'Cheetah',it:'Ghepardo'}},
+    {e:'🦍',n:{fr:'Gorille',en:'Gorilla',it:'Gorilla'}},
+    {e:'🦏',n:{fr:'Rhino',en:'Rhino',it:'Rino'}},
+    {e:'🦛',n:{fr:'Hippo',en:'Hippo',it:'Ippo'}}
+  ];
+  // 8 paires => grille 4x4
+  const items=[];
+  pool.forEach(p=>{items.push({type:'em',v:p.e,key:p.e});items.push({type:'n',v:p.n[lang]||p.n.fr,key:p.e});});
+  for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]];}
+  memData={cards:items,flipped:[],found:0,pairs:pool.length,locked:false};
+  renderMemory();
+}
+function renderMemory(){
+  const body=document.getElementById('puz-body');if(!body)return;
+  const titleMap={fr:'Memory — paires',en:'Memory — pairs',it:'Memory — coppie'};
+  document.getElementById('puz-ti').textContent=titleMap[lang]||titleMap.fr;
+  let html='<div class="parea"><div class="mem-info" id="mem-info">'+
+    ({fr:'Trouve les paires animal / nom !',en:'Find the animal/name pairs!',it:'Trova le coppie animale/nome!'}[lang]||'')+'</div><div class="memory-grid" id="mg"></div></div>';
+  body.innerHTML=html;
+  const mg=document.getElementById('mg');
+  memData.cards.forEach((c,i)=>{
+    const card=document.createElement('div');card.className='mc';card.dataset.i=i;
+    card.innerHTML='<div class="mc-side mc-back">?</div><div class="mc-side mc-front" style="font-size:'+(c.type==='em'?'42px':'14px')+';font-family:\'Baloo 2\',cursive;font-weight:800;text-align:center;padding:4px">'+c.v+'</div>';
+    card.onclick=()=>memFlip(i,card);
+    mg.appendChild(card);
+  });
+}
+function memFlip(i,el){
+  if(memData.locked)return;
+  if(el.classList.contains('flip')||el.classList.contains('found'))return;
+  el.classList.add('flip');
+  memData.flipped.push({i,el});
+  if(memData.flipped.length===2){
+    memData.locked=true;
+    const [a,b]=memData.flipped;
+    const ka=memData.cards[a.i].key, kb=memData.cards[b.i].key;
+    if(ka===kb){
+      setTimeout(()=>{a.el.classList.add('found');b.el.classList.add('found');memData.flipped=[];memData.found++;memData.locked=false;
+        playSound('correct');floatXP('+5 XP');if(typeof xpTotal!=='undefined'){xpTotal+=5;updateXP();}
+        if(memData.found>=memData.pairs){
+          mascotReact('correct');confettiBurst(false);
+          setTimeout(()=>{document.getElementById('mem-info').textContent={fr:'Bravo ! Toutes les paires trouvées 🎉',en:'Bravo! All pairs found 🎉',it:'Bravo! Tutte le coppie!'}[lang];},400);
+        }
+      },380);
+    } else {
+      playSound('wrong');
+      setTimeout(()=>{a.el.classList.remove('flip');b.el.classList.remove('flip');memData.flipped=[];memData.locked=false;},800);
+    }
+  }
+}
+
+
+
+// ============================================================
+// MODE 2 JOUEURS
+// ============================================================
+let is2P = localStorage.getItem('knipo_2p')==='1';
+let curPlayer = 0;        // 0 ou 1
+let pScores = [0,0];
+let pXp = [0,0];
+let pNames = JSON.parse(localStorage.getItem('knipo_pnames')||'["Joueur 1","Joueur 2"]');
+
+function toggle2P(btn){
+  is2P=!is2P;localStorage.setItem('knipo_2p',is2P?'1':'0');
+  if(btn){btn.classList.toggle('on',is2P);}
+  refresh2PLabel();
+  // Si on passe en mode 2P et qu'on n'a jamais nommé les joueurs, on demande
+  if(is2P && (!pNames[0]||pNames[0]==='Joueur 1')){
+    setTimeout(promptPlayerNames,180);
+  } else if(is2P){
+    if(typeof mascotSay==='function')mascotSay('🎮 Mode 2 joueurs activé !');
+  } else {
+    if(typeof mascotSay==='function')mascotSay({fr:'Mode solo 🦁',en:'Solo mode 🦁',it:'Modalità solo 🦁'}[lang]||'Solo');
+  }
+}
+
+function refresh2PLabel(){
+  const lbl=document.getElementById('tp-lbl');if(!lbl)return;
+  lbl.textContent = is2P ? '2P' : ({fr:'Solo',en:'Solo',it:'Solo'}[lang]||'Solo');
+  const tg=document.getElementById('tp-toggle');if(tg)tg.classList.toggle('on',is2P);
+}
+
+function promptPlayerNames(){
+  const labels = {
+    fr:{q1:'Nom du Joueur 1 ?',q2:'Nom du Joueur 2 ?',def1:'Joueur 1',def2:'Joueur 2'},
+    en:{q1:'Player 1 name?',q2:'Player 2 name?',def1:'Player 1',def2:'Player 2'},
+    it:{q1:'Nome Giocatore 1?',q2:'Nome Giocatore 2?',def1:'Giocatore 1',def2:'Giocatore 2'}
+  }[lang]||{};
+  const n1 = (prompt(labels.q1, pNames[0]||labels.def1) || labels.def1).slice(0,16);
+  const n2 = (prompt(labels.q2, pNames[1]||labels.def2) || labels.def2).slice(0,16);
+  pNames=[n1,n2];localStorage.setItem('knipo_pnames',JSON.stringify(pNames));
+}
+
+function reset2PScores(){
+  pScores=[0,0];pXp=[0,0];curPlayer=0;
+  // Cacher le scoreboard
+  const sb=document.getElementById('tp-scoreboard');if(sb)sb.innerHTML='';
+  const bg=document.getElementById('tp-badge-wrap');if(bg)bg.innerHTML='';
+}
+
+function show2PUI(){
+  if(!is2P){
+    const sb=document.getElementById('tp-scoreboard');if(sb)sb.innerHTML='';
+    const bg=document.getElementById('tp-badge-wrap');if(bg)bg.innerHTML='';
+    return;
+  }
+  const bg=document.getElementById('tp-badge-wrap');
+  if(bg){
+    const t={fr:'Tour de',en:'Turn of',it:'Turno di'}[lang]||'Tour de';
+    bg.innerHTML=`<div class="tp-badge ${curPlayer===0?'p1':'p2'}">${curPlayer===0?'🧒':'👧'} ${t} <strong>${pNames[curPlayer]}</strong></div>`;
+  }
+  const sb=document.getElementById('tp-scoreboard');
+  if(sb){
+    sb.innerHTML=`
+      <div class="tp-pscore p1 ${curPlayer===0?'active':''}">
+        <div class="tp-pname">🧒 ${pNames[0]}</div>
+        <div class="tp-pnum">${pScores[0]}</div>
+      </div>
+      <div class="tp-vs">VS</div>
+      <div class="tp-pscore p2 ${curPlayer===1?'active':''}">
+        <div class="tp-pname">👧 ${pNames[1]}</div>
+        <div class="tp-pnum">${pScores[1]}</div>
+      </div>`;
+  }
+}
+
+function next2PTurn(){
+  curPlayer = curPlayer===0?1:0;
+  show2PUI();
+}
+
+// ============================================================
+// MODAL ÂGE (changement à tout moment)
+// ============================================================
+function openAgeModal(){
+  // Marquer la tranche actuelle
+  document.querySelectorAll('#age-modal-bg .age-btn').forEach(b=>{
+    b.classList.toggle('on', b.dataset.age===userAge);
+  });
+  // Traduire
+  const tt={fr:{ti:'Choisis ton âge',de:'Les questions s\'adaptent à ton âge !',a1:'4 - 6 ans',s1:'Mode calme',a2:'7 - 9 ans',s2:'Aventurier',a3:'10 + ans',s3:'Expert',cl:'Fermer'},
+            en:{ti:'Choose your age',de:'Questions adapt to your age!',a1:'Age 4 - 6',s1:'Calm mode',a2:'Age 7 - 9',s2:'Adventurer',a3:'Age 10+',s3:'Expert',cl:'Close'},
+            it:{ti:'Scegli la tua età',de:'Le domande si adattano alla tua età!',a1:'4 - 6 anni',s1:'Calmo',a2:'7 - 9 anni',s2:'Avventuriero',a3:'10+ anni',s3:'Esperto',cl:'Chiudi'}}[lang]||{};
+  const setT=(id,v)=>{const e=document.getElementById(id);if(e&&v)e.textContent=v;};
+  setT('age-m-ti',tt.ti);setT('age-m-de',tt.de);
+  setT('age-m-1',tt.a1);setT('age-ms-1',tt.s1);
+  setT('age-m-2',tt.a2);setT('age-ms-2',tt.s2);
+  setT('age-m-3',tt.a3);setT('age-ms-3',tt.s3);
+  setT('age-m-close',tt.cl);
+  document.getElementById('age-modal-bg').className='modal-bg show';
+}
+function closeAgeModal(){document.getElementById('age-modal-bg').className='modal-bg';}
+function setAgeFromModal(v,btn){
+  setAge(v,null);
+  document.querySelectorAll('#age-modal-bg .age-btn').forEach(b=>b.classList.toggle('on', b.dataset.age===v));
+  // Petit feedback
+  if(typeof confettiBurst==='function')confettiBurst(true);
+  if(typeof mascotReact==='function')setTimeout(()=>mascotReact('hello'),200);
+  setTimeout(closeAgeModal,650);
+}
+function refreshAgeButton(){
+  const lbl=document.getElementById('age-pick-lbl');
+  if(!lbl)return;
+  const labels={'4-6':{fr:'4-6 ans',en:'4-6',it:'4-6'},'7-9':{fr:'7-9 ans',en:'7-9',it:'7-9'},'10+':{fr:'10+ ans',en:'10+',it:'10+'},'':{fr:'Âge',en:'Age',it:'Età'}};
+  const set=labels[userAge||''] || labels[''];
+  lbl.textContent=set[lang]||set.fr;
+}
+
+
+
+// ============================================================
+// LAUNCHERS PUZZLE — Memory Match + Mix Surprise
+// ============================================================
+function launchMemory(){
+  curMode='memory';
+  // Réinitialiser le 2P si activé pour ce mini-jeu
+  if(typeof show2PUI==='function')show2PUI();
+  showPage('page-puzzle');
+  const ti=document.getElementById('puz-ti');
+  if(ti)ti.textContent={fr:'🧠 Memory — paires',en:'🧠 Memory — pairs',it:'🧠 Memory — coppie'}[lang]||'Memory';
+  // Cacher les boutons feedback / next du puzzle classique
+  const pfb=document.getElementById('pfb');if(pfb)pfb.className='fb';
+  const pnx=document.getElementById('pnxtbtn');if(pnx)pnx.className='nxtbtn';
+  startMemory();
+}
+
+function launchMix(){
+  // Quiz mode mais en piochant dans tous les thèmes
+  curMode='quiz';curSubj='mix';curQ=0;score=0;xpSess=0;answered=false;streak=0;
+  if(typeof updateStreak==='function')updateStreak();
+  if(typeof reset2PScores==='function')reset2PScores();
+  if(typeof show2PUI==='function')show2PUI();
+  document.getElementById('qhead').style.background='rgba(255,228,210,.92)';
+  document.getElementById('qhi').textContent='🎲';
+  document.getElementById('qht').textContent={fr:'Mix Surprise',en:'Mix Surprise',it:'Mix Sorpresa'}[lang]||'Mix';
+  // renderQ utilise getAgePool(curSubj) → on patche la lecture pour 'mix'
+  renderQMix();
+  showPage('page-quiz');
+}
+
+function renderQMix(){
+  const pool=getPool('mix');
+  if(!pool.length){renderQ();return;}
+  if(!quizUsed.mix)quizUsed.mix=new Set();
+  if(quizUsed.mix.size>=pool.length)quizUsed.mix=new Set();
+  let idx;do{idx=Math.floor(Math.random()*pool.length);}while(quizUsed.mix.has(idx));
+  quizUsed.mix.add(idx);
+  const q=pool[idx];answered=false;
+  const dots=document.getElementById('dots');dots.innerHTML='';
+  const total=Math.min(pool.length,8);
+  for(let i=0;i<total;i++){const d=document.createElement('div');d.className='dot'+(i<curQ?' dn':i===curQ?' cr':'');dots.appendChild(d);}
+  currentCorrect=q.c;currentExp=q.x[lang]||q.x.fr;
+  document.getElementById('qem').textContent=q.e;
+  document.getElementById('qtx').textContent=q.q[lang]||q.q.fr;
+  // TTS button
+  const qtx=document.getElementById('qtx');if(qtx && qtx.parentNode){const old=qtx.parentNode.querySelector('.tts-btn');if(old)old.remove();const tts=makeTtsButton(()=>(q.q[lang]||q.q.fr));tts.style.display='block';qtx.parentNode.insertBefore(tts,qtx.nextSibling);}
+  document.getElementById('qhint').textContent=L().quiz.hint+' '+(q.h[lang]||q.h.fr);
+  const answers=q.a[lang]||q.a.fr;
+  const grid=document.getElementById('agrid');grid.innerHTML='';
+  const LETTERS=['A','B','C','D'];
+  answers.forEach((a,i)=>{const b=document.createElement('button');b.className='abtn';b.setAttribute('data-letter',LETTERS[i]||String(i+1));b.textContent=a;b.onclick=function(){pick(i,q.c,q.x[lang]||q.x.fr);};grid.appendChild(b);});
+  document.getElementById('fb').className='fb';document.getElementById('nxtbtn').className='nxtbtn';document.getElementById('nxtbtn').textContent=L().quiz.next;
+  startTimer();
+}
+
+// Patch nextQ pour gérer le mode 'mix'
+const _origNextQ = (typeof nextQ==='function')?nextQ:null;
+function nextQ(){
+  curQ++;
+  if(typeof is2P!=='undefined' && is2P && typeof next2PTurn==='function')next2PTurn();
+  let pool;
+  if(curSubj==='mix')pool=getPool('mix');
+  else pool=getAgePool(curSubj)||QDB.histoire;
+  if(curQ>=Math.min(pool.length,8)){
+    if(curSubj==='daily'){
+      completeDailyChallenge();
+      xpSess+=50;xpTotal+=50;updateXP();
+      setTimeout(()=>floatXP('+50 XP BONUS 🌟'),350);
+      updateDailyCard();
+      setTimeout(()=>showNotifPrompt(),2800);
+    } else if(curSubj!=='mix'){
+      completedTopics.add(curSubj);
+      localStorage.setItem('knipo_badges',JSON.stringify([...completedTopics]));
+    }
+    const total=Math.min(pool.length,8);
+    renderBadges();
+    showPage('page-success');
+    setTimeout(()=>{animateStats(score,total,xpSess);},80);
+    setTimeout(()=>confettiBurst(false),120);
+    playSound('levelup');
+  } else {
+    if(curSubj==='mix')renderQMix();
+    else renderQ();
+  }
+}
+
+// Mettre à jour les labels Memory + Mix selon la langue
+function refreshPuzzleLabels(){
+  const labs={
+    fr:{mem:'Memory',memSub:'Trouve les paires',mix:'Mix Surprise',mixSub:'Tous thèmes mélangés'},
+    en:{mem:'Memory',memSub:'Find the pairs',mix:'Mix Surprise',mixSub:'All themes mixed'},
+    it:{mem:'Memory',memSub:'Trova le coppie',mix:'Mix Sorpresa',mixSub:'Tutti i temi misti'}
+  }[lang]||{};
+  const set=(id,v)=>{const e=document.getElementById(id);if(e&&v)e.textContent=v;};
+  set('pt-mem',labs.mem);set('ps-mem',labs.memSub);
+  set('pt-mix',labs.mix);set('ps-mix',labs.mixSub);
+}
+
+
+// ============================================================
+// BOUTIQUE MASCOTTE — Accessoires achetables avec XP
+// ============================================================
+const SHOP_ITEMS = [
+  {id:'none', em:'', cost:0, n:{fr:'Sans',en:'None',it:'Niente'}},
+  {id:'crown', em:'👑', cost:50, n:{fr:'Couronne',en:'Crown',it:'Corona'}},
+  {id:'cap', em:'🧢', cost:30, n:{fr:'Casquette',en:'Cap',it:'Berretto'}},
+  {id:'tophat', em:'🎩', cost:80, n:{fr:'Haut-de-forme',en:'Top hat',it:'Cilindro'}},
+  {id:'glasses', em:'🕶️', cost:60, n:{fr:'Lunettes',en:'Glasses',it:'Occhiali'}},
+  {id:'partyhat', em:'🥳', cost:40, n:{fr:'Fête',en:'Party',it:'Festa'}},
+  {id:'wreath', em:'🌿', cost:50, n:{fr:'Couronne nature',en:'Wreath',it:'Corona natura'}},
+  {id:'graduate', em:'🎓', cost:120, n:{fr:'Diplôme',en:'Graduate',it:'Laurea'}},
+  {id:'star', em:'⭐', cost:200, n:{fr:'Étoile star',en:'Star',it:'Stella'}},
+  {id:'royalty', em:'💎', cost:400, n:{fr:'Royal',en:'Royal',it:'Reale'}},
+  {id:'rasta', em:'🇿🇦', cost:80, n:{fr:'Patriote',en:'Patriot',it:'Patriota'}},
+  {id:'safari', em:'🪖', cost:90, n:{fr:'Safari',en:'Safari',it:'Safari'}}
+];
+
+let mascotName = localStorage.getItem('knipo_mname') || 'Kani';
+let mascotAcc = localStorage.getItem('knipo_macc') || 'none';
+let purchasedAcc = new Set(JSON.parse(localStorage.getItem('knipo_macc_owned')||'["none"]'));
+
+function getMascotBaseEmoji(){
+  // Réutilise getMascotEmoji() existant pour le niveau
+  return (typeof getMascotEmoji==='function')?getMascotEmoji():'🦁';
+}
+function getEquippedAccEmoji(){
+  const item = SHOP_ITEMS.find(it=>it.id===mascotAcc);
+  return (item && item.em) ? item.em : '';
+}
+
+function applyMascotAccessory(){
+  // Mascotte flottante : accessoire en haut
+  const m = document.getElementById('mascot-floating');
+  if(!m)return;
+  const base = getMascotBaseEmoji();
+  const acc = getEquippedAccEmoji();
+  if(acc){
+    m.innerHTML = `<span style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:24px;pointer-events:none">${acc}</span>${base}`;
+    m.style.overflow='visible';
+  } else {
+    m.textContent = base;
+  }
+}
+
+// Wrap refreshMascotEmoji pour aussi appliquer l'accessoire
+const _origRefresh = (typeof refreshMascotEmoji==='function')?refreshMascotEmoji:null;
+refreshMascotEmoji = function(){
+  if(_origRefresh)_origRefresh();
+  applyMascotAccessory();
+};
+
+function openShop(){
+  renderShop();
+  document.getElementById('shop-bg').className='shop-bg show';
+  const inp = document.getElementById('shop-name-input');
+  if(inp){inp.value = (mascotName==='Kani' ? '' : mascotName);}
+  const uinp = document.getElementById('shop-username-input');
+  if(uinp){uinp.value = userName || '';}
+}
+function closeShop(){document.getElementById('shop-bg').className='shop-bg';}
+
+function renderShop(){
+  const labels={
+    fr:{ti:'🎩 Habille ta mascotte',hname:'📝 Donne-lui un nom',hacc:'🎩 Accessoires',equipped:'Équipé',locked:'XP requis',buy:'Acheter',free:'Gratuit'},
+    en:{ti:'🎩 Dress your mascot',hname:'📝 Give it a name',hacc:'🎩 Accessories',equipped:'Equipped',locked:'XP needed',buy:'Buy',free:'Free'},
+    it:{ti:'🎩 Vesti la mascotte',hname:'📝 Dagli un nome',hacc:'🎩 Accessori',equipped:'Equipaggiato',locked:'XP richiesto',buy:'Compra',free:'Gratis'}
+  }[lang]||{};
+  const set=(id,v)=>{const e=document.getElementById(id);if(e&&v)e.textContent=v;};
+  set('shop-ti',labels.ti);set('shop-h-name',labels.hname);set('shop-h-acc',labels.hacc);
+  document.getElementById('shop-xp').textContent = (typeof xpTotal!=='undefined')?xpTotal:0;
+  // Preview
+  const prev = document.getElementById('shop-preview');
+  const acc = getEquippedAccEmoji();
+  if(prev){
+    prev.innerHTML = `${acc?'<span class="acc">'+acc+'</span>':''}<span class="base">${getMascotBaseEmoji()}</span>`;
+  }
+  document.getElementById('shop-prevname').textContent = mascotName || 'Kani';
+  document.getElementById('shop-name-input').placeholder = mascotName || 'Kani';
+  // Items grid
+  const grid = document.getElementById('shop-grid');
+  grid.innerHTML='';
+  SHOP_ITEMS.forEach(it=>{
+    const owned = purchasedAcc.has(it.id);
+    const equipped = mascotAcc === it.id;
+    const canAfford = (typeof xpTotal!=='undefined' && xpTotal >= it.cost);
+    const locked = !owned && !canAfford;
+    const div = document.createElement('div');
+    div.className = 'shop-item' + (equipped?' equipped':'') + (locked?' locked':'');
+    let costLabel='';
+    if(it.cost===0)costLabel=`<div class="shop-cost free">${labels.free||'Gratis'}</div>`;
+    else if(owned)costLabel=`<div class="shop-cost free">✓</div>`;
+    else costLabel=`<div class="shop-cost">${it.cost} XP</div>`;
+    div.innerHTML = (equipped?`<div class="shop-equipped-tag">${labels.equipped}</div>`:'')+
+      `<span class="shop-em">${it.em||'🚫'}</span>`+
+      `<div class="shop-name">${it.n[lang]||it.n.fr}</div>${costLabel}`;
+    div.onclick = ()=>handleShopClick(it,owned,locked);
+    grid.appendChild(div);
+  });
+}
+
+function handleShopClick(item,owned,locked){
+  if(locked){
+    // Pas assez d'XP
+    if(typeof mascotSay==='function'){
+      const msgs={fr:'Continue à apprendre pour gagner des XP ! 💪',en:'Keep learning to earn XP! 💪',it:'Continua a imparare per guadagnare XP! 💪'};
+      mascotSay(msgs[lang]||msgs.fr,2500);
+    }
+    if(navigator.vibrate)navigator.vibrate([20,30,20]);
+    return;
+  }
+  if(!owned && item.cost>0){
+    // Achat
+    xpTotal -= item.cost;
+    if(typeof updateXP==='function')updateXP();
+    purchasedAcc.add(item.id);
+    localStorage.setItem('knipo_macc_owned',JSON.stringify([...purchasedAcc]));
+    if(typeof playSound==='function')playSound('correct');
+    if(typeof confettiBurst==='function')confettiBurst(true);
+    showBuyToast({fr:'Acheté ! ✨',en:'Purchased! ✨',it:'Acquistato! ✨'}[lang]||'Acheté !');
+  }
+  // Équiper
+  mascotAcc = item.id;
+  localStorage.setItem('knipo_macc',item.id);
+  applyMascotAccessory();
+  if(navigator.vibrate)navigator.vibrate(30);
+  renderShop();
+}
+
+function showBuyToast(msg){
+  const t=document.createElement('div');t.className='toast-buy';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),1700);
+}
+
+function setMascotName(v){
+  v = (v||'').trim().slice(0,14);
+  mascotName = v || 'Kani';
+  localStorage.setItem('knipo_mname',mascotName);
+  document.getElementById('shop-prevname').textContent = mascotName;
+}
+
+
+
+// ============================================================
+// PREMIUM_QDB — Contenu premium réel (déblocable via code KNIPO24 / PREMIUM)
+// 5 thèmes exclusifs × 8 questions = 40 questions premium
+// ============================================================
+const PREMIUM_QDB = {
+  empires:[
+    {e:'🏰',q:{fr:"Quel royaume africain rivalisa avec Rome au 4e siècle ?",en:"Which African kingdom rivaled Rome in the 4th century?",it:"Quale regno africano rivaleggiò con Roma nel 4° secolo?"},h:{fr:"En Éthiopie/Érythrée actuelles",en:"Today's Ethiopia/Eritrea",it:"Attuali Etiopia/Eritrea"},a:{fr:['Empire du Mali','Royaume d\'Aksoum','Empire Songhaï','Royaume du Kongo'],en:['Mali Empire','Kingdom of Aksum','Songhai Empire','Kingdom of Kongo'],it:['Impero del Mali','Regno di Aksum','Impero Songhai','Regno del Kongo']},c:1,x:{fr:"Le Royaume d'Aksoum frappait sa propre monnaie d'or et fut l'un des 4 grands empires mondiaux !",en:"The Kingdom of Aksum minted its own gold coins and was one of the 4 great world empires!",it:"Il Regno di Aksum coniava la propria moneta d'oro ed era uno dei 4 grandi imperi mondiali!"}},
+    {e:'👑',q:{fr:"Qui était la 'Reine de Saba' ?",en:"Who was the 'Queen of Sheba'?",it:"Chi era la 'Regina di Saba'?"},h:{fr:"Voyageait en Israël avec de l'or",en:"Traveled to Israel with gold",it:"Viaggiò in Israele con l'oro"},a:{fr:['Reine d\'Égypte','Reine d\'un royaume africain antique','Reine du Mali','Reine du Maroc'],en:['Queen of Egypt','Queen of an ancient African kingdom','Queen of Mali','Queen of Morocco'],it:['Regina d\'Egitto','Regina di un antico regno africano','Regina del Mali','Regina del Marocco']},c:1,x:{fr:"La Reine de Saba régnait sur un royaume africain immensément riche, identifié à l'Éthiopie ou au Yémen ancien.",en:"The Queen of Sheba ruled an immensely rich African kingdom, identified with ancient Ethiopia or Yemen.",it:"La Regina di Saba regnava su un regno africano molto ricco, identificato con l'antica Etiopia o lo Yemen."}},
+    {e:'⚔️',q:{fr:"L'Empire Songhaï a atteint son apogée sous quel souverain ?",en:"Who led the Songhai Empire at its peak?",it:"Chi guidò l'Impero Songhai al suo apice?"},h:{fr:"Au 16e siècle",en:"In the 16th century",it:"Nel 16° secolo"},a:{fr:['Sonni Ali Ber','Mansa Musa','Askia Mohammed','Sundiata'],en:['Sonni Ali Ber','Mansa Musa','Askia Mohammed','Sundiata'],it:['Sonni Ali Ber','Mansa Musa','Askia Mohammed','Sundiata']},c:2,x:{fr:"Askia Mohammed (1493-1528) fit du Songhaï le plus grand empire d'Afrique de l'Ouest. Tombouctou était son joyau.",en:"Askia Mohammed (1493-1528) made Songhai the largest West African empire. Timbuktu was its jewel.",it:"Askia Mohammed (1493-1528) fece dei Songhai il più grande impero dell'Africa occidentale."}},
+    {e:'🏛️',q:{fr:"Le Grand Zimbabwe est célèbre pour quoi ?",en:"What is Great Zimbabwe famous for?",it:"Per cosa è famoso il Grande Zimbabwe?"},h:{fr:"Bâti SANS ciment au 11e s.",en:"Built WITHOUT cement, 11th c.",it:"Costruito SENZA cemento, 11° s."},a:{fr:['Pyramides en or','Murs en pierre sans mortier','Tombes royales','Bibliothèques'],en:['Gold pyramids','Mortarless stone walls','Royal tombs','Libraries'],it:['Piramidi d\'oro','Muri in pietra senza malta','Tombe reali','Biblioteche']},c:1,x:{fr:"Des murs immenses en pierre, parfaitement assemblés sans mortier — un chef-d'œuvre architectural d'Afrique australe !",en:"Massive stone walls perfectly fitted without mortar — an architectural masterpiece of Southern Africa!",it:"Enormi muri in pietra perfettamente assemblati senza malta — un capolavoro architettonico dell'Africa meridionale!"}},
+    {e:'📜',q:{fr:"Quelle ville fut le centre intellectuel de l'Afrique de l'Ouest médiévale ?",en:"Which city was medieval West Africa's intellectual center?",it:"Quale città fu il centro intellettuale dell'Africa occidentale medievale?"},h:{fr:"700 000 manuscrits",en:"700,000 manuscripts",it:"700.000 manoscritti"},a:{fr:['Lagos','Tombouctou','Dakar','Le Caire'],en:['Lagos','Timbuktu','Dakar','Cairo'],it:['Lagos','Timbuctù','Dakar','Il Cairo']},c:1,x:{fr:"Tombouctou comptait 25 000 étudiants venus de toute l'Afrique. Sa bibliothèque rivalisait avec Alexandrie !",en:"Timbuktu had 25,000 students from across Africa. Its library rivaled Alexandria!",it:"Timbuctù aveva 25.000 studenti da tutta l'Africa. La biblioteca rivaleggiava con Alessandria!"}},
+    {e:'🛕',q:{fr:"L'Empire du Bénin (Nigeria actuel) est célèbre pour ses...",en:"The Benin Empire (today's Nigeria) is famous for its...",it:"L'Impero del Benin (Nigeria) è famoso per i suoi..."},h:{fr:"Métal jaune travaillé",en:"Worked yellow metal",it:"Metallo giallo lavorato"},a:{fr:['Routes pavées','Bronzes royaux','Pyramides','Vaisseaux'],en:['Paved roads','Royal bronzes','Pyramids','Ships'],it:['Strade lastricate','Bronzi reali','Piramidi','Navi']},c:1,x:{fr:"Les Bronzes du Bénin sont parmi les œuvres d'art africaines les plus magnifiques. Pillés au 19e siècle, beaucoup sont encore dans des musées européens.",en:"The Benin Bronzes are among the most magnificent African artworks. Looted in the 19th century, many remain in European museums.",it:"I Bronzi del Benin sono tra le più magnifiche opere d'arte africane."}},
+    {e:'🌐',q:{fr:"Les villes-États swahili contrôlaient le commerce de quoi sur l'océan Indien ?",en:"What did Swahili city-states trade across the Indian Ocean?",it:"Cosa commerciavano le città-stato swahili?"},h:{fr:"Précieux et brillant",en:"Precious and shiny",it:"Prezioso e brillante"},a:{fr:['Pétrole','Or, ivoire et épices','Diamants','Pommes'],en:['Oil','Gold, ivory and spices','Diamonds','Apples'],it:['Petrolio','Oro, avorio e spezie','Diamanti','Mele']},c:1,x:{fr:"Or, ivoire et épices ! Mombasa, Zanzibar, Kilwa étaient des ports cosmopolites bien avant l'arrivée des Européens.",en:"Gold, ivory and spices! Mombasa, Zanzibar, Kilwa were cosmopolitan ports long before Europeans arrived.",it:"Oro, avorio e spezie! Mombasa, Zanzibar, Kilwa erano porti cosmopoliti."}},
+    {e:'⚜️',q:{fr:"Quel royaume africain a résisté à l'Empire Britannique pendant 100 ans ?",en:"Which African kingdom resisted the British Empire for 100 years?",it:"Quale regno africano resistette all'Impero Britannico per 100 anni?"},h:{fr:"Ghana actuel, 19e siècle",en:"Today's Ghana, 19th c.",it:"Ghana attuale, 19° secolo"},a:{fr:['Ashanti','Zoulou','Buganda','Mossi'],en:['Ashanti','Zulu','Buganda','Mossi'],it:['Ashanti','Zulu','Buganda','Mossi']},c:0,x:{fr:"L'Empire Ashanti a livré 4 grandes guerres aux Britanniques entre 1824 et 1900. Yaa Asantewaa, reine guerrière, mena la dernière révolte !",en:"The Ashanti Empire fought 4 major wars with the British between 1824 and 1900. Yaa Asantewaa, warrior queen, led the last revolt!",it:"L'Impero Ashanti combatté 4 grandi guerre contro gli inglesi. Yaa Asantewaa guidò l'ultima rivolta!"}}
+  ],
+  mythes:[
+    {e:'🕷️',q:{fr:"Anansi est un personnage célèbre du folklore africain. Que représente-t-il ?",en:"Anansi is famous in African folklore. What is he?",it:"Anansi è famoso nel folklore africano. Cos'è?"},h:{fr:"8 pattes",en:"8 legs",it:"8 zampe"},a:{fr:['Un lion','Une araignée','Un dragon','Un aigle'],en:['A lion','A spider','A dragon','An eagle'],it:['Un leone','Un ragno','Un drago','Un\'aquila']},c:1,x:{fr:"Anansi l'araignée rusée est un héros conteur. Ses histoires ont voyagé jusqu'aux Caraïbes avec les esclaves.",en:"Anansi the clever spider is a storytelling hero. His tales traveled to the Caribbean with the enslaved.",it:"Anansi il ragno furbo è un eroe narratore."}},
+    {e:'🦁',q:{fr:"Dans la mythologie zoulou, le créateur du monde s'appelle...",en:"In Zulu mythology, the creator is called...",it:"Nella mitologia zulu, il creatore si chiama..."},h:{fr:"Le 'Premier être'",en:"'First being'",it:"'Primo essere'"},a:{fr:['Anansi','Unkulunkulu','Mawu','Eshu'],en:['Anansi','Unkulunkulu','Mawu','Eshu'],it:['Anansi','Unkulunkulu','Mawu','Eshu']},c:1,x:{fr:"Unkulunkulu (Zoulou) signifie 'le Très Ancien' — le créateur du monde et des humains.",en:"Unkulunkulu (Zulu) means 'the Most Ancient' — creator of world and humans.",it:"Unkulunkulu (Zulu) significa 'il Molto Antico' — creatore del mondo."}},
+    {e:'🌙',q:{fr:"Pour les Yorubas, qui est Ogun ?",en:"For the Yoruba, who is Ogun?",it:"Per gli Yoruba, chi è Ogun?"},h:{fr:"Forge et guerre",en:"Forge and war",it:"Fucina e guerra"},a:{fr:['Dieu de l\'amour','Dieu du fer et de la guerre','Déesse de l\'eau','Dieu du vent'],en:['God of love','God of iron and war','Goddess of water','God of wind'],it:['Dio dell\'amore','Dio del ferro e della guerra','Dea dell\'acqua','Dio del vento']},c:1,x:{fr:"Ogun est le dieu yoruba du fer, de la guerre et du travail des métaux. Sa religion a survécu jusqu'au Brésil et à Cuba !",en:"Ogun is the Yoruba god of iron, war, and metalwork. His religion survives in Brazil and Cuba!",it:"Ogun è il dio yoruba del ferro e della guerra. La sua religione sopravvive in Brasile e Cuba!"}},
+    {e:'🌊',q:{fr:"Mami Wata est une déesse de quoi ?",en:"Mami Wata is a goddess of what?",it:"Mami Wata è dea di cosa?"},h:{fr:"Liée à l'océan",en:"Linked to the ocean",it:"Legata all'oceano"},a:{fr:['Du feu','De l\'eau','Du soleil','De la guerre'],en:['Fire','Water','Sun','War'],it:['Fuoco','Acqua','Sole','Guerra']},c:1,x:{fr:"Mami Wata est la déesse de l'eau et de la beauté, vénérée dans toute l'Afrique de l'Ouest et la diaspora.",en:"Mami Wata is the goddess of water and beauty, venerated across West Africa and the diaspora.",it:"Mami Wata è la dea dell'acqua e della bellezza."}},
+    {e:'🦓',q:{fr:"Qu'est-ce qui explique pourquoi le zèbre a des rayures, dans les contes ?",en:"In folktales, why does the zebra have stripes?",it:"Nelle fiabe, perché la zebra ha le strisce?"},h:{fr:"Cause magique ou accidentelle",en:"Magical or accidental cause",it:"Causa magica o accidentale"},a:{fr:['Un peintre','Un combat avec un babouin','Une malédiction','Le soleil'],en:['A painter','A fight with a baboon','A curse','The sun'],it:['Un pittore','Lite con un babbuino','Una maledizione','Il sole']},c:1,x:{fr:"Selon un conte, le zèbre se battit contre un babouin pour une mare. Il tomba dans le feu et garda les rayures pour l'éternité !",en:"In one tale, the zebra fought a baboon for a waterhole, fell in fire, and kept the stripes forever!",it:"Una fiaba racconta che la zebra litigò con un babbuino e cadde nel fuoco, mantenendo le strisce."}},
+    {e:'🐍',q:{fr:"Dans la mythologie dahoméenne, Aido-Hwedo est :",en:"In Dahomean myth, Aido-Hwedo is:",it:"Nella mitologia dahomey, Aido-Hwedo è:"},h:{fr:"Reptile cosmique",en:"Cosmic reptile",it:"Rettile cosmico"},a:{fr:['Un dieu chat','Un serpent arc-en-ciel cosmique','Un esprit du feu','Un poisson géant'],en:['A cat god','A cosmic rainbow serpent','A fire spirit','A giant fish'],it:['Un dio gatto','Un serpente arcobaleno cosmico','Uno spirito del fuoco','Un pesce gigante']},c:1,x:{fr:"Aido-Hwedo est le serpent arc-en-ciel qui soutient la Terre dans les mains du créateur. Quand il bouge, il y a des tremblements de terre !",en:"Aido-Hwedo is the rainbow serpent supporting Earth. When it moves, earthquakes happen!",it:"Aido-Hwedo è il serpente arcobaleno che sostiene la Terra."}},
+    {e:'☄️',q:{fr:"Quel personnage de conte trompe souvent les autres animaux pour s'en sortir ?",en:"Which folktale character often tricks others?",it:"Quale personaggio inganna spesso gli altri animali?"},h:{fr:"Petit et rusé",en:"Small and cunning",it:"Piccolo e furbo"},a:{fr:['L\'éléphant','Le lièvre','Le lion','Le crocodile'],en:['Elephant','Hare','Lion','Crocodile'],it:['Elefante','Lepre','Leone','Coccodrillo']},c:1,x:{fr:"Le lièvre rusé (Cunnie Rabbit en Sierra Leone) est un héros 'trickster' — il a inspiré Brer Rabbit en Amérique !",en:"The clever hare (Cunnie Rabbit) is a trickster hero — he inspired Brer Rabbit in America!",it:"La lepre furba è un eroe trickster — ha ispirato Brer Rabbit in America!"}},
+    {e:'🌋',q:{fr:"Quel rôle ont les masques dans les cérémonies africaines ?",en:"What role do masks play in African ceremonies?",it:"Che ruolo hanno le maschere nelle cerimonie africane?"},h:{fr:"Pas que décoratifs",en:"Not just decorative",it:"Non solo decorative"},a:{fr:['Décoration','Communication avec les esprits','Cacher la peur','Costumes pour enfants'],en:['Decoration','Communication with spirits','Hide fear','Kids costumes'],it:['Decorazione','Comunicare con spiriti','Nascondere la paura','Costumi per bimbi']},c:1,x:{fr:"Les masques permettent au porteur d'incarner un esprit ancestral. Ils sont sacrés et chargés de pouvoir spirituel.",en:"Masks let the wearer embody an ancestor spirit. They're sacred and spiritually powerful.",it:"Le maschere permettono di incarnare uno spirito ancestrale."}}
+  ],
+  maths2:[
+    {e:'🧮',q:{fr:"Combien font 12 × 12 ?",en:"What is 12 × 12?",it:"Quanto fa 12 × 12?"},h:{fr:"Carré de 12",en:"Square of 12",it:"Quadrato di 12"},a:{fr:['124','144','148','152'],en:['124','144','148','152'],it:['124','144','148','152']},c:1,x:{fr:"12 × 12 = 144 ! C'est aussi 144 = 12² (le carré de 12).",en:"12 × 12 = 144! Also 12² = 144 (square of 12).",it:"12 × 12 = 144! Anche 12² = 144."}},
+    {e:'➗',q:{fr:"Combien font 156 ÷ 12 ?",en:"What is 156 ÷ 12?",it:"Quanto fa 156 ÷ 12?"},h:{fr:"Pense à 12 × ?",en:"Think 12 × ?",it:"Pensa 12 × ?"},a:{fr:['11','12','13','14'],en:['11','12','13','14'],it:['11','12','13','14']},c:2,x:{fr:"156 ÷ 12 = 13 ! Vérifie : 13 × 12 = 156 ✓",en:"156 ÷ 12 = 13! Check: 13 × 12 = 156 ✓",it:"156 ÷ 12 = 13!"}},
+    {e:'🔢',q:{fr:"Combien font 25% de 80 ?",en:"What is 25% of 80?",it:"Quanto è il 25% di 80?"},h:{fr:"Le quart",en:"A quarter",it:"Un quarto"},a:{fr:['15','20','25','30'],en:['15','20','25','30'],it:['15','20','25','30']},c:1,x:{fr:"25% = 1/4. 80 ÷ 4 = 20 ! Les pourcentages sont des fractions de 100.",en:"25% = 1/4. 80 ÷ 4 = 20! Percentages are fractions of 100.",it:"25% = 1/4. 80 ÷ 4 = 20!"}},
+    {e:'📐',q:{fr:"Combien d'angles a un triangle ?",en:"How many angles does a triangle have?",it:"Quanti angoli ha un triangolo?"},h:{fr:"Comme son nom...",en:"Like its name...",it:"Come il suo nome..."},a:{fr:['2','3','4','5'],en:['2','3','4','5'],it:['2','3','4','5']},c:1,x:{fr:"3 angles ! La somme des 3 angles d'un triangle = 180°. Toujours, partout dans le monde.",en:"3 angles! The 3 angles of a triangle sum to 180°. Always, everywhere.",it:"3 angoli! La somma dei 3 angoli di un triangolo = 180°."}},
+    {e:'⏰',q:{fr:"Combien de minutes y a-t-il dans 2h30 ?",en:"How many minutes in 2h30?",it:"Quanti minuti in 2h30?"},h:{fr:"60 par heure",en:"60 per hour",it:"60 per ora"},a:{fr:['90','120','150','180'],en:['90','120','150','180'],it:['90','120','150','180']},c:2,x:{fr:"2h30 = 120 + 30 = 150 minutes ! 1h = 60 min, donc 2h = 120 min.",en:"2h30 = 120 + 30 = 150 minutes! 1h = 60 min.",it:"2h30 = 120 + 30 = 150 minuti!"}},
+    {e:'💰',q:{fr:"Une mangue coûte 0,75€. Combien pour 4 mangues ?",en:"A mango costs €0.75. Cost for 4?",it:"Un mango costa 0,75€. Costo per 4?"},h:{fr:"4 fois 0,75",en:"4 × 0.75",it:"4 × 0,75"},a:{fr:['2,50€','2,75€','3,00€','3,50€'],en:['€2.50','€2.75','€3.00','€3.50'],it:['2,50€','2,75€','3,00€','3,50€']},c:2,x:{fr:"4 × 0,75€ = 3,00€ ! Pratique pour faire les courses au marché.",en:"4 × €0.75 = €3.00! Useful at the market.",it:"4 × 0,75€ = 3,00€!"}},
+    {e:'🎂',q:{fr:"L'aire d'un carré de 6m de côté = ?",en:"Area of a 6m square = ?",it:"Area di un quadrato di 6m = ?"},h:{fr:"Côté × côté",en:"Side × side",it:"Lato × lato"},a:{fr:['12 m²','24 m²','36 m²','48 m²'],en:['12 m²','24 m²','36 m²','48 m²'],it:['12 m²','24 m²','36 m²','48 m²']},c:2,x:{fr:"6 × 6 = 36 m² ! L'aire d'un carré, c'est le côté multiplié par lui-même.",en:"6 × 6 = 36 m²! Square area = side × side.",it:"6 × 6 = 36 m²!"}},
+    {e:'🌐',q:{fr:"Si 2 pays produisent 800 t et 600 t de chocolat, total ?",en:"If 2 countries produce 800t and 600t of chocolate, total?",it:"Se 2 paesi producono 800 t e 600 t di cioccolato, totale?"},h:{fr:"800 + 600",en:"800 + 600",it:"800 + 600"},a:{fr:['1 200 t','1 400 t','1 600 t','1 800 t'],en:['1,200 t','1,400 t','1,600 t','1,800 t'],it:['1.200 t','1.400 t','1.600 t','1.800 t']},c:1,x:{fr:"800 + 600 = 1 400 tonnes ! La Côte d'Ivoire est le 1er producteur mondial de cacao.",en:"800 + 600 = 1,400 tons! Ivory Coast is the world's top cocoa producer.",it:"800 + 600 = 1.400 tonnellate! La Costa d'Avorio è il primo produttore mondiale di cacao."}}
+  ],
+  langues:[
+    {e:'🇰🇪',q:{fr:"Comment dit-on 'bonjour' en swahili ?",en:"How to say 'hello' in Swahili?",it:"Come si dice 'ciao' in swahili?"},h:{fr:"Très utilisé en Afrique de l'Est",en:"Common in East Africa",it:"Comune in Africa orientale"},a:{fr:['Jambo','Salam','Akwaaba','Sannu'],en:['Jambo','Salam','Akwaaba','Sannu'],it:['Jambo','Salam','Akwaaba','Sannu']},c:0,x:{fr:"Jambo ! Le swahili est parlé par 200 millions de personnes au Kenya, Tanzanie, Ouganda...",en:"Jambo! Swahili is spoken by 200M in Kenya, Tanzania, Uganda...",it:"Jambo! Lo swahili è parlato da 200 milioni in Kenya, Tanzania, Uganda..."}},
+    {e:'🇸🇳',q:{fr:"Comment dit-on 'merci' en wolof (Sénégal) ?",en:"How to say 'thank you' in Wolof (Senegal)?",it:"Come si dice 'grazie' in wolof (Senegal)?"},h:{fr:"Commence par J",en:"Starts with J",it:"Inizia con J"},a:{fr:['Asante','Jërejëf','Mèsi','Salam'],en:['Asante','Jërejëf','Mèsi','Salam'],it:['Asante','Jërejëf','Mèsi','Salam']},c:1,x:{fr:"Jërejëf ! Le wolof est parlé par 12 millions de personnes au Sénégal et en Gambie.",en:"Jërejëf! Wolof is spoken by 12M people in Senegal and Gambia.",it:"Jërejëf! Il wolof è parlato da 12 milioni in Senegal e Gambia."}},
+    {e:'🇿🇦',q:{fr:"Que veut dire 'sawubona' en zoulou ?",en:"What does 'sawubona' mean in Zulu?",it:"Cosa significa 'sawubona' in zulu?"},h:{fr:"Salutation chaleureuse",en:"Warm greeting",it:"Saluto caloroso"},a:{fr:['Au revoir','Je te vois (bonjour)','J\'ai faim','Pardon'],en:['Goodbye','I see you (hello)','I\'m hungry','Sorry'],it:['Arrivederci','Ti vedo (ciao)','Ho fame','Scusa']},c:1,x:{fr:"'Je te vois' = bonjour ! En zoulou, dire bonjour c'est reconnaître l'humanité de l'autre. La réponse est 'Yebo, sawubona'.",en:"'I see you' = hello! In Zulu, greeting means recognizing the other's humanity.",it:"'Ti vedo' = ciao! In zulu salutare significa riconoscere l'umanità dell'altro."}},
+    {e:'🇪🇹',q:{fr:"Quelle est la langue officielle d'Éthiopie ?",en:"What's the official language of Ethiopia?",it:"Qual è la lingua ufficiale dell'Etiopia?"},h:{fr:"Alphabet unique 'Ge'ez'",en:"Unique 'Ge'ez' alphabet",it:"Alfabeto 'Ge'ez' unico"},a:{fr:['Arabe','Amharique','Anglais','Swahili'],en:['Arabic','Amharic','English','Swahili'],it:['Arabo','Amarico','Inglese','Swahili']},c:1,x:{fr:"L'amharique a son propre alphabet (Ge'ez) avec 230+ caractères. C'est l'un des plus anciens alphabets actifs au monde !",en:"Amharic has its own alphabet (Ge'ez) with 230+ characters. One of the oldest active alphabets in the world!",it:"L'amarico ha un alfabeto proprio (Ge'ez) con oltre 230 caratteri."}},
+    {e:'🌍',q:{fr:"Combien de langues sont parlées en Afrique ?",en:"How many languages are spoken in Africa?",it:"Quante lingue si parlano in Africa?"},h:{fr:"Vraiment beaucoup !",en:"A LOT!",it:"Tantissime!"},a:{fr:['Environ 200','Environ 500','Environ 2 000','Environ 5 000'],en:['About 200','About 500','About 2,000','About 5,000'],it:['Circa 200','Circa 500','Circa 2.000','Circa 5.000']},c:2,x:{fr:"Plus de 2 000 langues ! L'Afrique abrite 30% des langues du monde — c'est le continent le plus diversifié linguistiquement.",en:"Over 2,000! Africa has 30% of the world's languages — most linguistically diverse continent.",it:"Oltre 2.000! L'Africa ha il 30% delle lingue del mondo."}},
+    {e:'🇲🇦',q:{fr:"Quelle langue est parlée par 100 millions de personnes en Afrique du Nord ?",en:"Which language is spoken by 100M in North Africa?",it:"Quale lingua è parlata da 100 milioni in Nord Africa?"},h:{fr:"Au Maghreb",en:"In the Maghreb",it:"Nel Maghreb"},a:{fr:['Le berbère','L\'arabe','Le français','L\'anglais'],en:['Berber','Arabic','French','English'],it:['Berbero','Arabo','Francese','Inglese']},c:1,x:{fr:"L'arabe est la langue principale au Maroc, Algérie, Tunisie, Libye et Égypte. Le berbère/amazigh est aussi très important.",en:"Arabic is the main language in Morocco, Algeria, Tunisia, Libya and Egypt.",it:"L'arabo è la lingua principale in Marocco, Algeria, Tunisia, Libia ed Egitto."}},
+    {e:'🎵',q:{fr:"Que signifie 'Hakuna Matata' en swahili ?",en:"What does 'Hakuna Matata' mean in Swahili?",it:"Cosa significa 'Hakuna Matata' in swahili?"},h:{fr:"Tu connais cette chanson !",en:"You know that song!",it:"Conosci questa canzone!"},a:{fr:['Bonjour','Pas de soucis','Bon appétit','Au revoir'],en:['Hello','No worries','Bon appétit','Goodbye'],it:['Ciao','Nessun problema','Buon appetito','Arrivederci']},c:1,x:{fr:"'Pas de soucis' ! Une vraie expression swahili popularisée par Le Roi Lion. Elle est utilisée tous les jours en Afrique de l'Est.",en:"'No worries'! A real Swahili expression made famous by The Lion King.",it:"'Nessun problema'! Un'espressione swahili popolare."}},
+    {e:'📜',q:{fr:"L'écriture la plus ancienne au monde a été inventée en...",en:"The world's oldest writing was invented in...",it:"La scrittura più antica del mondo fu inventata in..."},h:{fr:"Vallée du Nil",en:"Nile Valley",it:"Valle del Nilo"},a:{fr:['Chine','Égypte/Mésopotamie','Inde','Grèce'],en:['China','Egypt/Mesopotamia','India','Greece'],it:['Cina','Egitto/Mesopotamia','India','Grecia']},c:1,x:{fr:"Égypte ! Les hiéroglyphes ont 5 200 ans. L'Égypte ancienne est une civilisation africaine — on l'oublie souvent !",en:"Egypt! Hieroglyphs are 5,200 years old. Ancient Egypt is African civilization — often forgotten!",it:"Egitto! I geroglifici hanno 5.200 anni. L'antico Egitto è una civiltà africana!"}}
+  ],
+  heros:[
+    {e:'🦋',q:{fr:"Wangari Maathai, Prix Nobel de la Paix, a planté combien d'arbres ?",en:"Wangari Maathai, Nobel laureate, planted how many trees?",it:"Wangari Maathai, Nobel, ha piantato quanti alberi?"},h:{fr:"Au Kenya",en:"In Kenya",it:"In Kenya"},a:{fr:['1 million','10 millions','30 millions','51 millions'],en:['1 million','10 million','30 million','51 million'],it:['1 milione','10 milioni','30 milioni','51 milioni']},c:3,x:{fr:"51 millions d'arbres ! Wangari fonda le Mouvement Ceinture Verte. 1ère femme africaine Prix Nobel de la Paix (2004).",en:"51 million trees! Wangari founded the Green Belt Movement. First African woman to win the Nobel Peace Prize (2004).",it:"51 milioni di alberi! Wangari ha fondato il Movimento Cintura Verde."}},
+    {e:'⚡',q:{fr:"Qui est William Kamkwamba ?",en:"Who is William Kamkwamba?",it:"Chi è William Kamkwamba?"},h:{fr:"A construit une éolienne à 14 ans",en:"Built a windmill at age 14",it:"Costruì una pala eolica a 14 anni"},a:{fr:['Un footballeur','Un jeune Malawien inventeur','Un rappeur','Un président'],en:['A footballer','A young Malawian inventor','A rapper','A president'],it:['Un calciatore','Un giovane inventore malawiano','Un rapper','Un presidente']},c:1,x:{fr:"À 14 ans, William construisit une éolienne avec des déchets pour éclairer son village au Malawi. Son livre est devenu un film Netflix !",en:"At 14, William built a windmill from scrap to power his Malawian village. His book became a Netflix film!",it:"A 14 anni, William costruì una pala eolica con rifiuti per il suo villaggio."}},
+    {e:'🎤',q:{fr:"Miriam Makeba, surnommée 'Mama Africa', était :",en:"Miriam Makeba, 'Mama Africa', was a:",it:"Miriam Makeba, 'Mama Africa', era una:"},h:{fr:"Voix de la lutte anti-apartheid",en:"Voice of anti-apartheid",it:"Voce dell'anti-apartheid"},a:{fr:['Présidente','Chanteuse-militante','Sportive','Inventrice'],en:['President','Singer-activist','Athlete','Inventor'],it:['Presidente','Cantante-attivista','Atleta','Inventrice']},c:1,x:{fr:"Sud-Africaine, Miriam Makeba a chanté le combat contre l'apartheid à travers le monde — 1ère Africaine à gagner un Grammy (1965).",en:"South African Miriam Makeba sang against apartheid worldwide — 1st African to win a Grammy (1965).",it:"Sudafricana, Miriam Makeba cantò contro l'apartheid — 1ª africana a vincere un Grammy (1965)."}},
+    {e:'🦷',q:{fr:"Christiaan Barnard a réalisé la première opération mondiale de quoi ?",en:"Christiaan Barnard performed the world's first what?",it:"Christiaan Barnard fece il primo trapianto di cosa al mondo?"},h:{fr:"Organe vital",en:"Vital organ",it:"Organo vitale"},a:{fr:['Greffe de cerveau','Greffe de cœur','Greffe de poumon','Greffe de rein'],en:['Brain transplant','Heart transplant','Lung transplant','Kidney transplant'],it:['Trapianto cervello','Trapianto cuore','Trapianto polmone','Trapianto rene']},c:1,x:{fr:"En 1967, le sud-africain Christiaan Barnard réalisa la 1ère greffe de cœur humain au Cap. Une révolution médicale africaine !",en:"In 1967, South African Christiaan Barnard did the first human heart transplant in Cape Town.",it:"Nel 1967, il sudafricano Christiaan Barnard eseguì il primo trapianto di cuore umano."}},
+    {e:'🏃',q:{fr:"Eliud Kipchoge a battu le record du monde sur quelle distance ?",en:"Eliud Kipchoge holds the world record at what distance?",it:"Eliud Kipchoge detiene il record mondiale su quale distanza?"},h:{fr:"42 km !",en:"42 km!",it:"42 km!"},a:{fr:['100 m','5 km','Marathon','100 km'],en:['100 m','5 km','Marathon','100 km'],it:['100 m','5 km','Maratona','100 km']},c:2,x:{fr:"Le marathon ! Le Kényan Kipchoge est le premier humain à courir un marathon sous 2h (1:59:40 en 2019).",en:"The marathon! Kenyan Kipchoge is the first human under 2h (1:59:40 in 2019).",it:"La maratona! Il keniano Kipchoge è il primo a correre sotto le 2 ore."}},
+    {e:'📚',q:{fr:"Chinua Achebe est célèbre pour son roman :",en:"Chinua Achebe is famous for the novel:",it:"Chinua Achebe è famoso per il romanzo:"},h:{fr:"Sur la colonisation au Nigeria",en:"On colonization in Nigeria",it:"Sulla colonizzazione in Nigeria"},a:{fr:['Le Petit Prince','Things Fall Apart','1984','L\'Étranger'],en:['Little Prince','Things Fall Apart','1984','The Stranger'],it:['Il Piccolo Principe','Things Fall Apart','1984','Lo Straniero']},c:1,x:{fr:"'Things Fall Apart' (1958) est traduit en 50+ langues. Achebe est le père de la littérature africaine moderne.",en:"'Things Fall Apart' (1958) is translated into 50+ languages. Achebe is the father of modern African literature.",it:"'Things Fall Apart' (1958) è tradotto in 50+ lingue. Achebe è il padre della letteratura africana moderna."}},
+    {e:'🚀',q:{fr:"Quel pays africain a son agence spatiale active ?",en:"Which African country has an active space agency?",it:"Quale paese africano ha un'agenzia spaziale attiva?"},h:{fr:"Plusieurs ! Mais le 1er pionnier...",en:"Many! But the first pioneer...",it:"Tanti! Ma il primo pioniere..."},a:{fr:['Nigeria','Afrique du Sud','Égypte','Tous les trois'],en:['Nigeria','South Africa','Egypt','All three'],it:['Nigeria','Sudafrica','Egitto','Tutti e tre']},c:3,x:{fr:"Tous ! L'Afrique compte plus de 20 agences spatiales et a lancé plus de 50 satellites. L'Égypte fut pionnière dans les années 1990.",en:"All of them! Africa has 20+ space agencies and launched 50+ satellites.",it:"Tutti! L'Africa ha più di 20 agenzie spaziali e ha lanciato oltre 50 satelliti."}},
+    {e:'⚽',q:{fr:"Quel joueur africain a remporté le Ballon d'Or en 1995 ?",en:"Which African player won the Ballon d'Or in 1995?",it:"Quale giocatore africano vinse il Pallone d'Oro nel 1995?"},h:{fr:"Star libérienne",en:"Liberian star",it:"Stella liberiana"},a:{fr:['Drogba','George Weah','Eto\'o','Mané'],en:['Drogba','George Weah','Eto\'o','Mané'],it:['Drogba','George Weah','Eto\'o','Mané']},c:1,x:{fr:"George Weah ! Seul Africain Ballon d'Or, il est aussi devenu président du Liberia (2018-2024). Footballeur ET président !",en:"George Weah! Only African Ballon d'Or winner, became Liberia's president (2018-2024). Footballer AND president!",it:"George Weah! Unico africano Pallone d'Oro, è anche diventato presidente della Liberia."}}
+  ]
+};
+
+// Quand le code premium est entré → cette fonction marque tous les thèmes débloqués
+function activatePremiumContent(){
+  ['empires','mythes','maths2','langues','heros','ia2'].forEach(s=>UNLOCKED.add(s));
+  // Étendre QDB avec le contenu premium pour qu'il soit dispo dans Mix et autres pools
+  ['empires','mythes','maths2','langues','heros'].forEach(k=>{
+    if(PREMIUM_QDB[k] && !QDB['premium_'+k]){
+      QDB['premium_'+k] = PREMIUM_QDB[k];
+    }
+  });
+  localStorage.setItem('knipo_premium','1');
+  // Refresh badges, premium tab, etc.
+  if(typeof refreshPremiumUI==='function')refreshPremiumUI();
+}
+
+function refreshPremiumUI(){
+  const isPremium = UNLOCKED.has('empires');
+  // Marquer les locks
+  for(let i=0;i<6;i++){
+    const lk=document.getElementById('lk'+i);
+    if(lk){
+      if(isPremium){lk.textContent='✅';lk.className='unlk';}
+    }
+  }
+  // Si premium, ouvrir le contenu réel au lieu du taste
+  // (déjà géré par tryUnlock qui vérifie UNLOCKED.has)
+}
+
+// Hook : nombre de questions premium dans la modal
+function getPremiumQuestionCount(){
+  let n=0;
+  Object.values(PREMIUM_QDB).forEach(arr=>n+=arr.length);
+  return n;
+}
+
+// Override tryUnlock pour utiliser les vraies questions premium quand débloqué
+const _origTryUnlock = (typeof tryUnlock==='function')?tryUnlock:null;
+tryUnlock = function(section, idx){
+  if(UNLOCKED.has(section)){
+    // Lancer un quiz sur le contenu premium réel !
+    if(PREMIUM_QDB[section]){
+      curMode='quiz';curSubj='premium_'+section;curQ=0;score=0;xpSess=0;answered=false;streak=0;
+      if(typeof updateStreak==='function')updateStreak();
+      if(typeof reset2PScores==='function')reset2PScores();
+      if(typeof show2PUI==='function')show2PUI();
+      // Stocker dans QDB pour que getAgePool/renderQ marche
+      QDB['premium_'+section] = PREMIUM_QDB[section];
+      const labels={empires:'👑 Empires',mythes:'🌟 Mythes',maths2:'🧮 Maths+',langues:'🗣️ Langues',heros:'🦸 Héros'};
+      document.getElementById('qhead').style.background='linear-gradient(135deg,rgba(239,159,39,.18),rgba(255,255,255,.92))';
+      document.getElementById('qhi').textContent=(labels[section]||section).split(' ')[0];
+      document.getElementById('qht').textContent=(labels[section]||section).split(' ')[1]||section;
+      renderQ();
+      showPage('page-quiz');
+      if(typeof mascotSay==='function')mascotSay({fr:'Contenu Premium déverrouillé ! 👑',en:'Premium content unlocked! 👑',it:'Contenuto Premium sbloccato! 👑'}[lang]);
+      return;
+    }
+    if(typeof showClassicModal==='function')showClassicModal();
+    return;
+  }
+  if(_origTryUnlock)_origTryUnlock(section,idx);
+};
+
+// Override submitCode pour appeler activatePremiumContent
+const _origSubmit = (typeof submitCode==='function')?submitCode:null;
+submitCode = function(){
+  const code=document.getElementById('code-in').value.trim().toUpperCase();
+  if(CODES[code]){
+    activatePremiumContent();
+    closeModal();
+    if(typeof confettiBurst==='function')confettiBurst(false);
+    if(typeof playSound==='function')playSound('levelup');
+    if(typeof mascotSay==='function')setTimeout(()=>{
+      mascotSay({fr:'🎉 Premium activé ! Bienvenue !',en:'🎉 Premium activated! Welcome!',it:'🎉 Premium attivato! Benvenuto!'}[lang]||'Premium !',4000);
+    },300);
+  } else {
+    document.getElementById('m-err').className='modal-err show';
+    document.getElementById('code-in').value='';
+  }
+};
+
+// Patch getAgePool pour gérer les pools premium_*
+const _origGetAgePool = getAgePool;
+getAgePool = function(key){
+  if(key && key.startsWith && key.startsWith('premium_')){
+    return QDB[key] || PREMIUM_QDB[key.replace('premium_','')] || [];
+  }
+  // Si premium activé, l'âge n'affecte pas le contenu premium
+  return _origGetAgePool(key);
+};
+
+// Au démarrage, si premium déjà activé, le restaurer
+if(localStorage.getItem('knipo_premium')==='1'){
+  activatePremiumContent();
+}
+
+// ============================================================
+// CARTE — Lancement quiz avec retour automatique à la carte
+// ============================================================
+let _comeFromMap = false;
+function goMapTopic(subj){
+  _comeFromMap = true;
+  showIntro(subj);
+}
+
+// Wrap goHome pour retourner à l'onglet carte si on vient de là
+const _origGoHome = (typeof goHome==='function')?goHome:null;
+goHome = function(){
+  if(_origGoHome)_origGoHome();
+  if(_comeFromMap){
+    _comeFromMap = false;
+    // Activer l'onglet carte
+    setTimeout(()=>{
+      const tb = document.getElementById('tb-map');
+      if(tb)showTab('t-map', tb);
+    }, 50);
+  }
+};
+
+// ============================================================
+// CARTE D'AFRIQUE — Traductions des labels
+// ============================================================
+const MAP_LABELS={
+  fr:{h:'🗺️ Voyage en Afrique',sub:'Tape une région pour explorer son thème !',tip:'💡 6 régions, 6 aventures !',
+      pins:{mph:'Mali',mpn:'Congo',mpc:'Maths',mpl:'Sagesse',mpa:'Savane',mpg:'Sahara'}},
+  en:{h:'🗺️ Journey through Africa',sub:'Tap a region to explore its theme!',tip:'💡 6 regions, 6 adventures!',
+      pins:{mph:'Mali',mpn:'Congo',mpc:'Maths',mpl:'Wisdom',mpa:'Savanna',mpg:'Sahara'}},
+  it:{h:'🗺️ Viaggio in Africa',sub:'Tocca una regione per esplorare il suo tema!',tip:'💡 6 regioni, 6 avventure!',
+      pins:{mph:'Mali',mpn:'Congo',mpc:'Mate',mpl:'Saggezza',mpa:'Savana',mpg:'Sahara'}}
+};
+function refreshMapLabels(){
+  const m = MAP_LABELS[lang] || MAP_LABELS.fr;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('map-h',m.h);set('map-sub',m.sub);set('map-tip',m.tip);
+  Object.keys(m.pins).forEach(k=>set(k+'-tx',m.pins[k]));
+  // Tab label aussi
+  const tb=document.getElementById('tb-map');if(tb)tb.textContent={fr:'🗺️ Carte',en:'🗺️ Map',it:'🗺️ Mappa'}[lang]||'🗺️ Carte';
+}
+
+
+// ============================================================
+// PRÉNOM UTILISATEUR + ANNIVERSAIRE
+// ============================================================
+let userName = localStorage.getItem('knipo_username') || '';
+function setUserName(v){
+  v = (v||'').trim().slice(0,16);
+  userName = v;
+  if(v) localStorage.setItem('knipo_username', v);
+  else localStorage.removeItem('knipo_username');
+  // Affichage immédiat dans la barre XP si possible
+  if(typeof updateXP==='function')updateXP();
+}
+function onUserNameInput(v){setUserName(v);}
+
+function setUserBirthday(day, month){
+  if(!day || !month)return;
+  const value = String(month).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+  localStorage.setItem('knipo_birthday', value);
+}
+function getUserBirthday(){
+  const v = localStorage.getItem('knipo_birthday') || '';
+  if(!v)return {day:'',month:''};
+  const [m,d] = v.split('-');
+  return {day:parseInt(d), month:parseInt(m)};
+}
+function isBirthdayToday(){
+  const bd = localStorage.getItem('knipo_birthday') || '';
+  if(!bd)return false;
+  const today = new Date();
+  const todayKey = String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+  return bd === todayKey;
+}
+
+function celebrateBirthday(){
+  // Vérifier si on a déjà célébré aujourd'hui
+  const today = new Date();
+  const yearKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+  if(localStorage.getItem('knipo_bday_celebrated') === yearKey) return;
+  localStorage.setItem('knipo_bday_celebrated', yearKey);
+
+  // Bonus XP de 100 pour l'anniversaire
+  if(typeof xpTotal!=='undefined'){xpTotal += 100; if(typeof updateXP==='function')updateXP();}
+
+  // Build celebration overlay
+  const labels = {
+    fr:{ti:'Joyeux anniversaire !',sub:'Profite bien de ta journée 🎉',bonus:'+100 XP de cadeau ! 🎁',tap:'Tape pour continuer'},
+    en:{ti:'Happy Birthday!',sub:'Have an amazing day 🎉',bonus:'+100 XP gift! 🎁',tap:'Tap to continue'},
+    it:{ti:'Buon compleanno!',sub:'Goditi la tua giornata 🎉',bonus:'+100 XP regalo! 🎁',tap:'Tocca per continuare'}
+  }[lang] || {};
+  const greeting = userName ? labels.ti.replace('!', ' '+userName+' !') : labels.ti;
+  const div = document.createElement('div');
+  div.className = 'bday-celebration';
+  div.innerHTML = `
+    <div class="bday-card">
+      <span class="bday-em">🎂</span>
+      <div class="bday-ti">${greeting}</div>
+      <div class="bday-sub">${labels.sub}</div>
+      <div class="bday-bonus">${labels.bonus}</div>
+      <div class="bday-tap">${labels.tap}</div>
+    </div>`;
+  div.onclick = ()=>div.remove();
+  document.body.appendChild(div);
+
+  // Confettis abondants + sons
+  if(typeof playSound==='function')playSound('levelup');
+  if(typeof confettiBurst==='function'){
+    confettiBurst(false);
+    setTimeout(()=>confettiBurst(false), 600);
+    setTimeout(()=>confettiBurst(false), 1100);
+  }
+  // Pluie d'emojis fête
+  if(typeof emojiRain==='function'){
+    setTimeout(()=>{
+      const oldEm = THEME_EMOJIS.daily;
+      THEME_EMOJIS.daily = ['🎂','🎉','🎁','🥳','🎊','✨','🌟','💝'];
+      emojiRain('daily', 28);
+      setTimeout(()=>{THEME_EMOJIS.daily = oldEm;}, 100);
+    }, 250);
+  }
+  if(typeof mascotSay==='function'){
+    setTimeout(()=>{
+      const greetMs = userName ?
+        ({fr:`Joyeux anniversaire ${userName} ! 🎂🎉`,en:`Happy birthday ${userName}! 🎂🎉`,it:`Buon compleanno ${userName}! 🎂🎉`}[lang]) :
+        ({fr:'Joyeux anniversaire ! 🎂🎉',en:'Happy birthday! 🎂🎉',it:'Buon compleanno! 🎂🎉'}[lang]);
+      mascotSay(greetMs, 5000);
+    }, 1500);
+  }
+}
+
+// Patch updateXP pour intégrer le prénom dans l'avatar/badge XP
+const _origUpdateXP = (typeof updateXP==='function')?updateXP:null;
+updateXP = function(){
+  if(_origUpdateXP)_origUpdateXP();
+  const el = document.getElementById('xp-name');
+  if(el && userName){
+    // Préfixer le titre avec le prénom : "Karim · Niveau 2"
+    const txt = el.textContent;
+    if(txt && !txt.startsWith(userName+' ·')){
+      el.textContent = userName + ' · ' + txt;
+    }
+  }
+};
+
+// Patch mascotReact pour parfois inclure le prénom
+const _origMascotReact = (typeof mascotReact==='function')?mascotReact:null;
+mascotReact = function(kind){
+  if(_origMascotReact)_origMascotReact(kind);
+  // Suffixe avec prénom de temps en temps
+  if(userName && Math.random() < 0.45){
+    const b = document.getElementById('mascot-bubble');
+    if(b && b.textContent){
+      const t = b.textContent;
+      // Ajouter le prénom à la fin si pas déjà présent
+      if(!t.includes(userName)){
+        b.textContent = t.replace(/[!.]$/,'') + ' ' + userName + (t.endsWith('!')?' !':' !');
+      }
+    }
+  }
+};
+
+// Patch promptPlayerNames pour pré-remplir avec userName
+const _origPromptNames = (typeof promptPlayerNames==='function')?promptPlayerNames:null;
+promptPlayerNames = function(){
+  // Si pas encore défini, J1 = userName par défaut
+  if((!pNames[0] || pNames[0]==='Joueur 1') && userName){
+    pNames[0] = userName;
+  }
+  if(_origPromptNames)_origPromptNames();
+};
+
+
+
+// ============================================================
+// TAP-THE-RIGHT-ONE — Mini-jeu rapide chronométré
+// ============================================================
+const TAP_THEMES = {
+  animals:{
+    fr:'Trouve le bon animal',en:'Find the right animal',it:'Trova l\'animale giusto',
+    items:[
+      {target:'🦁', emoji:'🦁', name:{fr:'Lion',en:'Lion',it:'Leone'}},
+      {target:'🐘', emoji:'🐘', name:{fr:'Éléphant',en:'Elephant',it:'Elefante'}},
+      {target:'🦒', emoji:'🦒', name:{fr:'Girafe',en:'Giraffe',it:'Giraffa'}},
+      {target:'🦓', emoji:'🦓', name:{fr:'Zèbre',en:'Zebra',it:'Zebra'}},
+      {target:'🐆', emoji:'🐆', name:{fr:'Guépard',en:'Cheetah',it:'Ghepardo'}},
+      {target:'🦍', emoji:'🦍', name:{fr:'Gorille',en:'Gorilla',it:'Gorilla'}},
+      {target:'🦏', emoji:'🦏', name:{fr:'Rhinocéros',en:'Rhino',it:'Rinoceronte'}},
+      {target:'🦛', emoji:'🦛', name:{fr:'Hippopotame',en:'Hippo',it:'Ippopotamo'}},
+      {target:'🐊', emoji:'🐊', name:{fr:'Crocodile',en:'Crocodile',it:'Coccodrillo'}},
+      {target:'🦩', emoji:'🦩', name:{fr:'Flamant rose',en:'Flamingo',it:'Fenicottero'}},
+      {target:'🐍', emoji:'🐍', name:{fr:'Serpent',en:'Snake',it:'Serpente'}},
+      {target:'🐢', emoji:'🐢', name:{fr:'Tortue',en:'Turtle',it:'Tartaruga'}},
+      {target:'🦅', emoji:'🦅', name:{fr:'Aigle',en:'Eagle',it:'Aquila'}}
+    ]
+  }
+};
+
+let tapState = null;
+function launchTap(){
+  showPage('page-tap');
+  const labels = {
+    fr:{prompt:'Tape sur :', score:'Score', combo:'Combo', time:'Temps'},
+    en:{prompt:'Tap on:', score:'Score', combo:'Combo', time:'Time'},
+    it:{prompt:'Tocca:', score:'Score', combo:'Combo', time:'Tempo'}
+  }[lang]||{};
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('tap-lbl', labels.prompt);
+  set('tap-tl', labels.score);
+  set('tap-cl', labels.combo);
+  set('tap-tml', labels.time);
+  const bk=document.getElementById('bk-tap');if(bk)bk.textContent={fr:'← Accueil',en:'← Home',it:'← Inizio'}[lang]||'← Accueil';
+  startTapGame();
+}
+
+function startTapGame(){
+  const theme = TAP_THEMES.animals;
+  tapState = {
+    score:0, combo:0, bestCombo:0, time:30, target:null, theme,
+    intervalId:null, startTime:Date.now()
+  };
+  document.getElementById('tap-score').textContent = '0';
+  document.getElementById('tap-combo').textContent = '0';
+  document.getElementById('tap-time').textContent = '30';
+  document.getElementById('tap-fill').style.width = '100%';
+  document.getElementById('tap-fill').classList.remove('warn');
+  pickNewTarget();
+  // Tick chaque seconde
+  tapState.intervalId = setInterval(tickTap, 1000);
+}
+
+function pickNewTarget(){
+  if(!tapState)return;
+  const items = tapState.theme.items;
+  const target = items[Math.floor(Math.random()*items.length)];
+  tapState.target = target;
+  // Affiche le prompt
+  const promptEl = document.getElementById('tap-prompt');
+  if(promptEl){
+    promptEl.textContent = target.name[lang] || target.name.fr;
+  }
+  // Génère 16 cellules : la target + 15 distracteurs
+  const grid = document.getElementById('tap-grid');
+  grid.innerHTML = '';
+  const cells = [];
+  cells.push(target.emoji);
+  while(cells.length < 16){
+    const r = items[Math.floor(Math.random()*items.length)];
+    if(r.emoji !== target.emoji) cells.push(r.emoji);
+  }
+  // Shuffle
+  for(let i=cells.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [cells[i],cells[j]] = [cells[j],cells[i]];
+  }
+  cells.forEach(em=>{
+    const btn = document.createElement('button');
+    btn.className = 'tap-cell';
+    btn.textContent = em;
+    btn.onclick = ()=>handleTap(btn, em);
+    grid.appendChild(btn);
+  });
+}
+
+function handleTap(btn, em){
+  if(!tapState || !tapState.target)return;
+  const correct = em === tapState.target.emoji;
+  if(correct){
+    btn.classList.add('correct');
+    tapState.score++;
+    tapState.combo++;
+    tapState.bestCombo = Math.max(tapState.bestCombo, tapState.combo);
+    if(typeof playSound==='function')playSound('correct');
+    if(navigator.vibrate)navigator.vibrate(20);
+    // Bonus combo : +1 seconde tous les 5 combos
+    if(tapState.combo % 5 === 0 && tapState.time < 30){
+      tapState.time = Math.min(30, tapState.time + 2);
+    }
+    document.getElementById('tap-score').textContent = tapState.score;
+    document.getElementById('tap-combo').textContent = tapState.combo;
+    setTimeout(pickNewTarget, 220);
+  } else {
+    btn.classList.add('wrong');
+    tapState.combo = 0;
+    document.getElementById('tap-combo').textContent = '0';
+    if(typeof playSound==='function')playSound('wrong');
+    if(navigator.vibrate)navigator.vibrate([20,40,20]);
+    setTimeout(()=>btn.classList.remove('wrong'), 350);
+  }
+}
+
+function tickTap(){
+  if(!tapState)return;
+  tapState.time--;
+  document.getElementById('tap-time').textContent = tapState.time;
+  const pct = (tapState.time / 30) * 100;
+  const fill = document.getElementById('tap-fill');
+  if(fill){
+    fill.style.width = pct + '%';
+    if(tapState.time <= 7) fill.classList.add('warn');
+  }
+  if(tapState.time <= 0){
+    endTapGame(false);
+  }
+}
+
+function endTapGame(skip){
+  if(!tapState){
+    if(skip)goHome();
+    return;
+  }
+  if(tapState.intervalId){clearInterval(tapState.intervalId); tapState.intervalId=null;}
+  if(skip){
+    tapState = null;
+    goHome();
+    return;
+  }
+  // Calcul XP : 5 par bonne réponse + bonus combo max
+  const xpEarned = tapState.score * 5 + tapState.bestCombo * 2;
+  if(typeof xpTotal!=='undefined'){
+    xpTotal += xpEarned;
+    if(typeof updateXP==='function')updateXP();
+    if(typeof checkLevelUp==='function')checkLevelUp();
+  }
+  // Show end screen using success page format
+  const tapEnd = document.getElementById('tap-grid');
+  const score = tapState.score, bestCombo = tapState.bestCombo;
+  const labels = {
+    fr:{ti:'Temps écoulé !',score:'Réponses',combo:'Meilleur combo',xp:'XP gagnés',again:'Rejouer',home:'Accueil'},
+    en:{ti:'Time\'s up!',score:'Answers',combo:'Best combo',xp:'XP earned',again:'Play again',home:'Home'},
+    it:{ti:'Tempo scaduto!',score:'Risposte',combo:'Miglior combo',xp:'XP guadagnati',again:'Rigioca',home:'Inizio'}
+  }[lang]||{};
+  const ti = score>=20 ? '🏆' : score>=12 ? '🥈' : score>=6 ? '🥉' : '💪';
+  document.getElementById('page-tap').innerHTML = `
+    <div class="tap-end">
+      <span class="tap-end-em">${ti}</span>
+      <div class="tap-end-ti">${labels.ti}</div>
+      <div class="tap-end-stats">
+        <div class="tap-end-stat"><div class="tap-end-stat-n">${score}</div><div class="tap-end-stat-l">${labels.score}</div></div>
+        <div class="tap-end-stat"><div class="tap-end-stat-n">${bestCombo}</div><div class="tap-end-stat-l">${labels.combo}</div></div>
+        <div class="tap-end-stat"><div class="tap-end-stat-n">+${xpEarned}</div><div class="tap-end-stat-l">${labels.xp}</div></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">
+        <button class="sbtn-s" onclick="goHome()">${labels.home}</button>
+        <button class="sbtn-p" onclick="launchTap()">${labels.again}</button>
+      </div>
+    </div>`;
+  tapState = null;
+  if(typeof confettiBurst==='function')confettiBurst(false);
+  if(typeof playSound==='function')playSound('levelup');
+  if(typeof mascotReact==='function')mascotReact(score>=10?'correct':'hello');
+}
+
+// Refresh labels en cas de changement de langue
+function refreshTapLabels(){
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('pt-tap', {fr:'Tap Rapide',en:'Quick Tap',it:'Tap Veloce'}[lang]||'Tap Rapide');
+  set('ps-tap', {fr:'30s pour briller',en:'30s to shine',it:'30s per brillare'}[lang]||'30s');
+}
+
+// ============================================================
+// SKINS DE FOND + THÈMES SAISONNIERS
+// ============================================================
+const BG_SKINS = [
+  {id:'savane',  cost:0,    n:{fr:'Savane (par défaut)',en:'Savanna (default)',it:'Savana'}, css:'linear-gradient(155deg,#E65100 0%,#FF8C00 18%,#FFB300 35%,#FF6D00 52%,#2E7D32 72%,#1D9E75 100%)'},
+  {id:'sunset',  cost:80,   n:{fr:'Coucher de soleil',en:'Sunset',it:'Tramonto'}, css:'linear-gradient(155deg,#FF512F 0%,#F09819 50%,#DD2476 100%)'},
+  {id:'jungle',  cost:80,   n:{fr:'Jungle profonde',en:'Deep jungle',it:'Giungla'}, css:'linear-gradient(155deg,#0F3D2E 0%,#2E7D32 35%,#52C98A 70%,#1D9E75 100%)'},
+  {id:'desert',  cost:120,  n:{fr:'Désert doré',en:'Golden desert',it:'Deserto dorato'}, css:'linear-gradient(155deg,#F4D29C 0%,#E5B065 30%,#C97B3F 65%,#7A4200 100%)'},
+  {id:'ocean',   cost:120,  n:{fr:'Océan Indien',en:'Indian Ocean',it:'Oceano Indiano'}, css:'linear-gradient(155deg,#0a3d6b 0%,#1565a0 35%,#26A69A 70%,#80DEEA 100%)'},
+  {id:'kente',   cost:200,  n:{fr:'Kente royal',en:'Royal Kente',it:'Kente reale'}, css:'linear-gradient(155deg,#FFD000 0%,#E65100 25%,#1D9E75 50%,#534AB7 75%,#E91E8C 100%)'},
+  {id:'night',   cost:250,  n:{fr:'Nuit étoilée',en:'Starry night',it:'Notte stellata'}, css:'linear-gradient(155deg,#0a0a2e 0%,#1a1a5c 30%,#3D3099 60%,#6B63D4 100%)'},
+  {id:'sahara',  cost:300,  n:{fr:'Tempête du Sahara',en:'Sahara storm',it:'Tempesta del Sahara'}, css:'linear-gradient(155deg,#7A4200 0%,#BA7517 30%,#EF9F27 60%,#F4D29C 100%)'},
+  // SAISONNIERS — débloqués automatiquement à la bonne période
+  {id:'noel',    cost:0, seasonal:'12-01..12-31', n:{fr:'Esprit de Noël',en:'Christmas spirit',it:'Spirito Natalizio'}, css:'linear-gradient(155deg,#0F3D2E 0%,#1B5E20 25%,#C62828 70%,#FFD000 100%)', extra:'❄️'},
+  {id:'rentree', cost:0, seasonal:'09-01..09-30', n:{fr:'Rentrée scolaire',en:'Back to school',it:'Inizio scuola'}, css:'linear-gradient(155deg,#534AB7 0%,#7A6FE5 50%,#EF9F27 100%)'},
+  {id:'ete',     cost:0, seasonal:'07-01..08-31', n:{fr:'Vacances été',en:'Summer holidays',it:'Vacanze estive'}, css:'linear-gradient(155deg,#FFD000 0%,#FF8C00 35%,#26A69A 100%)', extra:'☀️'},
+  {id:'printemps',cost:0, seasonal:'03-15..05-15', n:{fr:'Printemps africain',en:'African spring',it:'Primavera africana'}, css:'linear-gradient(155deg,#FF6B9D 0%,#FFC371 35%,#52C98A 70%,#1D9E75 100%)'}
+];
+
+let currentSkin = localStorage.getItem('knipo_skin') || 'savane';
+let purchasedSkins = new Set(JSON.parse(localStorage.getItem('knipo_skins_owned')||'["savane"]'));
+
+function isSeasonalAvailable(skin){
+  if(!skin.seasonal) return true;
+  const [fromStr, toStr] = skin.seasonal.split('..');
+  const [fM,fD] = fromStr.split('-').map(Number);
+  const [tM,tD] = toStr.split('-').map(Number);
+  const today = new Date();
+  const m = today.getMonth()+1, d = today.getDate();
+  // Convert to ordinal for comparison
+  const ord = (mo,da) => mo*100 + da;
+  const t = ord(m,d), f = ord(fM,fD), tt = ord(tM,tD);
+  if(f <= tt) return t >= f && t <= tt;
+  return t >= f || t <= tt; // wraps year
+}
+
+function applySkin(skinId){
+  const skin = BG_SKINS.find(s=>s.id===skinId);
+  if(!skin) return;
+  document.documentElement.style.background = skin.css;
+  document.documentElement.style.backgroundAttachment = 'fixed';
+  document.documentElement.style.minHeight = '100%';
+  // Mettre à jour la meta theme-color avec la première couleur
+  const m = skin.css.match(/#[0-9A-Fa-f]{6}/);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if(meta && m) meta.setAttribute('content', m[0]);
+  currentSkin = skinId;
+  localStorage.setItem('knipo_skin', skinId);
+}
+
+function getCurrentSeasonalSkin(){
+  // Auto-applique le skin saisonnier disponible si l'utilisateur n'a pas explicitement choisi
+  if(localStorage.getItem('knipo_skin_manual')) return null;
+  for(const s of BG_SKINS){
+    if(s.seasonal && isSeasonalAvailable(s)) return s;
+  }
+  return null;
+}
+
+function openSkinShop(){
+  // Render dans un modal réutilisant le pattern shop
+  let bg = document.getElementById('skinshop-bg');
+  if(!bg){
+    bg = document.createElement('div');
+    bg.id = 'skinshop-bg';bg.className = 'shop-bg';
+    bg.onclick = (e)=>{if(e.target===bg)closeSkinShop();};
+    document.body.appendChild(bg);
+  }
+  const labels = {
+    fr:{ti:'🎨 Choisis ton fond',hxp:'XP',cu:'En cours',buy:'Acheter',locked:'XP requis',seasonal:'🎁 Saisonnier !',free:'Gratuit'},
+    en:{ti:'🎨 Choose your background',hxp:'XP',cu:'Current',buy:'Buy',locked:'XP needed',seasonal:'🎁 Seasonal!',free:'Free'},
+    it:{ti:'🎨 Scegli lo sfondo',hxp:'XP',cu:'Attuale',buy:'Compra',locked:'XP richiesto',seasonal:'🎁 Stagionale!',free:'Gratis'}
+  }[lang]||{};
+  let html = `<div class="shop-modal">
+    <div class="shop-head">
+      <div class="shop-ti">${labels.ti}</div>
+      <button class="shop-close" onclick="closeSkinShop()">✕</button>
+    </div>
+    <div class="shop-coin">⭐ <span>${(typeof xpTotal!=='undefined')?xpTotal:0}</span> ${labels.hxp}</div>
+    <div class="shop-grid" id="skin-grid"></div>
+  </div>`;
+  bg.innerHTML = html;
+  bg.className = 'shop-bg show';
+  const grid = document.getElementById('skin-grid');
+  BG_SKINS.forEach(s=>{
+    const owned = purchasedSkins.has(s.id);
+    const seasonal = !!s.seasonal;
+    const seasonalAvailable = seasonal && isSeasonalAvailable(s);
+    const seasonalLocked = seasonal && !seasonalAvailable;
+    const equipped = currentSkin === s.id;
+    const canAfford = (typeof xpTotal!=='undefined' && xpTotal >= s.cost);
+    const locked = !owned && !canAfford && !seasonal;
+    const div = document.createElement('div');
+    div.className = 'shop-item' + (equipped?' equipped':'') + (locked || seasonalLocked ?' locked':'');
+    div.style.cssText = `background:${s.css};color:#fff;border:none;min-height:100px;position:relative;overflow:hidden`;
+    let costLbl = '';
+    if(s.cost===0 && !seasonal) costLbl = labels.free;
+    else if(seasonalLocked) costLbl = labels.seasonal+' (verrouillé)';
+    else if(seasonalAvailable && seasonal) costLbl = labels.seasonal;
+    else if(owned) costLbl = '✓';
+    else costLbl = `${s.cost} XP`;
+    div.innerHTML = (equipped?`<div class="shop-equipped-tag">${labels.cu}</div>`:'')+
+      `<div style="font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.4);padding:8px 4px;line-height:1.2">${s.n[lang]||s.n.fr}${s.extra?' '+s.extra:''}</div>`+
+      `<div style="position:absolute;bottom:6px;left:0;right:0;font-size:10px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.5)">${costLbl}</div>`;
+    div.onclick = ()=>handleSkinClick(s, owned, locked, seasonalLocked);
+    grid.appendChild(div);
+  });
+}
+function closeSkinShop(){const bg=document.getElementById('skinshop-bg');if(bg)bg.className='shop-bg';}
+
+function handleSkinClick(skin, owned, locked, seasonalLocked){
+  if(seasonalLocked){
+    if(typeof mascotSay==='function')mascotSay({fr:'Reviens à la bonne saison ! 🌍',en:'Come back in the right season! 🌍',it:'Torna nella giusta stagione! 🌍'}[lang]||'Saison !');
+    return;
+  }
+  if(locked){
+    if(typeof mascotSay==='function')mascotSay({fr:'Continue à apprendre pour débloquer ce fond ! 💪',en:'Keep learning to unlock! 💪',it:'Continua a imparare! 💪'}[lang]||'XP !');
+    return;
+  }
+  if(!owned && skin.cost>0){
+    xpTotal -= skin.cost;
+    if(typeof updateXP==='function')updateXP();
+    purchasedSkins.add(skin.id);
+    localStorage.setItem('knipo_skins_owned', JSON.stringify([...purchasedSkins]));
+    if(typeof playSound==='function')playSound('correct');
+    if(typeof confettiBurst==='function')confettiBurst(true);
+  } else if(skin.seasonal && !owned){
+    purchasedSkins.add(skin.id);
+    localStorage.setItem('knipo_skins_owned', JSON.stringify([...purchasedSkins]));
+  }
+  applySkin(skin.id);
+  localStorage.setItem('knipo_skin_manual', '1'); // l'utilisateur a fait son choix
+  openSkinShop(); // re-render
+  if(typeof mascotSay==='function')mascotSay({fr:'Beau choix ! 🎨',en:'Nice pick! 🎨',it:'Bella scelta! 🎨'}[lang]||'OK');
+}
+
+// Restaurer le skin au démarrage + appliquer saisonnier si pas de choix manuel
+function initSkin(){
+  const seasonal = getCurrentSeasonalSkin();
+  if(seasonal){
+    // Auto-débloquer le skin saisonnier
+    if(!purchasedSkins.has(seasonal.id)){
+      purchasedSkins.add(seasonal.id);
+      localStorage.setItem('knipo_skins_owned', JSON.stringify([...purchasedSkins]));
+    }
+    if(currentSkin === 'savane'){
+      // Appliquer le saisonnier par défaut sauf si user a déjà choisi
+      applySkin(seasonal.id);
+      // Annoncer
+      setTimeout(()=>{
+        if(typeof mascotSay==='function')mascotSay({fr:`Nouveau fond saisonnier débloqué ! 🎁`,en:'Seasonal background unlocked! 🎁',it:'Sfondo stagionale sbloccato! 🎁'}[lang]||'Saisonnier !', 4000);
+      }, 2200);
+      return;
+    }
+  }
+  applySkin(currentSkin);
+}
+
+// Init : déclencher la célébration anniversaire
+function initBirthdayCheck(){
+  if(isBirthdayToday()){
+    setTimeout(celebrateBirthday, 800);
+  }
+}
+
+// ---- INIT — Mascotte hello + son toggle restore ----
+function initKidsFun(){
+  initSkin();
+  refreshMascotEmoji();
+  refreshAgeButton();
+  refresh2PLabel();
+  refreshMapLabels();
+  refreshPuzzleLabels();
+  applyMascotAccessory();
+  initBirthdayCheck();
+  refreshTapLabels();
+  setTimeout(()=>{mascotReact('hello');},900);
+  // Restore ambient state
+  if(localStorage.getItem('knipo_ambient')==='1'){
+    // Ne démarre qu'au premier clic (autoplay policy)
+    document.addEventListener('click',function once(){startAmbient();const btn=document.getElementById('sound-toggle');if(btn)btn.textContent='🔊';document.removeEventListener('click',once);},{once:true});
+  }
+  applyAgeSettings();
+}
+
 // ============================================================
 // INIT
 // ============================================================
@@ -1624,15 +3598,38 @@ applyLang();
 checkDailyReminder();
 setTimeout(animateHomeCards,150);
 if(!localStorage.getItem('knipo_onboarded')){showOnboarding();}
+initKidsFun();
 </script>
 
 <!-- PWA Service Worker -->
 <script>
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
+    navigator.serviceWorker.register('sw.js')
+      .then(reg=>{
+        // Vérifier les mises à jour toutes les 30 minutes
+        setInterval(()=>reg.update().catch(()=>{}), 30*60*1000);
+      })
+      .catch(()=>{});
   });
 }
+
+// Détection online / offline
+function updateOnlineStatus(){
+  const pill = document.getElementById('offline-pill');
+  const txt = document.getElementById('offline-txt');
+  if(!pill)return;
+  if(!navigator.onLine){
+    const labels = {fr:'📡 Hors-ligne',en:'📡 Offline',it:'📡 Offline'};
+    if(txt)txt.textContent = labels[(window.lang||'fr')] || labels.fr;
+    pill.classList.add('show');
+  } else {
+    pill.classList.remove('show');
+  }
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+window.addEventListener('load', ()=>setTimeout(updateOnlineStatus, 200));
 </script>
 
 </body>
