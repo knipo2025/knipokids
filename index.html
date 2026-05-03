@@ -357,6 +357,34 @@ h1 span{color:#FFE082}
 
 
 
+
+/* ===== SOUTIEN + CAPTURE EMAIL PREMIUM ===== */
+.support-card{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,244,216,.92));border-radius:16px;padding:14px 16px;margin:10px 0;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.12);border:1.5px dashed rgba(239,159,39,.5)}
+.support-h{font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;color:#BA7517;margin-bottom:4px}
+.support-de{font-size:12px;color:#666;font-weight:600;line-height:1.4;margin-bottom:10px}
+.support-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.support-btn{padding:9px 14px;border-radius:11px;border:none;font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;cursor:pointer;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s,box-shadow .15s}
+.support-btn:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.18)}
+.support-btn.kofi{background:linear-gradient(135deg,#FF5E5B,#D63864)}
+.support-btn.tipeee{background:linear-gradient(135deg,#1D9E75,#52C98A)}
+.support-btn.paypal{background:linear-gradient(135deg,#00457C,#0079C1)}
+
+/* Capture email Premium */
+.early-card{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:14px;padding:14px;margin-top:12px;text-align:center;border:1.5px solid rgba(239,159,39,.4)}
+.early-tag{display:inline-block;background:linear-gradient(135deg,#EF9F27,#BA7517);color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:10px;padding:3px 10px;border-radius:14px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+.early-h{font-family:'Baloo 2',cursive;font-size:15px;font-weight:800;color:#fff;margin-bottom:4px}
+.early-de{font-size:11px;color:rgba(255,255,255,.65);line-height:1.45;margin-bottom:10px;font-weight:600}
+.early-row{display:flex;gap:6px}
+.early-input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700}
+.early-input::placeholder{color:rgba(255,255,255,.45)}
+.early-input:focus{outline:none;border-color:#EF9F27;background:rgba(255,255,255,.18)}
+.early-submit{padding:10px 14px;border-radius:10px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:13px;cursor:pointer;white-space:nowrap;transition:transform .15s}
+.early-submit:hover{transform:translateY(-2px)}
+.early-submit:disabled{opacity:.5;cursor:not-allowed}
+.early-success{color:#52C98A;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;padding:10px;animation:fbIn .35s ease}
+.early-error{color:#FF6B6B;font-size:11px;font-weight:700;margin-top:6px}
+.early-disclaimer{font-size:9px;color:rgba(255,255,255,.4);font-weight:600;margin-top:8px;letter-spacing:.3px}
+
 /* ===== TABLEAU PARENTAL ===== */
 .par-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9998;align-items:center;justify-content:center;padding:18px}
 .par-bg.show{display:flex}
@@ -831,7 +859,17 @@ h1 span{color:#FFE082}
       <div class="prem-price">
         <div style="font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:#fff" id="prem-pr">4,99€ <span style="font-size:13px;font-weight:400;opacity:.75" id="prem-prs">accès à vie</span></div>
       </div>
-      <div><div class="prem-notify" id="prem-notify" onclick="notifyMe()">🔔 Me prévenir dès la sortie →</div></div>
+      <div class="early-card">
+        <div class="early-tag" id="early-tag">🚀 Avant-première</div>
+        <div class="early-h" id="early-h">Sois le 1er à recevoir le Premium</div>
+        <div class="early-de" id="early-de">Laisse ton email — on te prévient dès la sortie avec <strong>-50%</strong> de réduction de lancement</div>
+        <form class="early-row" id="early-form" onsubmit="submitEarlyAccess(event)">
+          <input type="email" required class="early-input" id="early-input" placeholder="ton.email@exemple.com" maxlength="100">
+          <button type="submit" class="early-submit" id="early-btn">M'inscrire ✓</button>
+        </form>
+        <div class="early-error" id="early-error" style="display:none"></div>
+        <div class="early-disclaimer" id="early-disclaimer">📭 Pas de spam. Désinscription en 1 clic.</div>
+      </div>
     </div>
     <div class="grid">
       <button class="gcard gc-h" onclick="tryUnlock('empires',0)"><span class="ci">👑</span><span class="ct" id="pc0">Empires secrets</span><span class="cs" id="pcs0">10 leçons avancées</span><span class="lock" id="lk0">🔒 Bientôt</span></button>
@@ -847,6 +885,15 @@ h1 span{color:#FFE082}
     <div class="album-h" id="album-h">📔 Mon Album</div>
     <div class="album-prog" id="album-prog">0 / 0 cartes</div>
     <div class="album-grid" id="album-grid"></div>
+  </div>
+  <div class="support-card" id="support-card">
+    <div class="support-h" id="sup-h">💛 Soutiens KNIPO Kids</div>
+    <div class="support-de" id="sup-de">Cette app est gratuite et sans pub. Si elle te plaît, offre-nous un café ou un coup de pouce !</div>
+    <div class="support-btns">
+      <a class="support-btn kofi" href="https://ko-fi.com/knipo" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a class="support-btn tipeee" href="https://www.tipeee.com/knipo" target="_blank" rel="noopener">💚 Tipeee</a>
+      <a class="support-btn paypal" href="https://paypal.me/knipo" target="_blank" rel="noopener">💙 PayPal</a>
+    </div>
   </div>
   <div class="footer">KNIPO Kids &copy; 2025 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
 </div>
@@ -1316,7 +1363,7 @@ function applyLang(){
   const ws=$('win-share');if(ws)ws.innerHTML='📤 '+{fr:'Partager mon score',en:'Share my score',it:'Condividi il punteggio'}[lang];
   const row=$('topics-row');row.innerHTML='';
   l.ia.topics.forEach((t,i)=>{const b=document.createElement('button');b.className='tbtn'+(i===0?' on':'');b.textContent=t;const key=l.ia.keys[i];b.onclick=function(){selTopic(b,key);};row.appendChild(b);});
-  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();if(typeof refreshMascotEmoji==='function')refreshMascotEmoji();if(typeof refreshAgeButton==='function')refreshAgeButton();if(typeof refresh2PLabel==='function')refresh2PLabel();if(typeof refreshMapLabels==='function')refreshMapLabels();if(typeof refreshPuzzleLabels==='function')refreshPuzzleLabels();if(typeof refreshTapLabels==='function')refreshTapLabels();
+  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();if(typeof refreshMascotEmoji==='function')refreshMascotEmoji();if(typeof refreshAgeButton==='function')refreshAgeButton();if(typeof refresh2PLabel==='function')refresh2PLabel();if(typeof refreshMapLabels==='function')refreshMapLabels();if(typeof refreshPuzzleLabels==='function')refreshPuzzleLabels();if(typeof refreshTapLabels==='function')refreshTapLabels();if(typeof refreshValidationLabels==='function')refreshValidationLabels();
   const nmti=$('nm-ti');if(nmti)nmti.textContent={fr:'Rappel quotidien',en:'Daily reminder',it:'Promemoria quotidiano'}[lang]||'Rappel';
   const nmde=$('nm-de');if(nmde)nmde.textContent={fr:"On te prévient chaque jour pour ne pas perdre ta série ?",en:"Should we remind you daily so you don't lose your streak?",it:"Ti ricordiamo ogni giorno per non perdere la serie?"}[lang]||'';
   const nmno=$('nm-no');if(nmno)nmno.textContent={fr:'Non merci',en:'No thanks',it:'No grazie'}[lang]||'Non';
@@ -3868,6 +3915,85 @@ function initSkin(){
   applySkin(currentSkin);
 }
 
+
+// ============================================================
+// SOUTIEN + CAPTURE EMAIL PREMIUM
+// ============================================================
+const EARLY_ENDPOINT = 'https://formspree.io/f/YOUR_ID'; // remplace par ton ID Formspree
+
+function submitEarlyAccess(ev){
+  ev.preventDefault();
+  const inp = document.getElementById('early-input');
+  const btn = document.getElementById('early-btn');
+  const errEl = document.getElementById('early-error');
+  const formEl = document.getElementById('early-form');
+  const cardEl = formEl ? formEl.parentElement : null;
+  const email = (inp.value||'').trim();
+  if(!email || !/.+@.+\..+/.test(email)){
+    if(errEl){errEl.textContent={fr:'Email invalide',en:'Invalid email',it:'Email non valido'}[lang]||'Invalid'; errEl.style.display='block';}
+    return false;
+  }
+  if(errEl)errEl.style.display='none';
+  if(btn){btn.disabled=true; btn.textContent='...';}
+
+  // Stockage local (toujours, au cas où)
+  const stored = JSON.parse(localStorage.getItem('knipo_early_emails')||'[]');
+  if(!stored.includes(email)){stored.push(email);localStorage.setItem('knipo_early_emails',JSON.stringify(stored));}
+
+  // Tentative envoi vers Formspree (si endpoint configuré)
+  const useFormspree = EARLY_ENDPOINT && !EARLY_ENDPOINT.includes('YOUR_ID');
+  const finishUI = ()=>{
+    if(cardEl){
+      const labels={
+        fr:{ok:'C\'est noté ! 🎉',sub:'On te prévient dès le lancement Premium avec ta réduction de 50% ✨'},
+        en:{ok:'Got it! 🎉',sub:'We\'ll email you on Premium launch with 50% off ✨'},
+        it:{ok:'Fatto! 🎉',sub:'Ti contatteremo al lancio Premium con il 50% di sconto ✨'}
+      }[lang]||{};
+      cardEl.innerHTML = `<div class="early-tag">✓ ${({fr:'Inscrit',en:'Subscribed',it:'Iscritto'}[lang])}</div>
+        <div class="early-success">${labels.ok}</div>
+        <div class="early-de" style="margin-bottom:0">${labels.sub}</div>`;
+    }
+    if(typeof confettiBurst==='function')confettiBurst(true);
+    if(typeof playSound==='function')playSound('correct');
+    if(typeof mascotSay==='function')mascotSay({fr:'Merci pour ton inscription ! 💛',en:'Thanks for subscribing! 💛',it:'Grazie per l\'iscrizione! 💛'}[lang]||'Merci !');
+  };
+
+  if(useFormspree){
+    fetch(EARLY_ENDPOINT, {
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body: JSON.stringify({email, source:'knipo-kids', lang, age:userAge||'?'})
+    }).then(r=>{
+      finishUI();
+    }).catch(()=>{
+      // Échec réseau : on a quand même le local
+      finishUI();
+    });
+  } else {
+    // Pas d'endpoint configuré : juste local + UI succès
+    setTimeout(finishUI, 400);
+  }
+  return false;
+}
+
+// Mettre à jour les labels du soutien & capture email
+function refreshValidationLabels(){
+  const supLabels={
+    fr:{h:'💛 Soutiens KNIPO Kids',de:'Cette app est gratuite et sans pub. Si elle te plaît, offre-nous un café ou un coup de pouce !'},
+    en:{h:'💛 Support KNIPO Kids',de:'This app is free and ad-free. If you like it, buy us a coffee or a tip!'},
+    it:{h:'💛 Sostieni KNIPO Kids',de:'Questa app è gratuita e senza pubblicità. Se ti piace, offrici un caffè o un sostegno!'}
+  }[lang]||{};
+  const earlyLabels={
+    fr:{tag:'🚀 Avant-première',h:'Sois le 1er à recevoir le Premium',de:'Laisse ton email — on te prévient dès la sortie avec <strong>-50%</strong> de réduction de lancement',btn:'M\'inscrire ✓',disc:'📭 Pas de spam. Désinscription en 1 clic.'},
+    en:{tag:'🚀 Early access',h:'Be the first to get Premium',de:'Drop your email — we\'ll notify you on launch with <strong>50% off</strong>',btn:'Sign up ✓',disc:'📭 No spam. Unsubscribe anytime.'},
+    it:{tag:'🚀 Anteprima',h:'Sii il primo a ricevere il Premium',de:'Lascia la tua email — ti avviseremo al lancio con <strong>-50%</strong> di sconto',btn:'Iscriviti ✓',disc:'📭 Nessuno spam. Disiscriviti in 1 clic.'}
+  }[lang]||{};
+  const set=(id,v,html)=>{const e=document.getElementById(id);if(e&&v){if(html)e.innerHTML=v;else e.textContent=v;}};
+  set('sup-h',supLabels.h);set('sup-de',supLabels.de);
+  set('early-tag',earlyLabels.tag);set('early-h',earlyLabels.h);set('early-de',earlyLabels.de,true);
+  set('early-btn',earlyLabels.btn);set('early-disclaimer',earlyLabels.disc);
+}
+
 // Init : déclencher la célébration anniversaire
 function initBirthdayCheck(){
   if(isBirthdayToday()){
@@ -3886,6 +4012,7 @@ function initKidsFun(){
   applyMascotAccessory();
   initBirthdayCheck();
   refreshTapLabels();
+  refreshValidationLabels();
   setTimeout(()=>{mascotReact('hello');},900);
   // Restore ambient state
   if(localStorage.getItem('knipo_ambient')==='1'){
