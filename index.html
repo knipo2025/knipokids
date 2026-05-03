@@ -356,6 +356,51 @@ h1 span{color:#FFE082}
 
 
 
+
+/* ===== TABLEAU PARENTAL ===== */
+.par-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9998;align-items:center;justify-content:center;padding:18px}
+.par-bg.show{display:flex}
+.par-modal{background:#fff;border-radius:22px;padding:22px 18px 24px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.4);animation:slideUp .35s cubic-bezier(.2,.8,.4,1)}
+.par-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.par-ti{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#1a1a2e}
+.par-close{background:#F1EFE8;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.par-gate{text-align:center;padding:18px 8px}
+.par-gate-em{font-size:54px;display:block;margin-bottom:8px}
+.par-gate-q{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:#1a1a2e;margin-bottom:6px}
+.par-gate-de{font-size:13px;color:#888;margin-bottom:14px;font-weight:600}
+.par-gate-input{width:100%;max-width:200px;padding:13px 16px;border-radius:14px;border:2px solid #ddd;font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;text-align:center;background:#F8F7F2;margin-bottom:10px}
+.par-gate-input:focus{outline:none;border-color:#534AB7;background:#fff}
+.par-gate-err{color:#D85A30;font-size:12px;font-weight:700;margin-top:4px;min-height:18px}
+.par-gate-ok{padding:12px 24px;border-radius:14px;border:none;background:#534AB7;color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:14px;cursor:pointer}
+.par-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.par-stat{background:linear-gradient(135deg,#F8F7F2,#fff);border-radius:14px;padding:12px;text-align:center;border:1.5px solid #FAEEDA}
+.par-stat-em{font-size:24px;display:block;line-height:1;margin-bottom:3px}
+.par-stat-n{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#E65100;line-height:1.1}
+.par-stat-l{font-size:10px;font-weight:800;color:#888;letter-spacing:.5px;text-transform:uppercase;margin-top:3px}
+.par-section-h{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1.2px;margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+.par-bars{padding:0 4px}
+.par-bar-row{margin-bottom:7px}
+.par-bar-label{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#2C2C2A;margin-bottom:3px}
+.par-bar-track{height:9px;background:#F1EFE8;border-radius:9px;overflow:hidden}
+.par-bar-fill{height:100%;background:linear-gradient(90deg,#1D9E75,#52C98A);border-radius:9px;transition:width .6s cubic-bezier(.2,.8,.4,1)}
+.par-toggle-row{display:flex;justify-content:space-between;align-items:center;padding:11px 4px;border-bottom:1px solid #F1EFE8}
+.par-toggle-row:last-child{border-bottom:none}
+.par-toggle-tx{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#2C2C2A}
+.par-toggle-sub{font-size:11px;color:#888;font-weight:600;margin-top:2px}
+.par-toggle{position:relative;width:48px;height:26px;background:#ddd;border-radius:13px;cursor:pointer;transition:background .25s;flex-shrink:0;border:none}
+.par-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:left .25s;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.par-toggle.on{background:#1D9E75}
+.par-toggle.on::after{left:25px}
+.par-action-row{padding:11px 4px;border-bottom:1px solid #F1EFE8;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.par-action-row:hover{background:#F8F7F2}
+.par-action-row:last-child{border-bottom:none}
+.par-action-tx{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#2C2C2A}
+.par-action-arrow{color:#888;font-size:18px}
+.par-action-row.danger .par-action-tx{color:#D85A30}
+.par-prem-tag{display:inline-block;background:linear-gradient(135deg,#EF9F27,#BA7517);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;margin-left:6px;letter-spacing:.5px;text-transform:uppercase}
+.par-locked{opacity:.45;pointer-events:none;position:relative}
+.par-locked::after{content:'🔒';position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:16px}
+
 /* ===== TAP-THE-RIGHT-ONE ===== */
 .tap-page{position:relative}
 .tap-target{text-align:center;padding:18px 14px;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,244,216,.95));border-radius:18px;margin-bottom:12px;box-shadow:0 6px 22px rgba(0,0,0,.15)}
@@ -411,7 +456,7 @@ h1 span{color:#FFE082}
 /* ===== BOUTIQUE MASCOTTE ===== */
 .shop-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9997;align-items:flex-end;justify-content:center;padding:0}
 .shop-bg.show{display:flex}
-.shop-modal{background:linear-gradient(160deg,#fff,#FFF4D8);border-radius:24px 24px 0 0;padding:18px 16px 28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.2,.8,.4,1);box-shadow:0 -8px 32px rgba(0,0,0,.4)}
+.shop-modal{background:linear-gradient(160deg,#fff,#FFF4D8);border-radius:24px 24px 0 0;padding:18px 16px 38px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;animation:slideUp .35s cubic-bezier(.2,.8,.4,1);box-shadow:0 -8px 32px rgba(0,0,0,.4);scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 .shop-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .shop-ti{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#BA7517}
 .shop-close{background:#F1EFE8;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -522,6 +567,18 @@ h1 span{color:#FFE082}
   </div>
 </div>
 
+
+
+<!-- ===== TABLEAU PARENTAL ===== -->
+<div id="par-bg" class="par-bg" onclick="if(event.target===this)closeParents()">
+  <div class="par-modal">
+    <div class="par-head">
+      <div class="par-ti" id="par-ti">👨‍👩‍👧 Espace Parents</div>
+      <button class="par-close" onclick="closeParents()">✕</button>
+    </div>
+    <div id="par-content"></div>
+  </div>
+</div>
 
 <!-- ===== BOUTIQUE MASCOTTE ===== -->
 <div id="shop-bg" class="shop-bg" onclick="if(event.target===this)closeShop()">
@@ -655,6 +712,7 @@ h1 span{color:#FFE082}
     <button class="lb tp-toggle" id="tp-toggle" onclick="toggle2P(this)" title="Mode 2 joueurs">👥 <span id="tp-lbl">Solo</span></button>
     <button class="lb" id="shop-btn" onclick="openShop()" title="Boutique mascotte" style="background:rgba(83,74,183,.25)!important;border-color:rgba(255,255,255,.4)!important">🎩</button>
     <button class="lb" id="skinshop-btn" onclick="openSkinShop()" title="Fond d'écran" style="background:rgba(29,158,117,.3)!important;border-color:rgba(255,255,255,.4)!important">🎨</button>
+    <button class="lb" id="parents-btn" onclick="openParents()" title="Espace Parents" style="background:rgba(0,0,0,.4)!important;border-color:rgba(255,255,255,.4)!important">👨‍👩</button>
   </div>
   <div class="xp-wrap">
     <div class="xp-av" id="xp-av">🐣</div>
@@ -3212,6 +3270,258 @@ promptPlayerNames = function(){
 
 
 
+
+// ============================================================
+// TRACKING SESSIONS — Stats pour tableau parental
+// ============================================================
+let _sessionStart = Date.now();
+let _sessionTracked = false;
+
+function trackSession(){
+  if(_sessionTracked)return;
+  const dur = Math.round((Date.now() - _sessionStart) / 1000); // secondes
+  if(dur < 10)return; // ignore les ouvertures trop courtes
+  const stats = JSON.parse(localStorage.getItem('knipo_stats')||'{}');
+  if(!stats.totalSec)stats.totalSec = 0;
+  if(!stats.sessions)stats.sessions = 0;
+  if(!stats.daysActive)stats.daysActive = [];
+  if(!stats.themePlays)stats.themePlays = {};
+  stats.totalSec += dur;
+  stats.sessions++;
+  const today = new Date();
+  const dKey = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+  if(!stats.daysActive.includes(dKey)){
+    stats.daysActive.push(dKey);
+    if(stats.daysActive.length > 365)stats.daysActive = stats.daysActive.slice(-365);
+  }
+  stats.lastSession = Date.now();
+  localStorage.setItem('knipo_stats', JSON.stringify(stats));
+  _sessionTracked = true;
+}
+
+// Tracker les quiz lancés par thème
+function trackThemePlay(theme){
+  const stats = JSON.parse(localStorage.getItem('knipo_stats')||'{}');
+  if(!stats.themePlays)stats.themePlays = {};
+  stats.themePlays[theme] = (stats.themePlays[theme]||0) + 1;
+  localStorage.setItem('knipo_stats', JSON.stringify(stats));
+}
+
+// Hook startQuiz pour tracker
+const _origStartQuiz = (typeof startQuiz==='function')?startQuiz:null;
+if(_origStartQuiz){
+  startQuiz = function(subj){
+    trackThemePlay(subj);
+    return _origStartQuiz.apply(this, arguments);
+  };
+}
+
+// Tracker à la fermeture / pageHide
+window.addEventListener('beforeunload', trackSession);
+window.addEventListener('pagehide', trackSession);
+// Tracker périodiquement (au cas où l'onglet reste ouvert longtemps)
+setInterval(()=>{_sessionTracked = false; trackSession();}, 5*60*1000);
+
+// ============================================================
+// TABLEAU PARENTAL
+// ============================================================
+let parentsUnlocked = false;
+
+function openParents(){
+  parentsUnlocked = false;
+  renderParentsGate();
+  document.getElementById('par-bg').className = 'par-bg show';
+}
+function closeParents(){
+  document.getElementById('par-bg').className = 'par-bg';
+  parentsUnlocked = false;
+}
+
+function renderParentsGate(){
+  // Énigme protection adulte : multiplication 2 chiffres
+  const a = 7 + Math.floor(Math.random()*5);  // 7-11
+  const b = 8 + Math.floor(Math.random()*5);  // 8-12
+  const answer = a * b;
+  const labels = {
+    fr:{ti:'👨‍👩‍👧 Espace Parents',q:`Combien font ${a} × ${b} ?`,de:'Question d\'adulte pour protéger l\'accès',ph:'Réponse',ok:'Valider',err:'Mauvaise réponse',hint:'Donne le résultat à un adulte 😉'},
+    en:{ti:'👨‍👩‍👧 Parents area',q:`What is ${a} × ${b}?`,de:'Adult question to protect access',ph:'Answer',ok:'Submit',err:'Wrong answer',hint:'Give to an adult 😉'},
+    it:{ti:'👨‍👩‍👧 Area Genitori',q:`Quanto fa ${a} × ${b}?`,de:'Domanda adulta per proteggere l\'accesso',ph:'Risposta',ok:'Invia',err:'Risposta sbagliata',hint:'Da un adulto 😉'}
+  }[lang]||{};
+  document.getElementById('par-ti').textContent = labels.ti;
+  document.getElementById('par-content').innerHTML = `
+    <div class="par-gate">
+      <span class="par-gate-em">🔐</span>
+      <div class="par-gate-q">${labels.q}</div>
+      <div class="par-gate-de">${labels.de}</div>
+      <input type="number" inputmode="numeric" class="par-gate-input" id="par-gate-in" placeholder="${labels.ph}" autofocus>
+      <div class="par-gate-err" id="par-gate-err">${labels.hint}</div>
+      <button class="par-gate-ok" onclick="checkParentsGate(${answer})">${labels.ok}</button>
+    </div>`;
+  setTimeout(()=>{const inp=document.getElementById('par-gate-in');if(inp){
+    inp.focus();
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkParentsGate(answer);});
+  }},100);
+}
+
+function checkParentsGate(expected){
+  const inp = document.getElementById('par-gate-in');
+  const errEl = document.getElementById('par-gate-err');
+  if(!inp)return;
+  const val = parseInt(inp.value);
+  if(val === expected){
+    parentsUnlocked = true;
+    renderParentsDashboard();
+  } else {
+    if(errEl){
+      errEl.style.color='#D85A30';
+      errEl.textContent = {fr:'Mauvaise réponse, réessaie 🤔',en:'Wrong, try again 🤔',it:'Sbagliato, riprova 🤔'}[lang]||'Erreur';
+      inp.value = '';
+      inp.focus();
+      inp.classList.add('shake');
+      setTimeout(()=>inp.classList.remove('shake'), 500);
+    }
+  }
+}
+
+function fmtTime(secs){
+  const h = Math.floor(secs/3600);
+  const m = Math.floor((secs%3600)/60);
+  if(h>0)return `${h}h ${m}m`;
+  return `${m}m`;
+}
+
+function renderParentsDashboard(){
+  const stats = JSON.parse(localStorage.getItem('knipo_stats')||'{}');
+  const totalSec = stats.totalSec || 0;
+  const sessions = stats.sessions || 0;
+  const days = (stats.daysActive||[]).length;
+  const themePlays = stats.themePlays || {};
+  const totalCards = (typeof unlockedCards!=='undefined')?unlockedCards.size:0;
+  const totalCardsMax = (typeof CARDS!=='undefined')?CARDS.length:0;
+  const isPremium = (typeof UNLOCKED!=='undefined' && UNLOCKED.has('empires'));
+  const labels = {
+    fr:{ti:'👨‍👩‍👧 Espace Parents',time:'Temps total',sessions:'Sessions',days:'Jours actifs',xp:'XP gagnés',badges:'Badges',cards:'Cartes',themesH:'📊 Thèmes joués',settingsH:'⚙️ Réglages',toggleSound:'Sons',toggleSoundSub:'Effets sonores et mascotte',toggleAmbient:'Musique d\'ambiance',toggleAmbientSub:'Boucle kora en fond',resetTitle:'⚠️ Zone de remise à zéro',resetData:'Réinitialiser tout (XP, cartes…)',resetOnboard:'Refaire l\'onboarding',premOnly:'Premium',advH:'📈 Statistiques avancées',avgPerDay:'Min/jour moyenne',bestStreak:'Meilleur streak',premUpsell:'Débloquer plus de stats avec Premium',premBtn:'👑 Voir Premium'},
+    en:{ti:'👨‍👩‍👧 Parents area',time:'Total time',sessions:'Sessions',days:'Active days',xp:'XP earned',badges:'Badges',cards:'Cards',themesH:'📊 Themes played',settingsH:'⚙️ Settings',toggleSound:'Sounds',toggleSoundSub:'Sound effects',toggleAmbient:'Ambient music',toggleAmbientSub:'Background kora loop',resetTitle:'⚠️ Reset zone',resetData:'Reset all (XP, cards…)',resetOnboard:'Restart onboarding',premOnly:'Premium',advH:'📈 Advanced stats',avgPerDay:'Avg min/day',bestStreak:'Best streak',premUpsell:'Unlock more stats with Premium',premBtn:'👑 Get Premium'},
+    it:{ti:'👨‍👩‍👧 Area Genitori',time:'Tempo totale',sessions:'Sessioni',days:'Giorni attivi',xp:'XP guadagnati',badges:'Badge',cards:'Carte',themesH:'📊 Temi giocati',settingsH:'⚙️ Impostazioni',toggleSound:'Suoni',toggleSoundSub:'Effetti sonori',toggleAmbient:'Musica ambient',toggleAmbientSub:'Loop kora di sottofondo',resetTitle:'⚠️ Reset',resetData:'Reset tutto (XP, carte…)',resetOnboard:'Rifai onboarding',premOnly:'Premium',advH:'📈 Statistiche avanzate',avgPerDay:'Min/giorno medi',bestStreak:'Miglior streak',premUpsell:'Sblocca più stats con Premium',premBtn:'👑 Ottieni Premium'}
+  }[lang]||{};
+  document.getElementById('par-ti').textContent = labels.ti;
+
+  // Calculs
+  const xpVal = (typeof xpTotal!=='undefined')?xpTotal:0;
+  const badgesCount = (typeof completedTopics!=='undefined')?completedTopics.size:0;
+  const avgPerDay = days > 0 ? Math.round((totalSec/60) / days) : 0;
+  const dayStreakVal = (typeof dayStreak!=='undefined')?dayStreak:0;
+
+  // Bars de thèmes joués
+  let totalPlays = 0;
+  Object.values(themePlays).forEach(n=>totalPlays+=n);
+  const themeNames = {histoire:'🏛️ Histoire',nature:'🌿 Nature',maths:'🔢 Maths',proverbes:'💬 Proverbes',animaux:'🦁 Animaux',geo:'🗺️ Géo',mix:'🎲 Mix',daily:'🌟 Défi'};
+  let barsHtml = '';
+  if(totalPlays > 0){
+    Object.entries(themePlays).sort((a,b)=>b[1]-a[1]).forEach(([t,n])=>{
+      const pct = Math.round((n/totalPlays)*100);
+      barsHtml += `<div class="par-bar-row"><div class="par-bar-label"><span>${themeNames[t]||t}</span><span>${n} parties (${pct}%)</span></div><div class="par-bar-track"><div class="par-bar-fill" style="width:${pct}%"></div></div></div>`;
+    });
+  } else {
+    barsHtml = `<div style="text-align:center;color:#888;font-size:13px;font-weight:600;padding:14px">${({fr:'Pas encore de parties jouées.',en:'No games played yet.',it:'Nessuna partita ancora.'}[lang])}</div>`;
+  }
+
+  // Toggles state
+  const soundOn = localStorage.getItem('knipo_sound_off') !== '1';
+  const ambientOn = localStorage.getItem('knipo_ambient') === '1';
+
+  document.getElementById('par-content').innerHTML = `
+    <div class="par-stats-grid">
+      <div class="par-stat"><span class="par-stat-em">⏱️</span><div class="par-stat-n">${fmtTime(totalSec)}</div><div class="par-stat-l">${labels.time}</div></div>
+      <div class="par-stat"><span class="par-stat-em">📅</span><div class="par-stat-n">${days}</div><div class="par-stat-l">${labels.days}</div></div>
+      <div class="par-stat"><span class="par-stat-em">⭐</span><div class="par-stat-n">${xpVal}</div><div class="par-stat-l">${labels.xp}</div></div>
+      <div class="par-stat"><span class="par-stat-em">🎯</span><div class="par-stat-n">${sessions}</div><div class="par-stat-l">${labels.sessions}</div></div>
+      <div class="par-stat"><span class="par-stat-em">🏆</span><div class="par-stat-n">${badgesCount}/6</div><div class="par-stat-l">${labels.badges}</div></div>
+      <div class="par-stat"><span class="par-stat-em">📔</span><div class="par-stat-n">${totalCards}/${totalCardsMax}</div><div class="par-stat-l">${labels.cards}</div></div>
+    </div>
+
+    <div class="par-section-h">${labels.themesH}</div>
+    <div class="par-bars">${barsHtml}</div>
+
+    <div class="par-section-h">${labels.advH} ${!isPremium?'<span class="par-prem-tag">'+labels.premOnly+'</span>':''}</div>
+    <div class="${!isPremium?'par-locked':''}">
+      <div class="par-stats-grid">
+        <div class="par-stat"><span class="par-stat-em">📊</span><div class="par-stat-n">${avgPerDay}</div><div class="par-stat-l">${labels.avgPerDay}</div></div>
+        <div class="par-stat"><span class="par-stat-em">🔥</span><div class="par-stat-n">${dayStreakVal}</div><div class="par-stat-l">${labels.bestStreak}</div></div>
+      </div>
+      ${!isPremium?`<div style="text-align:center;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:14px;border-radius:14px;margin-top:6px">
+        <div style="font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;margin-bottom:8px">${labels.premUpsell}</div>
+        <button onclick="closeParents();setTimeout(()=>{showTab('t-prem',document.getElementById('tb-prem'));},200)" style="padding:8px 18px;border-radius:11px;border:none;background:#EF9F27;color:#fff;font-family:'Baloo 2',cursive;font-weight:800;font-size:12px;cursor:pointer">${labels.premBtn}</button>
+      </div>`:''}
+    </div>
+
+    <div class="par-section-h">${labels.settingsH}</div>
+    <div class="par-toggle-row">
+      <div><div class="par-toggle-tx">🔊 ${labels.toggleSound}</div><div class="par-toggle-sub">${labels.toggleSoundSub}</div></div>
+      <button class="par-toggle ${soundOn?'on':''}" onclick="toggleSoundParental(this)"></button>
+    </div>
+    <div class="par-toggle-row">
+      <div><div class="par-toggle-tx">🎵 ${labels.toggleAmbient}</div><div class="par-toggle-sub">${labels.toggleAmbientSub}</div></div>
+      <button class="par-toggle ${ambientOn?'on':''}" onclick="toggleAmbientParental(this)"></button>
+    </div>
+
+    <div class="par-section-h">${labels.resetTitle}</div>
+    <div class="par-action-row" onclick="resetOnboarding()">
+      <div class="par-action-tx">🔄 ${labels.resetOnboard}</div>
+      <span class="par-action-arrow">›</span>
+    </div>
+    <div class="par-action-row danger" onclick="resetAllData()">
+      <div class="par-action-tx">🗑️ ${labels.resetData}</div>
+      <span class="par-action-arrow">›</span>
+    </div>
+  `;
+}
+
+function toggleSoundParental(btn){
+  const isOff = localStorage.getItem('knipo_sound_off') === '1';
+  if(isOff){
+    localStorage.removeItem('knipo_sound_off');
+    btn.classList.add('on');
+  } else {
+    localStorage.setItem('knipo_sound_off', '1');
+    btn.classList.remove('on');
+  }
+}
+
+function toggleAmbientParental(btn){
+  if(typeof toggleAmbient==='function'){
+    toggleAmbient();
+    setTimeout(()=>{
+      const ambientOn = localStorage.getItem('knipo_ambient') === '1';
+      btn.classList.toggle('on', ambientOn);
+    }, 100);
+  }
+}
+
+function resetOnboarding(){
+  const labels = {fr:'Refaire l\'onboarding ?',en:'Restart onboarding?',it:'Rifare l\'onboarding?'}[lang]||'Reset?';
+  if(confirm(labels)){
+    localStorage.removeItem('knipo_onboarded');
+    location.reload();
+  }
+}
+function resetAllData(){
+  const labels = {fr:'⚠️ Tout effacer ? Cela supprime XP, cartes, achats, statistiques. Cette action est irréversible.',en:'⚠️ Delete everything? XP, cards, purchases, stats will be lost. Irreversible.',it:'⚠️ Cancellare tutto? XP, carte, acquisti, stats. Irreversibile.'}[lang]||'Reset all?';
+  if(confirm(labels)){
+    Object.keys(localStorage).filter(k=>k.startsWith('knipo_')).forEach(k=>localStorage.removeItem(k));
+    location.reload();
+  }
+}
+
+// Patch playSound pour respecter le toggle sound off
+const _origPlaySound = (typeof playSound==='function')?playSound:null;
+if(_origPlaySound){
+  playSound = function(type){
+    if(localStorage.getItem('knipo_sound_off')==='1')return;
+    return _origPlaySound.apply(this, arguments);
+  };
+}
+
 // ============================================================
 // TAP-THE-RIGHT-ONE — Mini-jeu rapide chronométré
 // ============================================================
@@ -3467,9 +3777,9 @@ function openSkinShop(){
     document.body.appendChild(bg);
   }
   const labels = {
-    fr:{ti:'🎨 Choisis ton fond',hxp:'XP',cu:'En cours',buy:'Acheter',locked:'XP requis',seasonal:'🎁 Saisonnier !',free:'Gratuit'},
-    en:{ti:'🎨 Choose your background',hxp:'XP',cu:'Current',buy:'Buy',locked:'XP needed',seasonal:'🎁 Seasonal!',free:'Free'},
-    it:{ti:'🎨 Scegli lo sfondo',hxp:'XP',cu:'Attuale',buy:'Compra',locked:'XP richiesto',seasonal:'🎁 Stagionale!',free:'Gratis'}
+    fr:{ti:'🎨 Choisis ton fond',hxp:'XP',cu:'⭐ Actif',buy:'Acheter',locked:'XP requis',seasonal:'🎁 Bonus saison !',seasonalLocked:'🔒 Saison à venir',free:'Gratuit'},
+    en:{ti:'🎨 Choose your background',hxp:'XP',cu:'⭐ Active',buy:'Buy',locked:'XP needed',seasonal:'🎁 Season bonus!',seasonalLocked:'🔒 Future season',free:'Free'},
+    it:{ti:'🎨 Scegli lo sfondo',hxp:'XP',cu:'⭐ Attivo',buy:'Compra',locked:'XP richiesto',seasonal:'🎁 Bonus stagione!',seasonalLocked:'🔒 Stagione futura',free:'Gratis'}
   }[lang]||{};
   let html = `<div class="shop-modal">
     <div class="shop-head">
@@ -3495,13 +3805,15 @@ function openSkinShop(){
     div.style.cssText = `background:${s.css};color:#fff;border:none;min-height:100px;position:relative;overflow:hidden`;
     let costLbl = '';
     if(s.cost===0 && !seasonal) costLbl = labels.free;
-    else if(seasonalLocked) costLbl = labels.seasonal+' (verrouillé)';
+    else if(seasonalLocked) costLbl = labels.seasonalLocked;
     else if(seasonalAvailable && seasonal) costLbl = labels.seasonal;
-    else if(owned) costLbl = '✓';
+    else if(owned) costLbl = '✓ Acquis';
     else costLbl = `${s.cost} XP`;
-    div.innerHTML = (equipped?`<div class="shop-equipped-tag">${labels.cu}</div>`:'')+
-      `<div style="font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.4);padding:8px 4px;line-height:1.2">${s.n[lang]||s.n.fr}${s.extra?' '+s.extra:''}</div>`+
-      `<div style="position:absolute;bottom:6px;left:0;right:0;font-size:10px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.5)">${costLbl}</div>`;
+    const tagStyle = equipped ? 'background:linear-gradient(135deg,#FFD000,#EF9F27);color:#fff;box-shadow:0 2px 8px rgba(239,159,39,.5)' : '';
+    div.innerHTML = (equipped?`<div class="shop-equipped-tag" style="${tagStyle}">${labels.cu}</div>`:'')+
+      (seasonalAvailable && seasonal && !equipped?`<div class="shop-equipped-tag" style="background:linear-gradient(135deg,#1D9E75,#52C98A);color:#fff">🎁</div>`:'')+
+      `<div style="font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.5);padding:10px 4px 4px;line-height:1.2">${s.n[lang]||s.n.fr}${s.extra?' '+s.extra:''}</div>`+
+      `<div style="position:absolute;bottom:5px;left:0;right:0;font-size:10px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.6);padding:0 4px">${costLbl}</div>`;
     div.onclick = ()=>handleSkinClick(s, owned, locked, seasonalLocked);
     grid.appendChild(div);
   });
