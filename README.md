@@ -1,5 +1,4 @@
-[README.md](https://github.com/user-attachments/files/27317733/README.md)
-
+[README.md](https://github.com/user-attachments/files/27339686/README.md)
 <div align="center">
 
 <img src="icon-192.png" width="120" alt="KNIPO Kids logo"/>
