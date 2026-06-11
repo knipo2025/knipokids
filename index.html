@@ -8,14 +8,18 @@
 <title>KNIPO Kids</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:linear-gradient(155deg,#E65100 0%,#FF8C00 18%,#FFB300 35%,#FF6D00 52%,#2E7D32 72%,#1D9E75 100%);background-attachment:fixed;min-height:100%}
 body{font-family:'Nunito',sans-serif;background:radial-gradient(circle at 12% 8%,rgba(255,255,255,.18) 0%,transparent 42%),radial-gradient(circle at 88% 92%,rgba(0,0,0,.12) 0%,transparent 40%),radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:auto,auto,28px 28px;background-attachment:fixed;color:#2C2C2A;padding:12px 12px 12px;max-width:680px;margin:0 auto}
 /* Barre colorée en haut */
 .app-rainbow{position:fixed;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#FFD000,#FF6D00,#E91E8C,#534AB7,#1D9E75,#FFD000);z-index:99999;pointer-events:none}
 .hidden{display:none!important}
+*:focus-visible{outline:3px solid #EF9F27;outline-offset:3px;border-radius:6px}
+button:focus-visible{outline:3px solid #EF9F27;outline-offset:3px}
 h1{font-family:'Baloo 2',cursive;font-size:28px;color:#fff;text-align:center;letter-spacing:2px;text-shadow:0 2px 10px rgba(0,0,0,.3);margin-bottom:2px}
 h1 span{color:#FFE082}
 .tagline{text-align:center;font-size:10px;color:rgba(255,255,255,.72);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:800}
@@ -54,7 +58,6 @@ h1 span{color:#FFE082}
 .unlk{position:absolute;top:7px;right:7px;background:#1D9E75;border-radius:20px;padding:2px 7px;font-size:10px;font-weight:700;color:#fff}
 .back-btn{background:rgba(255,255,255,.22);border:none;cursor:pointer;font-size:12px;font-weight:800;color:#fff;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;margin-bottom:8px;backdrop-filter:blur(8px);transition:background .2s}
 .back-btn:hover{background:rgba(255,255,255,.35)}
-.qhead{border-radius:13px;padding:14px;margin-bottom:10px;text-align:center}
 .qhi-big{font-size:40px;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12))}
 .qht{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:rgba(0,0,0,.72);letter-spacing:.3px}
 .dots{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
@@ -320,13 +323,13 @@ h1 span{color:#FFE082}
     <div class="modal-de" id="m-de">Entre ton code d'accès pour déverrouiller.</div>
     <div class="modal-pr" id="m-pr">4,99€ <span style="font-size:13px;color:#888;font-weight:400" id="m-prs">/ accès à vie</span></div>
     <div class="code-row">
-      <input class="code-in" id="code-in" placeholder="CODE" maxlength="8" oninput="this.value=this.value.toUpperCase()">
+      <input class="code-in" id="code-in" placeholder="CODE" maxlength="8" autocomplete="off" aria-label="Code d'accès premium" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')submitCode()">
       <button class="code-ok" onclick="submitCode()">OK</button>
     </div>
     <div class="modal-err" id="m-err">Code incorrect ❌</div>
     <div class="modal-btns">
       <button class="mbtn-s" onclick="closeModal()" id="m-cancel">Annuler</button>
-      <button class="mbtn-p" id="m-buy" onclick="closeModal()">Bientôt disponible →</button>
+      <button class="mbtn-p" id="m-buy" onclick="closeModal();showTab('t-prem',$('tb-prem'))">Bientôt disponible →</button>
     </div>
   </div>
 </div>
@@ -356,9 +359,9 @@ h1 span{color:#FFE082}
     <div class="tagline" id="tag">Apprendre avec ses racines</div>
   </div>
   <div class="lang-row">
-    <button class="lb on" onclick="setLang('fr',this)">🇫🇷 FR</button>
-    <button class="lb" onclick="setLang('en',this)">🇬🇧 EN</button>
-    <button class="lb" onclick="setLang('it',this)">🇮🇹 IT</button>
+    <button class="lb on" data-lang="fr" aria-label="Français" onclick="setLang('fr',this)">🇫🇷 FR</button>
+    <button class="lb" data-lang="en" aria-label="English" onclick="setLang('en',this)">🇬🇧 EN</button>
+    <button class="lb" data-lang="it" aria-label="Italiano" onclick="setLang('it',this)">🇮🇹 IT</button>
   </div>
   <div class="xp-wrap">
     <div class="xp-av" id="xp-av">🐣</div>
@@ -447,7 +450,7 @@ h1 span{color:#FFE082}
     </div>
     <div style="background:#F1EFE8;border-radius:10px;padding:10px;text-align:center;font-size:12px;color:#888;font-weight:700" id="prem-cta">🚀 Le Premium arrive bientôt. Reviens vite !</div>
   </div>
-  <div class="footer">KNIPO Kids &copy; 2025 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
+  <div class="footer">KNIPO Kids &copy; 2026 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
 </div>
 
 <!-- INTRO PAGE (avant chaque quiz) -->
@@ -717,7 +720,7 @@ function renderPuzzleGrid(){
 // ============================================================
 // STATE & HELPERS
 // ============================================================
-const CODES={'KNIPO24':true,'PREMIUM':true};
+const CODES_H=new Set(['S05JUE8yNA==','UFJFTUlVTQ==']);
 const UNLOCKED=new Set();
 let lang='fr',xpTotal=0,xpSess=0;
 let curSubj='histoire',curQ=0,score=0,answered=false;
@@ -859,7 +862,6 @@ const DAILY_FACTS=[
   {e:'💰',fr:"Mansa Musa était si riche que son passage au Caire en 1324 provoqua une inflation qui dura 10 ans !",en:"Mansa Musa was so rich his 1324 Cairo stopover caused inflation lasting 10 years!",it:"Mansa Musa era così ricco che il suo passaggio al Cairo nel 1324 causò un'inflazione durata 10 anni!"},
   {e:'🦛',fr:"Le rhinocéros peut courir à 50 km/h malgré ses 2 tonnes. Ne le provoque surtout pas !",en:"The rhino can run at 50 km/h despite weighing 2 tons. Whatever you do, don't provoke it!",it:"Il rinoceronte può correre a 50 km/h nonostante le 2 tonnellate. Non provocarlo!"},
   {e:'📚',fr:"L'Éthiopie possède son propre alphabet — le Ge'ez — avec plus de 230 caractères. Un des plus anciens du monde !",en:"Ethiopia has its own alphabet — Ge'ez — with over 230 characters. One of the oldest in the world!",it:"L'Etiopia ha il proprio alfabeto — il Ge'ez — con oltre 230 caratteri. Uno dei più antichi del mondo!"},
-  {e:'🌊',fr:"Le lac Victoria est si grand qu'un avion prend 1 heure pour le survoler d'un bout à l'autre !",en:"Lake Victoria is so large that a plane takes 1 hour to fly from one end to the other!",it:"Il lago Vittoria è così grande che un aereo impiega 1 ora per sorvolarlo da un'estremità all'altra!"},
   {e:'🦁',fr:"Un lion peut dormir jusqu'à 20 heures par jour. Le roi de la savane est aussi le roi de la sieste !",en:"A lion can sleep up to 20 hours a day. The king of the savanna is also the king of napping!",it:"Un leone può dormire fino a 20 ore al giorno. Il re della savana è anche il re del pisolino!"},
   {e:'🗺️',fr:"Le Nil coule vers le NORD ! C'est un des rares grands fleuves au monde à couler du sud vers le nord.",en:"The Nile flows NORTHWARD! It's one of the few major rivers in the world flowing from south to north.",it:"Il Nilo scorre verso NORD! È uno dei pochi grandi fiumi al mondo che scorre da sud a nord."},
   {e:'🐘',fr:"Les éléphants se reconnaissent dans les miroirs. Ils ont une conscience d'eux-mêmes, comme les humains !",en:"Elephants recognize themselves in mirrors. They have self-awareness, just like humans!",it:"Gli elefanti si riconoscono negli specchi. Hanno autoconsapevolezza, proprio come gli esseri umani!"},
@@ -869,7 +871,7 @@ const DAILY_FACTS=[
   {e:'💎',fr:"L'Afrique du Sud produit 77% du platine mondial — un métal qui vaut 3 fois plus que l'or !",en:"South Africa produces 77% of the world's platinum — a metal worth 3 times more than gold!",it:"Il Sudafrica produce il 77% del platino mondiale — un metallo che vale 3 volte più dell'oro!"},
   {e:'🦍',fr:"Le gorille vit en famille soudée. Le mâle dominant protège ses proches toute sa vie, comme un vrai papa !",en:"Gorillas live in close-knit families. The dominant male protects his family for life, like a true father!",it:"I gorilla vivono in famiglie unite. Il maschio dominante protegge la sua famiglia per tutta la vita!"},
   {e:'🐆',fr:"Le guépard est le seul grand félin incapable de rugir. En revanche, il ronronne... comme un chat !",en:"The cheetah is the only big cat unable to roar. But it can purr... just like a house cat!",it:"Il ghepardo è l'unico grande felino incapace di ruggire. Però fa le fusa... come un gatto!"},
-  {e:'🦁',fr:"Le lion dort en moyenne 20h par jour ! C'est le roi de la savane... mais aussi le roi de la sieste.",en:"Lions sleep an average of 20 hours a day! King of the savanna... and king of napping.",it:"I leoni dormono in media 20 ore al giorno! Re della savana... e del pisolino."},
+
   {e:'🏛️',fr:"Les pyramides d'Égypte ont été construites par des ouvriers libres et bien payés — pas des esclaves ! L'archéologie moderne l'a prouvé.",en:"Egypt's pyramids were built by free, well-paid workers — not slaves! Modern archaeology has proved it.",it:"Le piramidi d'Egitto furono costruite da operai liberi e ben pagati — non schiavi! L'archeologia moderna lo ha dimostrato."},
   {e:'🦒',fr:"La girafe a le même nombre de vertèbres dans le cou que l'humain : 7 ! Mais les siennes font 30 cm chacune.",en:"The giraffe has the same number of neck vertebrae as humans: 7! But each one is 30 cm long.",it:"La giraffa ha lo stesso numero di vertebre cervicali dell'uomo: 7! Ma ciascuna misura 30 cm."},
   {e:'🌍',fr:"L'Afrique compte plus de 2 000 langues différentes — soit environ 1/3 de toutes les langues du monde !",en:"Africa has over 2,000 different languages — about 1/3 of all the world's languages!",it:"L'Africa conta oltre 2.000 lingue diverse — circa 1/3 di tutte le lingue del mondo!"},
@@ -1398,7 +1400,7 @@ function showClassicModal(){
 function closeModal(){$('modal-bg').className='modal-bg';}
 function submitCode(){
   const code=$('code-in').value.trim().toUpperCase();
-  if(CODES[code]){
+  if(CODES_H.has(btoa(code))){
     ['empires','mythes','maths2','langues','heros','ia2'].forEach(s=>UNLOCKED.add(s));
     closeModal();
     for(let i=0;i<6;i++){const lk=$('lk'+i);if(lk){lk.textContent='✅';lk.className='unlk';}}
@@ -1519,7 +1521,8 @@ function showToast(msg){
 
 function notifyMe(){
   const el=$('prem-notify');if(!el)return;
-  el.outerHTML='<div class="notify-done" id="prem-notify">✅ On te prévient dès que c\'est prêt !</div>';
+  const msgs={fr:"✅ On te prévient dès que c'est prêt !",en:"✅ We'll notify you when it's ready!",it:'✅ Ti avvisiamo appena sarà pronto!'};
+  el.outerHTML='<div class="notify-done" id="prem-notify">'+(msgs[lang]||msgs.fr)+'</div>';
 }
 
 // ============================================================
@@ -1791,7 +1794,7 @@ if(savedXP){xpTotal=savedXP;prevLevel=Math.floor(savedXP/1000)+1;}
 initDayStreak();
 if(savedLang&&T[savedLang]){
   lang=savedLang;
-  document.querySelectorAll('.lb').forEach(b=>{if(b.textContent.includes(savedLang.toUpperCase()))b.classList.add('on');else b.classList.remove('on');});
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.lang===savedLang));
 }
 applyLang();
 checkDailyReminder();
