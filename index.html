@@ -7,7 +7,7 @@
 <meta name="description" content="KNIPO Kids — Application éducative pour enfants sur l'Afrique, l'histoire, la nature et les mathématiques.">
 <title>KNIPO Kids</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700&display=swap">
@@ -36,6 +36,53 @@ h1 span{color:#FFE082}
 .xp-bar{background:rgba(255,255,255,.12);border-radius:20px;height:8px;margin:5px 0}
 .xp-fill{background:linear-gradient(90deg,#1D9E75,#52C98A);height:8px;border-radius:20px;transition:width .5s;box-shadow:0 0 8px rgba(29,158,117,.5)}
 .xp-pts{font-size:11px;color:rgba(255,255,255,.45);font-weight:700}
+.xp-av svg{width:36px;height:36px;display:block}
+/* Kani — mascotte vivante */
+.kani-card{display:flex;align-items:flex-start;gap:10px;background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.07));border:1.5px solid rgba(255,255,255,.28);border-radius:18px;padding:9px 12px 9px 9px;margin-bottom:10px;backdrop-filter:blur(10px);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s}
+.kani-card:active{transform:scale(.985)}
+.kani-av{width:56px;height:56px;flex-shrink:0;animation:kaniBob 2.8s ease-in-out infinite}
+@keyframes kaniBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+.kani-av svg{width:100%;height:100%;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.28))}
+.kani-col{flex:1;min-width:0;padding-top:2px}
+.kani-bubble{position:relative;background:#fff;border-radius:14px;padding:9px 12px;font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:700;color:#2C2C2A;line-height:1.35;box-shadow:0 3px 12px rgba(0,0,0,.16)}
+.kani-bubble::before{content:'';position:absolute;left:-7px;top:16px;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:8px solid #fff}
+.kani-bubble strong{color:#E65100}
+.kani-evo{font-size:10.5px;color:rgba(255,255,255,.78);font-weight:800;margin-top:5px;padding-left:4px;letter-spacing:.2px}
+.kani-pop{animation:kaniPop .38s cubic-bezier(.2,.8,.4,1)}
+@keyframes kaniPop{from{opacity:.35;transform:scale(.94) translateY(3px)}to{opacity:1;transform:scale(1) translateY(0)}}
+/* Trésors — collection */
+.treasure-home{width:100%;display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#1D2545,#0f3460);border:1.5px solid rgba(239,159,39,.4);border-radius:16px;padding:11px 14px;margin-bottom:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 5px 18px rgba(15,52,96,.4);transition:transform .12s}
+.treasure-home:active{transform:scale(.985)}
+.th-ic{font-size:30px;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+.th-mid{flex:1;min-width:0;text-align:left}
+.th-ti{font-family:'Baloo 2',cursive;font-size:14px;font-weight:800;color:#EF9F27;display:block}
+.th-bar{display:block;background:rgba(255,255,255,.14);border-radius:20px;height:7px;margin-top:5px;overflow:hidden}
+.th-fill{display:block;background:linear-gradient(90deg,#EF9F27,#F5B848);height:7px;border-radius:20px;transition:width .5s}
+.th-count{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.coll-head{border-radius:16px;padding:14px;margin-bottom:12px;text-align:center;background:linear-gradient(135deg,#1D2545,#0f3460);box-shadow:0 4px 16px rgba(15,52,96,.4)}
+.coll-head .ch-ti{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:#EF9F27}
+.coll-head .ch-sub{font-size:12px;color:rgba(255,255,255,.7);font-weight:700;margin-top:3px}
+.coll-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:14px}
+.tcard{border-radius:16px;padding:12px 6px;text-align:center;border:2px solid transparent;min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.tcard.owned{background:linear-gradient(150deg,#FFF3D0,#FFCC55);border-color:rgba(239,159,39,.55);box-shadow:0 4px 12px rgba(239,159,39,.25)}
+.tcard.locked{background:rgba(255,255,255,.1);border:1.5px dashed rgba(255,255,255,.3)}
+.tcard .te{font-size:38px;line-height:1;filter:drop-shadow(0 3px 5px rgba(0,0,0,.15))}
+.tcard.locked .te{filter:grayscale(1) opacity(.35)}
+.tcard .tn{font-family:'Baloo 2',cursive;font-size:11px;font-weight:800;margin-top:6px;line-height:1.15}
+.tcard.owned .tn{color:rgba(0,0,0,.72)}
+.tcard.locked .tn{color:rgba(255,255,255,.45)}
+.tcard .tx{font-size:9.5px;color:rgba(0,0,0,.5);margin-top:3px;line-height:1.25;font-weight:600}
+.treasure-reveal{position:fixed;inset:0;z-index:100000;background:rgba(15,17,30,.72);display:flex;align-items:center;justify-content:center;padding:24px;animation:fbIn .3s ease}
+.tr-card{background:#fff;border-radius:24px;padding:26px 22px;text-align:center;max-width:300px;width:100%;box-shadow:0 18px 50px rgba(0,0,0,.4);animation:kaniPop .45s cubic-bezier(.2,.9,.3,1.2)}
+.tr-tag{font-family:'Baloo 2',cursive;font-size:13px;font-weight:800;color:#EF9F27;letter-spacing:.5px;margin-bottom:10px}
+.tr-emoji{font-size:80px;line-height:1;margin:6px 0;animation:mascotFloat 1.8s ease-in-out infinite alternate}
+.tr-name{font-family:'Baloo 2',cursive;font-size:21px;font-weight:800;color:#1a1a2e;margin-bottom:6px}
+.tr-fact{font-size:13px;color:#555;font-weight:600;line-height:1.5;margin-bottom:18px}
+.tr-btn{width:100%;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,#EF9F27,#F5B848);color:#fff;font-family:'Baloo 2',cursive;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 5px 16px rgba(239,159,39,.45)}
+/* Bouton écouter (narration) */
+.say-btn{display:inline-flex;align-items:center;gap:5px;margin:8px auto 2px;padding:6px 14px;border-radius:20px;border:2px solid #1D9E75;background:#E1F5EE;color:#1D7A55;font-family:'Baloo 2',cursive;font-size:12.5px;font-weight:800;cursor:pointer;transition:transform .12s,background .2s}
+.say-btn:hover{background:#d2efe3}
+.say-btn:active{transform:scale(.94)}
 .tabs{display:flex;gap:3px;background:rgba(0,0,0,.25);border-radius:15px;padding:4px;margin-bottom:10px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1)}
 .tab{flex:1;padding:9px 2px;border:none;background:none;border-radius:12px;font-family:'Baloo 2',cursive;font-weight:800;font-size:11.5px;cursor:pointer;color:rgba(255,255,255,.6);transition:all .2s;letter-spacing:.1px}
 .tab.on{background:#fff;color:#E65100;box-shadow:0 2px 12px rgba(0,0,0,.22);transform:translateY(-1px)}
@@ -362,6 +409,7 @@ h1 span{color:#FFE082}
     <button class="lb on" data-lang="fr" aria-label="Français" onclick="setLang('fr',this)">🇫🇷 FR</button>
     <button class="lb" data-lang="en" aria-label="English" onclick="setLang('en',this)">🇬🇧 EN</button>
     <button class="lb" data-lang="it" aria-label="Italiano" onclick="setLang('it',this)">🇮🇹 IT</button>
+    <button class="lb" id="voice-tog" aria-label="Activer ou couper la voix" onclick="toggleVoice()">🔊</button>
   </div>
   <div class="xp-wrap">
     <div class="xp-av" id="xp-av">🐣</div>
@@ -371,6 +419,13 @@ h1 span{color:#FFE082}
       <div class="xp-pts" id="xp-pts">0 / 1000 XP</div>
     </div>
     <div class="streak-wrap" id="streak-wrap">🔥 <span id="streak-n">0</span></div>
+  </div>
+  <div class="kani-card" id="kani-card" onclick="kaniSpeak()" role="button" tabindex="0" aria-label="Kani le lion">
+    <div class="kani-av" id="kani-av"></div>
+    <div class="kani-col">
+      <div class="kani-bubble" id="kani-bubble">…</div>
+      <div class="kani-evo" id="kani-evo"></div>
+    </div>
   </div>
   <div class="tabs">
     <button class="tab on" onclick="showTab('t-learn',this)" id="tb-learn">📚 Apprendre</button>
@@ -397,6 +452,11 @@ h1 span{color:#FFE082}
       <button class="gcard gc-a" onclick="showIntro('animaux')"><span class="ci">🦁</span><span class="ct" id="ct-a">Animaux</span><span class="cs" id="cs-a">Savane & jungle</span><span class="mst-stars" id="mst-animaux"></span></button>
       <button class="gcard gc-g" onclick="showIntro('geo')"><span class="ci">🗺️</span><span class="ct" id="ct-g">Géographie</span><span class="cs" id="cs-g">Pays & capitales</span><span class="mst-stars" id="mst-geo"></span></button>
     </div>
+    <button class="treasure-home" onclick="openCollection()">
+      <span class="th-ic">🏆</span>
+      <span class="th-mid"><span class="th-ti" id="th-ti">Mes trésors d'Afrique</span><span class="th-bar"><span class="th-fill" id="treasure-fill" style="width:0%"></span></span></span>
+      <span class="th-count" id="treasure-count">0 / 12</span>
+    </button>
     <div class="fact-card" id="fact-card">
       <div class="fact-ic" id="fact-ic">🌍</div>
       <div><div class="fact-lbl" id="fact-lbl">Le savais-tu ? 💡</div><div class="fact-txt" id="fact-txt"></div></div>
@@ -453,6 +513,16 @@ h1 span{color:#FFE082}
   <div class="footer">KNIPO Kids &copy; 2026 · <a href="https://knipo.org" target="_blank">knipo.org</a></div>
 </div>
 
+<!-- COLLECTION PAGE -->
+<div id="page-collection" class="hidden">
+  <button class="back-btn" onclick="goHome()" id="bk-coll">← Accueil</button>
+  <div class="coll-head">
+    <div class="ch-ti" id="coll-ti">🏆 Mes trésors d'Afrique</div>
+    <div class="ch-sub"><span id="coll-count">0 / 12</span> · <span id="coll-sub">gagne-les en jouant !</span></div>
+  </div>
+  <div class="coll-grid" id="coll-grid"></div>
+</div>
+
 <!-- INTRO PAGE (avant chaque quiz) -->
 <div id="page-intro" class="hidden">
   <button class="intro-back-btn" onclick="goHome()" id="bk-intro">← Accueil</button>
@@ -479,7 +549,7 @@ h1 span{color:#FFE082}
     <div class="timer-num" id="timer-num">15</div>
   </div>
   <div class="combo-msg" id="combo-msg"></div>
-  <div class="qcard"><span class="qem" id="qem"></span><div class="qtx" id="qtx"></div><div class="qhint" id="qhint"></div></div>
+  <div class="qcard"><span class="qem" id="qem"></span><div class="qtx" id="qtx"></div><button class="say-btn" onclick="speakQuestion()" aria-label="Écouter la question">🔊 <span id="say-lbl">Écouter</span></button><div class="qhint" id="qhint"></div></div>
   <div class="agrid" id="agrid"></div>
   <div class="fb" id="fb"><span class="fb-ic" id="fb-ic"></span><div class="fb-body"><strong id="fb-ti"></strong><span id="fb-ms"></span></div></div>
   <button class="nxtbtn" id="nxtbtn" onclick="nextQ()">Continuer →</button>
@@ -674,7 +744,7 @@ const PUZZ={
 PUZZ.fr.push(
   {ti:"Le Nil",s:["Le fleuve","___","est le plus long du monde"],ans:"Nil",b:["Nil","Congo","Niger","Zambèze"],x:"Le Nil fait 6 650 km — il a nourri la civilisation égyptienne pendant des millénaires !"},
   {ti:"L'Éthiopie",s:["L'Éthiopie n'a jamais été","___"],ans:"colonisée",b:["colonisée","envahie","oubliée","conquise"],x:"L'Éthiopie a battu l'Italie à la bataille d'Adwa en 1896 — première victoire africaine sur une puissance européenne !"},
-  {ti:"Ubuntu",s:["Ubuntu signifie : 'Je suis parce que nous","___"'"],ans:"sommes",b:["sommes","existons","vivons","marchons"],x:"Ubuntu est la grande philosophie de solidarité africaine : je n'existe qu'à travers les autres !"},
+  {ti:"Ubuntu",s:["Ubuntu signifie : 'Je suis parce que nous","___","'"],ans:"sommes",b:["sommes","existons","vivons","marchons"],x:"Ubuntu est la grande philosophie de solidarité africaine : je n'existe qu'à travers les autres !"},
   {ti:"Le Sahara",s:["Le Sahara est le plus grand","___","chaud du monde"],ans:"désert",b:["désert","fleuve","lac","forêt"],x:"Le Sahara couvre 9 millions de km² — presque aussi grand que les États-Unis !"},
   {ti:"Mandela",s:["Mandela a passé","___","ans en prison"],ans:"27",b:["27","10","18","35"],x:"Libéré en 1990, il est devenu président d'Afrique du Sud en 1994 — mettant fin à l'apartheid !"},
   {ti:"La girafe",s:["La girafe est le plus","___","animal terrestre"],ans:"grand",b:["grand","rapide","lourd","dangereux"],x:"La girafe peut mesurer jusqu'à 6 mètres — son cou seul peut faire 2 mètres !"}
@@ -682,7 +752,7 @@ PUZZ.fr.push(
 PUZZ.en.push(
   {ti:"The Nile",s:["The river","___","is the longest in the world"],ans:"Nile",b:["Nile","Congo","Niger","Zambezi"],x:"The Nile is 6,650 km — it nourished Egyptian civilization for millennia!"},
   {ti:"Ethiopia",s:["Ethiopia was never","___"],ans:"colonized",b:["colonized","invaded","forgotten","defeated"],x:"Ethiopia defeated Italy at the Battle of Adwa in 1896 — the first African victory over a European power!"},
-  {ti:"Ubuntu",s:["Ubuntu means: 'I am because we","___"'"],ans:"are",b:["are","exist","live","go"],x:"Ubuntu is the great African philosophy of solidarity: I only exist through my connection with others!"},
+  {ti:"Ubuntu",s:["Ubuntu means: 'I am because we","___","'"],ans:"are",b:["are","exist","live","go"],x:"Ubuntu is the great African philosophy of solidarity: I only exist through my connection with others!"},
   {ti:"The Sahara",s:["The Sahara is the world's largest hot","___"],ans:"desert",b:["desert","river","lake","forest"],x:"The Sahara covers 9 million km² — almost as large as the United States!"},
   {ti:"Mandela",s:["Mandela spent","___","years in prison"],ans:"27",b:["27","10","18","35"],x:"Released in 1990, he became President of South Africa in 1994 — ending apartheid!"},
   {ti:"The giraffe",s:["The giraffe is the","___","land animal"],ans:"tallest",b:["tallest","fastest","heaviest","oldest"],x:"The giraffe can reach 6 meters tall — its neck alone can be 2 meters long!"}
@@ -690,7 +760,7 @@ PUZZ.en.push(
 PUZZ.it.push(
   {ti:"Il Nilo",s:["Il fiume","___","è il più lungo del mondo"],ans:"Nilo",b:["Nilo","Congo","Niger","Zambesi"],x:"Il Nilo è lungo 6.650 km — ha nutrito la civiltà egizia per millenni!"},
   {ti:"L'Etiopia",s:["L'Etiopia non è mai stata","___"],ans:"colonizzata",b:["colonizzata","invasa","dimenticata","conquistata"],x:"L'Etiopia ha sconfitto l'Italia nella battaglia di Adwa nel 1896 — prima vittoria africana su una potenza europea!"},
-  {ti:"Ubuntu",s:["Ubuntu significa: 'Sono perché noi","___"'"],ans:"siamo",b:["siamo","esistiamo","viviamo","andiamo"],x:"Ubuntu è la grande filosofia africana di solidarietà: esisto solo attraverso il mio legame con gli altri!"},
+  {ti:"Ubuntu",s:["Ubuntu significa: 'Sono perché noi","___","'"],ans:"siamo",b:["siamo","esistiamo","viviamo","andiamo"],x:"Ubuntu è la grande filosofia africana di solidarietà: esisto solo attraverso il mio legame con gli altri!"},
   {ti:"Il Sahara",s:["Il Sahara è il più grande","___","caldo del mondo"],ans:"deserto",b:["deserto","fiume","lago","foresta"],x:"Il Sahara copre 9 milioni di km² — quasi grande come gli Stati Uniti!"},
   {ti:"Mandela",s:["Mandela ha trascorso","___","anni in prigione"],ans:"27",b:["27","10","18","35"],x:"Liberato nel 1990, è diventato Presidente del Sudafrica nel 1994 — ponendo fine all'apartheid!"},
   {ti:"La giraffa",s:["La giraffa è il più","___","animale terrestre"],ans:"alto",b:["alto","veloce","pesante","pericoloso"],x:"La giraffa può misurare fino a 6 metri — il suo collo da solo può essere lungo 2 metri!"}
@@ -744,7 +814,7 @@ let onboardStep=0;
 
 function $(id){return document.getElementById(id);}
 function L(){return T[lang];}
-function showPage(id){['page-home','page-intro','page-quiz','page-puzzle','page-success'].forEach(p=>$(p)&&$(p).classList.add('hidden'));$(id)&&$(id).classList.remove('hidden');}
+function showPage(id){['page-home','page-intro','page-quiz','page-puzzle','page-success','page-collection'].forEach(p=>$(p)&&$(p).classList.add('hidden'));$(id)&&$(id).classList.remove('hidden');}
 function goHome(){clearTimer();showPage('page-home');setTimeout(animateHomeCards,40);}
 
 // ============================================================
@@ -814,6 +884,7 @@ function showIntro(subj){
   }
   const bk=$('bk-intro');if(bk){const t={fr:'← Accueil',en:'← Home',it:'← Inizio'};bk.textContent=t[lang]||t.fr;}
   showPage('page-intro');
+  speak((names[subj]||'')+'. '+(d[lang]||d.fr));
 }
 
 function launchQuiz(){
@@ -908,18 +979,69 @@ function renderMastery(){
   });
 }
 
+// ============================================================
+// KANI — mascotte vivante (lion qui évolue + parle)
+// ============================================================
+const KANI_NAMES={fr:[,'Petit Lion','Grand Lion','Lion Fier','Roi Lion','Légende'],en:[,'Lion Cub','Proud Lion','Bold Lion','Lion King','Legend'],it:[,'Leoncino','Leone Fiero','Leone Audace','Re Leone','Leggenda']};
+const KANI={
+  fr:{
+    greet:["Salut {n} ! On apprend l'Afrique aujourd'hui ? 🌍","Re-bonjour {n} ! 🦁 Prêt·e pour un défi ?","Content de te revoir, {n} ! 💛","Coucou {n} ! Par quel thème on commence ? 😺"],
+    idle:["Moi c'est Kani, ton lion guide ! 🦁","Touche-moi encore pour une autre astuce ! ✨","Le savoir, c'est un trésor : plus tu en as, plus tu es fort·e ! 💪","Tente le Défi du jour pour gagner plein d'XP ! 🌟","Chaque bonne réponse me rend plus fort ! 🔥","En Afrique on dit : petit à petit, l'oiseau fait son nid. 🐦","Tu es plus malin·e qu'hier ! Continue ! 🚀","Reviens chaque jour pour garder ta série ! 🔥"],
+    back:["Tu m'as manqué, {n} ! 🦁 On reprend ?","Te revoilà, {n} ! Ta série t'attend ! 🔥"]
+  },
+  en:{
+    greet:["Hi {n}! Shall we learn about Africa today? 🌍","Welcome back {n}! 🦁 Ready for a challenge?","Great to see you, {n}! 💛","Hey {n}! Which theme first? 😺"],
+    idle:["I'm Kani, your lion guide! 🦁","Tap me again for another tip! ✨","Knowledge is a treasure: the more you have, the stronger you are! 💪","Try the Daily Challenge for lots of XP! 🌟","Every right answer makes me stronger! 🔥","In Africa we say: little by little, the bird builds its nest. 🐦","You're smarter than yesterday! Keep going! 🚀","Come back every day to keep your streak! 🔥"],
+    back:["I missed you, {n}! 🦁 Shall we continue?","You're back, {n}! Your streak awaits! 🔥"]
+  },
+  it:{
+    greet:["Ciao {n}! Impariamo l'Africa oggi? 🌍","Bentornato {n}! 🦁 Pronto per una sfida?","Che bello rivederti, {n}! 💛","Ehi {n}! Da quale tema iniziamo? 😺"],
+    idle:["Sono Kani, il tuo leone guida! 🦁","Toccami ancora per un altro consiglio! ✨","Il sapere è un tesoro: più ne hai, più sei forte! 💪","Prova la Sfida del giorno per tanti XP! 🌟","Ogni risposta giusta mi rende più forte! 🔥","In Africa si dice: a poco a poco l'uccello fa il nido. 🐦","Sei più sveglio di ieri! Continua! 🚀","Torna ogni giorno per mantenere la serie! 🔥"],
+    back:["Mi sei mancato, {n}! 🦁 Continuiamo?","Sei tornato, {n}! La tua serie ti aspetta! 🔥"]
+  }
+};
+
+function kaniSVG(stage){
+  const mane=stage>=2, bigMane=stage>=3, crown=stage>=4, aura=stage>=5;
+  const maneColor=bigMane?'#E65100':'#FF8C00';
+  let s='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">';
+  if(aura){s+='<g fill="#FFE08A">'+[[14,20],[86,22],[20,84],[82,82]].map(p=>`<path d="M${p[0]} ${p[1]-5} l1.6 3.4 l3.4 1.6 l-3.4 1.6 l-1.6 3.4 l-1.6 -3.4 l-3.4 -1.6 l3.4 -1.6 z"/>`).join('')+'</g>';}
+  if(mane){const n=bigMane?14:10,r=33,rad=bigMane?13:11;let m='<g>';for(let i=0;i<n;i++){const a=i/n*2*Math.PI;m+=`<circle cx="${(50+Math.cos(a)*r).toFixed(1)}" cy="${(53+Math.sin(a)*r).toFixed(1)}" r="${rad}" fill="${maneColor}"/>`;}s+=m+'</g>';}
+  s+='<circle cx="33" cy="32" r="9" fill="#BA7517"/><circle cx="67" cy="32" r="9" fill="#BA7517"/>';
+  s+='<circle cx="33" cy="32" r="4.5" fill="#FFD9A0"/><circle cx="67" cy="32" r="4.5" fill="#FFD9A0"/>';
+  s+='<circle cx="50" cy="53" r="28" fill="#EF9F27"/>';
+  s+='<ellipse cx="50" cy="63" rx="16" ry="12" fill="#FFE6B5"/>';
+  s+='<circle cx="40" cy="49" r="4.2" fill="#2C2C2A"/><circle cx="60" cy="49" r="4.2" fill="#2C2C2A"/>';
+  s+='<circle cx="41.6" cy="47.4" r="1.4" fill="#fff"/><circle cx="61.6" cy="47.4" r="1.4" fill="#fff"/>';
+  s+='<path d="M46 58 h8 l-4 4.5 z" fill="#7A3B12"/>';
+  s+='<path d="M50 62.5 q0 5 -6 5.5 M50 62.5 q0 5 6 5.5" fill="none" stroke="#7A3B12" stroke-width="2" stroke-linecap="round"/>';
+  if(crown){s+='<path d="M35 23 L40 13 L50 21 L60 13 L65 23 Z" fill="#FFD54A" stroke="#E0A21A" stroke-width="1.6" stroke-linejoin="round"/><circle cx="40" cy="13" r="2" fill="#FF6D00"/><circle cx="60" cy="13" r="2" fill="#FF6D00"/><circle cx="50" cy="21" r="2" fill="#E91E8C"/>';}
+  return s+'</svg>';
+}
+
+function kaniName(){return localStorage.getItem('knipo_name')||{fr:'champion·ne',en:'champion',it:'campione'}[lang]||'champion';}
+function pickKani(kind){const K=KANI[lang]||KANI.fr;const arr=K[kind]||K.idle;return arr[Math.floor(Math.random()*arr.length)].replace('{n}','<strong>'+kaniName()+'</strong>');}
+function kaniSay(msg){const b=$('kani-bubble');if(!b)return;b.innerHTML=msg;b.classList.remove('kani-pop');void b.offsetWidth;b.classList.add('kani-pop');}
+function kaniSpeak(){const m=pickKani('idle');kaniSay(m);playTone(523,.07);speak(m);}
+function renderKaniEvo(lvl){const e=$('kani-evo');if(!e)return;const nArr=KANI_NAMES[lang]||KANI_NAMES.fr;
+  if(lvl>=5){e.textContent={fr:'👑 Niveau max — tu es une Légende !',en:'👑 Max level — you are a Legend!',it:'👑 Livello max — sei una Leggenda!'}[lang];return;}
+  const toNext=1000-(xpTotal%1000);const nextTitle=nArr[Math.min(lvl+1,5)];
+  e.textContent={fr:`Plus que ${toNext} XP → Kani devient ${nextTitle} 🆙`,en:`${toNext} XP to go → Kani becomes ${nextTitle} 🆙`,it:`Ancora ${toNext} XP → Kani diventa ${nextTitle} 🆙`}[lang];
+}
+function renderKani(kind){const lvl=Math.floor(xpTotal/1000)+1;const av=$('kani-av');if(av)av.innerHTML=kaniSVG(Math.min(lvl,5));renderKaniEvo(lvl);kaniSay(pickKani(kind|| (dayStreak>0&&!dailyDone?'back':'greet')));}
+
 function updateXP(){
   const lvl=Math.floor(xpTotal/1000)+1;
   const pct=Math.min(100,Math.round((xpTotal%1000)/10));
   $('xp-fill').style.width=pct+'%';
   $('xp-pts').textContent=xpTotal+' / '+(lvl*1000)+' XP';
-  const avEmoji=[,'🐣','🦁','🐆','👑','⭐'];
-  const av=$('xp-av');if(av)av.textContent=avEmoji[Math.min(lvl,5)]||'⭐';
-  const names={fr:[,'Petit Lion','Grand Lion','Lion Fier','Roi Lion','Légende'],en:[,'Lion Cub','Proud Lion','Bold Lion','Lion King','Legend'],it:[,'Leoncino','Leone Fiero','Leone Audace','Re Leone','Leggenda']};
-  const nArr=names[lang]||names.fr;
+  const av=$('xp-av');if(av)av.innerHTML=kaniSVG(Math.min(lvl,5));
+  const nArr=(KANI_NAMES[lang]||KANI_NAMES.fr);
   const playerName=localStorage.getItem('knipo_name');
   const lvlTitle=nArr[Math.min(lvl,5)]||'Légende';
   $('xp-name').textContent=(playerName?playerName+' · ':'')+lvlTitle+' · '+L().level+' '+lvl;
+  const ke=$('kani-av');if(ke)ke.innerHTML=kaniSVG(Math.min(lvl,5));
+  renderKaniEvo(lvl);
   localStorage.setItem('knipo_xp',xpTotal);
 }
 
@@ -971,7 +1093,12 @@ function applyLang(){
   const ws=$('win-share');if(ws)ws.innerHTML='📤 '+{fr:'Partager mon score',en:'Share my score',it:'Condividi il punteggio'}[lang];
   const row=$('topics-row');row.innerHTML='';
   l.ia.topics.forEach((t,i)=>{const b=document.createElement('button');b.className='tbtn'+(i===0?' on':'');b.textContent=t;const key=l.ia.keys[i];b.onclick=function(){selTopic(b,key);};row.appendChild(b);});
-  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();
+  updateXP();updateCount();updateDailyCard();updateStreakDangerBanner();renderFactCard();renderKani();renderTreasureProgress();
+  const thti=$('th-ti');if(thti)thti.textContent={fr:"Mes trésors d'Afrique",en:"My African treasures",it:"I miei tesori d'Africa"}[lang]||"Mes trésors";
+  const cti=$('coll-ti');if(cti)cti.textContent={fr:"🏆 Mes trésors d'Afrique",en:"🏆 My African treasures",it:"🏆 I miei tesori d'Africa"}[lang]||"🏆 Trésors";
+  const bkc=$('bk-coll');if(bkc)bkc.textContent=L().back;
+  const vt=$('voice-tog');if(vt){vt.textContent=voiceOn?'🔊':'🔇';vt.classList.toggle('on',voiceOn);}
+  const sl=$('say-lbl');if(sl)sl.textContent={fr:'Écouter',en:'Listen',it:'Ascolta'}[lang]||'Écouter';
   const nmti=$('nm-ti');if(nmti)nmti.textContent={fr:'Rappel quotidien',en:'Daily reminder',it:'Promemoria quotidiano'}[lang]||'Rappel';
   const nmde=$('nm-de');if(nmde)nmde.textContent={fr:"On te prévient chaque jour pour ne pas perdre ta série ?",en:"Should we remind you daily so you don't lose your streak?",it:"Ti ricordiamo ogni giorno per non perdere la serie?"}[lang]||'';
   const nmno=$('nm-no');if(nmno)nmno.textContent={fr:'Non merci',en:'No thanks',it:'No grazie'}[lang]||'Non';
@@ -1030,6 +1157,7 @@ function renderQ(){
   const LETTERS=['A','B','C','D'];
   answers.forEach((a,i)=>{const b=document.createElement('button');b.className='abtn';b.setAttribute('data-letter',LETTERS[i]||String(i+1));b.textContent=a;b.onclick=function(){pick(i,q.c,q.x[lang]||q.x.fr);};grid.appendChild(b);});
   $('fb').className='fb';$('nxtbtn').className='nxtbtn';$('nxtbtn').textContent=L().quiz.next;
+  speak(q.q[lang]||q.q.fr);
   startTimer();
 }
 
@@ -1063,6 +1191,7 @@ function pick(ch,cor,exp){
   $('fb-ti').textContent=randFeedback(ok);
   $('fb-ms').textContent=exp;
   $('nxtbtn').className='nxtbtn show';
+  speak((ok?L().quiz.ok:L().quiz.no)+'. '+exp);
 }
 
 function nextQ(){
@@ -1085,6 +1214,8 @@ function nextQ(){
     setTimeout(()=>{animateStats(score,total,xpSess);},80);
     setTimeout(()=>confettiBurst(false),120);
     playSound('levelup');
+    const newT=awardTreasure();
+    if(newT)setTimeout(()=>showTreasureReveal(newT),1500);
   }else renderQ();
 }
 
@@ -1562,7 +1693,7 @@ function tryShowNotification(){
   const m=msgs[lang]||msgs.fr;
   try{
     navigator.serviceWorker.ready.then(reg=>{
-      reg.showNotification(m.title,{body:m.body,icon:'icon-192.png',badge:'icon-192.png',tag:'knipo-daily',renotify:true,data:{url:location.href}});
+      reg.showNotification(m.title,{body:m.body,icon:'icon.svg',badge:'icon.svg',tag:'knipo-daily',renotify:true,data:{url:location.href}});
     });
   }catch(e){}
 }
@@ -1783,6 +1914,86 @@ function renderBadges(){
     const b=document.createElement('div');const earned=completedTopics.has(t);
     b.className='badge'+(earned?' earned':' locked');b.textContent=TOPIC_ICONS[t];br.appendChild(b);
   });
+}
+
+// ============================================================
+// NARRATION AUDIO (synthèse vocale — gratuite, hors-ligne)
+// ============================================================
+let voiceOn=localStorage.getItem('knipo_voice')!=='0'; // activé par défaut
+function stripSpeech(t){return (t||'').replace(/<[^>]+>/g,' ').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}\u{2300}-\u{23FF}️⃣]/gu,'').replace(/\s+/g,' ').trim();}
+function speak(text){
+  if(!voiceOn||!('speechSynthesis' in window))return;
+  try{
+    const clean=stripSpeech(text);if(!clean)return;
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(clean);
+    u.lang={fr:'fr-FR',en:'en-US',it:'it-IT'}[lang]||'fr-FR';
+    u.rate=.95;u.pitch=1.06;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function toggleVoice(){
+  voiceOn=!voiceOn;localStorage.setItem('knipo_voice',voiceOn?'1':'0');
+  const b=$('voice-tog');if(b){b.textContent=voiceOn?'🔊':'🔇';b.classList.toggle('on',voiceOn);}
+  if(voiceOn)speak({fr:'Voix activée',en:'Voice on',it:'Voce attivata'}[lang]||'Voix activée');
+  else if('speechSynthesis' in window)speechSynthesis.cancel();
+}
+function speakQuestion(){const t=$('qtx');if(t)speak(t.textContent);}
+
+// ============================================================
+// TRÉSORS D'AFRIQUE — collection (rétention)
+// ============================================================
+const TREASURES=[
+  {id:'lion',e:'🦁',n:{fr:"Le Lion",en:"The Lion",it:"Il Leone"},x:{fr:"Son rugissement s'entend à 8 km !",en:"Its roar is heard 8 km away!",it:"Il suo ruggito si sente a 8 km!"}},
+  {id:'elephant',e:'🐘',n:{fr:"L'Éléphant",en:"The Elephant",it:"L'Elefante"},x:{fr:"Le plus grand animal terrestre.",en:"The largest land animal.",it:"Il più grande animale terrestre."}},
+  {id:'girafe',e:'🦒',n:{fr:"La Girafe",en:"The Giraffe",it:"La Giraffa"},x:{fr:"Jusqu'à 6 mètres de haut !",en:"Up to 6 meters tall!",it:"Fino a 6 metri!"}},
+  {id:'guepard',e:'🐆',n:{fr:"Le Guépard",en:"The Cheetah",it:"Il Ghepardo"},x:{fr:"120 km/h : le plus rapide !",en:"120 km/h: the fastest!",it:"120 km/h: il più veloce!"}},
+  {id:'gorille',e:'🦍',n:{fr:"Le Gorille",en:"The Gorilla",it:"Il Gorilla"},x:{fr:"98 % d'ADN en commun avec nous.",en:"98% of DNA shared with us.",it:"98% di DNA in comune con noi."}},
+  {id:'zebre',e:'🦓',n:{fr:"Le Zèbre",en:"The Zebra",it:"La Zebra"},x:{fr:"Chaque zèbre a des rayures uniques.",en:"Every zebra's stripes are unique.",it:"Le strisce di ogni zebra sono uniche."}},
+  {id:'pyramides',e:'🏛️',n:{fr:"Les Pyramides",en:"The Pyramids",it:"Le Piramidi"},x:{fr:"Il y en a plus au Soudan qu'en Égypte !",en:"More in Sudan than in Egypt!",it:"Più in Sudan che in Egitto!"}},
+  {id:'djenne',e:'🕌',n:{fr:"Mosquée de Djenné",en:"Djenné Mosque",it:"Moschea di Djenné"},x:{fr:"Le plus grand bâtiment en terre du monde.",en:"World's largest mud-brick building.",it:"Il più grande edificio in terra del mondo."}},
+  {id:'kilimandjaro',e:'🏔️',n:{fr:"Le Kilimandjaro",en:"Kilimanjaro",it:"Kilimangiaro"},x:{fr:"Le toit de l'Afrique : 5 895 m.",en:"The roof of Africa: 5,895 m.",it:"Il tetto dell'Africa: 5.895 m."}},
+  {id:'baobab',e:'🌳',n:{fr:"Le Baobab",en:"The Baobab",it:"Il Baobab"},x:{fr:"L'arbre peut vivre 2 000 ans !",en:"This tree can live 2,000 years!",it:"L'albero può vivere 2.000 anni!"}},
+  {id:'mansa',e:'👑',n:{fr:"Mansa Moussa",en:"Mansa Musa",it:"Mansa Musa"},x:{fr:"L'empereur le plus riche de l'histoire.",en:"The richest emperor in history.",it:"L'imperatore più ricco della storia."}},
+  {id:'djembe',e:'🥁',n:{fr:"Le Djembé",en:"The Djembe",it:"Il Djembe"},x:{fr:"Le tambour qui fait danser l'Afrique.",en:"The drum that makes Africa dance.",it:"Il tamburo che fa ballare l'Africa."}}
+];
+function ownedTreasures(){try{return new Set(JSON.parse(localStorage.getItem('knipo_treasures')||'[]'));}catch(e){return new Set();}}
+function saveTreasures(set){try{localStorage.setItem('knipo_treasures',JSON.stringify([...set]));}catch(e){}}
+function awardTreasure(){
+  const owned=ownedTreasures();
+  const locked=TREASURES.filter(t=>!owned.has(t.id));
+  if(!locked.length)return null;
+  const t=locked[Math.floor(Math.random()*locked.length)];
+  owned.add(t.id);saveTreasures(owned);renderTreasureProgress();
+  return t;
+}
+function renderTreasureProgress(){
+  const owned=ownedTreasures();
+  const c=$('treasure-count');if(c)c.textContent=owned.size+' / '+TREASURES.length;
+  const f=$('treasure-fill');if(f)f.style.width=Math.round(owned.size/TREASURES.length*100)+'%';
+}
+function openCollection(){renderCollection();showPage('page-collection');}
+function renderCollection(){
+  const owned=ownedTreasures();const grid=$('coll-grid');if(!grid)return;
+  grid.innerHTML=TREASURES.map(t=>{
+    const has=owned.has(t.id);
+    if(has)return `<div class="tcard owned"><span class="te">${t.e}</span><span class="tn">${t.n[lang]||t.n.fr}</span><span class="tx">${t.x[lang]||t.x.fr}</span></div>`;
+    return `<div class="tcard locked"><span class="te">❔</span><span class="tn">???</span></div>`;
+  }).join('');
+  $('coll-count').textContent=owned.size+' / '+TREASURES.length;
+  const sub=$('coll-sub');if(sub){const done=owned.size>=TREASURES.length;
+    sub.textContent=done?{fr:'collection complète ! 🎉',en:'collection complete! 🎉',it:'collezione completa! 🎉'}[lang]:{fr:'gagne-les en jouant !',en:'win them by playing!',it:'vincili giocando!'}[lang];}
+}
+function showTreasureReveal(t){
+  if(!t)return;
+  const tag={fr:'🏆 Nouveau trésor !',en:'🏆 New treasure!',it:'🏆 Nuovo tesoro!'}[lang]||'🏆';
+  const btn={fr:'Super ! ✨',en:'Awesome! ✨',it:'Fantastico! ✨'}[lang]||'OK';
+  const el=document.createElement('div');el.className='treasure-reveal';
+  el.innerHTML=`<div class="tr-card"><div class="tr-tag">${tag}</div><div class="tr-emoji">${t.e}</div><div class="tr-name">${t.n[lang]||t.n.fr}</div><div class="tr-fact">${t.x[lang]||t.x.fr}</div><button class="tr-btn">${btn}</button></div>`;
+  el.querySelector('.tr-btn').onclick=()=>el.remove();
+  el.addEventListener('click',(ev)=>{if(ev.target===el)el.remove();});
+  document.body.appendChild(el);
+  playSound('levelup');confettiBurst(false);
 }
 
 // ============================================================
